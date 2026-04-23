@@ -15,9 +15,9 @@
   --rust: #8b3a0f;
   --slate: #252a36;
   --slate-mid: #2e3545;
-  --muted: #a09888;
-  --muted-light: #c8bfb0;
-  --border: #3a3020;
+  --muted: #b8b0a0;
+  --muted-light: #ddd5c5;
+  --border: #4a4030;
   --complete: #5ab87a;
   --planning: #6a7890;
 }
@@ -79,7 +79,7 @@ header::after {
   cursor:pointer;
   border:none;
   background:transparent;
-  color: #b0b8c8;
+  color: #d0d8e8;
   font-family:"Cinzel",serif;
   font-size:10px;
   letter-spacing:2px;
@@ -108,7 +108,7 @@ header::after {
 
 /* MAP */
 .map-panel { position:relative; background:#1a1e28; overflow:hidden; }
-.static-map { width:100%; height:100%; object-fit:cover; object-position:center; display:none; }
+.static-map { width:100%; height:100%; object-fit:contain; object-position:center; background:#1a1e28; display:none; }
 .static-map.visible { display:block; }
 #leaflet-map { width:100%; height:100%; display:none; }
 #leaflet-map.visible { display:block; }
@@ -148,17 +148,17 @@ header::after {
   margin-bottom:20px; width:fit-content;
 }
 .badge-complete { border-color:var(--complete); color:var(--complete); background:rgba(90,184,122,0.08); }
-.badge-active { border-color:var(--gold); color:var(--gold); background:rgba(232,160,32,0.08); }
+.badge-active { border-color:#f0b030; color:#f0b030; background:rgba(240,176,48,0.12); font-weight:600; }
 .badge-planning { border-color:var(--planning); color:#90a0b8; background:rgba(106,120,144,0.08); }
 
 .stat-grid { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--border); margin-bottom:18px; border:1px solid var(--border); overflow:hidden; flex-shrink:0; }
 .stat-cell { background:#1a1408; padding:10px 12px; }
-.stat-label { font-family:"Cinzel",serif; font-size:8px; letter-spacing:2px; color:var(--muted); text-transform:uppercase; display:block; margin-bottom:3px; }
+.stat-label { font-family:"Cinzel",serif; font-size:8px; letter-spacing:2px; color:#c0b090; text-transform:uppercase; display:block; margin-bottom:3px; }
 .stat-value { font-family:"Cinzel",serif; font-size:15px; color:var(--parchment); font-weight:600; line-height:1.2; }
 .stat-value.hi { color:var(--gold); }
 .stat-value.sm { font-size:11px; }
 
-.section-label { font-family:"Cinzel",serif; font-size:9px; letter-spacing:3px; color:var(--gold); text-transform:uppercase; margin-bottom:8px; margin-top:4px; }
+.section-label { font-family:"Cinzel",serif; font-size:9px; letter-spacing:3px; color:#f0b030; text-transform:uppercase; margin-bottom:8px; margin-top:4px; }
 .overview-text { font-size:15px; line-height:1.75; color:var(--muted-light); margin-bottom:18px; }
 
 /* LEGS LIST */
@@ -189,7 +189,26 @@ header::after {
   flex-shrink:0;
   background:#100e08;
 }
-.footer-text { font-family:"Cinzel",serif; font-size:8px; letter-spacing:2px; color:#3a3020; text-transform:uppercase; }
+.footer-text { font-family:"Cinzel",serif; font-size:8px; letter-spacing:2px; color:#7a6840; text-transform:uppercase; }
+
+
+/* LAYER TOGGLES */
+.layer-controls {
+  position:absolute;
+  top:12px;
+  right:12px;
+  z-index:1000;
+  background:rgba(26,20,16,0.93);
+  border:1px solid #4a4030;
+  padding:10px 14px;
+  display:none;
+}
+.layer-controls.visible { display:block; }
+.controls-title { font-family:"Cinzel",serif; font-size:8px; letter-spacing:3px; color:#f0b030; text-transform:uppercase; margin-bottom:8px; border-bottom:1px solid #4a4030; padding-bottom:5px; }
+.control-row { display:flex; align-items:center; gap:8px; margin-bottom:6px; cursor:pointer; font-family:"Cinzel",serif; font-size:9px; color:#ddd5c5; letter-spacing:0.5px; }
+.control-row:last-child { margin-bottom:0; }
+.control-row input[type="checkbox"] { accent-color:#e8a020; cursor:pointer; width:13px; height:13px; }
+.control-icon { font-size:13px; }
 
 /* MAP LEGEND */
 .map-legend {
@@ -198,7 +217,7 @@ header::after {
   padding:10px 14px;
 }
 .legend-title { font-family:"Cinzel",serif; font-size:8px; letter-spacing:3px; color:var(--gold); text-transform:uppercase; margin-bottom:8px; border-bottom:1px solid var(--border); padding-bottom:5px; }
-.legend-item { display:flex; align-items:center; gap:8px; margin-bottom:5px; font-family:"Cinzel",serif; font-size:9px; color:var(--muted-light); letter-spacing:0.5px; }
+.legend-item { display:flex; align-items:center; gap:8px; margin-bottom:5px; font-family:"Cinzel",serif; font-size:9px; color:#ddd5c5; letter-spacing:0.5px; }
 .legend-line { width:22px; height:2px; flex-shrink:0; }
 .legend-emoji { font-size:12px; width:16px; text-align:center; }
 
@@ -206,7 +225,7 @@ header::after {
 .leaflet-container { font-family:"Crimson Pro",serif; }
 .leaflet-control-zoom a { background:#1a1208 !important; color:var(--gold) !important; border-color:var(--border) !important; }
 .leaflet-control-zoom a:hover { background:#2a1e0a !important; }
-.leaflet-control-attribution { background:rgba(14,11,5,0.85) !important; color:#3a3020 !important; font-size:9px !important; }
+.leaflet-control-attribution { background:rgba(14,11,5,0.85) !important; color:#a09060 !important; font-size:10px !important; }
 .leaflet-popup-content-wrapper { background:#fff; border:2px solid #8b5a1e; border-radius:2px; box-shadow:0 4px 20px rgba(0,0,0,0.4); }
 .leaflet-popup-tip { background:#fff; }
 .leaflet-popup-content { margin:12px 14px; font-family:"Crimson Pro",serif; }
@@ -219,7 +238,7 @@ header::after {
 
 /* PROGRESS BAR */
 .progress-bar-wrap { margin-bottom:20px; }
-.progress-label { font-family:"Cinzel",serif; font-size:8px; letter-spacing:2px; color:var(--muted); text-transform:uppercase; margin-bottom:5px; display:flex; justify-content:space-between; }
+.progress-label { font-family:"Cinzel",serif; font-size:8px; letter-spacing:2px; color:#c0b090; text-transform:uppercase; margin-bottom:5px; display:flex; justify-content:space-between; }
 .progress-track { height:4px; background:#2a2010; border-radius:2px; overflow:hidden; }
 .progress-fill { height:100%; background:linear-gradient(90deg,var(--complete),var(--gold)); border-radius:2px; transition:width 0.5s; }
 
@@ -275,6 +294,15 @@ header::after {
       <div class="legend-item"><span class="legend-emoji">⛺</span> L&amp;C Campsite</div>
       <div class="legend-item"><span class="legend-emoji">🧭</span> Pivotal Place</div>
       <div class="legend-item"><span class="legend-emoji">✈️</span> My Landing</div>
+    </div>
+
+    <!-- LAYER TOGGLES (L&C map only) -->
+    <div class="layer-controls" id="layer-controls">
+      <div class="controls-title">Map Layers</div>
+      <label class="control-row"><input type="checkbox" id="tog-route" checked><span class="control-icon">━</span> Expedition Route</label>
+      <label class="control-row"><input type="checkbox" id="tog-camps" checked><span class="control-icon">⛺</span> L&amp;C Campsites</label>
+      <label class="control-row"><input type="checkbox" id="tog-pivotal" checked><span class="control-icon">🧭</span> Pivotal Places</label>
+      <label class="control-row"><input type="checkbox" id="tog-flights" checked><span class="control-icon">✈️</span> My Flight Legs</label>
     </div>
   </div>
 
@@ -471,11 +499,13 @@ function switchExp(n) {
   document.querySelectorAll('.static-map').forEach(m => m.classList.remove('visible'));
   document.getElementById('leaflet-map').classList.remove('visible');
   document.getElementById('lc-legend').style.display = 'none';
+  document.getElementById('layer-controls').classList.remove('visible');
   if (n===1) document.getElementById('map-exp1').classList.add('visible');
   else if (n===2) document.getElementById('map-exp2').classList.add('visible');
   else {
     document.getElementById('leaflet-map').classList.add('visible');
     document.getElementById('lc-legend').style.display = 'block';
+    document.getElementById('layer-controls').classList.add('visible');
     setTimeout(() => { if(lcMap) lcMap.invalidateSize(); }, 60);
   }
 }
@@ -485,21 +515,27 @@ let lcMap = null;
 
 function initLCMap() {
   if (lcMap) return;
-  lcMap = L.map('leaflet-map', { center:[43,-100], zoom:4 });
+  lcMap = L.map('leaflet-map', { center:[44,-97], zoom:5 });
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution:'&copy; OpenStreetMap contributors', maxZoom:19
   }).addTo(lcMap);
 
-  // ROUTE — Remaining (dashed amber)
+  // ROUTE — Remaining (dashed amber) — stored for toggle
+  const routeGroup = L.layerGroup();
   ROUTE_SEGMENTS.forEach(seg => {
-    L.polyline(seg, { color:'#000', weight:5, opacity:0.15 }).addTo(lcMap);
-    L.polyline(seg, { color:'#b8720a', weight:2.5, opacity:0.9, dashArray:'7,5' }).addTo(lcMap);
+    L.polyline(seg, { color:'#000', weight:5, opacity:0.15 }).addTo(routeGroup);
+    L.polyline(seg, { color:'#b8720a', weight:2.5, opacity:0.9, dashArray:'7,5' }).addTo(routeGroup);
   });
+  routeGroup.addTo(lcMap);
+  routeLayers.push(routeGroup);
 
-  // ROUTE — Completed (solid green) — empty until flights happen
+  // ROUTE — Completed (solid green)
   if (COMPLETED_COORDS.length > 0) {
-    L.polyline(COMPLETED_COORDS, { color:'#000', weight:5, opacity:0.2 }).addTo(lcMap);
-    L.polyline(COMPLETED_COORDS, { color:'#5ab87a', weight:3, opacity:0.95 }).addTo(lcMap);
+    const completedGroup = L.layerGroup();
+    L.polyline(COMPLETED_COORDS, { color:'#000', weight:5, opacity:0.2 }).addTo(completedGroup);
+    L.polyline(COMPLETED_COORDS, { color:'#5ab87a', weight:3, opacity:0.95 }).addTo(completedGroup);
+    completedGroup.addTo(lcMap);
+    routeLayers.push(completedGroup);
   }
 
   // CAMPSITE MARKERS (tent icons)
@@ -509,7 +545,8 @@ function initLCMap() {
     iconSize:[14,14], iconAnchor:[7,7]
   });
 
-  const campLayer = L.layerGroup();
+  campLayer2 = L.layerGroup();
+  const campLayer = campLayer2;
   CAMPSITES.forEach(c => {
     if (!c.lat || !c.lng) return;
     const m = L.marker([c.lat, c.lng], { icon:tentIcon(c.place) });
@@ -535,6 +572,7 @@ function initLCMap() {
     iconSize:[18,18], iconAnchor:[9,9]
   });
 
+  pivotalLayer2 = L.layerGroup();
   PIVOTAL.forEach(p => {
     if (!p.lat || !p.lng) return;
     const m = L.marker([p.lat, p.lng], { icon:pivIcon(p.name), zIndexOffset:500 });
@@ -544,8 +582,9 @@ function initLCMap() {
       <div class="popup-desc">${p.desc}</div>
       <a class="popup-link" href="${p.url}" target="_blank">Learn More →</a>
     `, {maxWidth:260});
-    m.addTo(lcMap);
+    m.addTo(pivotalLayer2);
   });
+  pivotalLayer2.addTo(lcMap);
 
   // FLIGHT LEG MARKERS
   const planeIcon = (label) => L.divIcon({
@@ -554,15 +593,19 @@ function initLCMap() {
     iconSize:[20,20], iconAnchor:[10,10]
   });
 
+  flightLayer2 = L.layerGroup();
   FLIGHT_LEGS.forEach(leg => {
     const m = L.marker([leg.lat, leg.lng], { icon:planeIcon(leg.label), zIndexOffset:1000 });
     m.bindPopup(`<div class="popup-title">✈️ ${leg.label}</div><a class="popup-link" href="${leg.post}" target="_blank">Read Flight Log →</a>`, {maxWidth:220});
-    m.addTo(lcMap);
+    m.addTo(flightLayer2);
   });
+  flightLayer2.addTo(lcMap);
+
+  wireLCToggles();
 }
 
 // Init on load (exp 3 is default)
-window.addEventListener('load', () => setTimeout(initLCMap, 100));
+window.addEventListener('load', () => { setTimeout(initLCMap, 100); document.getElementById('layer-controls').classList.add('visible'); });
 </script>
 
 </body>
