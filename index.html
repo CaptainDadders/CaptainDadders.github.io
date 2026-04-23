@@ -225,7 +225,8 @@ header::after {
 .leaflet-container { font-family:"Crimson Pro",serif; }
 .leaflet-control-zoom a { background:#1a1208 !important; color:var(--gold) !important; border-color:var(--border) !important; }
 .leaflet-control-zoom a:hover { background:#2a1e0a !important; }
-.leaflet-control-attribution { background:rgba(14,11,5,0.85) !important; color:#a09060 !important; font-size:10px !important; }
+.leaflet-control-attribution { background:rgba(255,255,255,0.85) !important; color:#333 !important; font-size:11px !important; padding:2px 6px !important; }
+.leaflet-control-attribution a { color:#666 !important; }
 .leaflet-popup-content-wrapper { background:#fff; border:2px solid #8b5a1e; border-radius:2px; box-shadow:0 4px 20px rgba(0,0,0,0.4); }
 .leaflet-popup-tip { background:#fff; }
 .leaflet-popup-content { margin:12px 14px; font-family:"Crimson Pro",serif; }
@@ -514,6 +515,22 @@ function switchExp(n) {
 
 // ── LEAFLET MAP ──────────────────────────────────────────────────
 let lcMap = null;
+let routeLayers = [], campLayer2 = null, pivotalLayer2 = null, flightLayer2 = null;
+
+function wireLCToggles() {
+  document.getElementById('tog-route').addEventListener('change', function() {
+    routeLayers.forEach(l => this.checked ? lcMap.addLayer(l) : lcMap.removeLayer(l));
+  });
+  document.getElementById('tog-camps').addEventListener('change', function() {
+    if (campLayer2) this.checked ? lcMap.addLayer(campLayer2) : lcMap.removeLayer(campLayer2);
+  });
+  document.getElementById('tog-pivotal').addEventListener('change', function() {
+    if (pivotalLayer2) this.checked ? lcMap.addLayer(pivotalLayer2) : lcMap.removeLayer(pivotalLayer2);
+  });
+  document.getElementById('tog-flights').addEventListener('change', function() {
+    if (flightLayer2) this.checked ? lcMap.addLayer(flightLayer2) : lcMap.removeLayer(flightLayer2);
+  });
+}
 
 function initLCMap() {
   if (lcMap) return;
@@ -559,13 +576,6 @@ function initLCMap() {
     campLayer.addLayer(m);
   });
   lcMap.addLayer(campLayer);
-
-  // Show/hide campsites by zoom
-  lcMap.on('zoomend', () => {
-    if (lcMap.getZoom() >= 6) campLayer.addTo(lcMap);
-    else lcMap.removeLayer(campLayer);
-  });
-  if (lcMap.getZoom() < 6) lcMap.removeLayer(campLayer);
 
   // PIVOTAL PLACE MARKERS
   const pivIcon = (name) => L.divIcon({
