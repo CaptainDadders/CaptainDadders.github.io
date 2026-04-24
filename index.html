@@ -609,7 +609,7 @@ function wireLCToggles() {
   });
   document.getElementById('tog-camps').addEventListener('change', function() {
     if (campLayer2) {
-      if (this.checked && lcMap.getZoom() >= 6) lcMap.addLayer(campLayer2);
+      if (this.checked && lcMap.getZoom() >= 7) lcMap.addLayer(campLayer2);
       else lcMap.removeLayer(campLayer2);
     }
   });
@@ -667,7 +667,7 @@ function initLCMap() {
   // Zoom-dependent campsites — show at zoom 6+
   function updateCampVisibility() {
     if (!document.getElementById('tog-camps').checked) return;
-    if (lcMap.getZoom() >= 6) lcMap.addLayer(campLayer);
+    if (lcMap.getZoom() >= 7) lcMap.addLayer(campLayer);
     else lcMap.removeLayer(campLayer);
   }
   lcMap.on('zoomend', updateCampVisibility);
