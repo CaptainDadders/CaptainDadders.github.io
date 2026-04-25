@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Captain Dadders — Flight Expeditions</title>
+    <link>https://captaindadders.github.io</link>
+    <description>Following the Lewis &amp; Clark Corps of Discovery route by air — MSFS 2024 expedition blog.</description>
+    <language>en-us</language>
+    <copyright>Captain Dadders</copyright>
+    <atom:link href="https://captaindadders.github.io/rss.xml" rel="self" type="application/rss+xml"/>
+    <image>
+      <url>https://captaindadders.github.io/favicon.png</url>
+      <title>Captain Dadders</title>
+      <link>https://captaindadders.github.io</link>
+    </image>
+
+    <!-- New legs get added here, most recent first -->
+    <!-- EXAMPLE ENTRY (remove when first real leg is published):
+    <item>
+      <title>Leg 1: 31D to 1G8 — Departing Pittsburgh</title>
+      <link>https://captaindadders.github.io/Expedition3/legs/leg-01.html</link>
+      <description>Following Lewis down the Ohio River on the first leg of the Corps of Discovery expedition.</description>
+      <pubDate>Fri, 01 May 2026 12:00:00 +0000</pubDate>
+      <guid>https://captaindadders.github.io/Expedition3/legs/leg-01.html</guid>
+    </item>
+    -->
+
+  </channel>
+</rss>
