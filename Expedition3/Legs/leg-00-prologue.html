@@ -345,40 +345,10 @@ body {
   .site-footer { padding:16px; flex-direction:column; gap:8px; text-align:center; }
 }
 
-/* Hide chrome when loaded in iframe */
-body.in-iframe .site-header,
-body.in-iframe .breadcrumb,
-body.in-iframe .post-nav,
-body.in-iframe .site-footer {
-  display: none !important;
-}
-body.in-iframe .hero {
-  padding-top: 40px;
-}
+
 </style>
 </head>
 <body>
-
-<!-- SITE HEADER -->
-<header class="site-header">
-  <a href="/" class="site-logo">
-    <span class="logo-tag">Flight Expeditions</span>
-    <span class="logo-name">Captain Dadders</span>
-  </a>
-  <nav class="site-nav">
-    <a href="/">← Back to Map</a>
-    <a href="https://www.youtube.com/@CaptainDadders" target="_blank">YouTube</a>
-  </nav>
-</header>
-
-<!-- BREADCRUMB -->
-<div class="breadcrumb">
-  <a href="/">Home</a>
-  <span class="sep">›</span>
-  <a href="/">Expedition III — Lewis &amp; Clark</a>
-  <span class="sep">›</span>
-  <span class="current">Prologue</span>
-</div>
 
 <!-- HERO -->
 <div class="hero">
@@ -454,22 +424,6 @@ body.in-iframe .hero {
 
 </div>
 
-<!-- POST NAV -->
-<div class="post-nav">
-  <a href="/">← Back to Map</a>
-  <a href="leg-01.html">Leg 1: Pittsburgh → Ohio River →</a>
-</div>
 
-<!-- SITE FOOTER -->
-<footer class="site-footer">
-  <span class="footer-text">Captain Dadders &middot; MSFS 2024</span>
-  <span class="footer-text">Expedition III &mdash; Corps of Discovery</span>
-</footer>
-
-<script>
-if (window.self !== window.top) {
-  document.body.classList.add('in-iframe');
-}
-</script>
 </body>
 </html>
