@@ -192,6 +192,96 @@ header::after {
 .footer-text { font-family:"Cinzel",serif; font-size:8px; letter-spacing:2px; color:#7a6840; text-transform:uppercase; }
 
 
+
+/* SUBSCRIBE */
+.subscribe-btn {
+  font-family:"Cinzel",serif;
+  font-size:10px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:var(--ink);
+  background:var(--gold);
+  border:none;
+  padding:7px 14px;
+  cursor:pointer;
+  transition:background 0.2s;
+  border-radius:2px;
+  font-weight:600;
+}
+.subscribe-btn:hover { background:var(--gold-light); }
+
+.subscribe-dropdown {
+  display:none;
+  position:absolute;
+  top:68px;
+  right:40px;
+  z-index:500;
+  background:var(--ink);
+  border:1px solid var(--border);
+  box-shadow:0 8px 30px rgba(0,0,0,0.5);
+  min-width:280px;
+}
+.subscribe-dropdown.open { display:block; }
+
+.subscribe-inner {
+  padding:20px;
+}
+
+.subscribe-title {
+  font-family:"Cinzel",serif;
+  font-size:9px;
+  letter-spacing:2px;
+  color:var(--gold);
+  text-transform:uppercase;
+  margin-bottom:14px;
+  text-align:center;
+}
+
+.subscribe-inner form {
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.subscribe-inner input[type="email"] {
+  background:#2a2010;
+  border:1px solid var(--border);
+  color:var(--parchment);
+  padding:9px 12px;
+  font-family:"Crimson Pro",serif;
+  font-size:14px;
+  outline:none;
+  border-radius:2px;
+}
+.subscribe-inner input[type="email"]::placeholder { color:var(--muted); }
+.subscribe-inner input[type="email"]:focus { border-color:var(--gold); }
+
+.subscribe-inner button[type="submit"] {
+  background:var(--gold);
+  color:var(--ink);
+  border:none;
+  padding:9px;
+  font-family:"Cinzel",serif;
+  font-size:10px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  font-weight:700;
+  cursor:pointer;
+  border-radius:2px;
+  transition:background 0.2s;
+}
+.subscribe-inner button[type="submit"]:hover { background:var(--gold-light); }
+
+.powered-by {
+  display:block;
+  text-align:center;
+  margin-top:10px;
+  font-size:11px;
+  color:var(--muted);
+  text-decoration:none;
+}
+.powered-by:hover { color:var(--parchment); }
+
 /* LAYER TOGGLES */
 .layer-controls {
   position:absolute;
@@ -264,7 +354,20 @@ header::after {
   </div>
   <nav class="header-nav">
     <a href="https://719simpilot.wordpress.com" target="_blank">Archive Blog</a>
+    <button onclick="toggleSubscribe()" class="subscribe-btn">Subscribe</button>
   </nav>
+
+  <!-- Subscribe dropdown -->
+  <div class="subscribe-dropdown" id="subscribe-dropdown">
+    <div class="subscribe-inner">
+      <div class="subscribe-title">Get notified when a new leg is posted</div>
+      <form action="https://api.follow.it/subscription-form/NkU5RXZoSmZFN3ZKczV0VlBzeFgyVmdWeCtPMytTTUpVVE1KSVRoNUJpaTdrczE4ZzBWMWo0UmUyV1B3VW9peXVBMTZ6ZjJ5U1hyYmlGWi9jRk82Vy9pUE5EVFNpRDFENHFNcmE5dGROL1UvZlRHTVNhL1Z2QVdTZVdlVTMxWER8NG14WXJpeVRJLzVjVFdjazVEV3BENzV3TGY4STVXNXRROUVkMmt3ckl6Zz0=/8" method="post">
+        <input type="email" name="email" required placeholder="Enter your email">
+        <button type="submit">Subscribe</button>
+      </form>
+      <a href="https://follow.it" target="_blank" class="powered-by">Powered by follow.it</a>
+    </div>
+  </div>
 </header>
 
 <div class="expedition-bar">
@@ -711,6 +814,19 @@ function initLCMap() {
 
   wireLCToggles();
 }
+
+// Subscribe dropdown toggle
+function toggleSubscribe() {
+  document.getElementById('subscribe-dropdown').classList.toggle('open');
+}
+// Close on outside click
+document.addEventListener('click', function(e) {
+  const dropdown = document.getElementById('subscribe-dropdown');
+  const btn = document.querySelector('.subscribe-btn');
+  if (!dropdown.contains(e.target) && !btn.contains(e.target)) {
+    dropdown.classList.remove('open');
+  }
+});
 
 // Init on load (exp 3 is default)
 window.addEventListener('load', () => { setTimeout(initLCMap, 100); document.getElementById('layer-controls').classList.add('visible'); });
