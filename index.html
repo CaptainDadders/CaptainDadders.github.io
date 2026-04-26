@@ -59,6 +59,8 @@ header::after {
 .header-nav { display:flex; gap:28px; align-items:center; }
 .header-nav a { font-family:"Cinzel",serif; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--muted-light); text-decoration:none; transition:color 0.2s; }
 .header-nav a:hover { color:var(--gold); }
+.yt-link { display:flex; align-items:center; opacity:0.85; transition:opacity 0.2s; }
+.yt-link:hover { opacity:1; }
 
 /* EXPEDITION TABS */
 .expedition-bar {
@@ -336,12 +338,19 @@ header::after {
 @media(max-width:900px){
   .main-layout { grid-template-columns:1fr; grid-template-rows:50vh 1fr; height:auto; }
   .info-panel { border-left:none; border-top:1px solid var(--border); }
-  header { padding:0 20px; }
-  .exp-label-long { display:none; }
+  header { padding:0 12px; height:auto; min-height:56px; flex-wrap:wrap; gap:6px; padding-top:8px; padding-bottom:8px; }
+  .logo-tag { font-size:7px; letter-spacing:3px; }
+  .logo-name { font-size:16px; }
+  .header-nav { gap:12px; }
+  .header-nav a { font-size:9px; letter-spacing:2px; }
+  .subscribe-btn { font-size:8px; letter-spacing:2px; padding:5px 10px; }
+  .subscribe-dropdown { right:12px; top:auto; }
+  .exp-label-long { display:none !important; }
   .exp-label-short { display:inline !important; }
+  .exp-tab { font-size:9px; letter-spacing:1px; }
 }
 @media(min-width:901px){
-  .exp-label-short { display:none; }
+  .exp-label-short { display:none !important; }
 }
 </style>
 </head>
@@ -377,16 +386,16 @@ header::after {
 <div class="expedition-bar">
   <button class="exp-tab" data-exp="1" onclick="switchExp(1)">
     <div class="status-dot dot-complete"></div>
-    <span class="exp-label-long">Expedition I &mdash; Around the World</span><span class="exp-label-short">Exp I</span>
+    <span class="exp-label-long">Expedition I &mdash; Around the World</span><span class="exp-label-short" style="display:none">Exp I</span>
     <span class="exp-label-short" style="display:none">Exp I</span>
   </button>
   <button class="exp-tab" data-exp="2" onclick="switchExp(2)">
     <div class="status-dot dot-complete"></div>
-    <span class="exp-label-long">Expedition II &mdash; Americas Extremes</span><span class="exp-label-short">Exp II</span>
+    <span class="exp-label-long">Expedition II &mdash; Americas Extremes</span><span class="exp-label-short" style="display:none">Exp II</span>
   </button>
   <button class="exp-tab active" data-exp="3" onclick="switchExp(3)">
     <div class="status-dot dot-active"></div>
-    <span class="exp-label-long">Expedition III &mdash; Lewis &amp; Clark</span><span class="exp-label-short">Exp III</span>
+    <span class="exp-label-long">Expedition III &mdash; Lewis &amp; Clark</span><span class="exp-label-short" style="display:none">Exp III</span>
   </button>
 </div>
 
@@ -402,7 +411,10 @@ header::after {
 
     <!-- LAYER TOGGLES (L&C map only) -->
     <div class="layer-controls" id="layer-controls">
-      <div class="controls-title">Map Layers</div>
+      <div class="controls-title" onclick="toggleLayers()" style="cursor:pointer;display:flex;justify-content:space-between;align-items:center">
+        Map Layers <span id="layers-toggle-icon">▲</span>
+      </div>
+      <div id="layers-content">
       <label class="control-row"><input type="checkbox" id="tog-route" checked><span class="control-icon"><span style="display:inline-block;width:20px;height:2px;background:#b8720a;border-top:2px dashed #b8720a;vertical-align:middle;margin-right:2px"></span></span> Expedition Route</label>
       <label class="control-row"><input type="checkbox" id="tog-camps" checked><span class="control-icon">⛺</span> L&amp;C Campsites <span style="font-size:8px;color:#c0b090;font-family:Cinzel,serif;letter-spacing:1px">(zoom in)</span></label>
       <label class="control-row"><input type="checkbox" id="tog-pivotal" checked><span class="control-icon">🧭</span> Pivotal Places</label>
@@ -492,7 +504,7 @@ header::after {
 
     <div class="panel-footer">
       <span class="footer-text">Captain Dadders &middot; MSFS 2024</span>
-      <span class="footer-text">Updated Apr 26, 2026 04:19 AM</span>
+      <span class="footer-text">Updated Apr 25, 2026 10:24 PM MT</span>
     </div>
   </div>
 </div>
@@ -836,6 +848,15 @@ function handleSubscribe(e) {
     document.getElementById('subscribe-form').style.display = 'none';
     document.getElementById('subscribe-success').style.display = 'block';
   });
+}
+
+// Layer controls collapsible
+function toggleLayers() {
+  const content = document.getElementById('layers-content');
+  const icon = document.getElementById('layers-toggle-icon');
+  const isHidden = content.style.display === 'none';
+  content.style.display = isHidden ? 'block' : 'none';
+  icon.textContent = isHidden ? '▲' : '▼';
 }
 
 // Subscribe dropdown toggle
