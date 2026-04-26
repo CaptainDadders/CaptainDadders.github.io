@@ -345,14 +345,10 @@ header::after {
   .header-nav a { font-size:9px; letter-spacing:2px; }
   .subscribe-btn { font-size:8px; letter-spacing:2px; padding:5px 10px; }
   .subscribe-dropdown { right:12px; top:auto; }
-  .exp-label-long { display:none !important; }
-  .exp-label-short { display:inline !important; }
-  .exp-label-long + .exp-label-short { display:inline !important; }
+
   .exp-tab { font-size:9px; letter-spacing:1px; }
 }
 @media(min-width:901px){
-  .exp-label-short { display:none !important; }
-  .exp-label-long { display:inline !important; }
   .exp-tab { font-size:11px; letter-spacing:2px; }
 }
 </style>
@@ -389,16 +385,15 @@ header::after {
 <div class="expedition-bar">
   <button class="exp-tab" data-exp="1" onclick="switchExp(1)">
     <div class="status-dot dot-complete"></div>
-    <span class="exp-label-long">Expedition I &mdash; Around the World</span><span class="exp-label-short">Exp I</span>
-    <span class="exp-label-short">Exp I</span>
+    <span class="exp-label" data-long="Expedition I — Around the World" data-short="Exp I">Expedition I — Around the World</span>
   </button>
   <button class="exp-tab" data-exp="2" onclick="switchExp(2)">
     <div class="status-dot dot-complete"></div>
-    <span class="exp-label-long">Expedition II &mdash; Americas Extremes</span><span class="exp-label-short">Exp II</span>
+    <span class="exp-label" data-long="Expedition II — Americas Extremes" data-short="Exp II">Expedition II — Americas Extremes</span>
   </button>
   <button class="exp-tab active" data-exp="3" onclick="switchExp(3)">
     <div class="status-dot dot-active"></div>
-    <span class="exp-label-long">Expedition III &mdash; Lewis &amp; Clark</span><span class="exp-label-short">Exp III</span>
+    <span class="exp-label" data-long="Expedition III — Lewis &amp; Clark" data-short="Exp III">Expedition III — Lewis &amp; Clark</span>
   </button>
 </div>
 
@@ -508,7 +503,7 @@ header::after {
 
     <div class="panel-footer">
       <span class="footer-text">Captain Dadders &middot; MSFS 2024</span>
-      <span class="footer-text">Updated Apr 25, 2026 10:55 PM MT</span>
+      <span class="footer-text">Updated Apr 25, 2026 10:59 PM MT</span>
     </div>
   </div>
 </div>
@@ -853,6 +848,21 @@ function handleSubscribe(e) {
     document.getElementById('subscribe-success').style.display = 'block';
   });
 }
+
+// Swap expedition tab labels based on screen width
+function updateTabLabels() {
+  const isMobile = window.innerWidth <= 900;
+  document.querySelectorAll('.exp-label').forEach(el => {
+    el.textContent = isMobile ? el.dataset.short : el.dataset.long;
+  });
+  // Fix Exp III which has HTML entity
+  if (!isMobile) {
+    const tabs = document.querySelectorAll('.exp-label');
+    if (tabs[2]) tabs[2].innerHTML = "Expedition III &mdash; Lewis &amp; Clark";
+  }
+}
+window.addEventListener('resize', updateTabLabels);
+window.addEventListener('load', updateTabLabels);
 
 // Layer controls collapsible
 function toggleLayers() {
