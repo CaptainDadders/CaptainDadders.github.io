@@ -589,7 +589,7 @@ header::after {
 
     <div class="panel-footer">
       <span class="footer-text">Captain Dadders &middot; MSFS 2024</span>
-      <span class="footer-text">Updated Apr 26, 2026 10:14 AM MT</span>
+      <span class="footer-text">Updated Apr 26, 2026 10:28 AM MT</span>
     </div>
   </div>
 </div>
@@ -855,7 +855,12 @@ function wireLCToggles() {
 
 function initLCMap() {
   if (lcMap) return;
-  lcMap = L.map('leaflet-map', { center:[44,-97], zoom:5 });
+  // Center on most recent flight leg if any, otherwise default view
+  const defaultCenter = FLIGHT_LEGS.length > 0
+    ? [FLIGHT_LEGS[FLIGHT_LEGS.length - 1].lat, FLIGHT_LEGS[FLIGHT_LEGS.length - 1].lng]
+    : [44, -97];
+  const defaultZoom = FLIGHT_LEGS.length > 0 ? 8 : 5;
+  lcMap = L.map('leaflet-map', { center: defaultCenter, zoom: defaultZoom });
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution:'&copy; OpenStreetMap contributors', maxZoom:19
   }).addTo(lcMap);
@@ -960,6 +965,9 @@ function openJournal(post, slug) {
   currentSlug = slug || null;
   // Update URL hash without page reload
   try { if (slug) history.pushState(null, '', '#' + slug); } catch(e) {}
+  // Pan map to this leg's location
+  const leg = FLIGHT_LEGS.find(l => l.slug === slug);
+  if (leg && lcMap) lcMap.flyTo([leg.lat, leg.lng], 8, { duration: 1 });
   // Load iframe
   document.getElementById('journal-iframe').src = post;
   // Show journal UI, hide overviews
