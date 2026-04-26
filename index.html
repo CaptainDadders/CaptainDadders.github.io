@@ -600,7 +600,7 @@ header::after {
 
     <div class="panel-footer">
       <span class="footer-text">Captain Dadders &middot; MSFS 2024</span>
-      <span class="footer-text">Updated Apr 26, 2026 10:39 AM MT</span>
+      <span class="footer-text">Updated Apr 26, 2026 10:43 AM MT</span>
     </div>
   </div>
 </div>
@@ -1127,8 +1127,18 @@ document.addEventListener('click', function(e) {
 window.addEventListener('load', () => {
   setTimeout(initLCMap, 100);
   document.getElementById('layer-controls').classList.add('visible');
+  // Collapse layers panel on mobile by default
+  if (window.innerWidth <= 900) {
+    const content = document.getElementById('layers-content');
+    const icon = document.getElementById('layers-toggle-icon');
+    if (content && icon) {
+      content.style.display = 'none';
+      icon.textContent = '▼';
+      document.getElementById('layer-controls').style.paddingBottom = '4px';
+    }
+  }
   buildExp3LegList();
-  setTimeout(checkHash, 300); // check after map init
+  setTimeout(checkHash, 300);
 });
 </script>
 
