@@ -195,6 +195,71 @@ header::after {
 
 
 
+
+/* JOURNAL PANEL MODES */
+.main-layout {
+  transition: grid-template-columns 0.3s ease;
+}
+.main-layout.journal-narrow {
+  grid-template-columns: 1fr 460px;
+}
+.main-layout.journal-wide {
+  grid-template-columns: 1fr 65vw;
+}
+
+/* Journal controls bar */
+.journal-controls {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  background: #111008;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.journal-controls.visible { display: flex; }
+
+.journal-ctrl-btn {
+  font-family: "Cinzel", serif;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted-light);
+  background: transparent;
+  border: 1px solid var(--border);
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.journal-ctrl-btn:hover { color: var(--gold); border-color: var(--gold); }
+
+/* Journal iframe container */
+.journal-frame-wrap {
+  display: none;
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+}
+.journal-frame-wrap.visible { display: flex; flex-direction: column; }
+
+.journal-iframe {
+  width: 100%;
+  flex: 1;
+  border: none;
+  background: #f0ebe0;
+}
+
+@media(max-width:900px) {
+  .main-layout.journal-narrow,
+  .main-layout.journal-wide {
+    grid-template-columns: 1fr;
+    grid-template-rows: 30vh 1fr;
+  }
+}
+
 /* SUBSCRIBE */
 .subscribe-btn {
   font-family:"Cinzel",serif;
@@ -418,7 +483,7 @@ header::after {
       <label class="control-row"><input type="checkbox" id="tog-route" checked><span class="control-icon"><span style="display:inline-block;width:20px;height:2px;background:#b8720a;border-top:2px dashed #b8720a;vertical-align:middle;margin-right:2px"></span></span> Expedition Route</label>
       <label class="control-row"><input type="checkbox" id="tog-camps" checked><span class="control-icon">⛺</span> L&amp;C Campsites <span style="font-size:8px;color:#e0d0a0;font-family:Cinzel,serif;letter-spacing:1px">(zoom in)</span></label>
       <label class="control-row"><input type="checkbox" id="tog-pivotal" checked><span class="control-icon">🧭</span> Pivotal Places</label>
-      <label class="control-row"><input type="checkbox" id="tog-flights" checked><span class="control-icon">✈️</span> My Flight Legs</label>
+      <label class="control-row"><input type="checkbox" id="tog-flights" checked><span class="control-icon">✈️</span> Pilot Log</label>
       <div style="margin-top:8px;padding-top:8px;border-top:1px solid #4a4030;">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;font-family:Cinzel,serif;font-size:8px;color:#e0d0a0;letter-spacing:1px">
           <span style="display:inline-block;width:20px;height:2px;background:#5ab87a"></span> Completed
@@ -433,6 +498,17 @@ header::after {
 
   <!-- INFO PANEL -->
   <div class="info-panel">
+
+    <!-- JOURNAL CONTROLS (shown when a leg is open) -->
+    <div class="journal-controls" id="journal-controls">
+      <button class="journal-ctrl-btn" onclick="closeJournal()">← Expedition Overview</button>
+      <button class="journal-ctrl-btn" id="expand-btn" onclick="toggleJournalWidth()">⤢ Expand</button>
+    </div>
+
+    <!-- JOURNAL IFRAME -->
+    <div class="journal-frame-wrap" id="journal-frame-wrap">
+      <iframe class="journal-iframe" id="journal-iframe" src="" title="Flight Log"></iframe>
+    </div>
 
     <!-- EXP 1 -->
     <div class="expedition-overview" id="overview-1">
@@ -501,11 +577,14 @@ header::after {
       <div class="overview-text">The map shows all 464 outbound campsites with links to the original Lewis &amp; Clark journal entries, plus 62 pivotal historical places with NPS descriptions and photographs. Each flight leg will be paired with the corresponding chapter of L&amp;C history.</div>
       <div class="section-label">Route</div>
       <div class="overview-text" style="margin-bottom:0">Pittsburgh, PA &rarr; Ohio River &rarr; Missouri River &rarr; Great Falls, MT &rarr; Lemhi Pass &rarr; Lolo Trail &rarr; Columbia River &rarr; Fort Clatsop, OR</div>
+
+      <div class="section-label" style="margin-top:24px">Pilot Log</div>
+      <div class="legs-list" id="legs-exp3"></div>
     </div>
 
     <div class="panel-footer">
       <span class="footer-text">Captain Dadders &middot; MSFS 2024</span>
-      <span class="footer-text">Updated Apr 25, 2026 11:13 PM MT</span>
+      <span class="footer-text">Updated Apr 26, 2026 09:51 AM MT</span>
     </div>
   </div>
 </div>
@@ -521,8 +600,15 @@ const ROUTE_SEGMENTS = [[[40.44314, -80.01276], [40.44789, -80.02704], [40.47595
 // Flight legs completed — add coordinates here as you fly each leg
 // Format: { lat, lng, label, post } where post is the blog post URL
 const FLIGHT_LEGS = [
-  // Example (uncomment when first leg is flown):
-  // { lat: 40.441, lng: -80.013, label: "Leg 1: 31D → 1G8", post: "#" }
+  {
+    lat: 40.3334,
+    lng: -79.7792,
+    label: "Prologue: Preparing for Departure",
+    location: "31D — Inter County Airport, Irwin, PA",
+    date: "April 26, 2026",
+    thumb: null,
+    post: "Expedition3/Legs/leg-00-prologue.html"
+  }
 ];
 
 // Completed route coordinates — update after each leg
@@ -701,6 +787,26 @@ function buildLegList(legs, id) {
 buildLegList(EXP1_LEGS, 'legs-exp1');
 buildLegList(EXP2_LEGS, 'legs-exp2');
 
+// Build Exp3 leg list from FLIGHT_LEGS — opens in journal panel
+function buildExp3LegList() {
+  const container = document.getElementById('legs-exp3');
+  if (!container) return;
+  container.innerHTML = '';
+  if (FLIGHT_LEGS.length === 0) {
+    container.innerHTML = '<div style="font-family:Cinzel,serif;font-size:9px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;padding:12px;text-align:center">First flight pending</div>';
+    return;
+  }
+  FLIGHT_LEGS.forEach((leg, i) => {
+    const div = document.createElement('div');
+    div.className = 'leg-item';
+    div.style.cursor = 'pointer';
+    div.innerHTML = `<span class="leg-num">${String(i).padStart(2,'0')}</span><span class="leg-route">${leg.label}</span><span class="leg-arr">→</span>`;
+    div.onclick = () => openJournal(leg.post);
+    container.appendChild(div);
+  });
+}
+// buildExp3LegList called on load below
+
 // ── EXPEDITION SWITCHER ──────────────────────────────────────────
 function switchExp(n) {
   document.querySelectorAll('.exp-tab').forEach(t => t.classList.remove('active'));
@@ -824,12 +930,66 @@ function initLCMap() {
   flightLayer2 = L.layerGroup();
   FLIGHT_LEGS.forEach(leg => {
     const m = L.marker([leg.lat, leg.lng], { icon:planeIcon(leg.label), zIndexOffset:1000 });
-    m.bindPopup(`<div class="popup-title">✈️ ${leg.label}</div><a class="popup-link" href="${leg.post}" target="_blank">Read Flight Log →</a>`, {maxWidth:220});
+    m.bindPopup(`
+      ${leg.thumb ? `<img class="popup-img" src="${leg.thumb}" alt="${leg.label}">` : ''}
+      <div class="popup-title">✈️ ${leg.label}</div>
+      <div class="popup-date">📅 ${leg.date || ''}</div>
+      <div class="popup-desc" style="font-size:12px;color:#555">${leg.location || ''}</div>
+    `, {maxWidth:240});
+    m.on('click', () => { openJournal(leg.post); });
     m.addTo(flightLayer2);
+    m.addTo(lcMap);
   });
-  flightLayer2.addTo(lcMap);
+  lcMap.addLayer(flightLayer2);
 
   wireLCToggles();
+}
+
+// ── JOURNAL PANEL ────────────────────────────────────────────
+let journalWide = false;
+
+function openJournal(url) {
+  // Load iframe
+  document.getElementById('journal-iframe').src = url;
+  // Show journal UI, hide overviews
+  document.getElementById('journal-frame-wrap').classList.add('visible');
+  document.getElementById('journal-controls').classList.add('visible');
+  document.querySelectorAll('.expedition-overview').forEach(o => o.classList.remove('visible'));
+  // Set narrow mode
+  journalWide = false;
+  document.getElementById('expand-btn').textContent = '⤢ Expand';
+  const layout = document.querySelector('.main-layout');
+  layout.classList.remove('journal-wide');
+  layout.classList.add('journal-narrow');
+}
+
+function closeJournal() {
+  // Hide journal UI
+  document.getElementById('journal-frame-wrap').classList.remove('visible');
+  document.getElementById('journal-controls').classList.remove('visible');
+  document.getElementById('journal-iframe').src = '';
+  // Restore active expedition overview
+  const activeExp = document.querySelector('.exp-tab.active').dataset.exp;
+  document.getElementById(`overview-${activeExp}`).classList.add('visible');
+  // Reset layout
+  const layout = document.querySelector('.main-layout');
+  layout.classList.remove('journal-narrow', 'journal-wide');
+  journalWide = false;
+}
+
+function toggleJournalWidth() {
+  journalWide = !journalWide;
+  const layout = document.querySelector('.main-layout');
+  const btn = document.getElementById('expand-btn');
+  if (journalWide) {
+    layout.classList.remove('journal-narrow');
+    layout.classList.add('journal-wide');
+    btn.textContent = '⤡ Collapse';
+  } else {
+    layout.classList.remove('journal-wide');
+    layout.classList.add('journal-narrow');
+    btn.textContent = '⤢ Expand';
+  }
 }
 
 // Subscribe form — background submit, no page redirect
@@ -891,7 +1051,11 @@ document.addEventListener('click', function(e) {
 });
 
 // Init on load (exp 3 is default)
-window.addEventListener('load', () => { setTimeout(initLCMap, 100); document.getElementById('layer-controls').classList.add('visible'); });
+window.addEventListener('load', () => {
+  setTimeout(initLCMap, 100);
+  document.getElementById('layer-controls').classList.add('visible');
+  buildExp3LegList();
+});
 </script>
 
 </body>

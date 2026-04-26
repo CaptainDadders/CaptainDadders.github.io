@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prologue: Preparing for Departure — Captain Dadders</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1410;
+  --parchment: #f0ebe0;
+  --parchment-dark: #e8e0cc;
+  --gold: #e8a020;
+  --gold-light: #f0c060;
+  --muted: #b0a888;
+  --muted-light: #d4cbb8;
+  --border: #3a3020;
+  --border-light: #c8b890;
+  --complete: #5ab87a;
+  --content-max: 760px;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: "Crimson Pro", Georgia, serif;
+  background: var(--parchment);
+  color: var(--ink);
+  line-height: 1.8;
+}
+
+/* ── SITE HEADER ─────────────────────────── */
+.site-header {
+  background: var(--ink);
+  border-bottom: 1px solid var(--border);
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  position: relative;
+}
+.site-header::after {
+  content:"";
+  position:absolute;
+  bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold) 30%,var(--gold) 70%,transparent);
+  opacity:0.5;
+}
+.site-logo { display:flex; flex-direction:column; line-height:1; text-decoration:none; }
+.logo-tag { font-family:"Cinzel",serif; font-size:9px; letter-spacing:5px; color:var(--gold); text-transform:uppercase; margin-bottom:3px; }
+.logo-name { font-family:"Cinzel",serif; font-size:20px; font-weight:900; color:var(--parchment); letter-spacing:2px; }
+.site-nav { display:flex; gap:24px; align-items:center; }
+.site-nav a { font-family:"Cinzel",serif; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:#d0d8e8; text-decoration:none; transition:color 0.2s; }
+.site-nav a:hover { color:var(--gold); }
+
+/* ── EXPEDITION BREADCRUMB ───────────────── */
+.breadcrumb {
+  background: #252a36;
+  border-bottom: 1px solid #1e2430;
+  padding: 10px 40px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Cinzel", serif;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.breadcrumb a { color: #8090a8; text-decoration:none; }
+.breadcrumb a:hover { color: var(--gold); }
+.breadcrumb .sep { color: #3a4555; }
+.breadcrumb .current { color: var(--gold); }
+
+/* ── HERO ────────────────────────────────── */
+.hero {
+  background: var(--ink);
+  padding: 60px 40px 50px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background: radial-gradient(ellipse at center top, rgba(232,160,32,0.08) 0%, transparent 70%);
+}
+.hero-eyebrow {
+  font-family:"Cinzel",serif;
+  font-size:9px;
+  letter-spacing:5px;
+  color:var(--gold);
+  text-transform:uppercase;
+  margin-bottom:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+}
+.hero-eyebrow::before, .hero-eyebrow::after {
+  content:"";
+  display:block;
+  width:40px;
+  height:1px;
+  background:linear-gradient(90deg, transparent, var(--gold));
+}
+.hero-eyebrow::after { transform:scaleX(-1); }
+
+.hero-title {
+  font-family:"Cinzel",serif;
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight:900;
+  color:var(--parchment);
+  letter-spacing:2px;
+  line-height:1.1;
+  margin-bottom:16px;
+}
+.hero-subtitle {
+  font-size:20px;
+  font-style:italic;
+  color:var(--muted-light);
+  margin-bottom:32px;
+}
+
+/* Flight data strip */
+.flight-strip {
+  display:inline-flex;
+  align-items:stretch;
+  border:1px solid var(--border);
+  margin-bottom:0;
+  background:#111008;
+}
+.strip-cell {
+  padding:12px 24px;
+  border-right:1px solid var(--border);
+  text-align:center;
+}
+.strip-cell:last-child { border-right:none; }
+.strip-label {
+  font-family:"Cinzel",serif;
+  font-size:8px;
+  letter-spacing:3px;
+  color:var(--muted);
+  text-transform:uppercase;
+  display:block;
+  margin-bottom:4px;
+}
+.strip-value {
+  font-family:"Cinzel",serif;
+  font-size:16px;
+  color:var(--parchment);
+  font-weight:600;
+}
+.strip-value.gold { color:var(--gold); }
+
+/* ── CONTENT AREA ────────────────────────── */
+.content-wrap {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 60px 24px 80px;
+}
+
+/* Section divider */
+.section-divider {
+  display:flex;
+  align-items:center;
+  gap:16px;
+  margin: 48px 0 32px;
+}
+.section-divider::before, .section-divider::after {
+  content:"";
+  flex:1;
+  height:1px;
+  background:var(--border-light);
+}
+.section-label-tag {
+  font-family:"Cinzel",serif;
+  font-size:9px;
+  letter-spacing:4px;
+  color:var(--gold);
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+
+/* Pilot journal */
+.pilot-journal p {
+  font-size:19px;
+  line-height:1.85;
+  color:#2a2018;
+  margin-bottom:1.4em;
+}
+.pilot-journal p:first-child::first-letter {
+  font-family:"Cinzel",serif;
+  font-size:64px;
+  font-weight:900;
+  line-height:0.85;
+  float:left;
+  margin-right:8px;
+  margin-top:8px;
+  color:var(--gold);
+}
+
+/* Image placeholder */
+.image-placeholder {
+  width:100%;
+  aspect-ratio:16/9;
+  background:#e8e0cc;
+  border:2px dashed var(--border-light);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  margin-bottom:32px;
+  color:#8a7858;
+  font-family:"Cinzel",serif;
+  font-size:9px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+}
+.image-placeholder .icon { font-size:32px; opacity:0.4; }
+
+/* Historical context */
+.historical-section {
+  background:#1a1410;
+  color:var(--parchment);
+  padding:48px;
+  margin:0 -24px;
+  position:relative;
+}
+.historical-section::before {
+  content:"";
+  position:absolute;
+  top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  opacity:0.4;
+}
+.historical-eyebrow {
+  font-family:"Cinzel",serif;
+  font-size:9px;
+  letter-spacing:4px;
+  color:var(--gold);
+  text-transform:uppercase;
+  margin-bottom:20px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.historical-eyebrow::after {
+  content:"";
+  flex:1;
+  height:1px;
+  background:linear-gradient(90deg,var(--gold),transparent);
+  opacity:0.4;
+}
+.historical-title {
+  font-family:"Cinzel",serif;
+  font-size:22px;
+  font-weight:700;
+  color:var(--parchment);
+  margin-bottom:24px;
+  line-height:1.2;
+}
+.historical-text p {
+  font-size:17px;
+  line-height:1.85;
+  color:#c8bfb0;
+  margin-bottom:1.3em;
+}
+.historical-text p:last-child { margin-bottom:0; }
+
+/* Pull quote */
+.pull-quote {
+  border-left:3px solid var(--gold);
+  padding:16px 24px;
+  margin:32px 0;
+  background:rgba(232,160,32,0.06);
+}
+.pull-quote p {
+  font-size:17px !important;
+  font-style:italic;
+  color:#e0d4b8 !important;
+  margin-bottom:8px !important;
+}
+.pull-quote cite {
+  font-family:"Cinzel",serif;
+  font-size:9px;
+  letter-spacing:2px;
+  color:var(--gold);
+  text-transform:uppercase;
+  font-style:normal;
+}
+
+/* ── NAV FOOTER ──────────────────────────── */
+.post-nav {
+  border-top:1px solid var(--border-light);
+  padding:32px 24px;
+  max-width:var(--content-max);
+  margin:0 auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.post-nav a {
+  font-family:"Cinzel",serif;
+  font-size:10px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:var(--ink);
+  text-decoration:none;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  transition:color 0.2s;
+}
+.post-nav a:hover { color:var(--gold); }
+
+/* ── SITE FOOTER ─────────────────────────── */
+.site-footer {
+  background:var(--ink);
+  border-top:1px solid var(--border);
+  padding:20px 40px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.footer-text {
+  font-family:"Cinzel",serif;
+  font-size:8px;
+  letter-spacing:2px;
+  color:#5a5040;
+  text-transform:uppercase;
+}
+
+@media(max-width:700px){
+  .site-header { padding:0 16px; height:auto; min-height:56px; flex-wrap:wrap; gap:6px; padding-top:8px; padding-bottom:8px; }
+  .breadcrumb { padding:10px 16px; }
+  .hero { padding:40px 20px 36px; }
+  .flight-strip { flex-direction:column; width:100%; }
+  .strip-cell { border-right:none; border-bottom:1px solid var(--border); }
+  .strip-cell:last-child { border-bottom:none; }
+  .content-wrap { padding:40px 16px 60px; }
+  .historical-section { padding:36px 24px; margin:0 -16px; }
+  .site-footer { padding:16px; flex-direction:column; gap:8px; text-align:center; }
+}
+</style>
+</head>
+<body>
+
+<!-- SITE HEADER -->
+<header class="site-header">
+  <a href="/" class="site-logo">
+    <span class="logo-tag">Flight Expeditions</span>
+    <span class="logo-name">Captain Dadders</span>
+  </a>
+  <nav class="site-nav">
+    <a href="/">← Back to Map</a>
+    <a href="https://www.youtube.com/@CaptainDadders" target="_blank">YouTube</a>
+  </nav>
+</header>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="/">Home</a>
+  <span class="sep">›</span>
+  <a href="/">Expedition III — Lewis &amp; Clark</a>
+  <span class="sep">›</span>
+  <span class="current">Prologue</span>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Expedition III &mdash; Corps of Discovery</div>
+  <h1 class="hero-title">Prologue: Preparing for Departure</h1>
+  <p class="hero-subtitle">31D &mdash; Inter County Airport, Irwin, PA</p>
+  <div class="flight-strip">
+    <div class="strip-cell">
+      <span class="strip-label">Date</span>
+      <span class="strip-value">April 26, 2026</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Location</span>
+      <span class="strip-value">31D · Irwin, PA</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Aircraft</span>
+      <span class="strip-value gold">Zlin Norden</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Status</span>
+      <span class="strip-value gold">Ready to Depart</span>
+    </div>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content-wrap">
+
+  <!-- IMAGE PLACEHOLDER -->
+  <div class="image-placeholder">
+    <div class="icon">✈️</div>
+    <span>Zlin Norden — 31D Inter County Airport</span>
+    <span style="font-size:8px;opacity:0.6">Photo coming soon</span>
+  </div>
+
+  <!-- PILOT JOURNAL -->
+  <div class="pilot-journal">
+    <p>After much preparation, I am ready to get off the ground for my first flight. Like Meriwether Lewis in 1803, I have been busy with planning and training for the expedition. My plan is to follow the Lewis and Clark route as closely as possible, following the rivers and landing as close to their route as I can, whether that means landing at a tiny grass strip or an international airport.</p>
+
+    <p>To understand the 1803 journey, I am reading <em>Undaunted Courage</em>, the definitive chronicle of the expedition. My plan is to follow along with the book, flying a segment after reading about it in the book. I have finished the first few chapters, which detail Lewis's preparation. And so I have been preparing as well, enlisting the help of my trusty assistant Claude to create this web journal. Lewis had his keelboat custom made to begin his trip, and I had to choose the best plane to fly for this journey. I chose the Zlin Norden, a taildragger bush plane. It will allow me to land just about anywhere, but I have had to learn how to fly it and practice my landings &mdash; it is a different animal than the more conventional planes I am used to. It will be low and slow, which is exactly what I want.</p>
+
+    <p>I chose Inter County Airport to start the journey because it will allow me to fly right past Lewis's starting point of Pittsburgh, at the confluence of the Ohio, Allegheny, and Monongahela Rivers. The journey will begin soon!</p>
+  </div>
+
+  <!-- HISTORICAL SECTION -->
+  <div class="historical-section">
+    <div class="historical-eyebrow">Then &amp; Now &mdash; The Historical Parallel</div>
+    <div style="background:rgba(232,160,32,0.1);border:1px solid rgba(232,160,32,0.3);padding:12px 18px;margin-bottom:28px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:#d4b870;text-transform:uppercase;text-align:center;">
+      What Lewis &amp; Clark were doing at this same point in their journey &mdash; Spring &amp; Summer 1803
+    </div>
+    <h2 class="historical-title">The Corps of Discovery</h2>
+    <div class="historical-text">
+      <p>In the spring of 1803, President Thomas Jefferson dispatched his personal secretary, Meriwether Lewis, on a mission of extraordinary ambition: find a navigable water route to the Pacific Ocean, document the unknown lands of the Louisiana Purchase, and make first contact with the Native nations of the interior. It was, in Jefferson's words, "the most important undertaking this country has ever attempted."</p>
+
+      <p>Lewis spent the spring of 1803 in Philadelphia under the tutelage of the finest scientific minds in America &mdash; Benjamin Rush for medicine, Andrew Ellicott for celestial navigation, Benjamin Smith Barton for botany. He crammed months of education into weeks, knowing that whatever he encountered in the wilderness, there would be no expert to consult.</p>
+
+      <p>By midsummer he was in Pittsburgh, supervising the construction of a 55-foot keelboat that would carry the expedition up the Missouri. The builder was chronically late, and Lewis's letters to Jefferson during this period are barely contained frustration. He threatened to leave on canoes. He paced the riverbank.</p>
+
+      <p>Finally, in late August, the keelboat was finished. Supplies were loaded &mdash; scientific instruments, trade goods, weapons, medicine, enough provisions for years in the wilderness. The crew assembled. The Ohio River lay before them, gleaming and wide, pointing west toward everything unknown.</p>
+
+      <p>They were ready to push off.</p>
+
+      <div class="image-placeholder" style="background:#111008;border-color:#3a3020;color:#6a5a40;margin:28px 0;">
+        <div class="icon">⚓</div>
+        <span style="color:#e0c888;font-size:10px;">The Keelboat — Loading Supplies, Pittsburgh 1803</span>
+        <span style="font-size:9px;color:#c0a870;letter-spacing:1px">Awaiting rights permission — Robert Griffing</span>
+      </div>
+
+
+    </div>
+  </div>
+
+</div>
+
+<!-- POST NAV -->
+<div class="post-nav">
+  <a href="/">← Back to Map</a>
+  <a href="leg-01.html">Leg 1: Pittsburgh → Ohio River →</a>
+</div>
+
+<!-- SITE FOOTER -->
+<footer class="site-footer">
+  <span class="footer-text">Captain Dadders &middot; MSFS 2024</span>
+  <span class="footer-text">Expedition III &mdash; Corps of Discovery</span>
+</footer>
+
+</body>
+</html>
