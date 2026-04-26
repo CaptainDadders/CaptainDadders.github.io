@@ -584,7 +584,7 @@ header::after {
 
     <div class="panel-footer">
       <span class="footer-text">Captain Dadders &middot; MSFS 2024</span>
-      <span class="footer-text">Updated Apr 26, 2026 09:51 AM MT</span>
+      <span class="footer-text">Updated Apr 26, 2026 09:58 AM MT</span>
     </div>
   </div>
 </div>
@@ -931,8 +931,8 @@ function initLCMap() {
   FLIGHT_LEGS.forEach(leg => {
     const m = L.marker([leg.lat, leg.lng], { icon:planeIcon(leg.label), zIndexOffset:1000 });
     m.bindPopup(`
-      ${leg.thumb ? `<img class="popup-img" src="${leg.thumb}" alt="${leg.label}">` : ''}
-      <div class="popup-title">✈️ ${leg.label}</div>
+      ${leg.thumb ? `<img class="popup-img" src="${leg.thumb}" alt="${leg.label}" onclick="openJournal('${leg.post}')" style="cursor:pointer">` : ''}
+      <div class="popup-title" onclick="openJournal('${leg.post}')" style="cursor:pointer;text-decoration:underline;text-underline-offset:3px;">✈️ ${leg.label}</div>
       <div class="popup-date">📅 ${leg.date || ''}</div>
       <div class="popup-desc" style="font-size:12px;color:#555">${leg.location || ''}</div>
     `, {maxWidth:240});
