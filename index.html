@@ -347,10 +347,12 @@ header::after {
   .subscribe-dropdown { right:12px; top:auto; }
   .exp-label-long { display:none !important; }
   .exp-label-short { display:inline !important; }
+  .exp-label-long + .exp-label-short { display:inline !important; }
   .exp-tab { font-size:9px; letter-spacing:1px; }
 }
 @media(min-width:901px){
   .exp-label-short { display:none !important; }
+  .exp-label-long { display:inline !important; }
   .exp-tab { font-size:11px; letter-spacing:2px; }
 }
 </style>
@@ -387,16 +389,16 @@ header::after {
 <div class="expedition-bar">
   <button class="exp-tab" data-exp="1" onclick="switchExp(1)">
     <div class="status-dot dot-complete"></div>
-    <span class="exp-label-long">Expedition I &mdash; Around the World</span><span class="exp-label-short" style="display:none">Exp I</span>
-    <span class="exp-label-short" style="display:none">Exp I</span>
+    <span class="exp-label-long">Expedition I &mdash; Around the World</span><span class="exp-label-short">Exp I</span>
+    <span class="exp-label-short">Exp I</span>
   </button>
   <button class="exp-tab" data-exp="2" onclick="switchExp(2)">
     <div class="status-dot dot-complete"></div>
-    <span class="exp-label-long">Expedition II &mdash; Americas Extremes</span><span class="exp-label-short" style="display:none">Exp II</span>
+    <span class="exp-label-long">Expedition II &mdash; Americas Extremes</span><span class="exp-label-short">Exp II</span>
   </button>
   <button class="exp-tab active" data-exp="3" onclick="switchExp(3)">
     <div class="status-dot dot-active"></div>
-    <span class="exp-label-long">Expedition III &mdash; Lewis &amp; Clark</span><span class="exp-label-short" style="display:none">Exp III</span>
+    <span class="exp-label-long">Expedition III &mdash; Lewis &amp; Clark</span><span class="exp-label-short">Exp III</span>
   </button>
 </div>
 
@@ -506,7 +508,7 @@ header::after {
 
     <div class="panel-footer">
       <span class="footer-text">Captain Dadders &middot; MSFS 2024</span>
-      <span class="footer-text">Updated Apr 25, 2026 10:24 PM MT</span>
+      <span class="footer-text">Updated Apr 25, 2026 10:55 PM MT</span>
     </div>
   </div>
 </div>
