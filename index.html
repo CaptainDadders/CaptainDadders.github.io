@@ -264,6 +264,20 @@ header::after {
   }
 }
 
+
+/* Pulsing active leg marker */
+@keyframes markerPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(232,160,32,0.9), 0 0 8px 2px rgba(232,160,32,0.6); }
+  70%  { box-shadow: 0 0 0 20px rgba(232,160,32,0), 0 0 16px 4px rgba(232,160,32,0); }
+  100% { box-shadow: 0 0 0 0 rgba(232,160,32,0), 0 0 8px 2px rgba(232,160,32,0.6); }
+}
+.plane-marker-active {
+  animation: markerPulse 1.5s infinite;
+  border-radius: 50%;
+  background: rgba(232,160,32,0.15);
+  padding: 4px;
+}
+
 /* SUBSCRIBE */
 .subscribe-btn {
   font-family:"Cinzel",serif;
@@ -589,7 +603,7 @@ header::after {
 
     <div class="panel-footer">
       <span class="footer-text">Captain Dadders &middot; MSFS 2024</span>
-      <span class="footer-text">Updated Apr 26, 2026 10:28 AM MT</span>
+      <span class="footer-text">Updated Apr 26, 2026 10:32 AM MT</span>
     </div>
   </div>
 </div>
@@ -855,11 +869,20 @@ function wireLCToggles() {
 
 function initLCMap() {
   if (lcMap) return;
-  // Center on most recent flight leg if any, otherwise default view
-  const defaultCenter = FLIGHT_LEGS.length > 0
-    ? [FLIGHT_LEGS[FLIGHT_LEGS.length - 1].lat, FLIGHT_LEGS[FLIGHT_LEGS.length - 1].lng]
-    : [44, -97];
-  const defaultZoom = FLIGHT_LEGS.length > 0 ? 8 : 5;
+  // On wide screens show full route; on narrow screens center on most recent leg
+  const mapPanel = document.getElementById('leaflet-map');
+  const panelWidth = mapPanel.offsetWidth;
+  let defaultCenter, defaultZoom;
+  if (FLIGHT_LEGS.length > 0 && panelWidth < 700) {
+    // Narrow screen — center on most recent leg
+    const latest = FLIGHT_LEGS[FLIGHT_LEGS.length - 1];
+    defaultCenter = [latest.lat, latest.lng];
+    defaultZoom = 8;
+  } else {
+    // Wide screen — show full route
+    defaultCenter = [44, -97];
+    defaultZoom = 5;
+  }
   lcMap = L.map('leaflet-map', { center: defaultCenter, zoom: defaultZoom });
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution:'&copy; OpenStreetMap contributors', maxZoom:19
@@ -932,15 +955,18 @@ function initLCMap() {
   pivotalLayer2.addTo(lcMap);
 
   // FLIGHT LEG MARKERS
-  const planeIcon = (label) => L.divIcon({
-    className:'',
-    html:`<div title="${label}" style="font-size:18px;line-height:1;filter:drop-shadow(0 1px 3px rgba(0,0,0,0.7))">✈️</div>`,
-    iconSize:[20,20], iconAnchor:[10,10]
+  const planeIcon = (label, isActive) => L.divIcon({
+    className: isActive ? 'plane-marker-active' : '',
+    html:`<div title="${label}" style="font-size:${isActive ? '22px' : '18px'};line-height:1;filter:drop-shadow(0 1px 3px rgba(0,0,0,0.7))">${isActive ? '✈️' : '✈️'}</div>`,
+    iconSize:[isActive ? 24 : 20, isActive ? 24 : 20],
+    iconAnchor:[isActive ? 12 : 10, isActive ? 12 : 10]
   });
 
   flightLayer2 = L.layerGroup();
-  FLIGHT_LEGS.forEach(leg => {
-    const m = L.marker([leg.lat, leg.lng], { icon:planeIcon(leg.label), zIndexOffset:1000 });
+  const lastLegIndex = FLIGHT_LEGS.length - 1;
+  FLIGHT_LEGS.forEach((leg, idx) => {
+    const isActive = idx === lastLegIndex;
+    const m = L.marker([leg.lat, leg.lng], { icon:planeIcon(leg.label, isActive), zIndexOffset:1000 });
     m.bindPopup(`
       ${leg.thumb ? `<img class="popup-img" src="${leg.thumb}" alt="${leg.label}" onclick="openJournal('${leg.post}')" style="cursor:pointer">` : ''}
       <div class="popup-title" onclick="openJournal('${leg.post}','${leg.slug}')" style="cursor:pointer;text-decoration:underline;text-underline-offset:3px;">✈️ ${leg.label}</div>
@@ -950,7 +976,7 @@ function initLCMap() {
     m.on('click', () => { openJournal(leg.post, leg.slug); });
     m.addTo(flightLayer2);
     m.addTo(lcMap);
-  });
+  }); // end FLIGHT_LEGS.forEach
   lcMap.addLayer(flightLayer2);
 
   wireLCToggles();
