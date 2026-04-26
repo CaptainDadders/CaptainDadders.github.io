@@ -187,9 +187,9 @@ header::after {
   align-items:center;
   justify-content:space-between;
   flex-shrink:0;
-  background:#100e08;
+  background:#1a1810;
 }
-.footer-text { font-family:"Cinzel",serif; font-size:8px; letter-spacing:2px; color:#7a6840; text-transform:uppercase; }
+.footer-text { font-family:"Cinzel",serif; font-size:8px; letter-spacing:2px; color:#b0a080; text-transform:uppercase; }
 
 
 
@@ -354,6 +354,7 @@ header::after {
   </div>
   <nav class="header-nav">
     <a href="https://719simpilot.wordpress.com" target="_blank">Archive Blog</a>
+    <a href="https://www.youtube.com/@CaptainDadders" target="_blank">YouTube</a>
     <button onclick="toggleSubscribe()" class="subscribe-btn">Subscribe</button>
   </nav>
 
@@ -361,10 +362,13 @@ header::after {
   <div class="subscribe-dropdown" id="subscribe-dropdown">
     <div class="subscribe-inner">
       <div class="subscribe-title">Get notified when a new leg is posted</div>
-      <form action="https://api.follow.it/subscription-form/NkU5RXZoSmZFN3ZKczV0VlBzeFgyVmdWeCtPMytTTUpVVE1KSVRoNUJpaTdrczE4ZzBWMWo0UmUyV1B3VW9peXVBMTZ6ZjJ5U1hyYmlGWi9jRk82Vy9pUE5EVFNpRDFENHFNcmE5dGROL1UvZlRHTVNhL1Z2QVdTZVdlVTMxWER8NG14WXJpeVRJLzVjVFdjazVEV3BENzV3TGY4STVXNXRROUVkMmt3ckl6Zz0=/8" method="post">
-        <input type="email" name="email" required placeholder="Enter your email">
+      <form id="subscribe-form" onsubmit="handleSubscribe(event)">
+        <input type="email" id="subscribe-email" name="email" required placeholder="Enter your email">
         <button type="submit">Subscribe</button>
       </form>
+      <div id="subscribe-success" style="display:none;text-align:center;padding:10px;font-family:Cinzel,serif;font-size:10px;letter-spacing:2px;color:#5ab87a;text-transform:uppercase;">
+        ✓ Check your email to confirm!
+      </div>
       <a href="https://follow.it" target="_blank" class="powered-by">Powered by follow.it</a>
     </div>
   </div>
@@ -400,14 +404,14 @@ header::after {
     <div class="layer-controls" id="layer-controls">
       <div class="controls-title">Map Layers</div>
       <label class="control-row"><input type="checkbox" id="tog-route" checked><span class="control-icon"><span style="display:inline-block;width:20px;height:2px;background:#b8720a;border-top:2px dashed #b8720a;vertical-align:middle;margin-right:2px"></span></span> Expedition Route</label>
-      <label class="control-row"><input type="checkbox" id="tog-camps" checked><span class="control-icon">⛺</span> L&amp;C Campsites <span style="font-size:8px;color:#888;font-family:Cinzel,serif;letter-spacing:1px">(zoom in)</span></label>
+      <label class="control-row"><input type="checkbox" id="tog-camps" checked><span class="control-icon">⛺</span> L&amp;C Campsites <span style="font-size:8px;color:#c0b090;font-family:Cinzel,serif;letter-spacing:1px">(zoom in)</span></label>
       <label class="control-row"><input type="checkbox" id="tog-pivotal" checked><span class="control-icon">🧭</span> Pivotal Places</label>
       <label class="control-row"><input type="checkbox" id="tog-flights" checked><span class="control-icon">✈️</span> My Flight Legs</label>
       <div style="margin-top:8px;padding-top:8px;border-top:1px solid #4a4030;">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;font-family:Cinzel,serif;font-size:8px;color:#888;letter-spacing:1px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;font-family:Cinzel,serif;font-size:8px;color:#c0b090;letter-spacing:1px">
           <span style="display:inline-block;width:20px;height:2px;background:#5ab87a"></span> Completed
         </div>
-        <div style="display:flex;align-items:center;gap:8px;font-family:Cinzel,serif;font-size:8px;color:#888;letter-spacing:1px">
+        <div style="display:flex;align-items:center;gap:8px;font-family:Cinzel,serif;font-size:8px;color:#c0b090;letter-spacing:1px">
           <span style="display:inline-block;width:20px;height:0;border-top:2px dashed #b8720a"></span> Remaining
         </div>
       </div>
@@ -488,7 +492,7 @@ header::after {
 
     <div class="panel-footer">
       <span class="footer-text">Captain Dadders &middot; MSFS 2024</span>
-      <span class="footer-text">Flight Expeditions</span>
+      <span class="footer-text">Updated Apr 26, 2026 04:19 AM</span>
     </div>
   </div>
 </div>
@@ -813,6 +817,25 @@ function initLCMap() {
   flightLayer2.addTo(lcMap);
 
   wireLCToggles();
+}
+
+// Subscribe form — background submit, no page redirect
+function handleSubscribe(e) {
+  e.preventDefault();
+  const email = document.getElementById('subscribe-email').value;
+  const formData = new FormData();
+  formData.append('email', email);
+  fetch('https://api.follow.it/subscription-form/NkU5RXZoSmZFN3ZKczV0VlBzeFgyVmdWeCtPMytTTUpVVE1KSVRoNUJpaTdrczE4ZzBWMWo0UmUyV1B3VW9peXVBMTZ6ZjJ5U1hyYmlGWi9jRk82Vy9pUE5EVFNpRDFENHFNcmE5dGROL1UvZlRHTVNhL1Z2QVdTZVdlVTMxWER8NG14WXJpeVRJLzVjVFdjazVEV3BENzV3TGY4STVXNXRROUVkMmt3ckl6Zz0=/8', {
+    method: 'POST',
+    body: formData,
+    mode: 'no-cors'
+  }).then(() => {
+    document.getElementById('subscribe-form').style.display = 'none';
+    document.getElementById('subscribe-success').style.display = 'block';
+  }).catch(() => {
+    document.getElementById('subscribe-form').style.display = 'none';
+    document.getElementById('subscribe-success').style.display = 'block';
+  });
 }
 
 // Subscribe dropdown toggle
