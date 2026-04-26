@@ -503,6 +503,7 @@ header::after {
     <div class="journal-controls" id="journal-controls">
       <button class="journal-ctrl-btn" onclick="closeJournal()">← Expedition Overview</button>
       <button class="journal-ctrl-btn" id="expand-btn" onclick="toggleJournalWidth()">⤢ Expand</button>
+      <button class="journal-ctrl-btn" id="share-btn" onclick="shareJournal()">⎘ Share</button>
     </div>
 
     <!-- JOURNAL IFRAME -->
@@ -584,7 +585,7 @@ header::after {
 
     <div class="panel-footer">
       <span class="footer-text">Captain Dadders &middot; MSFS 2024</span>
-      <span class="footer-text">Updated Apr 26, 2026 09:58 AM MT</span>
+      <span class="footer-text">Updated Apr 26, 2026 10:03 AM MT</span>
     </div>
   </div>
 </div>
@@ -607,7 +608,8 @@ const FLIGHT_LEGS = [
     location: "31D — Inter County Airport, Irwin, PA",
     date: "April 26, 2026",
     thumb: null,
-    post: "Expedition3/Legs/leg-00-prologue.html"
+    post: "Expedition3/Legs/leg-00-prologue.html",
+    slug: "leg-00"
   }
 ];
 
@@ -801,7 +803,7 @@ function buildExp3LegList() {
     div.className = 'leg-item';
     div.style.cursor = 'pointer';
     div.innerHTML = `<span class="leg-num">${String(i).padStart(2,'0')}</span><span class="leg-route">${leg.label}</span><span class="leg-arr">→</span>`;
-    div.onclick = () => openJournal(leg.post);
+    div.onclick = () => openJournal(leg.post, leg.slug);
     container.appendChild(div);
   });
 }
@@ -932,11 +934,11 @@ function initLCMap() {
     const m = L.marker([leg.lat, leg.lng], { icon:planeIcon(leg.label), zIndexOffset:1000 });
     m.bindPopup(`
       ${leg.thumb ? `<img class="popup-img" src="${leg.thumb}" alt="${leg.label}" onclick="openJournal('${leg.post}')" style="cursor:pointer">` : ''}
-      <div class="popup-title" onclick="openJournal('${leg.post}')" style="cursor:pointer;text-decoration:underline;text-underline-offset:3px;">✈️ ${leg.label}</div>
+      <div class="popup-title" onclick="openJournal('${leg.post}','${leg.slug}')" style="cursor:pointer;text-decoration:underline;text-underline-offset:3px;">✈️ ${leg.label}</div>
       <div class="popup-date">📅 ${leg.date || ''}</div>
       <div class="popup-desc" style="font-size:12px;color:#555">${leg.location || ''}</div>
     `, {maxWidth:240});
-    m.on('click', () => { openJournal(leg.post); });
+    m.on('click', () => { openJournal(leg.post, leg.slug); });
     m.addTo(flightLayer2);
     m.addTo(lcMap);
   });
@@ -947,10 +949,15 @@ function initLCMap() {
 
 // ── JOURNAL PANEL ────────────────────────────────────────────
 let journalWide = false;
+let currentSlug = null;
 
-function openJournal(url) {
+function openJournal(post, slug) {
+  // Store current slug for sharing
+  currentSlug = slug || null;
+  // Update URL hash without page reload
+  try { if (slug) history.pushState(null, '', '#' + slug); } catch(e) {}
   // Load iframe
-  document.getElementById('journal-iframe').src = url;
+  document.getElementById('journal-iframe').src = post;
   // Show journal UI, hide overviews
   document.getElementById('journal-frame-wrap').classList.add('visible');
   document.getElementById('journal-controls').classList.add('visible');
@@ -963,7 +970,12 @@ function openJournal(url) {
   layout.classList.add('journal-narrow');
 }
 
+
+
 function closeJournal() {
+  // Clear hash
+  try { history.pushState(null, '', window.location.pathname); } catch(e) {}
+  currentSlug = null;
   // Hide journal UI
   document.getElementById('journal-frame-wrap').classList.remove('visible');
   document.getElementById('journal-controls').classList.remove('visible');
@@ -975,6 +987,30 @@ function closeJournal() {
   const layout = document.querySelector('.main-layout');
   layout.classList.remove('journal-narrow', 'journal-wide');
   journalWide = false;
+}
+
+function shareJournal() {
+  if (!currentSlug) return;
+  const url = `https://captaindadders.com/#${currentSlug}`;
+  navigator.clipboard.writeText(url).then(() => {
+    const btn = document.getElementById('share-btn');
+    btn.textContent = '✓ Copied!';
+    btn.style.color = 'var(--complete)';
+    btn.style.borderColor = 'var(--complete)';
+    setTimeout(() => {
+      btn.textContent = '⎘ Share';
+      btn.style.color = '';
+      btn.style.borderColor = '';
+    }, 2000);
+  });
+}
+
+// Check for hash on page load and open matching journal entry
+function checkHash() {
+  const hash = window.location.hash.replace('#', '');
+  if (!hash) return;
+  const leg = FLIGHT_LEGS.find(l => l.slug === hash);
+  if (leg) openJournal(leg.post, leg.slug);
 }
 
 function toggleJournalWidth() {
@@ -1055,6 +1091,7 @@ window.addEventListener('load', () => {
   setTimeout(initLCMap, 100);
   document.getElementById('layer-controls').classList.add('visible');
   buildExp3LegList();
+  setTimeout(checkHash, 300); // check after map init
 });
 </script>
 
