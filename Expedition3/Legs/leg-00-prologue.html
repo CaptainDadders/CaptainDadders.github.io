@@ -344,6 +344,17 @@ body {
   .historical-section { padding:36px 24px; margin:0 -16px; }
   .site-footer { padding:16px; flex-direction:column; gap:8px; text-align:center; }
 }
+
+/* Hide chrome when loaded in iframe */
+body.in-iframe .site-header,
+body.in-iframe .breadcrumb,
+body.in-iframe .post-nav,
+body.in-iframe .site-footer {
+  display: none !important;
+}
+body.in-iframe .hero {
+  padding-top: 40px;
+}
 </style>
 </head>
 <body>
@@ -455,5 +466,10 @@ body {
   <span class="footer-text">Expedition III &mdash; Corps of Discovery</span>
 </footer>
 
+<script>
+if (window.self !== window.top) {
+  document.body.classList.add('in-iframe');
+}
+</script>
 </body>
 </html>

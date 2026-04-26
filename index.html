@@ -250,13 +250,17 @@ header::after {
   flex: 1;
   border: none;
   background: #f0ebe0;
+  min-height: 400px;
 }
 
 @media(max-width:900px) {
   .main-layout.journal-narrow,
   .main-layout.journal-wide {
     grid-template-columns: 1fr;
-    grid-template-rows: 30vh 1fr;
+    grid-template-rows: 25vh 1fr;
+  }
+  .journal-frame-wrap {
+    min-height: 60vh;
   }
 }
 
@@ -585,7 +589,7 @@ header::after {
 
     <div class="panel-footer">
       <span class="footer-text">Captain Dadders &middot; MSFS 2024</span>
-      <span class="footer-text">Updated Apr 26, 2026 10:03 AM MT</span>
+      <span class="footer-text">Updated Apr 26, 2026 10:14 AM MT</span>
     </div>
   </div>
 </div>
