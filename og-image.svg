@@ -1,0 +1,60 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0e0b05;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1410;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="gold-line" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1a1410;stop-opacity:1" />
+      <stop offset="30%" style="stop-color:#e8a020;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#e8a020;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1410;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Subtle grid lines -->
+  <line x1="0" y1="210" x2="1200" y2="210" stroke="#2a2010" stroke-width="1"/>
+  <line x1="0" y1="420" x2="1200" y2="420" stroke="#2a2010" stroke-width="1"/>
+  <line x1="400" y1="0" x2="400" y2="630" stroke="#2a2010" stroke-width="1"/>
+  <line x1="800" y1="0" x2="800" y2="630" stroke="#2a2010" stroke-width="1"/>
+
+  <!-- Decorative route line across bottom -->
+  <path d="M 0,520 Q 200,480 400,510 Q 600,540 800,490 Q 1000,450 1200,480"
+        stroke="#e8a020" stroke-width="2" fill="none" stroke-dasharray="12,8" opacity="0.4"/>
+
+  <!-- Gold divider lines -->
+  <rect x="0" y="195" width="1200" height="1" fill="url(#gold-line)" opacity="0.6"/>
+  <rect x="0" y="420" width="1200" height="1" fill="url(#gold-line)" opacity="0.3"/>
+
+  <!-- Eyebrow text -->
+  <text x="600" y="175" font-family="Georgia, serif" font-size="18" letter-spacing="8"
+        fill="#e8a020" text-anchor="middle" opacity="0.9">FLIGHT EXPEDITIONS</text>
+
+  <!-- Main title -->
+  <text x="600" y="310" font-family="Georgia, serif" font-size="96" font-weight="bold"
+        letter-spacing="4" fill="#f0ebe0" text-anchor="middle" filter="url(#glow)">Captain Dadders</text>
+
+  <!-- Subtitle -->
+  <text x="600" y="385" font-family="Georgia, serif" font-size="26" font-style="italic"
+        fill="#c8b890" text-anchor="middle" opacity="0.85">Flight sim expeditions around the world</text>
+
+  <!-- Bottom tag -->
+  <text x="600" y="480" font-family="Georgia, serif" font-size="16" letter-spacing="6"
+        fill="#6a5a40" text-anchor="middle">MICROSOFT FLIGHT SIMULATOR 2024</text>
+
+  <!-- Decorative dots -->
+  <circle cx="540" cy="440" r="2" fill="#e8a020" opacity="0.5"/>
+  <circle cx="600" cy="440" r="2" fill="#e8a020" opacity="0.5"/>
+  <circle cx="660" cy="440" r="2" fill="#e8a020" opacity="0.5"/>
+
+  <!-- Corner plane emoji approximation - simple triangle -->
+  <text x="80" y="340" font-size="60" fill="#e8a020" opacity="0.15" font-family="serif">✈</text>
+  <text x="1060" y="340" font-size="60" fill="#e8a020" opacity="0.15" font-family="serif">✈</text>
+</svg>
