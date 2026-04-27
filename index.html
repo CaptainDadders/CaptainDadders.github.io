@@ -732,7 +732,7 @@ header::after {
 
     <div class="panel-footer">
       <span class="footer-text">Captain Dadders &middot; MSFS 2024</span>
-      <span class="footer-text">Updated Apr 27, 2026 02:46 PM MT</span>
+      <span class="footer-text">Updated Apr 27, 2026 03:35 PM MT</span>
     </div>
   </div>
 </div>
@@ -1118,31 +1118,54 @@ let journalWide = false;
 let currentSlug = null;
 
 function openJournal(post, slug) {
-  // Store current slug for sharing
   currentSlug = slug || null;
-  // Update URL hash without page reload
   try { if (slug) history.pushState(null, '', '#' + slug); } catch(e) {}
-  // Pan map to this leg's location
-  const leg = FLIGHT_LEGS.find(l => l.slug === slug);
-  if (leg && lcMap) lcMap.flyTo([leg.lat, leg.lng], 8, { duration: 1 });
-  // Load iframe
-  document.getElementById('journal-iframe').src = post;
-  // On mobile, auto-scroll to show the prose panel
-  if (window.innerWidth <= 900) {
-    setTimeout(() => {
-      document.querySelector('.info-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 300);
-  }
+
   // Show journal UI, hide overviews
   document.getElementById('journal-frame-wrap').classList.add('visible');
   document.getElementById('journal-controls').classList.add('visible');
   document.querySelectorAll('.expedition-overview').forEach(o => o.classList.remove('visible'));
+
   // Set narrow mode
   journalWide = false;
   document.getElementById('expand-btn').textContent = '⤢ Expand';
   const layout = document.querySelector('.main-layout');
   layout.classList.remove('journal-wide');
   layout.classList.add('journal-narrow');
+
+  // Pan map to leg location
+  const leg = FLIGHT_LEGS.find(l => l.slug === slug);
+  if (leg && lcMap) lcMap.flyTo([leg.lat, leg.lng], 8, { duration: 1 });
+
+  // Fetch and inject content
+  const content = document.getElementById('journal-content');
+  content.innerHTML = '<div style="padding:40px;text-align:center;font-family:Cinzel,serif;font-size:10px;letter-spacing:3px;color:#8a7858;text-transform:uppercase;">Loading...</div>';
+
+  fetch(post)
+    .then(r => r.text())
+    .then(rawHtml => {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(rawHtml, 'text/html');
+      const body = doc.body;
+      // Remove any chrome elements
+      ['header','nav','.site-header','.breadcrumb','.post-nav','.site-footer'].forEach(sel => {
+        body.querySelectorAll(sel).forEach(el => el.remove());
+      });
+      // Grab styles from the leg page
+      let styleHtml = '';
+      doc.querySelectorAll('style').forEach(s => styleHtml += s.outerHTML);
+      content.innerHTML = styleHtml + body.innerHTML;
+
+      // On mobile scroll to content
+      if (window.innerWidth <= 900) {
+        setTimeout(() => {
+          document.getElementById('journal-frame-wrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      }
+    })
+    .catch(() => {
+      content.innerHTML = '<div style="padding:40px;text-align:center;color:#8a7858;">Could not load content.</div>';
+    });
 }
 
 
