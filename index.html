@@ -642,7 +642,7 @@ header::after {
 
     <div class="panel-footer">
       <span class="footer-text">Captain Dadders &middot; MSFS 2024</span>
-      <span class="footer-text">Updated Apr 27, 2026 12:57 PM MT</span>
+      <span class="footer-text">Updated Apr 27, 2026 01:05 PM MT</span>
     </div>
   </div>
 </div>
@@ -1116,6 +1116,10 @@ function closeAircraftPopup() {
   document.getElementById('aircraft-popup').classList.remove('visible');
   document.getElementById('aircraft-overlay').classList.remove('visible');
 }
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeAircraftPopup();
+});
 
 // Subscribe form — background submit, no page redirect
 function handleSubscribe(e) {

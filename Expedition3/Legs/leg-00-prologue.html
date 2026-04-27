@@ -346,6 +346,39 @@ body {
 }
 
 
+
+/* LIGHTBOX */
+.lightbox-overlay {
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.92);
+  z-index:9999;
+  cursor:pointer;
+  align-items:center;
+  justify-content:center;
+}
+.lightbox-overlay.visible { display:flex; }
+.lightbox-overlay img {
+  max-width:95vw;
+  max-height:95vh;
+  object-fit:contain;
+  box-shadow:0 4px 40px rgba(0,0,0,0.8);
+}
+.lightbox-close {
+  position:fixed;
+  top:16px;
+  right:20px;
+  color:#fff;
+  font-size:28px;
+  cursor:pointer;
+  opacity:0.7;
+  font-family:sans-serif;
+  line-height:1;
+}
+.lightbox-close:hover { opacity:1; }
+figure img { cursor:zoom-in; }
+
 </style>
 </head>
 <body>
@@ -380,7 +413,7 @@ body {
 
   <!-- AIRCRAFT PHOTO -->
   <figure style="margin-bottom:32px;">
-    <img src="../images/Norden.png" alt="Zlin Norden N2370 at 31D Inter County Airport" style="width:100%;border:1px solid #d4c4a0;display:block;">
+    <img src="../images/Norden.png" alt="Zlin Norden N2370 at 31D Inter County Airport" style="width:100%;border:1px solid #d4c4a0;display:block;" onclick="openLightbox(this.src, this.alt)">
     <figcaption style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:#8a7858;text-transform:uppercase;margin-top:8px;text-align:center;">Zlin Norden N2370 — 31D Inter County Airport, Irwin PA · April 2026</figcaption>
   </figure>
 
@@ -424,5 +457,25 @@ body {
 </div>
 
 
+<!-- LIGHTBOX -->
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close" onclick="closeLightbox()">✕</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+function openLightbox(src, alt) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox-img').alt = alt || '';
+  document.getElementById('lightbox').classList.add('visible');
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('visible');
+  document.getElementById('lightbox-img').src = '';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeLightbox();
+});
+</script>
 </body>
 </html>
