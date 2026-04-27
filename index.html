@@ -228,6 +228,13 @@ header::after {
   flex-shrink: 0;
 }
 .journal-controls.visible { display: flex; }
+@media(max-width:900px) {
+  .journal-controls.visible {
+    position: sticky;
+    top: 0;
+    z-index: 500;
+  }
+}
 
 .journal-ctrl-btn {
   font-family: "Cinzel", serif;
@@ -405,6 +412,21 @@ header::after {
   max-height:calc(100vh - 48px);
   object-fit:contain;
   pointer-events:none; user-select:none;
+}
+
+
+/* Constrain injected journal content fonts on desktop */
+#journal-content .hero-title {
+  font-size: clamp(20px, 3vw, 32px) !important;
+}
+#journal-content .hero-subtitle {
+  font-size: 15px !important;
+}
+#journal-content .flight-strip {
+  font-size: 12px !important;
+}
+#journal-content .strip-value {
+  font-size: 13px !important;
 }
 
 /* SUBSCRIBE */
@@ -651,6 +673,7 @@ header::after {
       <button class="journal-ctrl-btn" onclick="closeJournal()">← Expedition Overview</button>
       <button class="journal-ctrl-btn" id="expand-btn" onclick="toggleJournalWidth()">⤢ Expand</button>
       <button class="journal-ctrl-btn" id="share-btn" onclick="shareJournal()">⎘ Share</button>
+      <button class="journal-ctrl-btn" id="top-btn" onclick="scrollToTop()" style="display:none">↑ Map</button>
     </div>
 
     <!-- JOURNAL CONTENT -->
@@ -732,7 +755,7 @@ header::after {
 
     <div class="panel-footer">
       <span class="footer-text">Captain Dadders &middot; MSFS 2024</span>
-      <span class="footer-text">Updated Apr 27, 2026 03:35 PM MT</span>
+      <span class="footer-text">Updated Apr 27, 2026 04:22 PM MT</span>
     </div>
   </div>
 </div>
@@ -1151,10 +1174,24 @@ function openJournal(post, slug) {
       ['header','nav','.site-header','.breadcrumb','.post-nav','.site-footer'].forEach(sel => {
         body.querySelectorAll(sel).forEach(el => el.remove());
       });
-      // Grab styles from the leg page
+      // Grab styles from the leg page, scoped to #journal-content
       let styleHtml = '';
-      doc.querySelectorAll('style').forEach(s => styleHtml += s.outerHTML);
-      content.innerHTML = styleHtml + body.innerHTML;
+      doc.querySelectorAll('style').forEach(s => {
+        // Scope all rules to #journal-content to avoid bleeding into parent
+        let css = s.textContent.replace(/([^{}]+)\{/g, (match, selector) => {
+          // Don't scope @keyframes, @media etc
+          if (selector.trim().startsWith('@')) return match;
+          const scoped = selector.split(',').map(sel => `#journal-content ${sel.trim()}`).join(', ');
+          return scoped + ' {';
+        });
+        styleHtml += `<style>${css}</style>`;
+      });
+      // Fix relative image/link paths to be absolute from site root
+      let bodyHtml = body.innerHTML;
+      bodyHtml = bodyHtml.replace(/src="\.\.\/images\//g, 'src="Expedition3/images/');
+      bodyHtml = bodyHtml.replace(/src="images\//g, 'src="Expedition3/images/');
+      bodyHtml = bodyHtml.replace(/href="\.\.\/images\//g, 'href="Expedition3/images/');
+      content.innerHTML = styleHtml + bodyHtml;
 
       // On mobile scroll to content
       if (window.innerWidth <= 900) {
@@ -1169,6 +1206,21 @@ function openJournal(post, slug) {
 }
 
 
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Show/hide ↑ Map button based on scroll position on mobile
+window.addEventListener('scroll', function() {
+  const topBtn = document.getElementById('top-btn');
+  if (!topBtn) return;
+  if (window.innerWidth <= 900 && window.scrollY > 100) {
+    topBtn.style.display = 'flex';
+  } else {
+    topBtn.style.display = 'none';
+  }
+});
 
 function closeJournal() {
   // Clear hash
