@@ -41,6 +41,7 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
 }
+@media(max-width:900px) { body { overflow-y: auto; } }
 
 /* HEADER */
 header {
@@ -263,14 +264,35 @@ header::after {
 }
 
 @media(max-width:900px) {
+  /* Override fixed height layout on mobile */
+  .main-layout,
   .main-layout.journal-narrow,
   .main-layout.journal-wide {
-    grid-template-columns: 1fr;
-    grid-template-rows: 25vh 1fr;
+    grid-template-columns: 1fr !important;
+    grid-template-rows: none !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+  .map-panel {
+    height: 52vh;
+  }
+  .info-panel {
+    height: auto !important;
+    overflow: visible !important;
+    border-left: none;
+    border-top: 1px solid var(--border);
+  }
+  .expedition-overview {
+    height: auto !important;
+    overflow: visible !important;
   }
   .journal-frame-wrap {
-    min-height: 60vh;
+    height: 80vh;
   }
+  /* Hide expand button on mobile */
+  #expand-btn { display: none !important; }
+  /* Hide journal controls toolbar padding on mobile */
+  .journal-controls { padding: 8px 10px; }
 }
 
 
@@ -700,7 +722,7 @@ header::after {
 
     <div class="panel-footer">
       <span class="footer-text">Captain Dadders &middot; MSFS 2024</span>
-      <span class="footer-text">Updated Apr 27, 2026 01:38 PM MT</span>
+      <span class="footer-text">Updated Apr 27, 2026 02:32 PM MT</span>
     </div>
   </div>
 </div>
@@ -1095,6 +1117,12 @@ function openJournal(post, slug) {
   if (leg && lcMap) lcMap.flyTo([leg.lat, leg.lng], 8, { duration: 1 });
   // Load iframe
   document.getElementById('journal-iframe').src = post;
+  // On mobile, auto-scroll to show the prose panel
+  if (window.innerWidth <= 900) {
+    setTimeout(() => {
+      document.querySelector('.info-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 300);
+  }
   // Show journal UI, hide overviews
   document.getElementById('journal-frame-wrap').classList.add('visible');
   document.getElementById('journal-controls').classList.add('visible');
