@@ -347,74 +347,6 @@ body {
 
 
 
-/* LIGHTBOX */
-.lightbox-overlay {
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.95);
-  z-index:9999;
-  overflow:hidden;
-}
-.lightbox-overlay.visible { display:block; }
-
-.lightbox-toolbar {
-  position:fixed;
-  top:0; left:0; right:0;
-  height:48px;
-  background:rgba(0,0,0,0.7);
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 20px;
-  z-index:10000;
-}
-.lightbox-caption {
-  font-family:"Cinzel",serif;
-  font-size:10px;
-  letter-spacing:2px;
-  color:#c8b890;
-  text-transform:uppercase;
-}
-.lightbox-controls {
-  display:flex;
-  gap:8px;
-  align-items:center;
-}
-.lb-btn {
-  background:rgba(255,255,255,0.1);
-  border:1px solid rgba(255,255,255,0.2);
-  color:#fff;
-  width:32px; height:32px;
-  display:flex; align-items:center; justify-content:center;
-  cursor:pointer;
-  font-size:16px;
-  border-radius:2px;
-  transition:background 0.2s;
-  user-select:none;
-}
-.lb-btn:hover { background:rgba(255,255,255,0.25); }
-
-.lightbox-viewport {
-  position:fixed;
-  inset:48px 0 0 0;
-  overflow:hidden;
-  cursor:grab;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.lightbox-viewport.grabbing { cursor:grabbing; }
-
-#lightbox-img {
-  transform-origin: center center;
-  transition: transform 0.15s ease;
-  max-width:none;
-  max-height:none;
-  pointer-events:none;
-  user-select:none;
-}
-
 figure img { cursor:zoom-in; }
 
 </style>
@@ -451,7 +383,7 @@ figure img { cursor:zoom-in; }
 
   <!-- AIRCRAFT PHOTO -->
   <figure style="margin-bottom:32px;">
-    <img src="../images/Norden.png" alt="Zlin Norden N2370 at 31D Inter County Airport" style="width:100%;border:1px solid #d4c4a0;display:block;" onclick="openLightbox(this.src, this.alt)">
+    <img src="../images/Norden.png" alt="Zlin Norden N2370 at 31D Inter County Airport" style="width:100%;border:1px solid #d4c4a0;display:block;" onclick="(window.parent.openFsLightbox||window.open)(this.src, this.alt||'_blank')">
     <figcaption style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:#8a7858;text-transform:uppercase;margin-top:8px;text-align:center;">Zlin Norden N2370 — 31D Inter County Airport, Irwin PA · April 2026</figcaption>
   </figure>
 
@@ -495,119 +427,6 @@ figure img { cursor:zoom-in; }
 </div>
 
 
-<!-- LIGHTBOX -->
-<div class="lightbox-overlay" id="lightbox">
-  <div class="lightbox-toolbar">
-    <span class="lightbox-caption" id="lb-caption"></span>
-    <div class="lightbox-controls">
-      <div class="lb-btn" onclick="lbZoom(1.25)" title="Zoom in">+</div>
-      <div class="lb-btn" onclick="lbZoom(0.8)" title="Zoom out">−</div>
-      <div class="lb-btn" onclick="lbReset()" title="Reset">⊡</div>
-      <div class="lb-btn" onclick="closeLightbox()" title="Close">✕</div>
-    </div>
-  </div>
-  <div class="lightbox-viewport" id="lb-viewport">
-    <img id="lightbox-img" src="" alt="">
-  </div>
-</div>
 
-<script>
-let lbScale = 1, lbX = 0, lbY = 0;
-let lbDragging = false, lbStartX, lbStartY;
-
-function openLightbox(src, alt) {
-  const img = document.getElementById('lightbox-img');
-  img.src = src;
-  document.getElementById('lb-caption').textContent = alt || '';
-  document.getElementById('lightbox').classList.add('visible');
-  lbScale = 1; lbX = 0; lbY = 0;
-  img.style.transform = '';
-}
-
-function closeLightbox() {
-  document.getElementById('lightbox').classList.remove('visible');
-  document.getElementById('lightbox-img').src = '';
-}
-
-function lbZoom(factor) {
-  lbScale = Math.min(Math.max(lbScale * factor, 0.5), 8);
-  applyLbTransform();
-}
-
-function lbReset() {
-  lbScale = 1; lbX = 0; lbY = 0;
-  applyLbTransform();
-}
-
-function applyLbTransform() {
-  document.getElementById('lightbox-img').style.transform =
-    `translate(${lbX}px, ${lbY}px) scale(${lbScale})`;
-}
-
-// Drag to pan
-const vp = document.getElementById('lb-viewport');
-vp.addEventListener('mousedown', e => {
-  lbDragging = true;
-  lbStartX = e.clientX - lbX;
-  lbStartY = e.clientY - lbY;
-  vp.classList.add('grabbing');
-});
-document.addEventListener('mousemove', e => {
-  if (!lbDragging) return;
-  lbX = e.clientX - lbStartX;
-  lbY = e.clientY - lbStartY;
-  applyLbTransform();
-});
-document.addEventListener('mouseup', () => {
-  lbDragging = false;
-  vp.classList.remove('grabbing');
-});
-
-// Scroll to zoom
-vp.addEventListener('wheel', e => {
-  e.preventDefault();
-  lbZoom(e.deltaY < 0 ? 1.1 : 0.9);
-}, { passive: false });
-
-// Touch pinch/pan
-let lbLastDist = 0, lbTouches = [];
-vp.addEventListener('touchstart', e => {
-  lbTouches = Array.from(e.touches);
-  if (lbTouches.length === 1) {
-    lbStartX = lbTouches[0].clientX - lbX;
-    lbStartY = lbTouches[0].clientY - lbY;
-  }
-  if (lbTouches.length === 2) {
-    lbLastDist = Math.hypot(
-      lbTouches[0].clientX - lbTouches[1].clientX,
-      lbTouches[0].clientY - lbTouches[1].clientY
-    );
-  }
-});
-vp.addEventListener('touchmove', e => {
-  e.preventDefault();
-  const touches = Array.from(e.touches);
-  if (touches.length === 1) {
-    lbX = touches[0].clientX - lbStartX;
-    lbY = touches[0].clientY - lbStartY;
-    applyLbTransform();
-  }
-  if (touches.length === 2) {
-    const dist = Math.hypot(
-      touches[0].clientX - touches[1].clientX,
-      touches[0].clientY - touches[1].clientY
-    );
-    if (lbLastDist) lbZoom(dist / lbLastDist);
-    lbLastDist = dist;
-  }
-}, { passive: false });
-
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeLightbox();
-  if (e.key === '+' || e.key === '=') lbZoom(1.2);
-  if (e.key === '-') lbZoom(0.8);
-  if (e.key === '0') lbReset();
-});
-</script>
 </body>
 </html>

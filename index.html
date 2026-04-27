@@ -317,6 +317,62 @@ header::after {
 }
 .aircraft-popup-overlay.visible { display:block; }
 
+
+/* FULL SCREEN LIGHTBOX (triggered from iframes) */
+.fs-lightbox {
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.95);
+  z-index:99999;
+  overflow:hidden;
+}
+.fs-lightbox.visible { display:block; }
+.fs-toolbar {
+  position:fixed;
+  top:0; left:0; right:0;
+  height:48px;
+  background:rgba(0,0,0,0.7);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 20px;
+  z-index:100000;
+}
+.fs-caption {
+  font-family:"Cinzel",serif;
+  font-size:10px;
+  letter-spacing:2px;
+  color:#c8b890;
+  text-transform:uppercase;
+}
+.fs-controls { display:flex; gap:8px; }
+.fs-btn {
+  background:rgba(255,255,255,0.1);
+  border:1px solid rgba(255,255,255,0.2);
+  color:#fff;
+  width:32px; height:32px;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; font-size:16px; border-radius:2px;
+  transition:background 0.2s; user-select:none;
+}
+.fs-btn:hover { background:rgba(255,255,255,0.25); }
+.fs-viewport {
+  position:fixed;
+  inset:48px 0 0 0;
+  overflow:hidden;
+  cursor:grab;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.fs-viewport.grabbing { cursor:grabbing; }
+#fs-img {
+  transform-origin:center center;
+  max-width:none; max-height:none;
+  pointer-events:none; user-select:none;
+}
+
 /* SUBSCRIBE */
 .subscribe-btn {
   font-family:"Cinzel",serif;
@@ -642,7 +698,7 @@ header::after {
 
     <div class="panel-footer">
       <span class="footer-text">Captain Dadders &middot; MSFS 2024</span>
-      <span class="footer-text">Updated Apr 27, 2026 01:05 PM MT</span>
+      <span class="footer-text">Updated Apr 27, 2026 01:18 PM MT</span>
     </div>
   </div>
 </div>
@@ -1107,6 +1163,54 @@ function toggleJournalWidth() {
   }
 }
 
+// Full screen lightbox (called from iframes via window.parent.openFsLightbox)
+let fsScale = 1, fsX = 0, fsY = 0, fsDragging = false, fsStartX, fsStartY;
+
+window.openFsLightbox = function(src, alt) {
+  document.getElementById('fs-img').src = src;
+  document.getElementById('fs-caption').textContent = alt || '';
+  document.getElementById('fs-lightbox').classList.add('visible');
+  fsScale = 1; fsX = 0; fsY = 0;
+  applyFsTransform();
+};
+
+function closeFsLightbox() {
+  document.getElementById('fs-lightbox').classList.remove('visible');
+  document.getElementById('fs-img').src = '';
+}
+
+function fsZoom(f) {
+  fsScale = Math.min(Math.max(fsScale * f, 0.5), 8);
+  applyFsTransform();
+}
+
+function fsReset() { fsScale=1; fsX=0; fsY=0; applyFsTransform(); }
+
+function applyFsTransform() {
+  document.getElementById('fs-img').style.transform =
+    `translate(${fsX}px,${fsY}px) scale(${fsScale})`;
+}
+
+const fsVp = document.getElementById('fs-viewport');
+fsVp.addEventListener('mousedown', e => {
+  fsDragging=true; fsStartX=e.clientX-fsX; fsStartY=e.clientY-fsY;
+  fsVp.classList.add('grabbing');
+});
+document.addEventListener('mousemove', e => {
+  if (!fsDragging) return;
+  fsX=e.clientX-fsStartX; fsY=e.clientY-fsStartY; applyFsTransform();
+});
+document.addEventListener('mouseup', () => { fsDragging=false; fsVp.classList.remove('grabbing'); });
+fsVp.addEventListener('wheel', e => { e.preventDefault(); fsZoom(e.deltaY<0?1.1:0.9); }, {passive:false});
+document.addEventListener('keydown', e => {
+  if (document.getElementById('fs-lightbox').classList.contains('visible')) {
+    if (e.key==='Escape') closeFsLightbox();
+    if (e.key==='+'||e.key==='=') fsZoom(1.2);
+    if (e.key==='-') fsZoom(0.8);
+    if (e.key==='0') fsReset();
+  }
+});
+
 // Aircraft easter egg
 function openAircraftPopup() {
   document.getElementById('aircraft-popup').classList.add('visible');
@@ -1197,6 +1301,22 @@ window.addEventListener('load', () => {
   setTimeout(checkHash, 300);
 });
 </script>
+
+<!-- FULL SCREEN LIGHTBOX -->
+<div class="fs-lightbox" id="fs-lightbox">
+  <div class="fs-toolbar">
+    <span class="fs-caption" id="fs-caption"></span>
+    <div class="fs-controls">
+      <div class="fs-btn" onclick="fsZoom(1.25)">+</div>
+      <div class="fs-btn" onclick="fsZoom(0.8)">−</div>
+      <div class="fs-btn" onclick="fsReset()">⊡</div>
+      <div class="fs-btn" onclick="closeFsLightbox()">✕</div>
+    </div>
+  </div>
+  <div class="fs-viewport" id="fs-viewport">
+    <img id="fs-img" src="" alt="">
+  </div>
+</div>
 
 <!-- AIRCRAFT EASTER EGG POPUP -->
 <div class="aircraft-popup-overlay" id="aircraft-overlay" onclick="closeAircraftPopup()"></div>
