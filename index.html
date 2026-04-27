@@ -284,6 +284,39 @@ header::after {
   /* animation now applied inline on the div */
 }
 
+
+/* EASTER EGG AIRCRAFT POPUP */
+.aircraft-popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2000;
+  background: var(--ink);
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.7);
+  max-width: 480px;
+  width: 90%;
+}
+.aircraft-popup.visible { display: block; }
+.aircraft-popup-img { width:100%; display:block; }
+.aircraft-popup-body { padding: 16px 20px; }
+.aircraft-popup-title { font-family:"Cinzel",serif; font-size:13px; font-weight:700; color:var(--gold); margin-bottom:6px; }
+.aircraft-popup-text { font-size:15px; color:var(--muted-light); line-height:1.6; margin-bottom:12px; }
+.aircraft-popup-close {
+  font-family:"Cinzel",serif; font-size:9px; letter-spacing:2px;
+  text-transform:uppercase; color:var(--muted); background:transparent;
+  border:1px solid var(--border); padding:5px 12px; cursor:pointer;
+  transition:all 0.2s; float:right;
+}
+.aircraft-popup-close:hover { color:var(--gold); border-color:var(--gold); }
+.aircraft-popup-overlay {
+  display:none;
+  position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:1999;
+}
+.aircraft-popup-overlay.visible { display:block; }
+
 /* SUBSCRIBE */
 .subscribe-btn {
   font-family:"Cinzel",serif;
@@ -587,7 +620,7 @@ header::after {
       <div class="overview-divider"></div>
       <div class="status-badge badge-active"><div class="status-dot dot-active"></div> First Flight Pending</div>
       <div class="stat-grid">
-        <div class="stat-cell"><span class="stat-label">Aircraft</span><span class="stat-value sm"><a href="https://www.zlinaero.com/norden/" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:3px;">Zlin Norden</a></span></div>
+        <div class="stat-cell"><span class="stat-label">Aircraft</span><span class="stat-value sm"><a href="https://www.zlinaero.com/norden/" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:3px;" title="Click for aircraft details">Zlin Norden</a> <span onclick="openAircraftPopup()" style="cursor:pointer;color:var(--gold);font-size:11px;" title="See the plane">✈</span></span></div>
         <div class="stat-cell"><span class="stat-label">Legs Flown</span><span class="stat-value hi">0</span></div>
         <div class="stat-cell"><span class="stat-label">Distance So Far</span><span class="stat-value hi">0 <span style="font-size:11px;color:var(--muted)">NM</span></span></div>
         <div class="stat-cell"><span class="stat-label">Route</span><span class="stat-value sm">Pittsburgh &rarr; Pacific</span></div>
@@ -609,7 +642,7 @@ header::after {
 
     <div class="panel-footer">
       <span class="footer-text">Captain Dadders &middot; MSFS 2024</span>
-      <span class="footer-text">Updated Apr 26, 2026 02:51 PM MT</span>
+      <span class="footer-text">Updated Apr 27, 2026 12:44 PM MT</span>
     </div>
   </div>
 </div>
@@ -631,7 +664,7 @@ const FLIGHT_LEGS = [
     label: "Prologue: Preparing for Departure",
     location: "31D — Inter County Airport, Irwin, PA",
     date: "April 26, 2026",
-    thumb: null,
+    thumb: "Expedition3/images/Norden.png",
     post: "Expedition3/Legs/leg-00-prologue.html",
     slug: "leg-00"
   }
@@ -1074,6 +1107,16 @@ function toggleJournalWidth() {
   }
 }
 
+// Aircraft easter egg
+function openAircraftPopup() {
+  document.getElementById('aircraft-popup').classList.add('visible');
+  document.getElementById('aircraft-overlay').classList.add('visible');
+}
+function closeAircraftPopup() {
+  document.getElementById('aircraft-popup').classList.remove('visible');
+  document.getElementById('aircraft-overlay').classList.remove('visible');
+}
+
 // Subscribe form — background submit, no page redirect
 function handleSubscribe(e) {
   e.preventDefault();
@@ -1150,6 +1193,18 @@ window.addEventListener('load', () => {
   setTimeout(checkHash, 300);
 });
 </script>
+
+<!-- AIRCRAFT EASTER EGG POPUP -->
+<div class="aircraft-popup-overlay" id="aircraft-overlay" onclick="closeAircraftPopup()"></div>
+<div class="aircraft-popup" id="aircraft-popup">
+  <img class="aircraft-popup-img" src="Expedition3/images/Norden.png" alt="Zlin Norden">
+  <div class="aircraft-popup-body">
+    <div class="aircraft-popup-title">Zlin Norden — N2370</div>
+    <div class="aircraft-popup-text">A Czech-designed taildragger bush plane powered by a Rotax 915iS producing 141hp. Electric retractable leading edge slats allow incredibly slow, controlled approaches to remote strips. Cruise: ~100 knots. The aircraft chosen for Expedition III.</div>
+    <button class="aircraft-popup-close" onclick="closeAircraftPopup()">Close</button>
+    <div style="clear:both"></div>
+  </div>
+</div>
 
 </body>
 </html>
