@@ -734,13 +734,13 @@ header::after {
       <div class="status-badge badge-active"><div class="status-dot dot-active"></div> First Flight Pending</div>
       <div class="stat-grid">
         <div class="stat-cell"><span class="stat-label">Aircraft</span><span class="stat-value sm"><span onclick="openAircraftPopup()" style="cursor:pointer;text-decoration:underline;text-underline-offset:3px;" title="Click to see the aircraft">Zlin Norden ✈</span></span></div>
-        <div class="stat-cell"><span class="stat-label">Legs Flown</span><span class="stat-value hi">0</span></div>
-        <div class="stat-cell"><span class="stat-label">Distance So Far</span><span class="stat-value hi">0 <span style="font-size:11px;color:var(--muted)">NM</span></span></div>
+        <div class="stat-cell"><span class="stat-label">Legs Flown</span><span class="stat-value hi">1</span></div>
+        <div class="stat-cell"><span class="stat-label">Distance So Far</span><span class="stat-value hi">51 <span style="font-size:11px;color:var(--muted)">NM</span></span></div>
         <div class="stat-cell"><span class="stat-label">Route</span><span class="stat-value sm">Pittsburgh &rarr; Pacific</span></div>
       </div>
       <div class="progress-bar-wrap">
-        <div class="progress-label"><span>Expedition Progress</span><span>0 of ~4,900 NM</span></div>
-        <div class="progress-track"><div class="progress-fill" id="exp3-progress" style="width:0%"></div></div>
+        <div class="progress-label"><span>Expedition Progress</span><span>51 of ~4,900 NM</span></div>
+        <div class="progress-track"><div class="progress-fill" id="exp3-progress" style="width:1%"></div></div>
       </div>
       <div class="section-label">The Mission</div>
       <div class="overview-text">In 1803, Meriwether Lewis departed Pittsburgh with a freshly built keelboat and orders from President Jefferson to find a route to the Pacific. Two years and over 4,900 nautical miles later, the Corps of Discovery reached the ocean. This expedition follows their path &mdash; by air &mdash; landing as close to the actual route as possible at grass strips, river towns, mountain passes, and remote backcountry airstrips.</div>
@@ -755,7 +755,7 @@ header::after {
 
     <div class="panel-footer">
       <span class="footer-text">Captain Dadders &middot; MSFS 2024</span>
-      <span class="footer-text">Updated Apr 28, 2026 08:13 PM MT</span>
+      <span class="footer-text">Updated Apr 28, 2026 11:38 PM MT</span>
     </div>
   </div>
 </div>
@@ -780,15 +780,21 @@ const FLIGHT_LEGS = [
     thumb: "Expedition3/images/Norden.png",
     post: "Expedition3/Legs/leg-00-prologue.html",
     slug: "leg-00"
+  },
+  {
+    lat: 40.6383,
+    lng: -80.6114,
+    label: "Leg 1: Departing Pittsburgh",
+    location: "31D → 1G8 · Irwin PA to Toronto OH",
+    date: "April 28, 2026",
+    thumb: "Expedition3/Legs/Leg01-ThePoint.jpg",
+    post: "Expedition3/Legs/leg-01.html",
+    slug: "leg-01"
   }
 ];
 
-// Completed route coordinates — update after each leg
-// When empty, entire route shows as "remaining" (dashed amber)
-// As you fly, add the coordinates you've covered to show as "completed" (solid green)
-const COMPLETED_COORDS = [
-  // Empty until first leg is flown
-];
+// Completed route coordinates — updated through Leg 1
+const COMPLETED_COORDS = [[40.44314, -80.01276], [40.44789, -80.02704], [40.47595, -80.0492], [40.48886, -80.06692], [40.53125, -80.18042], [40.55829, -80.21523], [40.59423, -80.23745], [40.63747, -80.23632], [40.67938, -80.25531], [40.69438, -80.28367], [40.61874, -80.44544], [40.63608, -80.49155], [40.62982, -80.53399], [40.61554, -80.5796], [40.62351, -80.60076], [40.61863, -80.62227]];
 
 // ── EXP 1 & 2 LEG DATA ──────────────────────────────────────────
 const EXP1_LEGS = [

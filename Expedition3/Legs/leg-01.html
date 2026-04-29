@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leg 1: Departing Pittsburgh — Captain Dadders</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1410;
+  --parchment: #f0ebe0;
+  --gold: #e8a020;
+  --muted: #b0a888;
+  --muted-light: #d4cbb8;
+  --border: #4a4030;
+  --border-light: #c8b890;
+  --complete: #5ab87a;
+  --content-max: 760px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:"Crimson Pro",Georgia,serif; background:var(--parchment); color:var(--ink); line-height:1.8; }
+
+/* HERO */
+.hero { background:var(--ink); padding:52px 40px 0; text-align:center; position:relative; overflow:hidden; }
+.hero::before { content:""; position:absolute; inset:0; background:radial-gradient(ellipse at center top, rgba(232,160,32,0.08) 0%, transparent 70%); }
+.hero-eyebrow { font-family:"Cinzel",serif; font-size:9px; letter-spacing:5px; color:var(--gold); text-transform:uppercase; margin-bottom:14px; display:flex; align-items:center; justify-content:center; gap:14px; }
+.hero-eyebrow::before, .hero-eyebrow::after { content:""; display:block; width:40px; height:1px; background:linear-gradient(90deg,transparent,var(--gold)); }
+.hero-eyebrow::after { transform:scaleX(-1); }
+.hero-title { font-family:"Cinzel",serif; font-size:clamp(24px,4vw,42px); font-weight:900; color:var(--parchment); letter-spacing:2px; line-height:1.1; margin-bottom:12px; }
+.hero-subtitle { font-size:18px; font-style:italic; color:var(--muted-light); margin-bottom:28px; }
+
+/* FLIGHT STRIP */
+.flight-strip { display:flex; flex-wrap:wrap; align-items:stretch; border:1px solid var(--border); background:#111008; max-width:860px; margin:0 auto; }
+.strip-cell { flex:1; min-width:90px; padding:10px 14px; border-right:1px solid var(--border); text-align:center; }
+.strip-cell:last-child { border-right:none; }
+.strip-label { font-family:"Cinzel",serif; font-size:7px; letter-spacing:3px; color:var(--muted); text-transform:uppercase; display:block; margin-bottom:4px; }
+.strip-value { font-family:"Cinzel",serif; font-size:12px; color:var(--parchment); font-weight:600; line-height:1.3; }
+.strip-value.gold { color:var(--gold); }
+
+/* PROGRESS */
+.progress-wrap { background:#111008; border:1px solid var(--border); border-top:none; max-width:860px; margin:0 auto; padding:10px 16px 14px; }
+.progress-label { font-family:"Cinzel",serif; font-size:8px; letter-spacing:2px; color:var(--muted); text-transform:uppercase; display:flex; justify-content:space-between; margin-bottom:5px; }
+.progress-track { height:3px; background:#2a2010; border-radius:2px; }
+.progress-fill { height:100%; background:linear-gradient(90deg,var(--complete),var(--gold)); border-radius:2px; }
+
+/* CONTENT */
+.content-wrap { max-width:var(--content-max); margin:0 auto; padding:52px 24px 80px; }
+
+/* MEDIA */
+.media-item { margin-bottom:28px; }
+.media-item img { width:100%; display:block; border:1px solid var(--border-light); cursor:zoom-in; }
+.media-caption { font-family:"Cinzel",serif; font-size:9px; letter-spacing:2px; color:#8a7858; text-transform:uppercase; text-align:center; margin-top:8px; }
+.video-label { font-family:"Cinzel",serif; font-size:9px; letter-spacing:3px; color:var(--gold); text-transform:uppercase; margin-bottom:10px; }
+.video-embed { position:relative; padding-bottom:56.25%; height:0; overflow:hidden; }
+.video-embed iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:1px solid var(--border-light); }
+
+/* JOURNAL */
+.pilot-journal p { font-size:19px; line-height:1.85; color:#2a2018; margin-bottom:1.4em; }
+.pilot-journal p:first-child::first-letter { font-family:"Cinzel",serif; font-size:64px; font-weight:900; line-height:0.85; float:left; margin-right:8px; margin-top:8px; color:var(--gold); }
+
+/* HISTORICAL */
+.historical-section { background:#1a1410; color:var(--parchment); padding:44px 48px; margin:0 -24px; position:relative; }
+.historical-section::before { content:""; position:absolute; top:0;left:0;right:0;height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); opacity:0.4; }
+.historical-banner { background:rgba(232,160,32,0.1); border:1px solid rgba(232,160,32,0.3); padding:10px 16px; margin-bottom:24px; font-family:"Cinzel",serif; font-size:9px; letter-spacing:2px; color:#d4b870; text-transform:uppercase; text-align:center; }
+.historical-eyebrow { font-family:"Cinzel",serif; font-size:9px; letter-spacing:4px; color:var(--gold); text-transform:uppercase; margin-bottom:16px; display:flex; align-items:center; gap:12px; }
+.historical-eyebrow::after { content:""; flex:1; height:1px; background:linear-gradient(90deg,var(--gold),transparent); opacity:0.4; }
+.historical-title { font-family:"Cinzel",serif; font-size:20px; font-weight:700; color:var(--parchment); margin-bottom:20px; line-height:1.2; }
+.historical-text p { font-size:17px; line-height:1.85; color:#c8bfb0; margin-bottom:1.3em; }
+.historical-text p:last-child { margin-bottom:0; }
+
+/* LEG NAV */
+.leg-nav { border-top:1px solid var(--border-light); padding:28px 24px; max-width:var(--content-max); margin:0 auto; display:flex; justify-content:space-between; align-items:center; }
+.leg-nav a { font-family:"Cinzel",serif; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--ink); text-decoration:none; display:flex; align-items:center; gap:8px; transition:color 0.2s; }
+.leg-nav a:hover { color:var(--gold); }
+
+@media(max-width:700px){
+  .hero { padding:36px 16px 0; }
+  .flight-strip { flex-direction:column; }
+  .strip-cell { border-right:none; border-bottom:1px solid var(--border); }
+  .strip-cell:last-child { border-bottom:none; }
+  .content-wrap { padding:36px 16px 60px; }
+  .historical-section { padding:36px 20px; margin:0 -16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-eyebrow">Expedition III &mdash; Corps of Discovery &mdash; Leg 1</div>
+  <h1 class="hero-title">Departing Pittsburgh</h1>
+  <p class="hero-subtitle">31D Inter County Airport &rarr; 1G8 Eddie Dew Memorial Airpark</p>
+
+  <div class="flight-strip">
+    <div class="strip-cell">
+      <span class="strip-label">Date Flown</span>
+      <span class="strip-value">Apr 28, 2026</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">L&amp;C Dates</span>
+      <span class="strip-value gold">Aug 31 &ndash; Sep 5, 1803</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Departure</span>
+      <span class="strip-value">31D &middot; Irwin, PA</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Arrival</span>
+      <span class="strip-value">1G8 &middot; Toronto, OH</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Distance</span>
+      <span class="strip-value gold">51 <span style="font-size:10px;color:var(--muted)">NM</span></span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Duration</span>
+      <span class="strip-value">0:45</span>
+    </div>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span>Expedition Progress</span>
+      <span>51 of ~4,900 NM &mdash; 1%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" style="width:1%"></div>
+    </div>
+  </div>
+</div>
+
+<div class="content-wrap">
+
+  <!-- PRIMARY PHOTO -->
+  <div class="media-item">
+    <img src="Leg01-ThePoint.jpg" alt="The Point — confluence of the Allegheny, Monongahela, and Ohio Rivers, Pittsburgh PA" onclick="window.open(this.src,'_blank')">
+    <div class="media-caption">The starting point for the Lewis &amp; Clark Expedition — The Point, Pittsburgh, PA</div>
+  </div>
+
+  <!-- PILOT JOURNAL PART 1 -->
+  <div class="pilot-journal">
+    <p>All preparations having taken place, including sufficient landing practice for the Norden, I took off from Inter County Airport, Irwin, PA, around 8:00 this morning. Great to finally have the journey underway.</p>
+  </div>
+
+  <!-- TAKEOFF VIDEO -->
+  <div class="media-item">
+    <div class="video-label">✈ The Journey Begins</div>
+    <div class="video-embed">
+      <iframe src="https://www.youtube.com/embed/zzwGeRz6p3o" title="The journey begins" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="media-caption">Startup, taxi, and takeoff from 31D</div>
+  </div>
+
+  <!-- JOURNAL PART 2 -->
+  <div class="pilot-journal">
+    <p>I flew straight to the Monongahela River and followed it a short distance to Pittsburgh, and The Point, where three rivers meet: the Monongahela, Allegheny, and the Ohio. This is the spot where Lewis and his crew embarked on their journey.</p>
+
+    <p>After spending time reading <em>Undaunted Courage</em> and Lewis's journal entries, I was imagining a wild and natural river with near-wilderness on its banks. But things have changed a bit since 1803. Brunot Island — the site of the infamous air gun incident — hosts a fossil fuel power plant. I saw lots of smokestacks, coal yards, and a large coal-fired power plant with 5 cooling towers: the Bruce Mansfield Power Plant.</p>
+  </div>
+
+  <!-- POWER PLANT PHOTO -->
+  <div class="media-item">
+    <img src="Leg01-PowerPlant.jpg" alt="Bruce Mansfield Power Plant, Shippingport, PA" onclick="window.open(this.src,'_blank')">
+    <div class="media-caption">Bruce Mansfield Power Plant, Shippingport, PA — closed in 2023, but still modeled as active in the sim</div>
+  </div>
+
+  <!-- JOURNAL PART 3 -->
+  <div class="pilot-journal">
+    <p>Also spotted on the riverbank was the Mountaineer Casino, Racetrack, and Resort, in Chester, WV.</p>
+  </div>
+
+  <!-- RACETRACK PHOTO -->
+  <div class="media-item">
+    <img src="Leg01-Racetrack.jpg" alt="Mountaineer Casino, Racetrack, and Resort, Chester WV" onclick="window.open(this.src,'_blank')">
+    <div class="media-caption">Mountaineer Casino, Racetrack, and Resort — Chester, WV</div>
+  </div>
+
+  <!-- JOURNAL PART 4 -->
+  <div class="pilot-journal">
+    <p>Before long it was time to veer slightly off the river and make the approach to 1G8 Eddie Dew Memorial Airpark in beautiful Toronto, OH. The map shows a golf course just left of the grass landing strip, but I didn't see it on the way in — may have been too busy dealing with gusty crosswinds!</p>
+
+    <p>Landing was relatively uneventful, and I'm glad to be back on the ground. The trip took me 45 minutes in the air to cover the same distance that took Lewis's expedition almost 6 days!</p>
+  </div>
+
+  <!-- LANDING VIDEO -->
+  <div class="media-item">
+    <div class="video-label">✈ First Flight Complete</div>
+    <div class="video-embed">
+      <iframe src="https://www.youtube.com/embed/9k8MxDi-dis" title="First flight complete" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="media-caption">Landing at 1G8 Eddie Dew Memorial Airpark, Toronto, OH</div>
+  </div>
+
+  <!-- HISTORICAL SECTION -->
+  <div class="historical-section">
+    <div class="historical-banner">What Lewis &amp; Clark were doing at this same point in their journey &mdash; August 31 &ndash; September 5, 1803</div>
+    <div class="historical-eyebrow">Lewis &amp; Clark &mdash; 1803</div>
+    <h2 class="historical-title">Pittsburgh to the Ohio: The Journey Begins</h2>
+    <div class="historical-text">
+      <p>Lewis had been supposed to depart Pittsburgh in late July. The keelboat builder missed deadline after deadline, and Lewis's letters to Jefferson during those weeks barely contained his frustration. By the time the boat was finally finished and loaded on August 31, the Ohio River had dropped to its lowest level in four years. The delay had cost him the high water of early summer &mdash; and the crew would pay for it every mile down the river.</p>
+
+      <p>They pushed off with eleven men, a keelboat, and a pirogue. The very first day nearly ended in disaster. At Brunot Island &mdash; just three miles below Pittsburgh, and directly below your flight path &mdash; Lewis demonstrated his new air gun for local spectators. The weapon accidentally discharged, sending a ball through a woman's hat forty yards away and cutting her temple. Everyone feared she was dead, but she revived, and Lewis pressed on.</p>
+
+      <p>The low water plagued him constantly. The heavily loaded keelboat repeatedly grounded on sandbars and rocky ripples, forcing the crew into the river to push, pull, and drag the vessel through the shallows. Local farmers were enlisted with their horses and oxen to haul the boat over the worst of the rocky shallows. Progress was agonizingly slow &mdash; some days barely ten miles.</p>
+
+      <p>On September 4, near Georgetown, Pennsylvania, the pirogue carrying the expedition's trade goods sprang a serious leak and nearly sank. Lewis pulled over, spread the wet articles in the sun, oiled everything carefully, and repacked in oilcloth bags. He also purchased a canoe for eleven dollars to help lighten the keelboat's load &mdash; only to find almost immediately that it leaked badly and required repairs before it could be trusted. That same day they crossed the state line between Pennsylvania and Virginia, marked visibly by a sixty-foot swath of felled timber stretching across the hills.</p>
+
+      <p>September 5 brought fog and rain. The canoes leaked despite repairs. Dark fell with them still unaccounted for &mdash; Lewis ordered the trumpet sounded, and they answered from the darkness. They camped that night at Brown's Island, opposite present-day Weirton, West Virginia &mdash; just across the river from Toronto, Ohio, where you have just landed.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="leg-nav">
+  <a href="leg-00-prologue.html">← Prologue</a>
+  <a href="leg-02.html">Leg 2 →</a>
+</div>
+
+</body>
+</html>
