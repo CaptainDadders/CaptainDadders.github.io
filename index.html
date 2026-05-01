@@ -662,10 +662,6 @@ header::after {
           <span style="display:inline-block;width:20px;height:0;border-top:2px dashed #b8720a"></span> Remaining
         </div>
       </div>
-      <div style="margin-top:8px;padding-top:8px;border-top:1px solid #4a4030;">
-        <label class="control-row"><input type="checkbox" id="tog-historical"><span class="control-icon">🗺</span> 1814 L&amp;C Map</label>
-        <div style="font-size:8px;color:#9a9078;font-family:Cinzel,serif;letter-spacing:1px;margin-top:2px;line-height:1.4">Original Clark map of the expedition. Covers Mississippi to Pacific.</div>
-      </div>
       </div><!-- end layers-content -->
     </div><!-- end layer-controls -->
   </div><!-- end map-panel -->
@@ -760,7 +756,7 @@ header::after {
 
     <div class="panel-footer">
       <span class="footer-text">Captain Dadders &middot; MSFS 2024</span>
-      <span class="footer-text">Updated May 01, 2026 12:41 PM MT</span>
+      <span class="footer-text">Updated Apr 29, 2026 01:48 PM MT</span>
     </div>
   </div>
 </div>
@@ -1016,7 +1012,6 @@ function switchExp(n) {
 // ── LEAFLET MAP ──────────────────────────────────────────────────
 let lcMap = null;
 let routeLayers = [], campLayer2 = null, pivotalLayer2 = null, flightLayer2 = null;
-let historicalLayer = null;
 
 function wireLCToggles() {
   document.getElementById('tog-route').addEventListener('change', function() {
@@ -1033,9 +1028,6 @@ function wireLCToggles() {
   });
   document.getElementById('tog-flights').addEventListener('change', function() {
     if (flightLayer2) this.checked ? lcMap.addLayer(flightLayer2) : lcMap.removeLayer(flightLayer2);
-  });
-  document.getElementById('tog-historical').addEventListener('change', function() {
-    if (historicalLayer) this.checked ? lcMap.addLayer(historicalLayer) : lcMap.removeLayer(historicalLayer);
   });
 }
 
@@ -1059,15 +1051,6 @@ function initLCMap() {
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution:'&copy; OpenStreetMap contributors', maxZoom:19
   }).addTo(lcMap);
-
-  // 1814 Lewis & Clark map overlay (David Rumsey Historical Map Collection).
-  // Layer is created here but not added to the map — toggle in layer panel adds it.
-  historicalLayer = L.tileLayer('https://tiles-proxy.geogarage.com/g3493001/{z}/{x}/{y}.png', {
-    attribution:'1814 Lewis &amp; Clark map &copy; <a href="https://www.davidrumsey.com/" target="_blank" rel="noopener">David Rumsey Map Collection</a>',
-    maxNativeZoom: 8,
-    maxZoom: 19,
-    opacity: 0.75
-  });
 
   // ROUTE — Remaining (dashed amber) — stored for toggle
   const routeGroup = L.layerGroup();
