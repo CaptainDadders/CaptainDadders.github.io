@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leg 2: Wheeling and the Mound — Captain Dadders</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1410;
+  --parchment: #f0ebe0;
+  --gold: #e8a020;
+  --muted: #b0a888;
+  --muted-light: #d4cbb8;
+  --border: #4a4030;
+  --border-light: #c8b890;
+  --complete: #5ab87a;
+  --content-max: 760px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:"Crimson Pro",Georgia,serif; background:var(--parchment); color:var(--ink); line-height:1.8; }
+
+/* HERO */
+.hero { background:var(--ink); padding:52px 40px 0; text-align:center; position:relative; overflow:hidden; }
+.hero::before { content:""; position:absolute; inset:0; background:radial-gradient(ellipse at center top, rgba(232,160,32,0.08) 0%, transparent 70%); }
+.hero-eyebrow { font-family:"Cinzel",serif; font-size:9px; letter-spacing:5px; color:var(--gold); text-transform:uppercase; margin-bottom:14px; display:flex; align-items:center; justify-content:center; gap:14px; }
+.hero-eyebrow::before, .hero-eyebrow::after { content:""; display:block; width:40px; height:1px; background:linear-gradient(90deg,transparent,var(--gold)); }
+.hero-eyebrow::after { transform:scaleX(-1); }
+.hero-title { font-family:"Cinzel",serif; font-size:clamp(24px,4vw,42px); font-weight:900; color:var(--parchment); letter-spacing:2px; line-height:1.1; margin-bottom:12px; }
+.hero-subtitle { font-size:18px; font-style:italic; color:var(--muted-light); margin-bottom:28px; }
+
+/* FLIGHT STRIP */
+.flight-strip { display:flex; flex-wrap:wrap; align-items:stretch; border:1px solid var(--border); background:#111008; max-width:860px; margin:0 auto; }
+.strip-cell { flex:1; min-width:90px; padding:10px 14px; border-right:1px solid var(--border); text-align:center; }
+.strip-cell:last-child { border-right:none; }
+.strip-label { font-family:"Cinzel",serif; font-size:7px; letter-spacing:3px; color:var(--muted); text-transform:uppercase; display:block; margin-bottom:4px; }
+.strip-value { font-family:"Cinzel",serif; font-size:12px; color:var(--parchment); font-weight:600; line-height:1.3; }
+.strip-value.gold { color:var(--gold); }
+
+/* PROGRESS */
+.progress-wrap { background:#111008; border:1px solid var(--border); border-top:none; max-width:860px; margin:0 auto; padding:10px 16px 14px; }
+.progress-label { font-family:"Cinzel",serif; font-size:8px; letter-spacing:2px; color:var(--muted); text-transform:uppercase; display:flex; justify-content:space-between; margin-bottom:5px; }
+.progress-track { height:3px; background:#2a2010; border-radius:2px; }
+.progress-fill { height:100%; background:linear-gradient(90deg,var(--complete),var(--gold)); border-radius:2px; }
+
+/* CONTENT */
+.content-wrap { max-width:var(--content-max); margin:0 auto; padding:52px 24px 80px; }
+
+/* MEDIA */
+.media-item { margin-bottom:28px; }
+.media-item img { width:100%; display:block; border:1px solid var(--border-light); cursor:zoom-in; }
+.media-caption { font-family:"Cinzel",serif; font-size:9px; letter-spacing:2px; color:#8a7858; text-transform:uppercase; text-align:center; margin-top:8px; }
+.video-label { font-family:"Cinzel",serif; font-size:9px; letter-spacing:3px; color:var(--gold); text-transform:uppercase; margin-bottom:10px; }
+.video-embed { position:relative; padding-bottom:56.25%; height:0; overflow:hidden; }
+.video-embed iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:1px solid var(--border-light); }
+
+/* JOURNAL */
+.pilot-journal p { font-size:19px; line-height:1.85; color:#2a2018; margin-bottom:1.4em; }
+.pilot-journal p:first-child::first-letter { font-family:"Cinzel",serif; font-size:64px; font-weight:900; line-height:0.85; float:left; margin-right:8px; margin-top:8px; color:var(--gold); }
+
+/* HISTORICAL */
+.historical-section { background:#1a1410; color:var(--parchment); padding:44px 48px; margin:0 -24px; position:relative; }
+.historical-section::before { content:""; position:absolute; top:0;left:0;right:0;height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); opacity:0.4; }
+.historical-banner { background:rgba(232,160,32,0.1); border:1px solid rgba(232,160,32,0.3); padding:10px 16px; margin-bottom:24px; font-family:"Cinzel",serif; font-size:9px; letter-spacing:2px; color:#d4b870; text-transform:uppercase; text-align:center; }
+.historical-eyebrow { font-family:"Cinzel",serif; font-size:9px; letter-spacing:4px; color:var(--gold); text-transform:uppercase; margin-bottom:16px; display:flex; align-items:center; gap:12px; }
+.historical-eyebrow::after { content:""; flex:1; height:1px; background:linear-gradient(90deg,var(--gold),transparent); opacity:0.4; }
+.historical-title { font-family:"Cinzel",serif; font-size:20px; font-weight:700; color:var(--parchment); margin-bottom:20px; line-height:1.2; }
+.historical-text p { font-size:17px; line-height:1.85; color:#c8bfb0; margin-bottom:1.3em; }
+.historical-text p:last-child { margin-bottom:0; }
+.historical-quote { border-left:2px solid var(--gold); padding:4px 0 4px 18px; margin:1.5em 0; font-style:italic; color:#d4c89c; font-size:17px; line-height:1.7; }
+.historical-quote-attribution { display:block; margin-top:8px; font-family:"Cinzel",serif; font-size:8px; letter-spacing:2px; color:#9a8868; font-style:normal; text-transform:uppercase; }
+
+/* LEG NAV */
+.leg-nav { border-top:1px solid var(--border-light); padding:28px 24px; max-width:var(--content-max); margin:0 auto; display:flex; justify-content:space-between; align-items:center; }
+.leg-nav a { font-family:"Cinzel",serif; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--ink); text-decoration:none; display:flex; align-items:center; gap:8px; transition:color 0.2s; }
+.leg-nav a:hover { color:var(--gold); }
+
+@media(max-width:700px){
+  .hero { padding:36px 16px 0; }
+  .flight-strip { flex-direction:column; }
+  .strip-cell { border-right:none; border-bottom:1px solid var(--border); }
+  .strip-cell:last-child { border-bottom:none; }
+  .content-wrap { padding:36px 16px 60px; }
+  .historical-section { padding:36px 20px; margin:0 -16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-eyebrow">Expedition III &mdash; Corps of Discovery &mdash; Leg 2</div>
+  <h1 class="hero-title">Wheeling and the Mound</h1>
+  <p class="hero-subtitle">1G8 Eddie Dew Memorial Airpark &rarr; 75D P W Johnson Memorial</p>
+
+  <div class="flight-strip">
+    <div class="strip-cell">
+      <span class="strip-label">Date Flown</span>
+      <span class="strip-value">May 1, 2026</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">L&amp;C Dates</span>
+      <span class="strip-value gold">Sep 6 &ndash; Sep 11, 1803</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Departure</span>
+      <span class="strip-value">1G8 &middot; Toronto, OH</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Arrival</span>
+      <span class="strip-value">75D &middot; New Martinsville, WV</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Distance</span>
+      <span class="strip-value gold">72 <span style="font-size:10px;color:var(--muted)">NM</span></span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Duration</span>
+      <span class="strip-value">0:46</span>
+    </div>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span>Expedition Progress</span>
+      <span>123 of ~4,900 NM &mdash; 3%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" style="width:3%"></div>
+    </div>
+  </div>
+</div>
+
+<div class="content-wrap">
+
+  <!-- PRIMARY PHOTO -->
+  <div class="media-item">
+    <img src="Expedition3/Legs/Leg02-Steelton.png" alt="Approach to 75D P W Johnson Memorial Airport — Steelton, New Martinsville, WV" onclick="window.open(this.src,'_blank')">
+    <div class="media-caption">Final approach to 75D &mdash; the grass strip on the bank of the Ohio at Steelton, New Martinsville, WV</div>
+  </div>
+
+  <!-- PILOT JOURNAL PART 1 -->
+  <div class="pilot-journal">
+    <p>Today's flight continued along the Ohio River. Once again, the differences between now and 1803 are quite obvious. In Lewis's expedition, the river above Wheeling was challenging to navigate due to low water. Now, the river has been tamed and has a steady depth. The system of locks assures it is navigable to ships.</p>
+
+    <p>On this part of the journey in 1803, squirrels were plentiful and would often be seen swimming in the river. Lewis's dog, Seaman, enjoyed jumping in after them, killing them, and bringing them to Lewis &mdash; who would cook them up for himself and the crew. Today, there are far fewer squirrels, and eating anything coming out of the river would be a questionable choice. I continued to pass power plants and smokestacks, and the river is flanked by highways and train tracks.</p>
+
+    <p>I passed a couple of spots of historical significance on today's flight. The first such place was Wheeling, WV &mdash; which at the time would have been Virginia. Lewis had supplies sent here by ground to keep the keelboat's load as light as possible for the beginning of the journey. The river proved to be much more navigable after Wheeling, so this was a wise decision.</p>
+  </div>
+
+  <!-- WHEELING PHOTO -->
+  <div class="media-item">
+    <img src="Expedition3/Legs/Leg02-Wheeling.png" alt="Wheeling, West Virginia — view of the Ohio River and Wheeling Island" onclick="window.open(this.src,'_blank')">
+    <div class="media-caption">Wheeling, WV &mdash; the Ohio River splitting around Wheeling Island</div>
+  </div>
+
+  <!-- JOURNAL PART 2 -->
+  <div class="pilot-journal">
+    <p>I then flew over the Grave Creek Mound, which Lewis stopped and inspected along his journey. This mound is thought to have been built 2,000 to 3,000 years ago as a burial site. The town that surrounds it today is called Moundsville.</p>
+  </div>
+
+  <!-- MOUNDSVILLE PHOTO -->
+  <div class="media-item">
+    <img src="Expedition3/Legs/Leg02-Moundsville.png" alt="Grave Creek Mound — Moundsville, WV — viewed from above" onclick="window.open(this.src,'_blank')">
+    <div class="media-caption">The Grave Creek Mound &mdash; Moundsville, WV. Lewis climbed this same mound on September 10, 1803.</div>
+  </div>
+
+  <!-- JOURNAL PART 3 -->
+  <div class="pilot-journal">
+    <p>Finally, I landed in the Steelton region of New Martinsville, WV at a grass airstrip right on the Ohio. In fact, this airport, P W Johnson Memorial (75D), was decommissioned in 2016 and turned into a park. FS 2024 still considers it a landing strip, however, so I took advantage. The landing was a bit smoother than last time, thanks to the absence of any gusts or crosswinds, but I am still working on my taildragger landing technique.</p>
+  </div>
+
+  <!-- LANDING VIDEO -->
+  <div class="media-item">
+    <div class="video-label">✈ Landing at Steelton</div>
+    <div class="video-embed">
+      <iframe src="https://www.youtube.com/embed/U80ECxWky5Q" title="Landing at Steelton, WV, along the Ohio River" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="media-caption">Landing at 75D P W Johnson Memorial &mdash; Steelton, WV, along the Ohio River</div>
+  </div>
+
+  <!-- HISTORICAL SECTION -->
+  <div class="historical-section">
+    <div class="historical-banner">What Lewis &amp; Clark were doing at this same point in their journey &mdash; September 6 &ndash; 11, 1803</div>
+    <div class="historical-eyebrow">Lewis &amp; Clark &mdash; 1803</div>
+    <h2 class="historical-title">From Wheeling to the Long Reach</h2>
+
+    <div class="historical-text">
+      <p>The keelboat reached Wheeling on September 7, 1803, after another stretch of grinding work over the shallows. For Lewis, Wheeling was a planned waypoint, not a chance stop. He had arranged for additional supplies to be sent overland from Pittsburgh by wagon &mdash; goods too heavy to risk on the keelboat in the low water above. From Wheeling onward, the Ohio ran deeper and more reliable; lightening the boat for the upper river had been the right gamble. He stayed two days to repack, take on the cached supplies, and rest the men.</p>
+
+      <p>Below Wheeling the river finally cooperated. On September 10 the boats came abreast of a place the locals called the Indian grave. Lewis went ashore with a few of the men and walked the seven hundred paces inland from the bank to see it for himself. He recorded its dimensions carefully &mdash; height, base, the ditch around it, and the great white oak growing from the summit, whose girth he measured at thirteen and a half feet. He guessed the tree at three hundred years old, and reasoned that whatever people had built the mound, they had done so long before that. The earthwork that captured his attention is now known to be Adena, raised between roughly 250 and 150 BC, and it remains the largest conical burial mound in North America.</p>
+
+      <p class="historical-quote">"I . . . went on shore to view a remarkable artificial mound of earth called by the people in this neighbourhood the Indian grave."
+        <span class="historical-quote-attribution">&mdash; Meriwether Lewis, Journal, September 10, 1803</span>
+      </p>
+
+      <p>The day after the mound &mdash; September 11 &mdash; brought one of the more peculiar entries in the early journals. The river was alive with squirrels, hundreds of them, swimming the Ohio in a mass migration that Lewis observed with naturalist's curiosity. Seaman, his Newfoundland, took the matter as a personal commission. The dog leapt in repeatedly, retrieving squirrel after squirrel and carrying them dripping back to the boat. Lewis fried them and pronounced the result a pleasant food. The flight path for this leg ends just south of where that strange day on the water unfolded, in the country the boatmen of the era called the Long Reach.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="leg-nav">
+  <a href="leg-01.html">← Leg 1</a>
+  <a href="leg-03.html">Leg 3 →</a>
+</div>
+
+</body>
+</html>
