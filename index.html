@@ -1308,7 +1308,12 @@ function checkHash() {
   const hash = window.location.hash.replace('#', '').replace(/[?&].*$/, '');
   if (!hash) return;
   const leg = FLIGHT_LEGS.find(l => l.slug === hash);
-  if (leg) openJournal(leg.post, leg.slug);
+  if (leg) {
+    openJournal(leg.post, leg.slug);
+  } else {
+    // Hash present but no matching leg — send to 404
+    window.location.href = '/404.html';
+  }
 }
 
 // Also fire on hashchange so leg-nav links (href="#leg-XX") work when injected
