@@ -10,6 +10,26 @@
     <atom:link href="https://captaindadders.com/rss.xml" rel="self" type="application/rss+xml"/>
 
     <item>
+      <title>Leg 3: Above the Morning Fog — 75D to I41</title>
+      <link>https://captaindadders.com/#leg-03</link>
+      <description>The longest leg yet — 152 NM from New Martinsville, WV to Robert Newlon Field near Huntington, WV. Morning fog off the Ohio forced a climb to 4,000 feet. Farmland, more power plants, and a still-imperfect landing. Covering the L&amp;C dates of September 11 to September 20, 1803.</description>
+      <pubDate>Sat, 02 May 2026 12:00:00 +0000</pubDate>
+      <guid>https://captaindadders.com/#leg-03</guid>
+      <enclosure url="https://captaindadders.com/Expedition3/Legs/Leg03-Approach.png" type="image/png" length="0"/>
+      <media:content url="https://captaindadders.com/Expedition3/Legs/Leg03-Approach.png" medium="image"/>
+    </item>
+
+    <item>
+      <title>Leg 2: Wheeling and the Mound — 1G8 to 75D</title>
+      <link>https://captaindadders.com/#leg-02</link>
+      <description>Down the Ohio from Toronto, Ohio to a decommissioned grass strip in New Martinsville, West Virginia. Past Wheeling — where Lewis resupplied in September 1803 — and over the Grave Creek Mound, which Lewis climbed and measured on September 10, 1803.</description>
+      <pubDate>Fri, 01 May 2026 12:00:00 +0000</pubDate>
+      <guid>https://captaindadders.com/#leg-02</guid>
+      <enclosure url="https://captaindadders.com/Expedition3/Legs/Leg02-Steelton.png" type="image/png" length="0"/>
+      <media:content url="https://captaindadders.com/Expedition3/Legs/Leg02-Steelton.png" medium="image"/>
+    </item>
+
+    <item>
       <title>Leg 1: Departing Pittsburgh — 31D to 1G8</title>
       <link>https://captaindadders.com/#leg-01</link>
       <description>The expedition gets underway. Following the Ohio River from Inter County Airport past The Point in Pittsburgh to Eddie Dew Memorial Airpark in Toronto, Ohio — the same ground Lewis and Clark covered August 31 to September 5, 1803.</description>
