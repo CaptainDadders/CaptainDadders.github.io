@@ -1295,6 +1295,9 @@ function checkHash() {
   if (leg) openJournal(leg.post, leg.slug);
 }
 
+// Also fire on hashchange so leg-nav links (href="#leg-XX") work when injected
+window.addEventListener('hashchange', checkHash);
+
 function toggleJournalWidth() {
   journalWide = !journalWide;
   const layout = document.querySelector('.main-layout');
