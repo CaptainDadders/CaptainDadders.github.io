@@ -1031,6 +1031,7 @@ function switchExp(n) {
 
 // ── LEAFLET MAP ──────────────────────────────────────────────────
 let lcMap = null;
+const legMarkerMap = {}; // slug → Leaflet marker, for popup activation
 let routeLayers = [], campLayer2 = null, pivotalLayer2 = null, flightLayer2 = null;
 
 function wireLCToggles() {
@@ -1162,6 +1163,7 @@ function initLCMap() {
     m.on('click', () => { openJournal(leg.post, leg.slug); });
     m.addTo(flightLayer2);
     m.addTo(lcMap);
+    if (leg.slug) legMarkerMap[leg.slug] = m; // register for popup activation
   }); // end FLIGHT_LEGS.forEach
   lcMap.addLayer(flightLayer2);
 
@@ -1188,9 +1190,12 @@ function openJournal(post, slug) {
   layout.classList.remove('journal-wide');
   layout.classList.add('journal-narrow');
 
-  // Pan map to leg location
+  // Pan map to leg location and open its popup
   const leg = FLIGHT_LEGS.find(l => l.slug === slug);
-  if (leg && lcMap) lcMap.flyTo([leg.lat, leg.lng], 8, { duration: 1 });
+  if (leg && lcMap) {
+    lcMap.flyTo([leg.lat, leg.lng], 8, { duration: 1 });
+    if (legMarkerMap[slug]) legMarkerMap[slug].openPopup();
+  }
 
   // Fetch and inject content
   const content = document.getElementById('journal-content');
@@ -1224,6 +1229,17 @@ function openJournal(post, slug) {
       bodyHtml = bodyHtml.replace(/src="images\//g, 'src="Expedition3/images/');
       bodyHtml = bodyHtml.replace(/href="\.\.\/images\//g, 'href="Expedition3/images/');
       content.innerHTML = styleHtml + bodyHtml;
+
+      // Hide leg-nav links pointing to legs that don't exist yet
+      content.querySelectorAll('.leg-nav a').forEach(a => {
+        const href = a.getAttribute('href') || '';
+        if (href.startsWith('#')) {
+          const targetSlug = href.slice(1);
+          if (!FLIGHT_LEGS.some(l => l.slug === targetSlug)) {
+            a.style.display = 'none';
+          }
+        }
+      });
 
       // On mobile scroll to content
       if (window.innerWidth <= 900) {

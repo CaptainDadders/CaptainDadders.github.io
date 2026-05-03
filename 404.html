@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — Runway Not Found | Captain Dadders</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:       #0f0d08;
+  --parchment: #f0ebe0;
+  --gold:      #e8a020;
+  --gold-dim:  #7a4e0e;
+  --red:       #c03020;
+  --red-dim:   #5a1510;
+  --muted:     #b0a888;
+  --border:    #3a3020;
+  --mono:      'Share Tech Mono', monospace;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: "Crimson Pro", Georgia, serif;
+  background: var(--ink);
+  color: var(--parchment);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px 48px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Subtle grid texture */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(232,160,32,0.03) 79px, rgba(232,160,32,0.03) 80px),
+    repeating-linear-gradient(0deg,  transparent, transparent 79px, rgba(232,160,32,0.03) 79px, rgba(232,160,32,0.03) 80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── WRAPPER ──────────────────────────────────────────── */
+.wrapper {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 900px;
+  animation: rise 0.7s cubic-bezier(0.22,1,0.36,1) both;
+}
+@keyframes rise {
+  from { opacity:0; transform:translateY(20px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+/* ── NOTAM TICKER ─────────────────────────────────────── */
+.ticker {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--red);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding: 0 4px;
+}
+.ticker-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--red);
+  flex-shrink: 0;
+  animation: blink 1.2s step-end infinite;
+}
+@keyframes blink {
+  0%,100% { opacity:1; } 50% { opacity:0.15; }
+}
+
+/* ── IMAGE HERO ───────────────────────────────────────── */
+.image-wrap {
+  position: relative;
+  width: 100%;
+  border: 1px solid var(--border);
+  border-bottom: none;
+  overflow: hidden;
+  line-height: 0;
+}
+.image-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+/* Bottom-fade so image bleeds into the dark card below */
+.image-wrap::after {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 90px;
+  background: linear-gradient(to bottom, transparent, var(--ink));
+  pointer-events: none;
+}
+/* Hazard stripe top bar */
+.image-wrap::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 6px;
+  z-index: 2;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--red)  0px,  var(--red)  24px,
+    #1a1008     24px, #1a1008     32px
+  );
+}
+
+/* ── MAIN CARD ────────────────────────────────────────── */
+.card {
+  border: 1px solid var(--border);
+  border-top: none;
+  background: rgba(15,13,8,0.97);
+  padding: 36px 40px 32px;
+}
+
+/* Error headline */
+.error-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+  margin-bottom: 28px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 28px;
+}
+.error-code {
+  font-family: "Cinzel", serif;
+  font-size: clamp(72px, 12vw, 108px);
+  font-weight: 900;
+  color: var(--red);
+  line-height: 0.9;
+  letter-spacing: -3px;
+  text-shadow: 5px 5px 0 var(--red-dim);
+  flex-shrink: 0;
+  animation: shake 9s ease-in-out infinite;
+}
+@keyframes shake {
+  0%,88%,100% { transform:none; }
+  90% { transform:translateX(-4px) rotate(-0.6deg); }
+  92% { transform:translateX( 4px) rotate( 0.6deg); }
+  94% { transform:translateX(-3px); }
+  96% { transform:translateX( 3px); }
+  98% { transform:none; }
+}
+.error-labels {
+  padding-top: 8px;
+}
+.error-title {
+  font-family: "Cinzel", serif;
+  font-size: clamp(18px, 3vw, 26px);
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1.15;
+  margin-bottom: 14px;
+}
+.error-sub {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #c0b8a0;
+  font-style: italic;
+  max-width: 520px;
+}
+.error-sub em {
+  color: var(--parchment);
+  font-style: normal;
+}
+
+/* ── ATC CLEARANCE ────────────────────────────────────── */
+.clearance {
+  background: rgba(192,48,32,0.05);
+  border: 1px solid rgba(192,48,32,0.2);
+  padding: 18px 22px;
+  margin-bottom: 28px;
+}
+.clearance-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 4px;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.clearance-text {
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 2.1;
+  color: #b8b0a0;
+}
+.r { color: var(--red); }
+.g { color: #5ab87a; }
+.d { color: #6a6050; }
+
+/* ── MEIGS NOTE ───────────────────────────────────────── */
+.meigs-note {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.7;
+  padding: 14px 0 24px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 24px;
+}
+.meigs-note strong {
+  color: #d4cbb8;
+  font-weight: 600;
+}
+
+/* ── FOOTER ───────────────────────────────────────────── */
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.footer-code {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--border);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1.8;
+}
+
+.home-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Cinzel", serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #0f0d08;
+  background: var(--gold);
+  text-decoration: none;
+  padding: 12px 24px;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 3px 3px 0 var(--gold-dim);
+}
+.home-btn:hover {
+  background: #f0c060;
+  transform: translate(-1px,-1px);
+  box-shadow: 4px 4px 0 var(--gold-dim);
+}
+.home-btn::before { content:"✈"; font-size:15px; }
+
+/* ── RESPONSIVE ───────────────────────────────────────── */
+@media (max-width: 580px) {
+  .card { padding: 24px 20px 24px; }
+  .error-head { flex-direction: column; gap: 12px; margin-bottom: 20px; padding-bottom: 20px; }
+  .card-footer { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <!-- Blinking status line -->
+  <div class="ticker">
+    <div class="ticker-dot"></div>
+    NOTAM CDR-404 &bull; ACTIVE &bull; DESTINATION NOT IN DATABASE
+  </div>
+
+  <!-- Full-width image -->
+  <div class="image-wrap">
+    <img src="404NotFound.png" alt="Pilot arriving at Meigs Field to find the runway has been demolished — Runway Not Found">
+  </div>
+
+  <!-- Text card -->
+  <div class="card">
+
+    <div class="error-head">
+      <div class="error-code">404</div>
+      <div class="error-labels">
+        <div class="error-title">Runway Not Found.<br>You Can't Land Here!</div>
+        <div class="error-sub">
+          The page you&rsquo;re looking for has been <em>bulldozed</em>.
+          No approach, no ATIS, no exceptions &mdash;
+          just rubble, a tumbleweed, and a very unhelpful sign.
+        </div>
+      </div>
+    </div>
+
+    <!-- ATC readback -->
+    <div class="clearance">
+      <div class="clearance-label">ATC Readback &mdash; Last Known Transmission</div>
+      <div class="clearance-text">
+        <span class="d">CDR NORDEN &mdash;</span>
+        <span class="r">UNABLE.</span>
+        REQUESTED DESTINATION <span class="r">NOT IN DATABASE.</span><br>
+        <span class="d">ADVISE:</span>
+        RUNWAY DEMOLISHED. MAP SHOWS <span class="r">ERROR 404.</span>
+        SUGGEST <span class="g">IMMEDIATE DIVERT.</span><br>
+        <span class="d">PROCEED DIRECT</span>
+        <span class="g">CAPTAINDADDERS.COM</span>
+        <span class="d">&bull; SQUAWK</span> <span class="r">7700</span>
+        <span class="d">&bull; WINDS CALM.</span>
+      </div>
+    </div>
+
+    <!-- Meigs Field footnote -->
+    <div class="meigs-note">
+      <strong>The airport in the image is Meigs Field, Chicago</strong> &mdash; famously demolished
+      overnight on March 30, 2003, when Mayor Richard Daley sent bulldozers to cut
+      X-shaped gouges across the runway without warning, stranding 16 aircraft and
+      ending the airport&rsquo;s life in a single night. It remains one of aviation history&rsquo;s
+      most notorious acts of &ldquo;urban renewal.&rdquo; A fitting metaphor.
+    </div>
+
+    <div class="card-footer">
+      <div class="footer-code">
+        HTTP // 404<br>
+        PAGE NOT FOUND
+      </div>
+      <a href="https://captaindadders.com" class="home-btn">Return to Base</a>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>
