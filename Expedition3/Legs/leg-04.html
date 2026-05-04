@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leg 4: River Highway to Cincinnati — Captain Dadders</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1410;
+  --parchment: #f0ebe0;
+  --gold: #e8a020;
+  --muted: #b0a888;
+  --muted-light: #d4cbb8;
+  --border: #4a4030;
+  --border-light: #c8b890;
+  --complete: #5ab87a;
+  --content-max: 760px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:"Crimson Pro",Georgia,serif; background:var(--parchment); color:var(--ink); line-height:1.8; }
+
+/* HERO */
+.hero { background:var(--ink); padding:52px 40px 0; text-align:center; position:relative; overflow:hidden; }
+.hero::before { content:""; position:absolute; inset:0; background:radial-gradient(ellipse at center top, rgba(232,160,32,0.08) 0%, transparent 70%); }
+.hero-eyebrow { font-family:"Cinzel",serif; font-size:9px; letter-spacing:5px; color:var(--gold); text-transform:uppercase; margin-bottom:14px; display:flex; align-items:center; justify-content:center; gap:14px; }
+.hero-eyebrow::before, .hero-eyebrow::after { content:""; display:block; width:40px; height:1px; background:linear-gradient(90deg,transparent,var(--gold)); }
+.hero-eyebrow::after { transform:scaleX(-1); }
+.hero-title { font-family:"Cinzel",serif; font-size:clamp(24px,4vw,42px); font-weight:900; color:var(--parchment); letter-spacing:2px; line-height:1.1; margin-bottom:12px; }
+.hero-subtitle { font-size:18px; font-style:italic; color:var(--muted-light); margin-bottom:28px; }
+
+/* FLIGHT STRIP */
+.flight-strip { display:flex; flex-wrap:wrap; align-items:stretch; border:1px solid var(--border); background:#111008; max-width:860px; margin:0 auto; }
+.strip-cell { flex:1; min-width:90px; padding:10px 14px; border-right:1px solid var(--border); text-align:center; }
+.strip-cell:last-child { border-right:none; }
+.strip-label { font-family:"Cinzel",serif; font-size:7px; letter-spacing:3px; color:var(--muted); text-transform:uppercase; display:block; margin-bottom:4px; }
+.strip-value { font-family:"Cinzel",serif; font-size:12px; color:var(--parchment); font-weight:600; line-height:1.3; }
+.strip-value.gold { color:var(--gold); }
+
+/* PROGRESS */
+.progress-wrap { background:#111008; border:1px solid var(--border); border-top:none; max-width:860px; margin:0 auto; padding:10px 16px 14px; }
+.progress-label { font-family:"Cinzel",serif; font-size:8px; letter-spacing:2px; color:var(--muted); text-transform:uppercase; display:flex; justify-content:space-between; margin-bottom:5px; }
+.progress-track { height:3px; background:#2a2010; border-radius:2px; }
+.progress-fill { height:100%; background:linear-gradient(90deg,var(--complete),var(--gold)); border-radius:2px; }
+
+/* CONTENT */
+.content-wrap { max-width:var(--content-max); margin:0 auto; padding:52px 24px 80px; }
+
+/* MEDIA */
+.media-item { margin-bottom:28px; }
+.media-item img { width:100%; display:block; border:1px solid var(--border-light); cursor:zoom-in; }
+.media-caption { font-family:"Cinzel",serif; font-size:9px; letter-spacing:2px; color:#8a7858; text-transform:uppercase; text-align:center; margin-top:8px; }
+.video-label { font-family:"Cinzel",serif; font-size:9px; letter-spacing:3px; color:var(--gold); text-transform:uppercase; margin-bottom:10px; }
+.video-embed { position:relative; padding-bottom:56.25%; height:0; overflow:hidden; }
+.video-embed iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:1px solid var(--border-light); }
+
+/* JOURNAL */
+.pilot-journal p { font-size:19px; line-height:1.85; color:#2a2018; margin-bottom:1.4em; }
+.pilot-journal p:first-child::first-letter { font-family:"Cinzel",serif; font-size:64px; font-weight:900; line-height:0.85; float:left; margin-right:8px; margin-top:8px; color:var(--gold); }
+
+/* HISTORICAL */
+.historical-section { background:#1a1410; color:var(--parchment); padding:44px 48px; margin:0 -24px; position:relative; }
+.historical-section::before { content:""; position:absolute; top:0;left:0;right:0;height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); opacity:0.4; }
+.historical-banner { background:rgba(232,160,32,0.1); border:1px solid rgba(232,160,32,0.3); padding:10px 16px; margin-bottom:24px; font-family:"Cinzel",serif; font-size:9px; letter-spacing:2px; color:#d4b870; text-transform:uppercase; text-align:center; }
+.historical-eyebrow { font-family:"Cinzel",serif; font-size:9px; letter-spacing:4px; color:var(--gold); text-transform:uppercase; margin-bottom:16px; display:flex; align-items:center; gap:12px; }
+.historical-eyebrow::after { content:""; flex:1; height:1px; background:linear-gradient(90deg,var(--gold),transparent); opacity:0.4; }
+.historical-title { font-family:"Cinzel",serif; font-size:20px; font-weight:700; color:var(--parchment); margin-bottom:20px; line-height:1.2; }
+.historical-text p { font-size:17px; line-height:1.85; color:#c8bfb0; margin-bottom:1.3em; }
+.historical-text p:last-child { margin-bottom:0; }
+
+/* LEG NAV */
+.leg-nav { border-top:1px solid var(--border-light); padding:28px 24px; max-width:var(--content-max); margin:0 auto; display:flex; justify-content:space-between; align-items:center; }
+.leg-nav a { font-family:"Cinzel",serif; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--ink); text-decoration:none; display:flex; align-items:center; gap:8px; transition:color 0.2s; }
+.leg-nav a:hover { color:var(--gold); }
+
+@media(max-width:700px){
+  .hero { padding:36px 16px 0; }
+  .flight-strip { flex-direction:column; }
+  .strip-cell { border-right:none; border-bottom:1px solid var(--border); }
+  .strip-cell:last-child { border-bottom:none; }
+  .content-wrap { padding:36px 16px 60px; }
+  .historical-section { padding:36px 20px; margin:0 -16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-eyebrow">Expedition III &mdash; Corps of Discovery &mdash; Leg 4</div>
+  <h1 class="hero-title">River Highway to Cincinnati</h1>
+  <p class="hero-subtitle">I41 Robert Newlon Field &rarr; KLUK Cincinnati Municipal / Lunken Field</p>
+
+  <div class="flight-strip">
+    <div class="strip-cell">
+      <span class="strip-label">Date Flown</span>
+      <span class="strip-value">May 3, 2026</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">L&amp;C Dates</span>
+      <span class="strip-value gold">Sep 20 &ndash; Oct 4, 1803</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Departure</span>
+      <span class="strip-value">I41 &middot; Huntington, WV</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Arrival</span>
+      <span class="strip-value">KLUK &middot; Cincinnati, OH</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Distance</span>
+      <span class="strip-value gold">125 <span style="font-size:10px;color:var(--muted)">NM</span></span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Duration</span>
+      <span class="strip-value">1:35</span>
+    </div>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span>Expedition Progress</span>
+      <span>395 of ~4,900 NM &mdash; 8%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" style="width:8%"></div>
+    </div>
+  </div>
+</div>
+
+<div class="content-wrap">
+
+  <!-- PILOT JOURNAL PART 1 -->
+  <div class="pilot-journal">
+    <p>Shortly after takeoff, I was finally past West Virginia. Now I had Kentucky on my left and Ohio on my right. I continued following Lewis&rsquo;s route down the Ohio River. Back in 1803, the river could have been described as a busy highway. It was the primary corridor for American westward migration at the time. Settlers flooded into Kentucky, Ohio, Indiana, and Illinois by way of the Ohio. The river was filled with migrating immigrants, merchants and traders, and the Native peoples still using the river as they had for generations, while being crowded out by European settlers. Much like the Interstate highways that came later, towns sprang up along the banks of the Ohio.</p>
+    <p>Today, it is still a version of a busy highway, but now for barges, towboats, and tugboats. The dominant cargo is coal, petroleum, steel, and grain. It is far cheaper to transport these heavy goods by barge than by truck.</p>
+  </div>
+
+  <!-- BARGES PHOTO -->
+  <div class="media-item">
+    <img src="Expedition3/Legs/Leg04-Barges.png" alt="Virtual barges navigating the Ohio River" onclick="window.open(this.src,'_blank')">
+    <div class="media-caption">Virtual barges navigating the Ohio River</div>
+  </div>
+
+  <!-- PILOT JOURNAL PART 2 -->
+  <div class="pilot-journal">
+    <p>Before too long, I once again ran into a low fog, and had to climb to 6,000&prime; to get out of the clouds. Like yesterday, this only lasted for a while, and then I was able to descend back down toward the river.</p>
+  </div>
+
+  <!-- FOG PHOTO -->
+  <div class="media-item">
+    <img src="Expedition3/Legs/Leg04-Fog.png" alt="More fog over the river" onclick="window.open(this.src,'_blank')">
+    <div class="media-caption">More fog over the river</div>
+  </div>
+
+  <!-- PILOT JOURNAL PART 3 -->
+  <div class="pilot-journal">
+    <p>After about an hour and a half, I could see the Cincinnati skyline. This is the largest city thus far along the journey after leaving Pittsburgh. Lewis stayed in Cincinnati for about a week. He stocked up on supplies, wrote one letter to President Jefferson, and another to Clark, whom he had not yet met up with, and gathered natural history specimens. Back in 1803, its population was around 1,100. Today, it is about 315,000. I didn&rsquo;t quite reach the city center, however, as I chose Cincinnati Municipal Airport / Lunken Field as today&rsquo;s destination. This airport is east of town, so I did not get any up close views of skyscrapers today. It was, however, my first paved landing of the trip.</p>
+  </div>
+
+  <!-- LANDING VIDEO -->
+  <div class="media-item">
+    <div class="video-label">&#9992; Landing on pavement at KLUK, Cincinnati Municipal / Lunken Field</div>
+    <div class="video-embed">
+      <iframe src="https://www.youtube.com/embed/K3JTyATUIKk" title="Landing on pavement at KLUK, Cincinnati Municipal / Lunken Field" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="media-caption">Landing on pavement at KLUK, Cincinnati Municipal / Lunken Field</div>
+  </div>
+
+  <!-- HISTORICAL SECTION -->
+  <div class="historical-section">
+    <div class="historical-banner">What Lewis &amp; Clark were doing at this same point in their journey &mdash; September 20 &ndash; October 4, 1803</div>
+    <div class="historical-eyebrow">Lewis &amp; Clark &mdash; 1803</div>
+    <h2 class="historical-title">The Busy Highway: Ohio River to the Queen City</h2>
+    <div class="historical-text">
+      <p>By the time Lewis pushed off from the Huntington area on September 20, the Ohio River was doing what it had been doing for decades: carrying the American nation westward. The term &ldquo;busy highway&rdquo; was no metaphor. Flatboats &mdash; crude, one-way timber craft that were often dismantled for lumber upon arrival &mdash; drifted downstream by the hundreds, loaded with entire households: furniture, livestock, seeds, children. Keelboats like Lewis&rsquo;s own worked against the current with poles, oars, and cordelles. Merchants moved goods between Pittsburgh and the growing river towns. Soldiers traveled between frontier posts. And alongside it all, the Native peoples of the Ohio Valley continued using a river they had known for generations, increasingly pressed to its margins by the flood of settlers.</p>
+
+      <p>The stretch from Huntington to Cincinnati runs roughly 125 miles of river, bending south around Portsmouth, Ohio &mdash; where the Scioto River enters from the north &mdash; before curving back northwest toward Cincinnati. Lewis passed through this country without drama: the journal entries for this stretch are sparse, the days long, the river monotonous in a productive sort of way. Portsmouth was a scattering of cabins at the Scioto mouth, nothing more. The landscape was forested hills broken by bottomland farms, the same composition of new settlements and ancient woodlands that had characterized the river since Pittsburgh.</p>
+
+      <p>By September 28, Lewis arrived at Cincinnati. In 1803 it was a city of perhaps 800 to 1,100 souls &mdash; the census figures varied and growth was rapid &mdash; but it had a character none of the previous river stops possessed. It had been incorporated as a city just the year before, in 1802, and already had newspapers, proper merchants, a physicians&rsquo; community, and the institutional air of a place that intended to become important. Lewis recognized this. He stayed for a full week, longer than any other stop thus far.</p>
+
+      <p>The week was not idle. Lewis wrote to President Jefferson on September 28, reporting on the condition of the expedition and the state of the river. He also wrote to William Clark, coordinating their rendezvous at the Falls of the Ohio &mdash; the two had corresponded since Lewis&rsquo;s June invitation, but they had not yet laid eyes on each other. Lewis also spent time with Dr. William Goforth, a Cincinnati physician with an interest in natural history, who had been accumulating fossil bones recovered from a site called Big Bone Lick, some forty miles downriver in Kentucky. The bones &mdash; mammoth, mastodon, giant ground sloth &mdash; were exactly the kind of material Jefferson had charged Lewis to document, and the encounter whetted Lewis&rsquo;s appetite for a stop at Big Bone Lick itself, which would come just days later.</p>
+
+      <p>Cincinnati in 1803 was the last genuinely urban stop before the real wilderness began. The next city of any size down the Ohio was Louisville, at the Falls &mdash; and beyond that, the river passed through country where towns were still aspirations rather than facts. What Lewis saw from the Cincinnati waterfront was a young city at the inflection point of explosive growth: by 1810 the population would approach 2,500, and by 1820 it would be called the &ldquo;Queen of the West.&rdquo; In 1803 it was not yet the queen, but the ambition was already visible.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="leg-nav">
+  <a href="leg-03.html">&larr; Leg 3</a>
+  <a href="leg-05.html">Leg 5 &rarr;</a>
+</div>
+
+</body>
+</html>
