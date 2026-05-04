@@ -1042,6 +1042,7 @@ function switchExp(n) {
 // ── LEAFLET MAP ──────────────────────────────────────────────────
 let lcMap = null;
 let routeLayers = [], campLayer2 = null, pivotalLayer2 = null, flightLayer2 = null;
+let legMarkerMap = {};
 
 function wireLCToggles() {
   document.getElementById('tog-route').addEventListener('change', function() {
@@ -1172,6 +1173,7 @@ function initLCMap() {
     m.on('click', () => { openJournal(leg.post, leg.slug); });
     m.addTo(flightLayer2);
     m.addTo(lcMap);
+    legMarkerMap[leg.slug] = m;
   }); // end FLIGHT_LEGS.forEach
   lcMap.addLayer(flightLayer2);
 
@@ -1201,6 +1203,7 @@ function openJournal(post, slug) {
   // Pan map to leg location
   const leg = FLIGHT_LEGS.find(l => l.slug === slug);
   if (leg && lcMap) lcMap.flyTo([leg.lat, leg.lng], 8, { duration: 1 });
+  if (leg && legMarkerMap[leg.slug]) legMarkerMap[leg.slug].openPopup();
 
   // Fetch and inject content
   const content = document.getElementById('journal-content');
@@ -1234,6 +1237,23 @@ function openJournal(post, slug) {
       bodyHtml = bodyHtml.replace(/src="images\//g, 'src="Expedition3/images/');
       bodyHtml = bodyHtml.replace(/href="\.\.\/images\//g, 'href="Expedition3/images/');
       content.innerHTML = styleHtml + bodyHtml;
+
+      // Wire leg-nav links — intercept hash clicks, hide links to non-existent legs
+      content.querySelectorAll('.leg-nav a').forEach(a => {
+        const href = a.getAttribute('href') || '';
+        const slug = href.startsWith('#') ? href.slice(1) : null;
+        if (!slug) return;
+        const targetLeg = FLIGHT_LEGS.find(l => l.slug === slug);
+        if (!targetLeg) {
+          a.style.visibility = 'hidden';
+          a.style.pointerEvents = 'none';
+        } else {
+          a.addEventListener('click', e => {
+            e.preventDefault();
+            openJournal(targetLeg.post, targetLeg.slug);
+          });
+        }
+      });
 
       // On mobile scroll to content
       if (window.innerWidth <= 900) {
