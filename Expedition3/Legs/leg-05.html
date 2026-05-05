@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leg 5: Queen City to the Fossil Lick — Captain Dadders</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1410;
+  --parchment: #f0ebe0;
+  --gold: #e8a020;
+  --muted: #b0a888;
+  --muted-light: #d4cbb8;
+  --border: #4a4030;
+  --border-light: #c8b890;
+  --complete: #5ab87a;
+  --content-max: 760px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:"Crimson Pro",Georgia,serif; background:var(--parchment); color:var(--ink); line-height:1.8; }
+
+/* HERO */
+.hero { background:var(--ink); padding:52px 40px 0; text-align:center; position:relative; overflow:hidden; }
+.hero::before { content:""; position:absolute; inset:0; background:radial-gradient(ellipse at center top, rgba(232,160,32,0.08) 0%, transparent 70%); }
+.hero-eyebrow { font-family:"Cinzel",serif; font-size:9px; letter-spacing:5px; color:var(--gold); text-transform:uppercase; margin-bottom:14px; display:flex; align-items:center; justify-content:center; gap:14px; }
+.hero-eyebrow::before, .hero-eyebrow::after { content:""; display:block; width:40px; height:1px; background:linear-gradient(90deg,transparent,var(--gold)); }
+.hero-eyebrow::after { transform:scaleX(-1); }
+.hero-title { font-family:"Cinzel",serif; font-size:clamp(24px,4vw,42px); font-weight:900; color:var(--parchment); letter-spacing:2px; line-height:1.1; margin-bottom:12px; }
+.hero-subtitle { font-size:18px; font-style:italic; color:var(--muted-light); margin-bottom:28px; }
+
+/* FLIGHT STRIP */
+.flight-strip { display:flex; flex-wrap:wrap; align-items:stretch; border:1px solid var(--border); background:#111008; max-width:860px; margin:0 auto; }
+.strip-cell { flex:1; min-width:90px; padding:10px 14px; border-right:1px solid var(--border); text-align:center; }
+.strip-cell:last-child { border-right:none; }
+.strip-label { font-family:"Cinzel",serif; font-size:7px; letter-spacing:3px; color:var(--muted); text-transform:uppercase; display:block; margin-bottom:4px; }
+.strip-value { font-family:"Cinzel",serif; font-size:12px; color:var(--parchment); font-weight:600; line-height:1.3; }
+.strip-value.gold { color:var(--gold); }
+
+/* PROGRESS */
+.progress-wrap { background:#111008; border:1px solid var(--border); border-top:none; max-width:860px; margin:0 auto; padding:10px 16px 14px; }
+.progress-label { font-family:"Cinzel",serif; font-size:8px; letter-spacing:2px; color:var(--muted); text-transform:uppercase; display:flex; justify-content:space-between; margin-bottom:5px; }
+.progress-track { height:3px; background:#2a2010; border-radius:2px; }
+.progress-fill { height:100%; background:linear-gradient(90deg,var(--complete),var(--gold)); border-radius:2px; }
+
+/* CONTENT */
+.content-wrap { max-width:var(--content-max); margin:0 auto; padding:52px 24px 80px; }
+
+/* MEDIA */
+.media-item { margin-bottom:28px; }
+.media-item img { width:100%; display:block; border:1px solid var(--border-light); cursor:zoom-in; }
+.media-caption { font-family:"Cinzel",serif; font-size:9px; letter-spacing:2px; color:#8a7858; text-transform:uppercase; text-align:center; margin-top:8px; }
+.video-label { font-family:"Cinzel",serif; font-size:9px; letter-spacing:3px; color:var(--gold); text-transform:uppercase; margin-bottom:10px; }
+.video-embed { position:relative; padding-bottom:56.25%; height:0; overflow:hidden; }
+.video-embed iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:1px solid var(--border-light); }
+
+/* JOURNAL */
+.pilot-journal p { font-size:19px; line-height:1.85; color:#2a2018; margin-bottom:1.4em; }
+.pilot-journal p:first-child::first-letter { font-family:"Cinzel",serif; font-size:64px; font-weight:900; line-height:0.85; float:left; margin-right:8px; margin-top:8px; color:var(--gold); }
+
+/* HISTORICAL */
+.historical-section { background:#1a1410; color:var(--parchment); padding:44px 48px; margin:0 -24px; position:relative; }
+.historical-section::before { content:""; position:absolute; top:0;left:0;right:0;height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); opacity:0.4; }
+.historical-banner { background:rgba(232,160,32,0.1); border:1px solid rgba(232,160,32,0.3); padding:10px 16px; margin-bottom:24px; font-family:"Cinzel",serif; font-size:9px; letter-spacing:2px; color:#d4b870; text-transform:uppercase; text-align:center; }
+.historical-eyebrow { font-family:"Cinzel",serif; font-size:9px; letter-spacing:4px; color:var(--gold); text-transform:uppercase; margin-bottom:16px; display:flex; align-items:center; gap:12px; }
+.historical-eyebrow::after { content:""; flex:1; height:1px; background:linear-gradient(90deg,var(--gold),transparent); opacity:0.4; }
+.historical-title { font-family:"Cinzel",serif; font-size:20px; font-weight:700; color:var(--parchment); margin-bottom:20px; line-height:1.2; }
+.historical-text p { font-size:17px; line-height:1.85; color:#c8bfb0; margin-bottom:1.3em; }
+.historical-text p:last-child { margin-bottom:0; }
+.historical-image { margin:28px 0; }
+.historical-image img { width:100%; display:block; border:1px solid rgba(200,180,140,0.3); }
+.historical-image-caption { font-family:"Cinzel",serif; font-size:8px; letter-spacing:2px; color:#a09080; text-transform:uppercase; text-align:center; margin-top:8px; }
+
+/* LEG NAV */
+.leg-nav { border-top:1px solid var(--border-light); padding:28px 24px; max-width:var(--content-max); margin:0 auto; display:flex; justify-content:space-between; align-items:center; }
+.leg-nav a { font-family:"Cinzel",serif; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--ink); text-decoration:none; display:flex; align-items:center; gap:8px; transition:color 0.2s; }
+.leg-nav a:hover { color:var(--gold); }
+
+@media(max-width:700px){
+  .hero { padding:36px 16px 0; }
+  .flight-strip { flex-direction:column; }
+  .strip-cell { border-right:none; border-bottom:1px solid var(--border); }
+  .strip-cell:last-child { border-bottom:none; }
+  .content-wrap { padding:36px 16px 60px; }
+  .historical-section { padding:36px 20px; margin:0 -16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-eyebrow">Expedition III &mdash; Corps of Discovery &mdash; Leg 5</div>
+  <h1 class="hero-title">Queen City to the Fossil Lick</h1>
+  <p class="hero-subtitle">KLUK Cincinnati Municipal / Lunken Field &rarr; 4KT4 Steele&rsquo;s Bottom</p>
+
+  <div class="flight-strip">
+    <div class="strip-cell">
+      <span class="strip-label">Date Flown</span>
+      <span class="strip-value">May 4, 2026</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">L&amp;C Dates</span>
+      <span class="strip-value gold">Oct 1 &ndash; 5, 1803</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Departure</span>
+      <span class="strip-value">KLUK &middot; Cincinnati, OH</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Arrival</span>
+      <span class="strip-value">4KT4 &middot; Warsaw, KY</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Distance</span>
+      <span class="strip-value gold">44 <span style="font-size:10px;color:var(--muted)">NM</span></span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Duration</span>
+      <span class="strip-value">0:37</span>
+    </div>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span>Expedition Progress</span>
+      <span>439 of ~4,900 NM &mdash; 9%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" style="width:9%"></div>
+    </div>
+  </div>
+</div>
+
+<div class="content-wrap">
+
+  <!-- CINCINNATI PHOTO (primary) -->
+  <div class="media-item">
+    <img src="Expedition3/Legs/Leg05-Cincinnati.png" alt="Great American Ballpark and downtown Cincinnati" onclick="window.open(this.src,'_blank')">
+    <div class="media-caption">Great American Ballpark and downtown Cincinnati</div>
+  </div>
+
+  <!-- PILOT JOURNAL PART 1 -->
+  <div class="pilot-journal">
+    <p>After taking off from Lunken Field, east of town, I had the pleasure of flying past downtown Cincinnati. I had a great view of the skyscrapers, as well as the Great American Ballpark, home of the Cincinnati Reds. I can just imagine a monster home run ball being launched into the river. Flew past the Bengals&rsquo; home field, and then the 2nd most populous city along the Ohio River was behind me.</p>
+  </div>
+
+  <!-- OHIO RIVER VIDEO -->
+  <div class="media-item">
+    <div class="video-label">&#9992; Flying along the Ohio River past downtown Cincinnati</div>
+    <div class="video-embed">
+      <iframe src="https://www.youtube.com/embed/DLcHXyM84Xw" title="Flying along the Ohio River past downtown Cincinnati" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="media-caption">Flying along the Ohio River past downtown Cincinnati</div>
+  </div>
+
+  <!-- PILOT JOURNAL PART 2 -->
+  <div class="pilot-journal">
+    <p>From here it was a pretty short flight to Steele&rsquo;s Bottom, a small grass airstrip on the Kentucky side of the river. I chose this landing spot because it&rsquo;s quite close to Big Bone Lick. From Cincinnati, Lewis took a side trip overland to Big Bone Lick to collect mastodon fossils at President Jefferson&rsquo;s request. He had sent his crew ahead along the river, and he met up with them not far from the Steele&rsquo;s Bottom landing strip to continue on toward Clarksville.</p>
+  </div>
+
+  <!-- STEELES BOTTOM PHOTO -->
+  <div class="media-item">
+    <img src="Expedition3/Legs/Leg05-SteelesBottom.png" alt="Approaching Steele's Bottom landing strip" onclick="window.open(this.src,'_blank')">
+    <div class="media-caption">Approaching Steele&rsquo;s Bottom landing strip</div>
+  </div>
+
+  <!-- HISTORICAL SECTION -->
+  <div class="historical-section">
+    <div class="historical-banner">What Lewis &amp; Clark were doing at this same point in their journey &mdash; October 1 &ndash; 5, 1803</div>
+    <div class="historical-eyebrow">Lewis &amp; Clark &mdash; 1803</div>
+    <h2 class="historical-title">Cincinnati, the View from Kentucky, and the Bones in the Lick</h2>
+    <div class="historical-text">
+
+      <p>By October 1803, Cincinnati was the most significant city Lewis had encountered since leaving Pittsburgh five weeks earlier. It had been incorporated just the prior year, in 1802, and its population hovered somewhere between 800 and 1,100 &mdash; numbers that sound modest but represented explosive growth for a settlement that had barely existed a decade before. Lewis arrived on September 28 and stayed nearly a week, resupplying, resting his men, writing letters to President Jefferson and to William Clark, and meeting with Dr. William Goforth, the city&rsquo;s preeminent natural historian. It was one of the most productive stops of the entire Ohio River journey.</p>
+
+      <p>What did the city look like from the river? Looking north across the Ohio from the Kentucky shore &mdash; roughly the vantage point of this leg, and of the painting below &mdash; Lewis would have seen a cluster of frame and log buildings stepping up from the waterfront onto the low hills above. The Ohio at Cincinnati flows in a broad arc, and the city occupied the first of those gentle rises. Church steeples, a scattering of warehouses at the wharf, smoke from cooking fires. Nothing like a skyline in any modern sense.</p>
+
+      <div class="historical-image">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Cincinnati_I.jpg" alt="Cincinnati from Newport, Kentucky, 1812" onclick="window.open(this.src,'_blank')">
+        <div class="historical-image-caption">Cincinnati from Newport, Kentucky &mdash; painted 1812, just nine years after Lewis passed through</div>
+      </div>
+
+      <p>The 1812 painting above shows Cincinnati from Newport, Kentucky, looking north across the river &mdash; almost exactly the view a pilot following the south bank of the Ohio would have had after departing Lunken Field. By 1812 the city had grown considerably from Lewis&rsquo;s visit nine years earlier, yet it still appears as a modest collection of buildings on a wooded hillsides, the river busy with flatboats and keelboats. Stand in Newport today and look north across the same water: the skyline is unrecognizable. The Great American Ballpark fills the riverfront to the west, skyscrapers rise 40 stories behind it, and the elegant ironwork of the John A. Roebling Suspension Bridge &mdash; completed in 1866 and the direct prototype for the Brooklyn Bridge &mdash; spans the Ohio where in 1812 there was only open water. From 1,000 feet in the Norden, that Roebling bridge is unmistakable; the 1812 painter would not have believed it.</p>
+
+      <p>Lewis departed the city on October 1, dispatching his crew and boats downriver with orders to meet him at Big Bone Creek, where it flows into the Ohio on the Kentucky side &mdash; a 53-mile trip by water that he expected would take the boats three days. Lewis himself set out on horseback the following morning, covering the same distance overland in roughly 17 miles, guided south along what was likely an old bison trail toward Boone County. Big Bone Lick lay in a marshy depression fed by salt springs, a place where Ice Age mammals &mdash; mastodons, mammoths, giant ground sloths &mdash; had been drawn to the mineral-rich water for millennia and had, over the ages, become trapped in the boggy ground and preserved. By 1803 the site was already well known; entrepreneurs had been carting away bones for years, and a Virginia land speculator named David Ross had effectively claimed the deposit.</p>
+
+      <p>Jefferson had wanted Lewis to collect specimens from this precise location. The president believed, with genuine scientific conviction, that creatures such as the mastodon might still roam the unexplored western interior &mdash; and he needed evidence. Lewis arrived to find that Ross had recently ordered all fossil removal stopped. Dr. Goforth, however, had permission to excavate from his own claim at the site, and he agreed to share specimens with Lewis. What Lewis gathered &mdash; tusks, teeth, and other bones &mdash; he arranged to ship downriver to New Orleans and then by sea to Jefferson in Washington. They never arrived. The boat carrying them sank in the Mississippi River near Natchez, and the few boxes salvaged were subsequently looted. Jefferson eventually sent William Clark back to Big Bone Lick in 1807 to conduct a proper excavation &mdash; a three-week dig that became the founding event of vertebrate paleontology in North America. The bones Clark sent that time did reach Monticello.</p>
+
+      <p>The crew&rsquo;s boats, meanwhile, had made their way downstream and were waiting at the mouth of Big Bone Creek, just a few miles from the landing strip at Steele&rsquo;s Bottom. When Lewis rejoined them, the expedition continued west toward the Falls of the Ohio and the rendezvous with Clark at Clarksville, Indiana &mdash; the meeting that would finally bring the co-captains face to face for the first time.</p>
+
+    </div>
+  </div>
+
+</div>
+
+<div class="leg-nav">
+  <a href="#leg-04">&larr; Leg 4</a>
+  <a href="#leg-06">Leg 6 &rarr;</a>
+</div>
+
+</body>
+</html>

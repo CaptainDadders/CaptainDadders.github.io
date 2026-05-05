@@ -10,33 +10,13 @@
     <atom:link href="https://captaindadders.com/rss.xml" rel="self" type="application/rss+xml"/>
 
     <item>
-      <title>Leg 4: River Highway to Cincinnati — I41 to KLUK</title>
-      <link>https://captaindadders.com/#leg-04</link>
-      <description>Following the Ohio River's busy highway to Cincinnati — the largest city on the route since Pittsburgh. Lewis spent a week here in 1803 writing to Jefferson, coordinating with Clark, and gathering natural history specimens. First paved landing of the expedition.</description>
-      <pubDate>Sat, 03 May 2026 12:00:00 +0000</pubDate>
-      <guid>https://captaindadders.com/#leg-04</guid>
-      <enclosure url="https://captaindadders.com/Expedition3/Legs/Leg04-Barges.png" type="image/png" length="0"/>
-      <media:content url="https://captaindadders.com/Expedition3/Legs/Leg04-Barges.png" medium="image"/>
-    </item>
-
-    <item>
-      <title>Leg 3: Above the Morning Fog — 75D to I41</title>
-      <link>https://captaindadders.com/#leg-03</link>
-      <description>Fog off the Ohio River forced a climb to 4,000 feet — the same phenomenon Lewis carefully measured and recorded in his journal. Power plants, farmland, and a ground-loop landing at Robert Newlon Field near Huntington, WV.</description>
-      <pubDate>Fri, 02 May 2026 12:00:00 +0000</pubDate>
-      <guid>https://captaindadders.com/#leg-03</guid>
-      <enclosure url="https://captaindadders.com/Expedition3/Legs/Leg03-Fog.png" type="image/png" length="0"/>
-      <media:content url="https://captaindadders.com/Expedition3/Legs/Leg03-Fog.png" medium="image"/>
-    </item>
-
-    <item>
-      <title>Leg 2: Wheeling and the Mound — 1G8 to 75D</title>
-      <link>https://captaindadders.com/#leg-02</link>
-      <description>A short hop along the Ohio River past Wheeling, West Virginia and the ancient Grave Creek Mound at Moundsville — one of the largest prehistoric burial mounds in North America, and a landmark Lewis would have passed on the river in 1803.</description>
-      <pubDate>Thu, 01 May 2026 12:00:00 +0000</pubDate>
-      <guid>https://captaindadders.com/#leg-02</guid>
-      <enclosure url="https://captaindadders.com/Expedition3/Legs/Leg02-Steelton.png" type="image/png" length="0"/>
-      <media:content url="https://captaindadders.com/Expedition3/Legs/Leg02-Steelton.png" medium="image"/>
+      <title>Leg 5: Queen City to the Fossil Lick — KLUK to 4KT4</title>
+      <link>https://captaindadders.com/#leg-05</link>
+      <description>Departing Cincinnati&apos;s Lunken Field past the Great American Ballpark and the Bengals&apos; stadium, then a short hop downriver to Steele&apos;s Bottom — a grass strip chosen for its proximity to Big Bone Lick, where Lewis made his famous mastodon fossil detour in October 1803.</description>
+      <pubDate>Sun, 04 May 2026 12:00:00 +0000</pubDate>
+      <guid>https://captaindadders.com/#leg-05</guid>
+      <enclosure url="https://captaindadders.com/Expedition3/Legs/Leg05-Cincinnati.png" type="image/png" length="0"/>
+      <media:content url="https://captaindadders.com/Expedition3/Legs/Leg05-Cincinnati.png" medium="image"/>
     </item>
 
     <item>
