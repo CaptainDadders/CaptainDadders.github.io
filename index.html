@@ -1182,6 +1182,7 @@ function initLCMap() {
     m.on('click', () => { openJournal(leg.post, leg.slug); });
     m.addTo(flightLayer2);
     m.addTo(lcMap);
+    if (leg.slug) legMarkerMap[leg.slug] = m;
   }); // end FLIGHT_LEGS.forEach
   lcMap.addLayer(flightLayer2);
 
@@ -1191,6 +1192,7 @@ function initLCMap() {
 // ── JOURNAL PANEL ────────────────────────────────────────────
 let journalWide = false;
 let currentSlug = null;
+const legMarkerMap = {};
 
 function openJournal(post, slug) {
   currentSlug = slug || null;
@@ -1208,9 +1210,10 @@ function openJournal(post, slug) {
   layout.classList.remove('journal-wide');
   layout.classList.add('journal-narrow');
 
-  // Pan map to leg location
+  // Pan map to leg location and open popup
   const leg = FLIGHT_LEGS.find(l => l.slug === slug);
   if (leg && lcMap) lcMap.flyTo([leg.lat, leg.lng], 8, { duration: 1 });
+  if (slug && legMarkerMap[slug]) legMarkerMap[slug].openPopup();
 
   // Fetch and inject content
   const content = document.getElementById('journal-content');
@@ -1244,6 +1247,14 @@ function openJournal(post, slug) {
       bodyHtml = bodyHtml.replace(/src="images\//g, 'src="Expedition3/images/');
       bodyHtml = bodyHtml.replace(/href="\.\.\/images\//g, 'href="Expedition3/images/');
       content.innerHTML = styleHtml + bodyHtml;
+
+      // Hide nav links pointing to legs not yet in FLIGHT_LEGS
+      content.querySelectorAll('.leg-nav a[href]').forEach(a => {
+        const targetSlug = (a.getAttribute('href') || '').replace('#', '');
+        if (targetSlug && !FLIGHT_LEGS.find(l => l.slug === targetSlug)) {
+          a.style.display = 'none';
+        }
+      });
 
       // On mobile scroll to content
       if (window.innerWidth <= 900) {
@@ -1314,6 +1325,9 @@ function checkHash() {
   const leg = FLIGHT_LEGS.find(l => l.slug === hash);
   if (leg) openJournal(leg.post, leg.slug);
 }
+
+// Re-run checkHash on hash changes so leg nav links inside injected content work
+window.addEventListener('hashchange', checkHash);
 
 function toggleJournalWidth() {
   journalWide = !journalWide;
