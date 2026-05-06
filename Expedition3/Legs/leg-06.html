@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leg 6: Clark's Country — Captain Dadders</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1410;
+  --parchment: #f0ebe0;
+  --gold: #e8a020;
+  --muted: #b0a888;
+  --muted-light: #d4cbb8;
+  --border: #4a4030;
+  --border-light: #c8b890;
+  --complete: #5ab87a;
+  --content-max: 760px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:"Crimson Pro",Georgia,serif; background:var(--parchment); color:var(--ink); line-height:1.8; }
+
+/* HERO */
+.hero { background:var(--ink); padding:52px 40px 0; text-align:center; position:relative; overflow:hidden; }
+.hero::before { content:""; position:absolute; inset:0; background:radial-gradient(ellipse at center top, rgba(232,160,32,0.08) 0%, transparent 70%); }
+.hero-eyebrow { font-family:"Cinzel",serif; font-size:9px; letter-spacing:5px; color:var(--gold); text-transform:uppercase; margin-bottom:14px; display:flex; align-items:center; justify-content:center; gap:14px; }
+.hero-eyebrow::before, .hero-eyebrow::after { content:""; display:block; width:40px; height:1px; background:linear-gradient(90deg,transparent,var(--gold)); }
+.hero-eyebrow::after { transform:scaleX(-1); }
+.hero-title { font-family:"Cinzel",serif; font-size:clamp(24px,4vw,42px); font-weight:900; color:var(--parchment); letter-spacing:2px; line-height:1.1; margin-bottom:12px; }
+.hero-subtitle { font-size:18px; font-style:italic; color:var(--muted-light); margin-bottom:28px; }
+
+/* FLIGHT STRIP */
+.flight-strip { display:flex; flex-wrap:wrap; align-items:stretch; border:1px solid var(--border); background:#111008; max-width:860px; margin:0 auto; }
+.strip-cell { flex:1; min-width:90px; padding:10px 14px; border-right:1px solid var(--border); text-align:center; }
+.strip-cell:last-child { border-right:none; }
+.strip-label { font-family:"Cinzel",serif; font-size:7px; letter-spacing:3px; color:var(--muted); text-transform:uppercase; display:block; margin-bottom:4px; }
+.strip-value { font-family:"Cinzel",serif; font-size:12px; color:var(--parchment); font-weight:600; line-height:1.3; }
+.strip-value.gold { color:var(--gold); }
+
+/* PROGRESS */
+.progress-wrap { background:#111008; border:1px solid var(--border); border-top:none; max-width:860px; margin:0 auto; padding:10px 16px 14px; }
+.progress-label { font-family:"Cinzel",serif; font-size:8px; letter-spacing:2px; color:var(--muted); text-transform:uppercase; display:flex; justify-content:space-between; margin-bottom:5px; }
+.progress-track { height:3px; background:#2a2010; border-radius:2px; }
+.progress-fill { height:100%; background:linear-gradient(90deg,var(--complete),var(--gold)); border-radius:2px; }
+
+/* CONTENT */
+.content-wrap { max-width:var(--content-max); margin:0 auto; padding:52px 24px 80px; }
+
+/* MEDIA */
+.media-item { margin-bottom:28px; }
+.media-item img { width:100%; display:block; border:1px solid var(--border-light); cursor:zoom-in; }
+.media-caption { font-family:"Cinzel",serif; font-size:9px; letter-spacing:2px; color:#8a7858; text-transform:uppercase; text-align:center; margin-top:8px; }
+.video-label { font-family:"Cinzel",serif; font-size:9px; letter-spacing:3px; color:var(--gold); text-transform:uppercase; margin-bottom:10px; }
+.video-embed { position:relative; padding-bottom:56.25%; height:0; overflow:hidden; }
+.video-embed iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:1px solid var(--border-light); }
+
+/* JOURNAL */
+.pilot-journal p { font-size:19px; line-height:1.85; color:#2a2018; margin-bottom:1.4em; }
+.pilot-journal p:first-child::first-letter { font-family:"Cinzel",serif; font-size:64px; font-weight:900; line-height:0.85; float:left; margin-right:8px; margin-top:8px; color:var(--gold); }
+
+/* HISTORICAL */
+.historical-section { background:#1a1410; color:var(--parchment); padding:44px 48px; margin:0 -24px; position:relative; }
+.historical-section::before { content:""; position:absolute; top:0;left:0;right:0;height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); opacity:0.4; }
+.historical-banner { background:rgba(232,160,32,0.1); border:1px solid rgba(232,160,32,0.3); padding:10px 16px; margin-bottom:24px; font-family:"Cinzel",serif; font-size:9px; letter-spacing:2px; color:#d4b870; text-transform:uppercase; text-align:center; }
+.historical-eyebrow { font-family:"Cinzel",serif; font-size:9px; letter-spacing:4px; color:var(--gold); text-transform:uppercase; margin-bottom:16px; display:flex; align-items:center; gap:12px; }
+.historical-eyebrow::after { content:""; flex:1; height:1px; background:linear-gradient(90deg,var(--gold),transparent); opacity:0.4; }
+.historical-title { font-family:"Cinzel",serif; font-size:20px; font-weight:700; color:var(--parchment); margin-bottom:20px; line-height:1.2; }
+.historical-text p { font-size:17px; line-height:1.85; color:#c8bfb0; margin-bottom:1.3em; }
+.historical-text p:last-child { margin-bottom:0; }
+.historical-image { margin:28px 0; }
+.historical-image img { width:100%; display:block; border:1px solid rgba(200,180,140,0.3); cursor:zoom-in; }
+.historical-image-caption { font-family:"Cinzel",serif; font-size:8px; letter-spacing:2px; color:#a09080; text-transform:uppercase; text-align:center; margin-top:8px; }
+
+/* LEG NAV */
+.leg-nav { border-top:1px solid var(--border-light); padding:28px 24px; max-width:var(--content-max); margin:0 auto; display:flex; justify-content:space-between; align-items:center; }
+.leg-nav a { font-family:"Cinzel",serif; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--ink); text-decoration:none; display:flex; align-items:center; gap:8px; transition:color 0.2s; }
+.leg-nav a:hover { color:var(--gold); }
+
+@media(max-width:700px){
+  .hero { padding:36px 16px 0; }
+  .flight-strip { flex-direction:column; }
+  .strip-cell { border-right:none; border-bottom:1px solid var(--border); }
+  .strip-cell:last-child { border-bottom:none; }
+  .content-wrap { padding:36px 16px 60px; }
+  .historical-section { padding:36px 20px; margin:0 -16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-eyebrow">Expedition III &mdash; Corps of Discovery &mdash; Leg 6</div>
+  <h1 class="hero-title">Clark&rsquo;s Country</h1>
+  <p class="hero-subtitle">4KT4 Steele&rsquo;s Bottom &rarr; KJVY Clark Regional Airport</p>
+
+  <div class="flight-strip">
+    <div class="strip-cell">
+      <span class="strip-label">Date Flown</span>
+      <span class="strip-value">May 5, 2026</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">L&amp;C Dates</span>
+      <span class="strip-value gold">Oct 5 &ndash; 12, 1803</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Departure</span>
+      <span class="strip-value">4KT4 &middot; Warsaw, KY</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Arrival</span>
+      <span class="strip-value">KJVY &middot; Sellersburg, IN</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Distance</span>
+      <span class="strip-value gold">67 <span style="font-size:10px;color:var(--muted)">NM</span></span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Duration</span>
+      <span class="strip-value">1:07</span>
+    </div>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span>Expedition Progress</span>
+      <span>506 of ~4,900 NM &mdash; 10%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" style="width:10%"></div>
+    </div>
+  </div>
+</div>
+
+<div class="content-wrap">
+
+  <!-- FARMLAND PHOTO (primary) -->
+  <div class="media-item">
+    <img src="Expedition3/Legs/Leg06-Farmland.png" alt="Farmland along the Ohio River" onclick="window.open(this.src,'_blank')">
+    <div class="media-caption">Farmland along the Ohio River</div>
+  </div>
+
+  <!-- PILOT JOURNAL PART 1 -->
+  <div class="pilot-journal">
+    <p>From Steele&rsquo;s Bottom, it was a short and peaceful flight along the river. I passed farmland and a couple of towns. Here I am approaching the Milton-Madison Bridge, connecting Milton, Kentucky on the left with Madison, Indiana on the right. In the distance, you can see the <a href="https://www.ovec.com/clifty.php" target="_blank" style="color:var(--gold);text-decoration:underline;text-underline-offset:3px;">Clifty Creek Generating Station</a>, a 1.3-GW coal-fired power station. It was put into operation in 1955 and is still going strong today! Its average daily coal use is 12,000 tons, and 1.4 billion gallons of cooling water are cycled through the plant each day. No wonder so many power plants are situated on the Ohio River!</p>
+  </div>
+
+  <!-- MADISON BRIDGE PHOTO -->
+  <div class="media-item">
+    <img src="Expedition3/Legs/Leg06-Madison.png" alt="Milton-Madison Bridge, with Madison, IN on the right" onclick="window.open(this.src,'_blank')">
+    <div class="media-caption">Milton-Madison Bridge, with Madison, IN on the right</div>
+  </div>
+
+  <!-- PILOT JOURNAL PART 2 -->
+  <div class="pilot-journal">
+    <p>I was excited to reach Clark Regional Airport, near Clarksville, IN, because of course, Clarksville is where William Clark joined Meriwether Lewis on the famous expedition. While the airport is in Clark County, Indiana, it is a good 7 to 8 miles inland from Clarksville itself. So, a flyby of Clarksville and Louisville will have to wait til the next flight.</p>
+    <p>I seem to have chosen the wrong runway to land on, because I had more of a crosswind than I would have liked. Today I had another paved runway to land on, and for a change, I came in a little too slowly, and just about stalled too early. Everything ended up just fine, and I came to a stop almost immediately after touching down.</p>
+    <p>The landing video tells the full story. You can see the approach flatten out a bit too much on short final &mdash; the airspeed bled off quickly, and for a moment it looked like it might get exciting. A small correction brought the Norden back in line, and the touchdown was firm but clean. We are on the ground in Clark County, and that feels exactly right.</p>
+  </div>
+
+  <!-- LANDING VIDEO -->
+  <div class="media-item">
+    <div class="video-label">&#9992; Landing at Clark Regional Airport, Clark County, Indiana</div>
+    <div class="video-embed">
+      <iframe src="https://www.youtube.com/embed/YG9j-7n69_8" title="Landing at Clark Regional Airport, Clark County, Indiana" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="media-caption">Landing at Clark Regional Airport, Clark County, Indiana</div>
+  </div>
+
+  <!-- HISTORICAL SECTION -->
+  <div class="historical-section">
+    <div class="historical-banner">What Lewis &amp; Clark were doing at this same point in their journey &mdash; October 5 &ndash; 12, 1803</div>
+    <div class="historical-eyebrow">Lewis &amp; Clark &mdash; 1803</div>
+    <h2 class="historical-title">Clark&rsquo;s Grant, the Falls of the Ohio, and the Moment the Expedition Became Lewis &amp; Clark</h2>
+    <div class="historical-text">
+
+      <p>The ground beneath Clark Regional Airport &mdash; and the county it sits in &mdash; bears its name for a reason that runs directly through the heart of this expedition. Clark County, Indiana, and the city of Clarksville that anchors it, were carved from a tract of land known as Clark&rsquo;s Grant: 150,000 acres awarded by the Commonwealth of Virginia in 1781 to Brigadier General George Rogers Clark and the officers and soldiers of his Illinois Regiment, in recognition of their capture of the British forts at Kaskaskia and Vincennes during the Revolutionary War. The grant was located on the north side of the Ohio River, just below the Falls, in what is now Clark, Floyd, and Scott counties, Indiana. Virginia&rsquo;s legislation reserved 1,000 acres within the grant for the founding of a town, to be named Clarksville in honor of the general &mdash; making it one of the first American settlements north of the Ohio River.</p>
+
+      <div class="historical-image">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Clark%27s_grant.jpg" alt="Plat of Clark's Grant, Clark County, Indiana" onclick="window.open(this.src,'_blank')">
+        <div class="historical-image-caption">Official plat of Clark&rsquo;s Grant, Clark County, Indiana &mdash; 150,000 acres granted to George Rogers Clark and his soldiers by Virginia in 1781</div>
+      </div>
+
+      <p>George Rogers Clark was William Clark&rsquo;s older brother, born in 1752 &mdash; eighteen years William&rsquo;s senior. He was one of the great military figures of the Revolutionary frontier, the man who effectively secured the Northwest Territory for the new United States with a force so small that the British commanders he defeated could scarcely believe what had happened. By 1803, however, his fortunes had fallen sharply. Virginia had never fully compensated him for the debts he had personally taken on to supply his troops, Congress had ignored his petitions, and he had retreated from the grand stage of American affairs to a small cabin near the Falls of the Ohio &mdash; on land that was, in a bitter irony, part of the very grant his victories had earned. He was living there, running a modest gristmill, when his younger brother arrived in the autumn of 1803 at the head of a government expedition to the Pacific.</p>
+
+      <p>Lewis had written to William Clark from Pittsburgh on August 3, 1803, the very day he set out on the Ohio, offering him joint command of the expedition. The letter was one of friendship as much as official invitation: Lewis wanted Clark specifically, trusted him completely, and told him so. Clark accepted within a week, and spent the summer and early autumn at Clarksville recruiting men &mdash; the nine young Kentuckians who would form the core of the permanent Corps. When Lewis finally came around the bend of the Ohio and made for the south bank below the Falls in mid-October, he was greeted by Clark and those nine men, together with an enslaved man named York who had been Clark&rsquo;s companion since boyhood. It was the first time the two captains had stood in the same place in years.</p>
+
+      <p>The Falls of the Ohio &mdash; a series of limestone rapids and shelves extending roughly two miles along the river, dropping about 26 feet in total &mdash; were the one major navigation hazard on the entire length of the Ohio. Depending on water levels, boats either had to be carefully piloted through the chutes by local pilots or portaged entirely around the obstacle on the Indiana side. The town of Clarksville sat just above the falls on the Indiana shore; Louisville occupied the corresponding position on the Kentucky side. The expedition camped at Clarksville for nearly two weeks while Lewis reorganized supplies, enlisted additional volunteers, and prepared for the long haul south and west to the Mississippi. It was here, in Clark&rsquo;s Grant, that the Corps of Discovery took its final shape.</p>
+
+      <p>The nearest the flight path brings a pilot to the Clarksville riverfront &mdash; where the George Rogers Clark Homesite marks the approximate location of the old general&rsquo;s cabin, and where a historical marker stands near the falls &mdash; is still several miles to the southwest of Clark Regional Airport. There are no runways close to the river at this particular bend, which means a landing right beside the homesite was never really possible on this leg. The next flight will pass directly over Clarksville and Louisville, however, and may offer a view of the falls and the historic riverfront that this leg, for all its significance, could not quite deliver.</p>
+
+    </div>
+  </div>
+
+</div>
+
+<div class="leg-nav">
+  <a href="#leg-05">&larr; Leg 5</a>
+  <a href="#leg-07">Leg 7 &rarr;</a>
+</div>
+
+</body>
+</html>
