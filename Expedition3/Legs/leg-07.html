@@ -31,7 +31,8 @@ body { font-family:"Crimson Pro",Georgia,serif; background:var(--parchment); col
 .hero-subtitle { font-size:18px; font-style:italic; color:var(--muted-light); margin-bottom:28px; }
 
 /* ── FLIGHT STRIP ── */
-.flight-strip { display:flex; flex-wrap:wrap; align-items:stretch; border:1px solid var(--border); background:#111008; max-width:860px; margin:0 auto; }
+.flight-strip-outer { background:#111008; border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+.flight-strip { display:flex; flex-wrap:wrap; align-items:stretch; max-width:860px; margin:0 auto; }
 .strip-cell { flex:1; min-width:120px; padding:14px 18px; border-right:1px solid var(--border); }
 .strip-cell:last-child { border-right:none; }
 .strip-label { font-family:"Cinzel",serif; font-size:8px; letter-spacing:3px; color:var(--muted); text-transform:uppercase; margin-bottom:4px; }
@@ -40,7 +41,8 @@ body { font-family:"Crimson Pro",Georgia,serif; background:var(--parchment); col
 .strip-value.small { font-size:13px; }
 
 /* ── PROGRESS BAR ── */
-.progress-wrap { background:var(--ink); padding:16px 40px 20px; max-width:860px; margin:0 auto; border:1px solid var(--border); border-top:none; }
+.progress-wrap { background:var(--ink); padding:16px 40px 20px; border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+.progress-inner { max-width:860px; margin:0 auto; }
 .progress-label { font-family:"Cinzel",serif; font-size:8px; letter-spacing:3px; color:var(--muted); text-transform:uppercase; margin-bottom:8px; display:flex; justify-content:space-between; }
 .progress-track { background:#2a2418; border-radius:2px; height:6px; }
 .progress-fill { background:linear-gradient(90deg, var(--complete), #7ed4a0); height:6px; border-radius:2px; width:13%; }
@@ -80,7 +82,8 @@ body { font-family:"Crimson Pro",Georgia,serif; background:var(--parchment); col
 .hist-image-caption { font-size:12px; color:var(--muted); font-style:italic; margin-top:6px; text-align:center; }
 
 /* ── LEG NAV ── */
-.leg-nav { background:var(--ink); border-top:1px solid var(--border); padding:22px 40px; display:flex; justify-content:space-between; align-items:center; max-width:860px; margin:0 auto; }
+.leg-nav { background:var(--ink); border-top:1px solid var(--border); padding:22px 40px; }
+.leg-nav-inner { display:flex; justify-content:space-between; align-items:center; max-width:860px; margin:0 auto; }
 .leg-nav a { font-family:"Cinzel",serif; font-size:11px; letter-spacing:2px; color:var(--gold); text-decoration:none; text-transform:uppercase; padding:10px 18px; border:1px solid var(--border); transition:all 0.2s; }
 .leg-nav a:hover { background:var(--gold); color:var(--ink); border-color:var(--gold); }
 
@@ -97,7 +100,8 @@ body { font-family:"Crimson Pro",Georgia,serif; background:var(--parchment); col
   <p class="hero-subtitle">Clark Regional to Lewis Field &mdash; Power Plants, Horseshoe Bend, and the River Beyond Louisville</p>
 
   <!-- FLIGHT STRIP -->
-  <div class="flight-strip">
+  <div class="flight-strip-outer">
+    <div class="flight-strip">
     <div class="strip-cell">
       <div class="strip-label">Date Flown</div>
       <div class="strip-value">May 6, 2026</div>
@@ -122,16 +126,19 @@ body { font-family:"Crimson Pro",Georgia,serif; background:var(--parchment); col
       <div class="strip-label">Duration</div>
       <div class="strip-value">1:31</div>
     </div>
+    </div>
   </div>
 
   <!-- PROGRESS BAR -->
   <div class="progress-wrap">
-    <div class="progress-label">
-      <span>Expedition Progress</span>
-      <span>621 of ~4,900 NM &mdash; 13%</span>
-    </div>
-    <div class="progress-track">
-      <div class="progress-fill"></div>
+    <div class="progress-inner">
+      <div class="progress-label">
+        <span>Expedition Progress</span>
+        <span>621 of ~4,900 NM &mdash; 13%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill"></div>
+      </div>
     </div>
   </div>
 </div>
@@ -206,8 +213,10 @@ body { font-family:"Crimson Pro",Georgia,serif; background:var(--parchment); col
 
 <!-- LEG NAVIGATION -->
 <div class="leg-nav">
-  <a href="#leg-06">&larr; Leg 6</a>
-  <a href="#leg-08">Leg 8 &rarr;</a>
+  <div class="leg-nav-inner">
+    <a href="#leg-06">&larr; Leg 6</a>
+    <a href="#leg-08">Leg 8 &rarr;</a>
+  </div>
 </div>
 
 </body>
