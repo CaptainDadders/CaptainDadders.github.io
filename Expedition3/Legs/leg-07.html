@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leg 7: Below the Falls — Captain Dadders</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1410;
+  --parchment: #f0ebe0;
+  --gold: #e8a020;
+  --gold-light: #f0c060;
+  --muted: #b0a888;
+  --muted-light: #d4cbb8;
+  --border: #4a4030;
+  --border-light: #c8b890;
+  --complete: #5ab87a;
+  --content-max: 760px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:"Crimson Pro",Georgia,serif; background:var(--parchment); color:var(--ink); line-height:1.8; }
+
+/* ── HERO ── */
+.hero { background:var(--ink); padding:52px 40px 0; text-align:center; position:relative; overflow:hidden; }
+.hero::before { content:""; position:absolute; inset:0; background:radial-gradient(ellipse at center top, rgba(232,160,32,0.08) 0%, transparent 70%); }
+.hero-eyebrow { font-family:"Cinzel",serif; font-size:9px; letter-spacing:5px; color:var(--gold); text-transform:uppercase; margin-bottom:14px; display:flex; align-items:center; justify-content:center; gap:14px; }
+.hero-eyebrow::before, .hero-eyebrow::after { content:""; display:block; width:40px; height:1px; background:linear-gradient(90deg,transparent,var(--gold)); }
+.hero-eyebrow::after { transform:scaleX(-1); }
+.hero-title { font-family:"Cinzel",serif; font-size:clamp(24px,4vw,42px); font-weight:900; color:var(--parchment); letter-spacing:2px; line-height:1.1; margin-bottom:12px; }
+.hero-subtitle { font-size:18px; font-style:italic; color:var(--muted-light); margin-bottom:28px; }
+
+/* ── FLIGHT STRIP ── */
+.flight-strip { display:flex; flex-wrap:wrap; align-items:stretch; border:1px solid var(--border); background:#111008; max-width:860px; margin:0 auto; }
+.strip-cell { flex:1; min-width:120px; padding:14px 18px; border-right:1px solid var(--border); }
+.strip-cell:last-child { border-right:none; }
+.strip-label { font-family:"Cinzel",serif; font-size:8px; letter-spacing:3px; color:var(--muted); text-transform:uppercase; margin-bottom:4px; }
+.strip-value { font-family:"Crimson Pro",serif; font-size:16px; color:var(--parchment); font-weight:600; }
+.strip-value.gold { color:var(--gold); }
+.strip-value.small { font-size:13px; }
+
+/* ── PROGRESS BAR ── */
+.progress-wrap { background:var(--ink); padding:16px 40px 20px; max-width:860px; margin:0 auto; border:1px solid var(--border); border-top:none; }
+.progress-label { font-family:"Cinzel",serif; font-size:8px; letter-spacing:3px; color:var(--muted); text-transform:uppercase; margin-bottom:8px; display:flex; justify-content:space-between; }
+.progress-track { background:#2a2418; border-radius:2px; height:6px; }
+.progress-fill { background:linear-gradient(90deg, var(--complete), #7ed4a0); height:6px; border-radius:2px; width:13%; }
+
+/* ── CONTENT ── */
+.content-wrap { max-width:var(--content-max); margin:0 auto; padding:48px 24px; }
+.pilot-journal p { font-size:19px; line-height:1.85; margin-bottom:1.4em; color:#1e1810; }
+.pilot-journal a { color:#6a4a10; text-decoration:underline; text-underline-offset:3px; }
+.pilot-journal a:hover { color:var(--gold); }
+
+/* ── PHOTOS ── */
+.leg-photo { margin:32px 0; }
+.leg-photo img { width:100%; border-radius:4px; border:1px solid var(--border-light); display:block; cursor:pointer; }
+.leg-photo img:hover { opacity:0.92; }
+.media-caption { font-size:13px; color:var(--muted); font-style:italic; margin-top:8px; text-align:center; }
+
+/* ── VIDEO ── */
+.leg-video { margin:32px 0; }
+.video-wrapper { position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:4px; border:1px solid var(--border-light); }
+.video-wrapper iframe { position:absolute; top:0; left:0; width:100%; height:100%; }
+.video-caption { font-size:13px; color:var(--muted); font-style:italic; margin-top:8px; text-align:center; }
+
+/* ── HISTORICAL ── */
+.historical { background:var(--ink); color:var(--parchment); padding:52px 40px; margin-top:0; position:relative; overflow:hidden; }
+.historical::before { content:""; position:absolute; inset:0; background:radial-gradient(ellipse at center, rgba(232,160,32,0.04) 0%, transparent 65%); }
+.hist-inner { max-width:var(--content-max); margin:0 auto; position:relative; }
+.hist-banner { font-family:"Cinzel",serif; font-size:9px; letter-spacing:4px; color:var(--gold); text-transform:uppercase; margin-bottom:28px; padding-bottom:16px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:14px; }
+.hist-banner::before { content:"⚑"; font-size:14px; }
+.hist-body { font-size:18px; line-height:1.85; color:var(--muted-light); }
+.hist-body p { margin-bottom:1.3em; }
+.hist-body strong { color:var(--parchment); font-weight:600; }
+.hist-body a { color:var(--gold-light); text-decoration:underline; text-underline-offset:3px; }
+.hist-body a:hover { color:#fff; }
+.hist-image { margin:28px 0; }
+.hist-image img { width:100%; border-radius:3px; border:1px solid var(--border); display:block; opacity:0.88; cursor:pointer; }
+.hist-image img:hover { opacity:1; }
+.hist-image-caption { font-size:12px; color:var(--muted); font-style:italic; margin-top:6px; text-align:center; }
+
+/* ── LEG NAV ── */
+.leg-nav { background:var(--ink); border-top:1px solid var(--border); padding:22px 40px; display:flex; justify-content:space-between; align-items:center; max-width:860px; margin:0 auto; }
+.leg-nav a { font-family:"Cinzel",serif; font-size:11px; letter-spacing:2px; color:var(--gold); text-decoration:none; text-transform:uppercase; padding:10px 18px; border:1px solid var(--border); transition:all 0.2s; }
+.leg-nav a:hover { background:var(--gold); color:var(--ink); border-color:var(--gold); }
+
+/* ── DIVIDER ── */
+.section-rule { border:none; border-top:1px solid var(--border-light); margin:0; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Expedition III &mdash; Ohio River</div>
+  <h1 class="hero-title">Leg 7: Below the Falls</h1>
+  <p class="hero-subtitle">Clark Regional to Lewis Field &mdash; Power Plants, Horseshoe Bend, and the River Beyond Louisville</p>
+
+  <!-- FLIGHT STRIP -->
+  <div class="flight-strip">
+    <div class="strip-cell">
+      <div class="strip-label">Date Flown</div>
+      <div class="strip-value">May 6, 2026</div>
+    </div>
+    <div class="strip-cell">
+      <div class="strip-label">L&amp;C Dates</div>
+      <div class="strip-value gold">Oct 12–30, 1803</div>
+    </div>
+    <div class="strip-cell">
+      <div class="strip-label">Departure</div>
+      <div class="strip-value small">KJVY &mdash; Clark Regional</div>
+    </div>
+    <div class="strip-cell">
+      <div class="strip-label">Arrival</div>
+      <div class="strip-value small">KY8 &mdash; Lewis Field</div>
+    </div>
+    <div class="strip-cell">
+      <div class="strip-label">Distance</div>
+      <div class="strip-value">115 NM</div>
+    </div>
+    <div class="strip-cell">
+      <div class="strip-label">Duration</div>
+      <div class="strip-value">1:31</div>
+    </div>
+  </div>
+
+  <!-- PROGRESS BAR -->
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span>Expedition Progress</span>
+      <span>621 of ~4,900 NM &mdash; 13%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill"></div>
+    </div>
+  </div>
+</div>
+
+<!-- PILOT JOURNAL -->
+<div class="content-wrap">
+  <div class="pilot-journal">
+
+    <p>I left Clark Regional airport this morning and headed down the river to Louisville, on the left, and Clarksville, on the right. Passing Clarksville, I'm now officially on the part of the journey that had both Lewis and Clark, along with the rest of their crew. I looked for <a href="https://www.nps.gov/places/old-clarksville-site.htm"><strong>Clark's Cabin</strong></a> along the river, but did not manage to spot it.</p>
+
+    <p>Flying along the river I continued to see more power plants. This has got to be the highest concentration of power plants I've ever seen.</p>
+
+    <div class="leg-photo">
+      <img src="Expedition3/Legs/Leg07-PowerPlant.png" alt="Flying past another power plant, near Louisville" onclick="window.open(this.src,'_blank')">
+      <div class="media-caption">Flying past another power plant, near Louisville</div>
+    </div>
+
+    <p>Near Leavenworth, Indiana, I flew along the Horseshoe Bend of the Ohio River.</p>
+
+    <div class="leg-photo">
+      <img src="Expedition3/Legs/Leg07-HorseshoeBend.png" alt="Horseshoe Bend of the Ohio River" onclick="window.open(this.src,'_blank')">
+      <div class="media-caption">Horseshoe Bend of the Ohio River</div>
+    </div>
+
+    <p>Not much further down, I saw yet another power plant, this time of the hydroelectric variety: the <a href="https://www.amppartners.org/generation/hydroelectric-power/cannelton-hydroelectric-plant/"><strong>Cannelton Hydroelectric Plant</strong></a>, which puts out 88 megawatts.</p>
+
+    <div class="leg-photo">
+      <img src="Expedition3/Legs/Leg07-HydroPower.png" alt="The Cannelton Hydroelectric Plant on the Ohio River" onclick="window.open(this.src,'_blank')">
+    </div>
+
+    <p>Then it was time to land at Hancock County Airport / Lewis Field in Lewisport, Kentucky (KY8). I was disappointed to learn that this town and airfield were not, in fact, named after Meriwether Lewis. Still a handy landing spot, though, and I managed to bring the plane down without too much drama &ndash; just a couple of bounces.</p>
+
+    <div class="leg-video">
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/-e_LtSRo1Vw" title="Landing at Lewis Field, Lewisport, KY (KY8)" frameborder="0" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-caption">Landing at Lewis Field, Lewisport, KY (KY8)</div>
+    </div>
+
+  </div>
+</div>
+
+<hr class="section-rule">
+
+<!-- HISTORICAL SECTION -->
+<div class="historical">
+  <div class="hist-inner">
+    <div class="hist-banner">What Lewis &amp; Clark were doing at this same point &mdash; Oct 12&ndash;30, 1803</div>
+    <div class="hist-body">
+
+      <p>When the pilot departed Clark Regional this morning, the Corps of Discovery was still weeks away from doing the same. <strong>Meriwether Lewis arrived at the Falls of the Ohio on October 14 or 15, 1803</strong>, his keelboat and pirogues having navigated the long limestone rapids with the help of locally hired pilots. He found William Clark and his older brother George Rogers Clark at a small two-room cabin set above the riverbank at the Old Clarksville Site — a cabin that served as the gathering point for one of the most consequential expeditions in American history.</p>
+
+      <p>The Corps remained at Clarksville for nearly two weeks, using the time to <strong>enlist the nine Kentucky recruits</strong> Clark had been assembling, purchase additional supplies, and make final preparations for the journey ahead. It was here that York, the enslaved man who belonged to Clark, joined the expedition as a full participant in the journey west. By the time the Corps departed on <strong>October 26, 1803</strong>, the group had taken on its essential character — Lewis and Clark as co-commanders, York among them, and a handpicked body of men who would see the Pacific.</p>
+
+      <p>As for Clark's Cabin itself: the pilot looked for it in vain, and that's not entirely a surprise. A <strong>replica of George Rogers Clark's log cabin stood at the Old Clarksville Site until May 2021</strong>, when fire destroyed the structure. The site remains open and is part of Falls of the Ohio State Park, but the cabin is gone. In MSFS the riverbank likely shows no trace of it at all.</p>
+
+      <div class="hist-image">
+        <a href="https://www.nps.gov/places/falls-of-the-ohio-old-clarksville-site.htm" target="_blank" rel="noopener">
+          <img src="https://www.nps.gov/common/uploads/cropped_image/primary/BD4FD971-CA37-8B3A-27CE46CD5923B3F8.jpg"
+               alt="Falls of the Ohio / Old Clarksville Site — NPS">
+        </a>
+        <div class="hist-image-caption">Falls of the Ohio / Old Clarksville Site, Clarksville, Indiana — where Lewis and Clark assembled the Corps of Discovery in October 1803. (NPS)</div>
+      </div>
+
+      <p>After departing Clarksville on October 26, the Corps moved quickly down the Ohio. They camped two miles southwest of Bethany, Kentucky on October 26, reached Boone's Landing (near the future site of the Milton–Madison Bridge) on October 27, and passed the mouth of Blue River on October 28. The <strong>Horseshoe Bend near Leavenworth, Indiana</strong> — which the pilot photographed from the air — was a navigational feature Lewis would have known well; the Ohio doubles back nearly on itself there, dramatically slowing overland travel but keeping river men on a defined course. By <strong>October 29 or 30</strong>, the expedition was passing through the stretch of river that now ends at Lewisport — called "Little Yellow Banks" in those days, a name borrowed from the yellow clay banks that lined the shore. The town would not be laid out until 1837, and would be named not for Meriwether Lewis but for John Lewis, an early settler and large landowner in the area.</p>
+
+      <p>The <strong>Cannelton Hydroelectric Plant</strong> the pilot photographed sits at the site of the Cannelton Locks and Dam, a U.S. Army Corps of Engineers structure built in the 1960s — one of a series of dams that transformed the wild, seasonal Ohio River of Lewis and Clark's era into the controlled, lock-and-dam navigation corridor it is today. In 1803, the river ran freely here, subject to floods and droughts. Lewis's journal entries from this stretch are sparse, but the expedition was making good time and spirits appear to have been high. The hard work of recruitment and preparation was behind them. The long journey ahead had begun in earnest.</p>
+
+    </div>
+  </div>
+</div>
+
+<!-- LEG NAVIGATION -->
+<div class="leg-nav">
+  <a href="#leg-06">&larr; Leg 6</a>
+  <a href="#leg-08">Leg 8 &rarr;</a>
+</div>
+
+</body>
+</html>
