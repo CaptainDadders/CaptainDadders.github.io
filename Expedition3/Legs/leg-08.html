@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leg 8: Into the Setting Sun — Captain Dadders</title>
+<style>
+  :root {
+    --ink: #1a1410;
+    --parchment: #f0ebe0;
+    --gold: #e8a020;
+    --gold-light: #f0c060;
+    --muted: #b0a888;
+    --muted-light: #d4cbb8;
+    --border: #4a4030;
+    --border-light: #c8b890;
+    --complete: #5ab87a;
+    --planning: #6a7890;
+    --dark-bg: #1a1410;
+    --max: 860px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: var(--parchment);
+    color: var(--ink);
+    line-height: 1.7;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--dark-bg);
+    color: var(--parchment);
+    padding: 3rem 1.5rem 2.5rem;
+    text-align: center;
+  }
+  .hero-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+  }
+  .eyebrow {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+  .hero h1 {
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: normal;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.6rem;
+    color: #fff;
+  }
+  .hero-sub {
+    font-size: 0.95rem;
+    color: var(--muted-light);
+    font-style: italic;
+  }
+
+  /* ── FLIGHT STRIP ── */
+  .flight-strip-wrap {
+    background: #26201a;
+  }
+  .flight-strip {
+    max-width: var(--max);
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .strip-item {
+    flex: 1 1 130px;
+    padding: 1rem 1.25rem;
+    border-right: 1px solid var(--border);
+    text-align: center;
+  }
+  .strip-item:last-child { border-right: none; }
+  .strip-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+  .strip-value {
+    font-size: 0.95rem;
+    color: var(--parchment);
+    font-weight: bold;
+  }
+  .strip-value.gold { color: var(--gold); }
+
+  /* ── PROGRESS BAR ── */
+  .progress-wrap {
+    background: #26201a;
+    padding: 0.9rem 1.5rem 1.1rem;
+  }
+  .progress-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+  }
+  .progress-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+  }
+  .progress-bar-bg {
+    background: #3a3028;
+    border-radius: 3px;
+    height: 8px;
+    width: 100%;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    background: var(--complete);
+    height: 100%;
+    width: 14%;
+    border-radius: 3px;
+  }
+  .progress-text {
+    font-size: 0.8rem;
+    color: var(--muted-light);
+    margin-top: 0.4rem;
+  }
+
+  /* ── CONTENT / PARCHMENT ── */
+  .content-area {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+  }
+  .journal-para {
+    font-size: 1.05rem;
+    margin-bottom: 1.4rem;
+    color: var(--ink);
+  }
+  .leg-photo {
+    margin: 1.8rem 0;
+  }
+  .leg-photo img {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--border-light);
+    display: block;
+  }
+  .photo-caption {
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+  .leg-video {
+    margin: 1.8rem 0;
+  }
+  .leg-video iframe {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border: 1px solid var(--border-light);
+    display: block;
+  }
+  .video-caption {
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+
+  /* ── HISTORICAL SECTION ── */
+  .historical-wrap {
+    background: var(--dark-bg);
+    color: var(--parchment);
+  }
+  .historical-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+  }
+  .historical-banner {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .historical-inner h2 {
+    font-size: 1.3rem;
+    font-weight: normal;
+    color: var(--gold-light);
+    margin-bottom: 1rem;
+    letter-spacing: 0.02em;
+  }
+  .historical-inner p {
+    font-size: 0.97rem;
+    line-height: 1.75;
+    color: #d8d0c0;
+    margin-bottom: 1rem;
+  }
+  .historical-inner p:last-child { margin-bottom: 0; }
+
+  /* ── LEG NAV ── */
+  .leg-nav-wrap {
+    background: #26201a;
+  }
+  .leg-nav {
+    max-width: var(--max);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.1rem 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .leg-nav a {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+  }
+  .leg-nav a:hover { color: var(--gold-light); }
+
+  @media (max-width: 540px) {
+    .flight-strip { flex-direction: column; }
+    .strip-item { border-right: none; border-bottom: 1px solid var(--border); }
+    .strip-item:last-child { border-bottom: none; }
+    .leg-nav { flex-direction: column; gap: 0.6rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Leg 8 &middot; May 7, 2026</div>
+    <h1>Into the Setting Sun</h1>
+    <div class="hero-sub">Lewis Field (KY8) &rarr; Henderson City-County Airport (KEHR)</div>
+  </div>
+</div>
+
+<!-- FLIGHT STRIP -->
+<div class="flight-strip-wrap">
+  <div class="flight-strip">
+    <div class="strip-item">
+      <span class="strip-label">Date Flown</span>
+      <span class="strip-value">May 7, 2026</span>
+    </div>
+    <div class="strip-item">
+      <span class="strip-label">L&amp;C Dates</span>
+      <span class="strip-value gold">Oct 30 – Nov 2, 1803</span>
+    </div>
+    <div class="strip-item">
+      <span class="strip-label">Departure</span>
+      <span class="strip-value">KY8 &mdash; Lewisport, KY</span>
+    </div>
+    <div class="strip-item">
+      <span class="strip-label">Arrival</span>
+      <span class="strip-value">KEHR &mdash; Henderson, KY</span>
+    </div>
+    <div class="strip-item">
+      <span class="strip-label">Distance</span>
+      <span class="strip-value">49 NM</span>
+    </div>
+    <div class="strip-item">
+      <span class="strip-label">Duration</span>
+      <span class="strip-value">0:45</span>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRESS BAR -->
+<div class="progress-wrap">
+  <div class="progress-inner">
+    <div class="progress-label">Expedition Progress</div>
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill"></div>
+    </div>
+    <div class="progress-text">670 of ~4,900 NM &mdash; 14%</div>
+  </div>
+</div>
+
+<!-- JOURNAL CONTENT -->
+<div class="content-area">
+
+  <p class="journal-para">
+    Took off from Lewis Field on a calm evening. Enjoyed watching the sun descending over Ellis Island
+    and the French Islands in the Ohio River. Apparently, these are popular spots for boaters to hang out.
+  </p>
+
+  <div class="leg-photo">
+    <img src="Expedition3/Legs/Leg08-EllisIsland.png" alt="Ellis Island and French Islands in the Ohio River">
+    <div class="photo-caption">From left to right: Ellis Island, French Island Number 1, French Island Number 2</div>
+  </div>
+
+  <p class="journal-para">
+    I passed 2 towns of notable size: Owensboro, Kentucky, and Evansville, Indiana. Neither of these
+    were towns in 1803 when Lewis &amp; Clark sailed past. Owensboro was settled in the 1790s as
+    Yellow Banks, KY, but there would have only been a few people living along the river banks.
+    Evansville was not founded until 1812.
+  </p>
+
+  <div class="leg-photo">
+    <img src="Expedition3/Legs/Leg08-Evansville.png" alt="Evansville, Indiana from low above the river">
+    <div class="photo-caption">Evansville, Indiana from low above the river</div>
+  </div>
+
+  <p class="journal-para">
+    Landed in Henderson, KY, just a few miles south of Evansville. Landing was ok. Floated a bit
+    and a couple of little bounces, but kept the plane pointed down the runway.
+  </p>
+
+  <div class="leg-video">
+    <iframe src="https://www.youtube.com/embed/Wy4tAdbODzQ" title="Landing at Henderson City-County Airport, Henderson, KY" frameborder="0" allowfullscreen></iframe>
+    <div class="video-caption">Landing at Henderson City-County Airport, Henderson, KY</div>
+  </div>
+
+</div>
+
+<!-- HISTORICAL SECTION -->
+<div class="historical-wrap">
+  <div class="historical-inner">
+    <div class="historical-banner">What Lewis &amp; Clark were doing at this same point &mdash; Oct 30 – Nov 2, 1803</div>
+    <h2>A River Town Already Waiting</h2>
+    <p>
+      By late October 1803, the Corps of Discovery was making good time down the Ohio, eager to push
+      westward before winter fully closed in. This leg's stretch of river — from the area of present-day
+      Lewisport downstream past Owensboro and on to Henderson — was among the quietest and most rural
+      sections they had yet encountered. The future sites of Owensboro and Evansville were barely
+      settled, if at all. Yellow Banks, as Owensboro was known, had only a handful of scattered
+      settlers along its clay-yellow riverbanks. Evansville did not yet exist.
+    </p>
+    <p>
+      Henderson was a different story. Unlike those two cities, Henderson was already a real, if young,
+      town when the Corps floated past. It had been formally laid out in April of 1797 by General
+      Samuel Hopkins, acting for the Transylvania Company, and named for Colonel Richard Henderson —
+      the same land speculator who had once commissioned Daniel Boone to blaze the Wilderness Road.
+      At six years old in 1803, Henderson was one of the more established outposts on this stretch of
+      the Ohio, though still a modest riverfront settlement compared to what it would become.
+    </p>
+    <p>
+      The journals from this stretch are brief — the river was straightforward and the weather was
+      holding. The Corps pressed on, logging miles before the bend to the Mississippi still hundreds
+      of miles ahead. The great adventure of the Missouri River lay beyond that. For now, the Ohio
+      rolled westward beneath autumn skies, and the crew of the keelboat rowed and poled through a
+      wilderness that would look almost unrecognizable within a generation.
+    </p>
+  </div>
+</div>
+
+<!-- LEG NAV -->
+<div class="leg-nav-wrap">
+  <div class="leg-nav">
+    <a href="#leg-07">&larr; Leg 7</a>
+    <a href="#leg-09">Leg 9 &rarr;</a>
+  </div>
+</div>
+
+</body>
+</html>
