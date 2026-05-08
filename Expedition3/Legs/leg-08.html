@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Leg 8: Into the Setting Sun — Captain Dadders</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
     --ink: #1a1410;
@@ -16,14 +19,12 @@
     --border-light: #c8b890;
     --complete: #5ab87a;
     --planning: #6a7890;
-    --dark-bg: #1a1410;
-    --max: 860px;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    font-family: Georgia, 'Times New Roman', serif;
+    font-family: "Crimson Pro", Georgia, serif;
     background: var(--parchment);
     color: var(--ink);
     line-height: 1.7;
@@ -31,116 +32,116 @@
 
   /* ── HERO ── */
   .hero {
-    background: var(--dark-bg);
+    background: var(--ink);
     color: var(--parchment);
     padding: 3rem 1.5rem 2.5rem;
     text-align: center;
   }
   .hero-inner {
-    max-width: var(--max);
+    max-width: 860px;
     margin: 0 auto;
   }
   .eyebrow {
-    font-family: 'Courier New', monospace;
-    font-size: 0.8rem;
-    letter-spacing: 0.18em;
+    font-family: "Cinzel", serif;
+    font-size: 9px;
+    letter-spacing: 3px;
     text-transform: uppercase;
     color: var(--gold);
     margin-bottom: 0.75rem;
   }
   .hero h1 {
+    font-family: "Cinzel", serif;
     font-size: clamp(1.8rem, 5vw, 2.8rem);
-    font-weight: normal;
+    font-weight: 600;
     letter-spacing: 0.02em;
     margin-bottom: 0.6rem;
     color: #fff;
   }
   .hero-sub {
-    font-size: 0.95rem;
+    font-size: 1rem;
     color: var(--muted-light);
     font-style: italic;
   }
 
-  /* ── FLIGHT STRIP ── */
-  .flight-strip-wrap {
-    background: #26201a;
-  }
-  .flight-strip {
-    max-width: var(--max);
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0;
+  /* ── FLIGHT STRIP (canonical) ── */
+  .flight-strip-outer {
+    background: #111008;
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
   }
-  .strip-item {
-    flex: 1 1 130px;
-    padding: 1rem 1.25rem;
-    border-right: 1px solid var(--border);
-    text-align: center;
+  .flight-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    max-width: 860px;
+    margin: 0 auto;
   }
-  .strip-item:last-child { border-right: none; }
+  .strip-cell {
+    flex: 1;
+    min-width: 120px;
+    padding: 14px 18px;
+    border-right: 1px solid var(--border);
+  }
+  .strip-cell:last-child { border-right: none; }
   .strip-label {
-    font-family: 'Courier New', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
+    font-family: "Cinzel", serif;
+    font-size: 8px;
+    letter-spacing: 3px;
     color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 4px;
     display: block;
-    margin-bottom: 0.3rem;
   }
   .strip-value {
-    font-size: 0.95rem;
+    font-family: "Crimson Pro", serif;
+    font-size: 16px;
     color: var(--parchment);
-    font-weight: bold;
+    font-weight: 600;
+    display: block;
   }
   .strip-value.gold { color: var(--gold); }
 
-  /* ── PROGRESS BAR ── */
+  /* ── PROGRESS BAR (canonical) ── */
   .progress-wrap {
-    background: #26201a;
-    padding: 0.9rem 1.5rem 1.1rem;
+    background: var(--ink);
+    padding: 16px 40px 20px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
   }
   .progress-inner {
-    max-width: var(--max);
+    max-width: 860px;
     margin: 0 auto;
   }
   .progress-label {
-    font-family: 'Courier New', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    font-family: "Cinzel", serif;
+    font-size: 8px;
+    letter-spacing: 3px;
     color: var(--muted);
-    margin-bottom: 0.4rem;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
   }
-  .progress-bar-bg {
-    background: #3a3028;
-    border-radius: 3px;
-    height: 8px;
-    width: 100%;
-    overflow: hidden;
+  .progress-track {
+    background: #2a2418;
+    border-radius: 2px;
+    height: 6px;
   }
-  .progress-bar-fill {
-    background: var(--complete);
-    height: 100%;
+  .progress-fill {
+    background: linear-gradient(90deg, var(--complete), #7ed4a0);
+    height: 6px;
+    border-radius: 2px;
     width: 14%;
-    border-radius: 3px;
-  }
-  .progress-text {
-    font-size: 0.8rem;
-    color: var(--muted-light);
-    margin-top: 0.4rem;
   }
 
   /* ── CONTENT / PARCHMENT ── */
   .content-area {
-    max-width: var(--max);
+    max-width: 860px;
     margin: 0 auto;
     padding: 2.5rem 1.5rem;
   }
   .journal-para {
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     margin-bottom: 1.4rem;
     color: var(--ink);
   }
@@ -154,9 +155,10 @@
     display: block;
   }
   .photo-caption {
-    font-size: 0.82rem;
+    font-family: "Cinzel", serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
     color: var(--muted);
-    font-style: italic;
     margin-top: 0.5rem;
     text-align: center;
   }
@@ -170,27 +172,28 @@
     display: block;
   }
   .video-caption {
-    font-size: 0.82rem;
+    font-family: "Cinzel", serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
     color: var(--muted);
-    font-style: italic;
     margin-top: 0.5rem;
     text-align: center;
   }
 
   /* ── HISTORICAL SECTION ── */
   .historical-wrap {
-    background: var(--dark-bg);
+    background: var(--ink);
     color: var(--parchment);
   }
   .historical-inner {
-    max-width: var(--max);
+    max-width: 860px;
     margin: 0 auto;
     padding: 2.5rem 1.5rem;
   }
   .historical-banner {
-    font-family: 'Courier New', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.14em;
+    font-family: "Cinzel", serif;
+    font-size: 8px;
+    letter-spacing: 3px;
     text-transform: uppercase;
     color: var(--gold);
     border-top: 1px solid var(--border);
@@ -198,48 +201,58 @@
     margin-bottom: 1.25rem;
   }
   .historical-inner h2 {
+    font-family: "Cinzel", serif;
     font-size: 1.3rem;
-    font-weight: normal;
+    font-weight: 600;
     color: var(--gold-light);
     margin-bottom: 1rem;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.04em;
   }
   .historical-inner p {
-    font-size: 0.97rem;
+    font-size: 1.05rem;
     line-height: 1.75;
     color: #d8d0c0;
     margin-bottom: 1rem;
   }
   .historical-inner p:last-child { margin-bottom: 0; }
 
-  /* ── LEG NAV ── */
-  .leg-nav-wrap {
-    background: #26201a;
-  }
+  /* ── LEG NAV (canonical) ── */
   .leg-nav {
-    max-width: var(--max);
-    margin: 0 auto;
+    background: var(--ink);
+    border-top: 1px solid var(--border);
+    padding: 22px 40px;
+  }
+  .leg-nav-inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.1rem 1.5rem;
-    border-top: 1px solid var(--border);
+    max-width: 860px;
+    margin: 0 auto;
   }
   .leg-nav a {
-    font-family: 'Courier New', monospace;
-    font-size: 0.8rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    font-family: "Cinzel", serif;
+    font-size: 11px;
+    letter-spacing: 2px;
     color: var(--gold);
     text-decoration: none;
+    text-transform: uppercase;
+    padding: 10px 18px;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
   }
-  .leg-nav a:hover { color: var(--gold-light); }
+  .leg-nav a:hover {
+    background: var(--gold);
+    color: var(--ink);
+    border-color: var(--gold);
+  }
 
   @media (max-width: 540px) {
     .flight-strip { flex-direction: column; }
-    .strip-item { border-right: none; border-bottom: 1px solid var(--border); }
-    .strip-item:last-child { border-bottom: none; }
-    .leg-nav { flex-direction: column; gap: 0.6rem; text-align: center; }
+    .strip-cell { border-right: none; border-bottom: 1px solid var(--border); }
+    .strip-cell:last-child { border-bottom: none; }
+    .leg-nav-inner { flex-direction: column; gap: 0.6rem; text-align: center; }
+    .progress-wrap { padding: 16px 20px 20px; }
+    .leg-nav { padding: 22px 20px; }
   }
 </style>
 </head>
@@ -255,29 +268,29 @@
 </div>
 
 <!-- FLIGHT STRIP -->
-<div class="flight-strip-wrap">
+<div class="flight-strip-outer">
   <div class="flight-strip">
-    <div class="strip-item">
+    <div class="strip-cell">
       <span class="strip-label">Date Flown</span>
       <span class="strip-value">May 7, 2026</span>
     </div>
-    <div class="strip-item">
+    <div class="strip-cell">
       <span class="strip-label">L&amp;C Dates</span>
       <span class="strip-value gold">Oct 30 – Nov 2, 1803</span>
     </div>
-    <div class="strip-item">
+    <div class="strip-cell">
       <span class="strip-label">Departure</span>
-      <span class="strip-value">KY8 &mdash; Lewisport, KY</span>
+      <span class="strip-value">KY8 — Lewisport, KY</span>
     </div>
-    <div class="strip-item">
+    <div class="strip-cell">
       <span class="strip-label">Arrival</span>
-      <span class="strip-value">KEHR &mdash; Henderson, KY</span>
+      <span class="strip-value">KEHR — Henderson, KY</span>
     </div>
-    <div class="strip-item">
+    <div class="strip-cell">
       <span class="strip-label">Distance</span>
       <span class="strip-value">49 NM</span>
     </div>
-    <div class="strip-item">
+    <div class="strip-cell">
       <span class="strip-label">Duration</span>
       <span class="strip-value">0:45</span>
     </div>
@@ -287,11 +300,13 @@
 <!-- PROGRESS BAR -->
 <div class="progress-wrap">
   <div class="progress-inner">
-    <div class="progress-label">Expedition Progress</div>
-    <div class="progress-bar-bg">
-      <div class="progress-bar-fill"></div>
+    <div class="progress-label">
+      <span>Expedition Progress</span>
+      <span>670 of ~4,900 NM &mdash; 14%</span>
     </div>
-    <div class="progress-text">670 of ~4,900 NM &mdash; 14%</div>
+    <div class="progress-track">
+      <div class="progress-fill"></div>
+    </div>
   </div>
 </div>
 
@@ -364,8 +379,8 @@
 </div>
 
 <!-- LEG NAV -->
-<div class="leg-nav-wrap">
-  <div class="leg-nav">
+<div class="leg-nav">
+  <div class="leg-nav-inner">
     <a href="#leg-07">&larr; Leg 7</a>
     <a href="#leg-09">Leg 9 &rarr;</a>
   </div>
