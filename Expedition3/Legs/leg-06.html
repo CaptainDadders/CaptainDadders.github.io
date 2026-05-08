@@ -30,7 +30,8 @@ body { font-family:"Crimson Pro",Georgia,serif; background:var(--parchment); col
 .hero-subtitle { font-size:18px; font-style:italic; color:var(--muted-light); margin-bottom:28px; }
 
 /* FLIGHT STRIP */
-.flight-strip { display:flex; flex-wrap:wrap; align-items:stretch; border:1px solid var(--border); background:#111008; max-width:860px; margin:0 auto; }
+.flight-strip-outer { background:#111008; border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+.flight-strip { display:flex; flex-wrap:wrap; align-items:stretch; max-width:860px; margin:0 auto; }
 .strip-cell { flex:1; min-width:90px; padding:10px 14px; border-right:1px solid var(--border); text-align:center; }
 .strip-cell:last-child { border-right:none; }
 .strip-label { font-family:"Cinzel",serif; font-size:7px; letter-spacing:3px; color:var(--muted); text-transform:uppercase; display:block; margin-bottom:4px; }
@@ -38,7 +39,8 @@ body { font-family:"Crimson Pro",Georgia,serif; background:var(--parchment); col
 .strip-value.gold { color:var(--gold); }
 
 /* PROGRESS */
-.progress-wrap { background:#111008; border:1px solid var(--border); border-top:none; max-width:860px; margin:0 auto; padding:10px 16px 14px; }
+.progress-wrap { background:#111008; padding:10px 16px 14px; }
+.progress-inner { max-width:860px; margin:0 auto; }
 .progress-label { font-family:"Cinzel",serif; font-size:8px; letter-spacing:2px; color:var(--muted); text-transform:uppercase; display:flex; justify-content:space-between; margin-bottom:5px; }
 .progress-track { height:3px; background:#2a2010; border-radius:2px; }
 .progress-fill { height:100%; background:linear-gradient(90deg,var(--complete),var(--gold)); border-radius:2px; }
@@ -72,8 +74,10 @@ body { font-family:"Crimson Pro",Georgia,serif; background:var(--parchment); col
 .historical-image-caption { font-family:"Cinzel",serif; font-size:8px; letter-spacing:2px; color:#a09080; text-transform:uppercase; text-align:center; margin-top:8px; }
 
 /* LEG NAV */
-.leg-nav { border-top:1px solid var(--border-light); padding:28px 24px; max-width:var(--content-max); margin:0 auto; display:flex; justify-content:space-between; align-items:center; }
-.leg-nav a { font-family:"Cinzel",serif; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--ink); text-decoration:none; display:flex; align-items:center; gap:8px; transition:color 0.2s; }
+.leg-nav { background:var(--ink); border-top:1px solid var(--border); padding:22px 40px; }
+.leg-nav-inner { display:flex; justify-content:space-between; align-items:center; max-width:860px; margin:0 auto; }
+.leg-nav a { font-family:"Cinzel",serif; font-size:11px; letter-spacing:2px; color:var(--gold); text-decoration:none; text-transform:uppercase; padding:10px 18px; border:1px solid var(--border); transition:all 0.2s; }
+.leg-nav a:hover { background:var(--gold); color:var(--ink); border-color:var(--gold); }
 .leg-nav a:hover { color:var(--gold); }
 
 @media(max-width:700px){
@@ -93,7 +97,8 @@ body { font-family:"Crimson Pro",Georgia,serif; background:var(--parchment); col
   <h1 class="hero-title">Clark&rsquo;s Country</h1>
   <p class="hero-subtitle">4KT4 Steele&rsquo;s Bottom &rarr; KJVY Clark Regional Airport</p>
 
-  <div class="flight-strip">
+  <div class="flight-strip-outer">
+    <div class="flight-strip">
     <div class="strip-cell">
       <span class="strip-label">Date Flown</span>
       <span class="strip-value">May 5, 2026</span>
@@ -118,15 +123,18 @@ body { font-family:"Crimson Pro",Georgia,serif; background:var(--parchment); col
       <span class="strip-label">Duration</span>
       <span class="strip-value">1:07</span>
     </div>
+    </div>
   </div>
 
   <div class="progress-wrap">
-    <div class="progress-label">
+    <div class="progress-inner">
+      <div class="progress-label">
       <span>Expedition Progress</span>
       <span>506 of ~4,900 NM &mdash; 10%</span>
     </div>
     <div class="progress-track">
       <div class="progress-fill" style="width:10%"></div>
+      </div>
     </div>
   </div>
 </div>
@@ -194,8 +202,10 @@ body { font-family:"Crimson Pro",Georgia,serif; background:var(--parchment); col
 </div>
 
 <div class="leg-nav">
-  <a href="#leg-05">&larr; Leg 5</a>
-  <a href="#leg-07">Leg 7 &rarr;</a>
+  <div class="leg-nav-inner">
+    <a href="#leg-05">&larr; Leg 5</a>
+    <a href="#leg-07">Leg 7 &rarr;</a>
+  </div>
 </div>
 
 </body>
