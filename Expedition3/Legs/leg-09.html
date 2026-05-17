@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  CAPTAIN DADDERS — LEG 9
+  Generated from leg-template.html. Only placeholders were filled — CSS,
+  fonts, and structure remain canonical.
+  ============================================================================
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leg 9: Past Diamond Island — Captain Dadders</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1410;
+    --parchment: #f0ebe0;
+    --gold: #e8a020;
+    --gold-light: #f0c060;
+    --muted: #b0a888;
+    --muted-light: #d4cbb8;
+    --border: #4a4030;
+    --border-light: #c8b890;
+    --complete: #5ab87a;
+    --planning: #6a7890;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Crimson Pro", Georgia, serif;
+    background: var(--parchment);
+    color: var(--ink);
+    line-height: 1.7;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--ink);
+    color: var(--parchment);
+    padding: 3rem 1.5rem 2.5rem;
+    text-align: center;
+  }
+  .hero-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .eyebrow {
+    font-family: "Cinzel", serif;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+  .hero h1 {
+    font-family: "Cinzel", serif;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.6rem;
+    color: #fff;
+  }
+  .hero-sub {
+    font-size: 1rem;
+    color: var(--muted-light);
+    font-style: italic;
+  }
+
+  /* ── FLIGHT STRIP (canonical) ── */
+  .flight-strip-outer {
+    background: #111008;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .flight-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .strip-cell {
+    flex: 1;
+    min-width: 120px;
+    padding: 14px 18px;
+    border-right: 1px solid var(--border);
+  }
+  .strip-cell:last-child { border-right: none; }
+  .strip-label {
+    font-family: "Cinzel", serif;
+    font-size: 8px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    display: block;
+  }
+  .strip-value {
+    font-family: "Crimson Pro", serif;
+    font-size: 16px;
+    color: var(--parchment);
+    font-weight: 600;
+    display: block;
+  }
+  .strip-value.gold { color: var(--gold); }
+
+  /* ── PROGRESS BAR (canonical) ── */
+  .progress-wrap {
+    background: var(--ink);
+    padding: 16px 40px 20px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .progress-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .progress-label {
+    font-family: "Cinzel", serif;
+    font-size: 8px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .progress-track {
+    background: #2a2418;
+    border-radius: 2px;
+    height: 6px;
+  }
+  .progress-fill {
+    background: linear-gradient(90deg, var(--complete), #7ed4a0);
+    height: 6px;
+    border-radius: 2px;
+    width: 20%;
+  }
+
+  /* ── CONTENT / PARCHMENT ── */
+  .content-area {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+  }
+  .journal-para {
+    font-size: 1.1rem;
+    margin-bottom: 1.4rem;
+    color: var(--ink);
+  }
+  .leg-photo {
+    margin: 1.8rem 0;
+  }
+  .leg-photo img {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--border-light);
+    display: block;
+  }
+  .photo-caption {
+    font-family: "Cinzel", serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+  .leg-video {
+    margin: 1.8rem 0;
+  }
+  .leg-video iframe {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border: 1px solid var(--border-light);
+    display: block;
+  }
+  .video-caption {
+    font-family: "Cinzel", serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+
+  /* ── HISTORICAL SECTION ── */
+  .historical-wrap {
+    background: var(--ink);
+    color: var(--parchment);
+  }
+  .historical-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+  }
+  .historical-banner {
+    font-family: "Cinzel", serif;
+    font-size: 8px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .historical-inner h2 {
+    font-family: "Cinzel", serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--gold-light);
+    margin-bottom: 1rem;
+    letter-spacing: 0.04em;
+  }
+  .historical-inner p {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: #d8d0c0;
+    margin-bottom: 1rem;
+  }
+  .historical-inner p:last-child { margin-bottom: 0; }
+  .historical-inner .leg-photo img {
+    border-color: #3a3220;
+  }
+  .historical-inner .photo-caption {
+    color: var(--muted);
+  }
+
+  /* ── LEG NAV (canonical) ── */
+  .leg-nav {
+    background: var(--ink);
+    border-top: 1px solid var(--border);
+    padding: 22px 40px;
+  }
+  .leg-nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .leg-nav a {
+    font-family: "Cinzel", serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 10px 18px;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+  .leg-nav a:hover {
+    background: var(--gold);
+    color: var(--ink);
+    border-color: var(--gold);
+  }
+
+  @media (max-width: 540px) {
+    .flight-strip { flex-direction: column; }
+    .strip-cell { border-right: none; border-bottom: 1px solid var(--border); }
+    .strip-cell:last-child { border-bottom: none; }
+    .leg-nav-inner { flex-direction: column; gap: 0.6rem; text-align: center; }
+    .progress-wrap { padding: 16px 20px 20px; }
+    .leg-nav { padding: 22px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Leg 9 &middot; May 17, 2026</div>
+    <h1>Past Diamond Island</h1>
+    <div class="hero-sub">Henderson City-County Airport (KEHR) &rarr; Metropolis Municipal Airport (M30)</div>
+  </div>
+</div>
+
+<!-- FLIGHT STRIP -->
+<div class="flight-strip-outer">
+  <div class="flight-strip">
+    <div class="strip-cell">
+      <span class="strip-label">Date Flown</span>
+      <span class="strip-value">May 17, 2026</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">L&amp;C Dates</span>
+      <span class="strip-value gold">Nov 2&ndash;11, 1803</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Departure</span>
+      <span class="strip-value">KEHR &mdash; Henderson, KY</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Arrival</span>
+      <span class="strip-value">M30 &mdash; Metropolis, IL</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Distance</span>
+      <span class="strip-value">116 NM</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Duration</span>
+      <span class="strip-value">1:24</span>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRESS BAR -->
+<div class="progress-wrap">
+  <div class="progress-inner">
+    <div class="progress-label">
+      <span>Expedition Progress</span>
+      <span>788 of ~4,029 NM &mdash; 20%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill"></div>
+    </div>
+  </div>
+</div>
+
+<!-- JOURNAL CONTENT -->
+<div class="content-area">
+<p class="journal-para">After a bit of a layover in Henderson, Kentucky, Captain Dadders is back to the skies. I had the good fortune of a family visit while in Henderson, and now it&rsquo;s time to continue the journey.</p>
+
+<div class="leg-photo">
+  <img src="Expedition3/Legs/Leg09-DiamondIsland.png" alt="Diamond Island in the Ohio River, west of Henderson, Kentucky">
+  <div class="photo-caption">Diamond Island</div>
+</div>
+
+<p class="journal-para">Shortly after takeoff, I flew past Diamond Island, which has an interesting history. It was a hideout for river pirates, who ambushed travelers along the Ohio. It was also the camping spot for the Lewis &amp; Clark Expedition on November 5, 1803.</p>
+
+<div class="leg-photo">
+  <img src="Expedition3/Legs/Leg09-WabashRiver.png" alt="The Wabash River meeting the Ohio, with Indiana on the right and Illinois on the left">
+  <div class="photo-caption">Wabash River, flying from Indiana toward Illinois</div>
+</div>
+
+<p class="journal-para">I journeyed past the Wabash River, which divides Indiana and Illinois along its lower stretch. As I approached Paducah, Kentucky, a thought struck me that I&rsquo;ve had a few times on this journey. If I had been flying along the Ohio River in 1803, everything to the left of the river would have been slave states, and everything to the right would have been free states or territories.</p>
+
+<div class="leg-photo">
+  <img src="Expedition3/Legs/Leg09-OhioRiver.png" alt="The Ohio River as a dividing line — Kentucky on the left, Illinois on the right">
+  <div class="photo-caption">Kentucky, a slave state, on the left. Illinois, a free territory, on the right</div>
+</div>
+
+<div class="leg-photo">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/0/0a/US_SlaveFree1800.gif" alt="Map of the United States in 1800 showing slave and free states and territories">
+  <div class="photo-caption">United States slave and free states and territories, 1800 &mdash; User:Golbez / Kenmayer, CC BY 2.5, via Wikimedia Commons</div>
+</div>
+
+<p class="journal-para">My destination today was Metropolis, Illinois, near Fort Massac. Lewis &amp; Clark stopped here and recruited two important members of the journey. Bit of a bouncy landing, but not bad for having been away from the plane for a week. Next stop, Cairo, Illinois and the Mississippi River!</p>
+
+<div class="leg-video">
+  <iframe src="https://www.youtube.com/embed/HOQS8Tp80Lg" title="Landing at Metropolis Municipal Airport, Illinois (M30)" frameborder="0" allowfullscreen></iframe>
+  <div class="video-caption">Landing at Metropolis Municipal Airport, Illinois (M30)</div>
+</div>
+</div>
+
+<!-- HISTORICAL SECTION -->
+<div class="historical-wrap">
+  <div class="historical-inner">
+    <div class="historical-banner">What Lewis &amp; Clark were doing at this same point &mdash; Nov 2&ndash;11, 1803</div>
+    <h2>From Pirates&rsquo; Den to Pivotal Fort</h2>
+
+<p>In the late 1700s, Diamond Island was a notorious hideout for river pirates. Most infamous were Samuel Mason&rsquo;s gang in 1797 and the murderous Harpe Brothers, who used the island&rsquo;s timbered cover to ambush craft descending the Ohio. The island also saw the so-called Diamond Island Massacre in 1803, when the Barnard family &mdash; emigrating from Virginia &mdash; landed to retrieve a deer their son had shot and were attacked by ten Native Americans concealed in the canebrake; the parents were killed, three children disappeared, and one teenage son escaped to tell the story.</p>
+
+<div class="leg-photo">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Keelboat_and_flatboat.jpg" alt="Period illustration of a keelboat and flatboat on a western river">
+  <div class="photo-caption">River pirates at Diamond Island preyed on Ohio River flatboats, keelboats, and rafts as profitable targets, attacking crews and pioneers who were easily overwhelmed &mdash; via Wikipedia</div>
+</div>
+
+<p>By the time Lewis and Clark drifted past on November 5, 1803, the worst of the pirate era had ended &mdash; Samuel Mason had been captured earlier that year and would be killed before he could be tried &mdash; but the lower Ohio was still considered rough country. Reconstructions of the Corps&rsquo; route place their camp that night on or near Diamond Island, one of the last stops before Fort Massac. There are no journal entries for the date; Lewis had stopped writing on September 18 and would not resume until reaching the fort.</p>
+
+<p>On November 11, the expedition reached Fort Massac, an American stockade on the Illinois side of the Ohio across from present-day Paducah. The Corps stayed two days, and the captains came away with three of the most consequential names on the muster roll. George Drouillard &mdash; almost always spelled &ldquo;Drewyer&rdquo; in the journals &mdash; was a civilian of French-Canadian and Shawnee heritage who knew the country and the Plains-Indian sign language; Lewis hired him on the spot as interpreter and hunter, and he became, after the captains, the most relied-upon man in the Corps. From Fort Massac&rsquo;s garrison Lewis also drew two enlisted soldiers: Joseph Whitehouse, who would make the entire round trip and keep one of the expedition&rsquo;s enlisted-man journals, and John Newman, who would later be court-martialed at Fort Mandan and sent back with the keelboat &mdash; but who, at this moment in late 1803, was an able recruit adding to the manpower the journey would need.</p>
+
+<p>This stretch of river is also where the human geography of the early republic shows most starkly. Kentucky, on the south bank, had entered the Union in 1792 as a slave state. The land on the north bank &mdash; today&rsquo;s Indiana and Illinois &mdash; was Indiana Territory in 1803, governed by the Northwest Ordinance of 1787, which on paper forbade slavery north of the Ohio. In practice the line was porous: Territorial Governor William Henry Harrison was openly campaigning to legalize slavery, and a system of &ldquo;indentured servitude&rdquo; effectively kept enslaved labor in place across much of the territory. The Louisiana Purchase had been finalized only months earlier, and the question of whether the vast new land beyond the Mississippi would be slave or free would dominate American politics for the next sixty years. Crossing all of it, on this very keelboat, was York &mdash; William Clark&rsquo;s enslaved manservant, a full working member of the party who would become the first known African American to reach the Pacific.</p>
+  </div>
+</div>
+
+<!-- LEG NAV -->
+<div class="leg-nav">
+  <div class="leg-nav-inner">
+    <a href="#leg-08">&larr; Leg 8</a>
+    <a href="#leg-10">Leg 10 &rarr;</a>
+  </div>
+</div>
+
+</body>
+</html>
