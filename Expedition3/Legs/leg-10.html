@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  CAPTAIN DADDERS — LEG TEMPLATE
+  ============================================================================
+  This template is the CANONICAL source for every leg page. CSS, fonts, and
+  structure are locked here. To produce a leg, fill the {{PLACEHOLDERS}} only.
+
+  PLACEHOLDERS (alphabetical):
+    {{ARR_CODE}}          e.g.  KEHR
+    {{ARR_CODE_CITY}}     e.g.  KEHR — Henderson, KY
+    {{ARR_NAME}}          e.g.  Henderson City-County Airport
+    {{CUMULATIVE_NM}}     e.g.  672
+    {{DATE_FLOWN}}        e.g.  May 7, 2026
+    {{DEP_CODE}}          e.g.  KY8
+    {{DEP_CODE_CITY}}     e.g.  KY8 — Lewisport, KY
+    {{DEP_NAME}}          e.g.  Lewis Field
+    {{DISTANCE_NM}}       e.g.  49
+    {{DURATION}}          e.g.  0:45
+    {{HISTORICAL_BODY}}   one or more <p>...</p> blocks
+    {{HISTORICAL_TITLE}}  e.g.  A River Town Already Waiting
+    {{JOURNAL_BODY}}      assembled <p>/photo/video blocks (see snippets below)
+    {{LC_DATES}}          e.g.  Oct 30 – Nov 2, 1803
+    {{LEG_NUM}}           bare leg number, e.g.  9
+    {{LEG_NUM_PADDED}}    zero-padded, e.g.  09
+    {{LEG_TITLE}}         e.g.  Into the Setting Sun
+    {{NEXT_NUM}}          bare number for next leg
+    {{NEXT_PAD}}          zero-padded for next leg
+    {{PREV_NUM}}          bare number for previous leg
+    {{PREV_PAD}}          zero-padded for previous leg
+    {{PROGRESS_PCT}}      whole-number percent, e.g.  17
+    {{TOTAL_NM}}          e.g.  4,029   (canonical reference total)
+
+  JOURNAL_BODY SNIPPETS — assemble in the exact order given in the kickoff prompt.
+    Paragraph:
+      <p class="journal-para">TEXT</p>
+
+    Photo:
+      <div class="leg-photo">
+        <img src="Expedition3/Legs/FILENAME.png" alt="ALT_TEXT">
+        <div class="photo-caption">CAPTION</div>
+      </div>
+
+    Video (YouTube embed):
+      <div class="leg-video">
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="TITLE"
+                frameborder="0" allowfullscreen></iframe>
+        <div class="video-caption">CAPTION</div>
+      </div>
+
+  HISTORICAL_BODY: just one or more <p>...</p> blocks, no class needed.
+  ============================================================================
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leg 10: Reaching the Mississippi — Captain Dadders</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1410;
+    --parchment: #f0ebe0;
+    --gold: #e8a020;
+    --gold-light: #f0c060;
+    --muted: #b0a888;
+    --muted-light: #d4cbb8;
+    --border: #4a4030;
+    --border-light: #c8b890;
+    --complete: #5ab87a;
+    --planning: #6a7890;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Crimson Pro", Georgia, serif;
+    background: var(--parchment);
+    color: var(--ink);
+    line-height: 1.7;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--ink);
+    color: var(--parchment);
+    padding: 3rem 1.5rem 2.5rem;
+    text-align: center;
+  }
+  .hero-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .eyebrow {
+    font-family: "Cinzel", serif;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+  .hero h1 {
+    font-family: "Cinzel", serif;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.6rem;
+    color: #fff;
+  }
+  .hero-sub {
+    font-size: 1rem;
+    color: var(--muted-light);
+    font-style: italic;
+  }
+
+  /* ── FLIGHT STRIP (canonical) ── */
+  .flight-strip-outer {
+    background: #111008;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .flight-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .strip-cell {
+    flex: 1;
+    min-width: 120px;
+    padding: 14px 18px;
+    border-right: 1px solid var(--border);
+  }
+  .strip-cell:last-child { border-right: none; }
+  .strip-label {
+    font-family: "Cinzel", serif;
+    font-size: 8px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    display: block;
+  }
+  .strip-value {
+    font-family: "Crimson Pro", serif;
+    font-size: 16px;
+    color: var(--parchment);
+    font-weight: 600;
+    display: block;
+  }
+  .strip-value.gold { color: var(--gold); }
+
+  /* ── PROGRESS BAR (canonical) ── */
+  .progress-wrap {
+    background: var(--ink);
+    padding: 16px 40px 20px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .progress-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .progress-label {
+    font-family: "Cinzel", serif;
+    font-size: 8px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .progress-track {
+    background: #2a2418;
+    border-radius: 2px;
+    height: 6px;
+  }
+  .progress-fill {
+    background: linear-gradient(90deg, var(--complete), #7ed4a0);
+    height: 6px;
+    border-radius: 2px;
+    width: 20%;
+  }
+
+  /* ── CONTENT / PARCHMENT ── */
+  .content-area {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+  }
+  .journal-para {
+    font-size: 1.1rem;
+    margin-bottom: 1.4rem;
+    color: var(--ink);
+  }
+  .leg-photo {
+    margin: 1.8rem 0;
+  }
+  .leg-photo img {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--border-light);
+    display: block;
+  }
+  .photo-caption {
+    font-family: "Cinzel", serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+  .leg-video {
+    margin: 1.8rem 0;
+  }
+  .leg-video iframe {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border: 1px solid var(--border-light);
+    display: block;
+  }
+  .video-caption {
+    font-family: "Cinzel", serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+
+  /* ── HISTORICAL SECTION ── */
+  .historical-wrap {
+    background: var(--ink);
+    color: var(--parchment);
+  }
+  .historical-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+  }
+  .historical-banner {
+    font-family: "Cinzel", serif;
+    font-size: 8px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .historical-inner h2 {
+    font-family: "Cinzel", serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--gold-light);
+    margin-bottom: 1rem;
+    letter-spacing: 0.04em;
+  }
+  .historical-inner p {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: #d8d0c0;
+    margin-bottom: 1rem;
+  }
+  .historical-inner p:last-child { margin-bottom: 0; }
+
+  /* ── LEG NAV (canonical) ── */
+  .leg-nav {
+    background: var(--ink);
+    border-top: 1px solid var(--border);
+    padding: 22px 40px;
+  }
+  .leg-nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .leg-nav a {
+    font-family: "Cinzel", serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 10px 18px;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+  .leg-nav a:hover {
+    background: var(--gold);
+    color: var(--ink);
+    border-color: var(--gold);
+  }
+
+  @media (max-width: 540px) {
+    .flight-strip { flex-direction: column; }
+    .strip-cell { border-right: none; border-bottom: 1px solid var(--border); }
+    .strip-cell:last-child { border-bottom: none; }
+    .leg-nav-inner { flex-direction: column; gap: 0.6rem; text-align: center; }
+    .progress-wrap { padding: 16px 20px 20px; }
+    .leg-nav { padding: 22px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Leg 10 &middot; May 17, 2026</div>
+    <h1>Reaching the Mississippi</h1>
+    <div class="hero-sub">Metropolis Municipal Airport (M30) &rarr; Cairo Regional Airport (KCIR)</div>
+  </div>
+</div>
+
+<!-- FLIGHT STRIP -->
+<div class="flight-strip-outer">
+  <div class="flight-strip">
+    <div class="strip-cell">
+      <span class="strip-label">Date Flown</span>
+      <span class="strip-value">May 17, 2026</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">L&amp;C Dates</span>
+      <span class="strip-value gold">Nov 13–14, 1803</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Departure</span>
+      <span class="strip-value">M30 — Metropolis, IL</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Arrival</span>
+      <span class="strip-value">KCIR — Cairo, IL</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Distance</span>
+      <span class="strip-value">33 NM</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Duration</span>
+      <span class="strip-value">0:33</span>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRESS BAR -->
+<div class="progress-wrap">
+  <div class="progress-inner">
+    <div class="progress-label">
+      <span>Expedition Progress</span>
+      <span>821 of ~4,029 NM &mdash; 20%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill"></div>
+    </div>
+  </div>
+</div>
+
+<!-- JOURNAL CONTENT -->
+<div class="content-area">
+<p class="journal-para">After landing in Metropolis earlier this evening, I had time to make the short hop over to Cairo. Not long after takeoff, I reached Cairo, IL, and the end of the Ohio River.</p>
+
+<div class="leg-photo">
+  <img src="Expedition3/Legs/Leg10-Cairo.png" alt="The end of the Ohio River. Cairo, IL to the right, and the Mississippi River">
+  <div class="photo-caption">The end of the Ohio River. Cairo, IL to the right, and the Mississippi River</div>
+</div>
+
+<p class="journal-para">When I think of Cairo, I think of Mark Twain's Huckleberry Finn. Huck and Jim travel down the Mississippi in a raft, intending to flee from the slave state of Missouri, stop at Cairo, and catch a steamboat up the Ohio River to a free state. Unfortunately, they miss Cairo in a foggy night, and end up further down the Mississippi, deeper into slave territory.</p>
+
+<div class="leg-photo">
+  <img src="Expedition3/Legs/Leg10-KCIR.png" alt="Mississippi River on the left, Cairo Regional Airport on the right">
+  <div class="photo-caption">Mississippi River on the left, Cairo Regional Airport on the right</div>
+</div>
+
+<p class="journal-para">It was also, of course, an important waypoint on the Lewis &amp; Clark journey. Their trip thus far had been all down-river. Once on the Mississippi, they had to go upstream, against the river flow, making travel more difficult. They are still in familiar territory, but they are reaching St. Louis and the Missouri River, where the real exploration begins.</p>
+
+<p class="journal-para">My landing was somewhat dramatic. I was facing a strong headwind and coming in too slow. I had a bit of a crosswind, but as I slowed, my rudder was losing effectiveness and I ended up drifting a little off the runway. Since I was going too slow, I was unable to compensate in time, and ended up stalling and bouncing, and nearly clipped my wing on the runway. It was not pretty, but I kept everything in one piece, so I can continue up the Mississippi toward St. Louis.</p>
+
+<div class="leg-video">
+  <iframe src="https://www.youtube.com/embed/KFsycxL9T00" title="Rough landing at Cairo Regional (KCIR)"
+          frameborder="0" allowfullscreen></iframe>
+  <div class="video-caption">Rough landing at Cairo Regional (KCIR)</div>
+</div>
+</div>
+
+<!-- HISTORICAL SECTION -->
+<div class="historical-wrap">
+  <div class="historical-inner">
+    <div class="historical-banner">What Lewis &amp; Clark were doing at this same point &mdash; Nov 13–14, 1803</div>
+    <h2>Turning North on the Mississippi</h2>
+    <p>Two days after leaving Fort Massac, the Corps of Discovery reached the confluence of the Ohio and the Mississippi — the same waters visible from Cairo today. Lewis and Clark recorded their arrival on November 14, 1803, and would remain camped at the junction for nearly a week, using the days to take the celestial observations needed to fix their position on the map.</p>
+    <p>The stop also marked the end of easy progress. Every mile since Pittsburgh had been downstream — the Ohio carried the keelboat and pirogues with the current, day after day. Now, on the Mississippi, the Corps faced a far more powerful river running the wrong direction. Going upstream toward St. Louis would mean fighting the current for weeks. But it was still familiar territory, still within the bounds of a country that had mapped and settled this corridor for generations. Beyond St. Louis, where the Missouri River joined from the west, the true wilderness began — and with it, the real purpose of the expedition.</p>
+  </div>
+</div>
+
+<!-- LEG NAV -->
+<div class="leg-nav">
+  <div class="leg-nav-inner">
+    <a href="#leg-09">&larr; Leg 9</a>
+    <a href="#leg-11">Leg 11 &rarr;</a>
+  </div>
+</div>
+
+</body>
+</html>

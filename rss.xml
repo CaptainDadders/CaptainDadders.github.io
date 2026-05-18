@@ -10,6 +10,17 @@
     <atom:link href="https://captaindadders.com/rss.xml" rel="self" type="application/rss+xml"/>
 
     <item>
+      <title>Leg 10: Reaching the Mississippi — M30 to KCIR</title>
+      <link>https://captaindadders.com/#leg-10</link>
+      <description>A short evening hop from Metropolis to Cairo, Illinois — where the Ohio River ends and the Mississippi begins. The confluence at Cairo evokes Mark Twain's Huckleberry Finn as much as Lewis and Clark, and a dramatic near-stall landing at Cairo Regional caps off a brief but eventful leg.</description>
+      <pubDate>Sun, 17 May 2026 12:00:00 +0000</pubDate>
+      <guid>https://captaindadders.com/#leg-10</guid>
+      <enclosure url="https://captaindadders.com/Expedition3/Legs/Leg10-Cairo.png" type="image/png" length="0"/>
+      <media:content url="https://captaindadders.com/Expedition3/Legs/Leg10-Cairo.png" medium="image"/>
+    </item>
+
+
+    <item>
       <title>Leg 9: Past Diamond Island — KEHR to M30</title>
       <link>https://captaindadders.com/#leg-09</link>
       <description>Back to the skies after a family-visit layover in Henderson, Kentucky — a flyover of Diamond Island (an Ohio River pirates' hideout and a Lewis &amp; Clark campsite on November 5, 1803), past the mouth of the Wabash where Indiana gives way to Illinois, and a reflection on the Ohio as the boundary between slave Kentucky and the free territory to the north in 1803, before landing at Metropolis, Illinois near historic Fort Massac.</description>
@@ -101,3 +112,4 @@
 
   </channel>
 </rss>
+
