@@ -160,8 +160,8 @@ const FLIGHT_LEGS = [
   }
 ,
   {
-    lat: 37.5179,
-    lng: -89.3940,
+    lat: 37.5403,
+    lng: -89.4864,
     label: "Leg 11: Past Cape Girardeau",
     location: "KCIR → 12LL · Cairo IL to Wolf Lake IL",
     date: "May 18, 2026",
@@ -204,7 +204,7 @@ const AIRPORT_CUM_NM = {
   "KEHR": 672,
   "M30":  788,
   "KCIR": 821,  // snap [37.03369, -89.22708], 1.86 NM off-route
-  "12LL": 874.3,  // Lambdins Field, Wolf Lake IL
+  "12LL": 874.3,  // Lambdins Field, Wolf Lake IL; actual coords 37.5403, -89.4864; snap [37.52864, -89.50915], 1.29 NM off-route
   "KPCD": 909.8,  // Perryville Regional, MO
   "6MO2": 922.9,  // Ste. Genevieve Flying Club, MO
   "KFES": 943.9,  // Festus Memorial, MO
