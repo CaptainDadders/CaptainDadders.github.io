@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  CAPTAIN DADDERS — LEG 12  (generated from leg-template.html — placeholders only)
+  ============================================================================
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leg 12: The Vanished Capital — Captain Dadders</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1410;
+    --parchment: #f0ebe0;
+    --gold: #e8a020;
+    --gold-light: #f0c060;
+    --muted: #b0a888;
+    --muted-light: #d4cbb8;
+    --border: #4a4030;
+    --border-light: #c8b890;
+    --complete: #5ab87a;
+    --planning: #6a7890;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Crimson Pro", Georgia, serif;
+    background: var(--parchment);
+    color: var(--ink);
+    line-height: 1.7;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--ink);
+    color: var(--parchment);
+    padding: 3rem 1.5rem 2.5rem;
+    text-align: center;
+  }
+  .hero-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .eyebrow {
+    font-family: "Cinzel", serif;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+  .hero h1 {
+    font-family: "Cinzel", serif;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.6rem;
+    color: #fff;
+  }
+  .hero-sub {
+    font-size: 1rem;
+    color: var(--muted-light);
+    font-style: italic;
+  }
+
+  /* ── FLIGHT STRIP (canonical) ── */
+  .flight-strip-outer {
+    background: #111008;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .flight-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .strip-cell {
+    flex: 1;
+    min-width: 120px;
+    padding: 14px 18px;
+    border-right: 1px solid var(--border);
+  }
+  .strip-cell:last-child { border-right: none; }
+  .strip-label {
+    font-family: "Cinzel", serif;
+    font-size: 8px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    display: block;
+  }
+  .strip-value {
+    font-family: "Crimson Pro", serif;
+    font-size: 16px;
+    color: var(--parchment);
+    font-weight: 600;
+    display: block;
+  }
+  .strip-value.gold { color: var(--gold); }
+
+  /* ── PROGRESS BAR (canonical) ── */
+  .progress-wrap {
+    background: var(--ink);
+    padding: 16px 40px 20px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .progress-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .progress-label {
+    font-family: "Cinzel", serif;
+    font-size: 8px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .progress-track {
+    background: #2a2418;
+    border-radius: 2px;
+    height: 6px;
+  }
+  .progress-fill {
+    background: linear-gradient(90deg, var(--complete), #7ed4a0);
+    height: 6px;
+    border-radius: 2px;
+    width: 23%;
+  }
+
+  /* ── CONTENT / PARCHMENT ── */
+  .content-area {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+  }
+  .journal-para {
+    font-size: 1.1rem;
+    margin-bottom: 1.4rem;
+    color: var(--ink);
+  }
+  .leg-photo {
+    margin: 1.8rem 0;
+  }
+  .leg-photo img {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--border-light);
+    display: block;
+  }
+  .photo-caption {
+    font-family: "Cinzel", serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+  .leg-video {
+    margin: 1.8rem 0;
+  }
+  .leg-video iframe {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border: 1px solid var(--border-light);
+    display: block;
+  }
+  .video-caption {
+    font-family: "Cinzel", serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+
+  /* ── HISTORICAL SECTION ── */
+  .historical-wrap {
+    background: var(--ink);
+    color: var(--parchment);
+  }
+  .historical-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+  }
+  .historical-banner {
+    font-family: "Cinzel", serif;
+    font-size: 8px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .historical-inner h2 {
+    font-family: "Cinzel", serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--gold-light);
+    margin-bottom: 1rem;
+    letter-spacing: 0.04em;
+  }
+  .historical-inner p {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: #d8d0c0;
+    margin-bottom: 1rem;
+  }
+  .historical-inner p:last-child { margin-bottom: 0; }
+
+  /* ── LEG NAV (canonical) ── */
+  .leg-nav {
+    background: var(--ink);
+    border-top: 1px solid var(--border);
+    padding: 22px 40px;
+  }
+  .leg-nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .leg-nav a {
+    font-family: "Cinzel", serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 10px 18px;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+  .leg-nav a:hover {
+    background: var(--gold);
+    color: var(--ink);
+    border-color: var(--gold);
+  }
+
+  @media (max-width: 540px) {
+    .flight-strip { flex-direction: column; }
+    .strip-cell { border-right: none; border-bottom: 1px solid var(--border); }
+    .strip-cell:last-child { border-bottom: none; }
+    .leg-nav-inner { flex-direction: column; gap: 0.6rem; text-align: center; }
+    .progress-wrap { padding: 16px 20px 20px; }
+    .leg-nav { padding: 22px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Leg 12 &middot; May 19, 2026</div>
+    <h1>The Vanished Capital</h1>
+    <div class="hero-sub">Lambdins Field (12LL) &rarr; Ste. Genevieve Flying Club (6MO2)</div>
+  </div>
+</div>
+
+<!-- FLIGHT STRIP -->
+<div class="flight-strip-outer">
+  <div class="flight-strip">
+    <div class="strip-cell">
+      <span class="strip-label">Date Flown</span>
+      <span class="strip-value">May 19, 2026</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">L&amp;C Dates</span>
+      <span class="strip-value gold">Nov 25 &ndash; Dec 5, 1803</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Departure</span>
+      <span class="strip-value">12LL &mdash; Wolf Lake, IL</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Arrival</span>
+      <span class="strip-value">6MO2 &mdash; Ste. Genevieve, MO</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Distance</span>
+      <span class="strip-value">49 NM</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Duration</span>
+      <span class="strip-value">0:33</span>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRESS BAR -->
+<div class="progress-wrap">
+  <div class="progress-inner">
+    <div class="progress-label">
+      <span>Expedition Progress</span>
+      <span>923 of ~4,029 NM &mdash; 23%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill"></div>
+    </div>
+  </div>
+</div>
+
+<!-- JOURNAL CONTENT -->
+<div class="content-area">
+
+  <div class="leg-photo">
+    <img src="Expedition3/Legs/Leg12-Rainbow.png" alt="Flying up the Mississippi River with a rainbow behind the aircraft">
+    <div class="photo-caption">Flying up the Mississippi River with a rainbow behind</div>
+  </div>
+
+  <p class="journal-para">Continued my journey up the Mississippi River today with storms nearby. Flew through a little rain, but nothing major. The land is pretty nondescript today, mostly farmland, some trees, and some islands in the river. However, there are some interesting historical aspects to the area.</p>
+
+  <div class="leg-photo">
+    <img src="Expedition3/Legs/Leg12-Kaskaskia.png" alt="Kaskaskia, Illinois, sitting west of the Mississippi River">
+    <div class="photo-caption">Kaskaskia, Illinois, west of the Mississippi River</div>
+  </div>
+
+  <p class="journal-para">You can see from the map that the Lewis &amp; Clark route does not match where the Mississippi River is today. In the above photo, Kaskaskia, Illinois is on my left wing, west of the Mississippi. Of course, the Mississippi River is the border between Illinois and Missouri, and for the most part, Illinois is always east of the river. When Lewis &amp; Clark paddled up the river, it was in fact west of where it is now; their route along the river is accurately shown on the map. However, in 1881, there was a great flood in Kaskaskia, and when the waters receded, the river had shifted course to where it is today. This effectively cut off Kaskaskia from the rest of Illinois; today it is only accessible via Missouri.</p>
+
+  <p class="journal-para">In the late 1800s, steamboats traveled up and down the Mississippi. Widespread deforestation took place to fuel the steamboats. It is believed that this deforestation was a big contributor to the flooding and the river changing course. With vegetation removed, riverbanks eroded and collapsed into the water. The river gradually widened and eventually, when it flooded, it dramatically changed course.</p>
+
+  <p class="journal-para">Kaskaskia, in fact, was the first capital of Illinois. At its peak, it had over 7,000 residents. The flood effectively destroyed the town, and now there is not much left other than farmland. The 2020 census recorded 21 residents in Kaskaskia.</p>
+
+  <p class="journal-para">While at Kaskaskia, more than 10 men were recruited to join the Corps of Discovery. Here, Captain Lewis left the boat to the command of Captain Clark, while he stayed behind for a few days before catching up to the crew via horseback.</p>
+
+  <p class="journal-para">I landed at Ste. Genevieve, just north of Kaskaskia. It's a little difficult to locate these little grass runways as they are not usually marked that well. But I was able to spot it in time, adjust course, and come down pretty smoothly, by my standards at least.</p>
+
+  <div class="leg-video">
+    <iframe src="https://www.youtube.com/embed/6-59uMjAGSo" title="Landing at Ste. Genevieve Flying Club, Missouri"
+            frameborder="0" allowfullscreen></iframe>
+    <div class="video-caption">Landing at Ste. Genevieve Flying Club, Missouri</div>
+  </div>
+
+</div>
+
+<!-- HISTORICAL SECTION -->
+<div class="historical-wrap">
+  <div class="historical-inner">
+    <div class="historical-banner">What Lewis &amp; Clark were doing at this same point &mdash; Nov 25 &ndash; Dec 5, 1803</div>
+    <h2>A Week at the Lost Capital</h2>
+
+    <p>Having turned up the Mississippi at the mouth of the Ohio on November 20, the Corps was now fighting the current for the first time instead of riding it. Four hard days of poling, rowing, and towing carried the boats past the rocky narrows at Grand Tower &mdash; the ninety-foot pillar of Tower Rock, where Marquette and Joliet had raised a cross back in 1673 to ward off the whirlpool said to lurk at its base. It was one of the few genuinely treacherous spots on this stretch of river. Just upstream lay the old French town of Ste. Genevieve and, on the Illinois bluff opposite, the army post at Fort Kaskaskia.</p>
+
+    <p>Fort Kaskaskia was brand new in 1803, thrown up to support the handover of Louisiana, and was most likely still under construction when the expedition arrived on November 28&ndash;29. Two companies were garrisoned there &mdash; Captain Russell Bissell's infantry and Captain Amos Stoddard's artillery. From these troops Lewis selected roughly eleven or twelve enlisted men to round out the permanent party, among them Patrick Gass (later promoted to sergeant and the first to publish a journal of the expedition), John Ordway, and John Collins. The town of Kaskaskia itself &mdash; then the political and commercial heart of the Illinois country, with a population near 7,000 &mdash; furnished provisions and useful contacts.</p>
+
+    <div class="leg-photo">
+      <img src="Expedition3/Legs/Leg12-KaskaskiaHistorical.png" alt="The 1875 town of Kaskaskia overlaid on present-day satellite imagery, showing how the river's shift stranded the old site west of the Mississippi">
+      <div class="photo-caption">Kaskaskia as it was in 1875, mapped over present-day satellite imagery &mdash; the river's later shift left the old town site west of the Mississippi (Wikimedia Commons, public domain)</div>
+    </div>
+
+    <p>With the roster nearly full, the captains divided their force for the first time. Clark took the boats and men upriver on December 3, while Lewis lingered at Kaskaskia until December 5, recording astronomical observations, then rode overland on horseback to Cahokia and across to St. Louis to call on the Spanish lieutenant governor. The answer he received there was that Spain would not permit the expedition to start up the Missouri until at least the spring &mdash; so the Corps would have to winter on the Illinois side, at the mouth of the Wood River across from the Missouri's mouth, the camp known today as Camp River Dubois. Lewis rejoined Clark and the party at Cahokia on December 9.</p>
+
+    <p>The Kaskaskia the Corps knew sat on the east, Illinois bank, on a thin neck of land between the Mississippi and the Kaskaskia River. Over the next century, woodcutting to feed steamboats and railroads stripped the riverbanks bare; the unanchored channel widened, shoaled, and wandered, and in the great flood of 1881 the Mississippi finally broke across the neck and seized the bed of the Kaskaskia River, leaving the town marooned on the west bank &mdash; today the only piece of Illinois lying west of the Mississippi. The river the expedition poled up in 1803 was a wild, braided thing of shifting sandbars, snags, and the occasional rocky narrows; the modern middle Mississippi is a confined, dredged navigation channel held in place by levees and wing dikes. The water has been tamed since the Corps passed through &mdash; but it carried off the old capital on its way.</p>
+
+  </div>
+</div>
+
+<!-- LEG NAV -->
+<div class="leg-nav">
+  <div class="leg-nav-inner">
+    <a href="#leg-11">&larr; Leg 11</a>
+    <a href="#leg-13">Leg 13 &rarr;</a>
+  </div>
+</div>
+
+</body>
+</html>
