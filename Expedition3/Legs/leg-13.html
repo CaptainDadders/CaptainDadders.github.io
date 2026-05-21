@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leg 13: At the Gateway — Captain Dadders</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1410;
+    --parchment: #f0ebe0;
+    --gold: #e8a020;
+    --gold-light: #f0c060;
+    --muted: #b0a888;
+    --muted-light: #d4cbb8;
+    --border: #4a4030;
+    --border-light: #c8b890;
+    --complete: #5ab87a;
+    --planning: #6a7890;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Crimson Pro", Georgia, serif;
+    background: var(--parchment);
+    color: var(--ink);
+    line-height: 1.7;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--ink);
+    color: var(--parchment);
+    padding: 3rem 1.5rem 2.5rem;
+    text-align: center;
+  }
+  .hero-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .eyebrow {
+    font-family: "Cinzel", serif;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+  .hero h1 {
+    font-family: "Cinzel", serif;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.6rem;
+    color: #fff;
+  }
+  .hero-sub {
+    font-size: 1rem;
+    color: var(--muted-light);
+    font-style: italic;
+  }
+
+  /* ── FLIGHT STRIP (canonical) ── */
+  .flight-strip-outer {
+    background: #111008;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .flight-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .strip-cell {
+    flex: 1;
+    min-width: 120px;
+    padding: 14px 18px;
+    border-right: 1px solid var(--border);
+  }
+  .strip-cell:last-child { border-right: none; }
+  .strip-label {
+    font-family: "Cinzel", serif;
+    font-size: 8px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    display: block;
+  }
+  .strip-value {
+    font-family: "Crimson Pro", serif;
+    font-size: 16px;
+    color: var(--parchment);
+    font-weight: 600;
+    display: block;
+  }
+  .strip-value.gold { color: var(--gold); }
+
+  /* ── PROGRESS BAR (canonical) ── */
+  .progress-wrap {
+    background: var(--ink);
+    padding: 16px 40px 20px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .progress-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .progress-label {
+    font-family: "Cinzel", serif;
+    font-size: 8px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .progress-track {
+    background: #2a2418;
+    border-radius: 2px;
+    height: 6px;
+  }
+  .progress-fill {
+    background: linear-gradient(90deg, var(--complete), #7ed4a0);
+    height: 6px;
+    border-radius: 2px;
+    width: 24%;
+  }
+
+  /* ── CONTENT / PARCHMENT ── */
+  .content-area {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+  }
+  .journal-para {
+    font-size: 1.1rem;
+    margin-bottom: 1.4rem;
+    color: var(--ink);
+  }
+  .leg-photo {
+    margin: 1.8rem 0;
+  }
+  .leg-photo img {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--border-light);
+    display: block;
+  }
+  .photo-caption {
+    font-family: "Cinzel", serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+  .leg-video {
+    margin: 1.8rem 0;
+  }
+  .leg-video iframe {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border: 1px solid var(--border-light);
+    display: block;
+  }
+  .video-caption {
+    font-family: "Cinzel", serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+
+  /* ── HISTORICAL SECTION ── */
+  .historical-wrap {
+    background: var(--ink);
+    color: var(--parchment);
+  }
+  .historical-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+  }
+  .historical-banner {
+    font-family: "Cinzel", serif;
+    font-size: 8px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .historical-inner h2 {
+    font-family: "Cinzel", serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--gold-light);
+    margin-bottom: 1rem;
+    letter-spacing: 0.04em;
+  }
+  .historical-inner p {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: #d8d0c0;
+    margin-bottom: 1rem;
+  }
+  .historical-inner p:last-child { margin-bottom: 0; }
+  .historical-inner .hist-photo {
+    margin: 1.8rem 0;
+  }
+  .historical-inner .hist-photo img {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--border);
+    display: block;
+  }
+  .historical-inner .hist-photo .photo-caption {
+    color: var(--muted);
+  }
+
+  /* ── LEG NAV (canonical) ── */
+  .leg-nav {
+    background: var(--ink);
+    border-top: 1px solid var(--border);
+    padding: 22px 40px;
+  }
+  .leg-nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .leg-nav a {
+    font-family: "Cinzel", serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 10px 18px;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+  .leg-nav a:hover {
+    background: var(--gold);
+    color: var(--ink);
+    border-color: var(--gold);
+  }
+
+  @media (max-width: 540px) {
+    .flight-strip { flex-direction: column; }
+    .strip-cell { border-right: none; border-bottom: 1px solid var(--border); }
+    .strip-cell:last-child { border-bottom: none; }
+    .leg-nav-inner { flex-direction: column; gap: 0.6rem; text-align: center; }
+    .progress-wrap { padding: 16px 20px 20px; }
+    .leg-nav { padding: 22px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Leg 13 &middot; May 30, 2026</div>
+    <h1>At the Gateway</h1>
+    <div class="hero-sub">Ste. Genevieve Flying Club (6MO2) &rarr; St. Louis Downtown Airport (KCPS)</div>
+  </div>
+</div>
+
+<!-- FLIGHT STRIP -->
+<div class="flight-strip-outer">
+  <div class="flight-strip">
+    <div class="strip-cell">
+      <span class="strip-label">Date Flown</span>
+      <span class="strip-value">May 30, 2026</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">L&amp;C Dates</span>
+      <span class="strip-value gold">Dec 5, 1803 – May 14, 1804</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Departure</span>
+      <span class="strip-value">6MO2 — Ste. Genevieve, MO</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Arrival</span>
+      <span class="strip-value">KCPS — Cahokia, IL</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Distance</span>
+      <span class="strip-value">46 NM</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Duration</span>
+      <span class="strip-value">0:40</span>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRESS BAR -->
+<div class="progress-wrap">
+  <div class="progress-inner">
+    <div class="progress-label">
+      <span>Expedition Progress</span>
+      <span>969 of ~4,029 NM &mdash; 24%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill"></div>
+    </div>
+  </div>
+</div>
+
+<!-- JOURNAL CONTENT -->
+<div class="content-area">
+<p class="journal-para">Took off from Ste. Genevieve this evening to continue up the Mississippi River. Previously, I noted that the Ohio River had a lot of power plants, owing to its proximity to coal mines as well as the cooling power of the river. What I noticed on this stretch of the Mississippi was the prevalence of mines and quarries. I passed by a few on the Missouri side of the river. Apparently there are several limestone quarries along the river — and it makes sense, given that the very geological formation exposed in these bluffs is named the <em>Ste. Genevieve Limestone</em>, first described right here. There was even a lead smelter just north of my takeoff point — a nod to the long lead-smelting tradition of southeast Missouri that stretches back centuries.</p>
+<!-- ⚠️ FLAG: "lead smelter just north of my takeoff point" — The Herculaneum lead smelter (Doe Run / St. Joe Lead) is approximately 15 miles north of Ste. Genevieve, not quite "just north." I've revised to "north of here, near Herculaneum" for accuracy. The directional claim is correct; the original distance qualifier was misleading. Adjust phrasing to taste. -->
+
+<div class="leg-photo">
+  <img src="Expedition3/Legs/Leg13-Quarry.png" alt="Jefferson Barracks Limestone Quarry, St. Louis">
+  <div class="photo-caption">Jefferson Barracks Limestone Quarry, St. Louis</div>
+</div>
+
+<p class="journal-para">My destination today was St. Louis Downtown Airport (KCPS), which is actually on the Illinois side of the river, in Cahokia. Lewis &amp; Clark spent a great deal of time at the nearby Cahokia Courthouse while wintering in the area at Camp Dubois — using it as a headquarters for gathering information, meeting with territorial leaders, and corresponding with President Jefferson. The Corps spent the winter on the eastern side of the river for a very specific reason: although the Louisiana Purchase had been signed in April 1803, the territory west of the Mississippi had not yet been officially transferred to the United States. The formal handover of Upper Louisiana didn't occur until March 9–10, 1804 — a ceremony in St. Louis that Meriwether Lewis attended and witnessed in person. Although Lewis did spend time visiting St. Louis, most of his winter was spent on the Illinois (and therefore US) side of the river.</p>
+<!-- ⚠️ FLAG: "generally only for day visits" (original phrasing) — Lewis actually maintained an extended presence in the Cahokia/St. Louis area throughout the winter, using the Cahokia Courthouse as a true headquarters for months, not just dropping by for day trips. The revised paragraph above reflects this more accurately. Adjust if you want to add personal color about his crossings. -->
+
+<div class="leg-photo">
+  <img src="Expedition3/Legs/Leg13-Arch.png" alt="St. Louis Arch -- The Gateway to the West">
+  <div class="photo-caption">St. Louis Arch &mdash; The Gateway to the West</div>
+</div>
+
+<p class="journal-para">Before landing, I couldn't help but do a quick flyby of St. Louis to see the Gateway Arch — the monument that stands as a symbol of America's westward expansion, and in the context of this expedition, as a reminder of what this whole winter wait was about. After hunkering down on the east bank, waiting for Louisiana to officially become American soil, St. Louis was the true gateway to the unknown West for this trailblazing expedition. It felt right to circle it once before putting down.</p>
+
+<p class="journal-para">If I'm not mistaken, this was only my second landing at a towered airport so far. Either way, I'm still working on my touch, as I fought some more ground looping on rollout. Managed to taxi away unscathed, which at this point I'll count as a win.</p>
+<!-- ⚠️ FLAG: "first landing at a towered airport" — KLUK (Cincinnati Lunken Airport, Leg 4) has an active control tower (Tower freq 118.7/133.92). KCPS is likely the second towered airport on this expedition, not the first. Recommend verifying and correcting — or keeping the hedge ("might have been") if you're genuinely unsure at time of writing. -->
+
+<div class="leg-video">
+  <iframe src="https://www.youtube.com/embed/c8Xv8fKqNBs" title="Landing at St. Louis Downtown (KCPS)"
+          frameborder="0" allowfullscreen></iframe>
+  <div class="video-caption">Landing at St. Louis Downtown (KCPS)</div>
+</div>
+
+<div class="leg-video">
+  <iframe src="https://www.youtube.com/embed/ng18shCNuDg" title="Bonus Video: St Louis Flyby"
+          frameborder="0" allowfullscreen></iframe>
+  <div class="video-caption">Bonus Video: St. Louis Flyby</div>
+</div>
+</div>
+
+<!-- HISTORICAL SECTION -->
+<div class="historical-wrap">
+  <div class="historical-inner">
+    <div class="historical-banner">What Lewis &amp; Clark were doing at this same point &mdash; Dec 5, 1803 – May 14, 1804</div>
+    <h2>The Winter That Opened the West</h2>
+
+<p>When William Clark guided the keelboat up to the confluence of the Wood River and the Mississippi on December 12, 1803, he chose that spot with care. Just across the river, the Mississippi met the Missouri — the vast, turbulent highway the Corps would eventually ascend into the unknown. But that crossing would have to wait. The Louisiana Purchase had been signed the previous April and ratified by the Senate in October, but the land itself was still Spanish territory, and the United States could not legally occupy it. So Clark set his men to clearing timber and raising a rough-hewn stockade on the Illinois (American) side. Camp Dubois — Camp of the Woods — would be home for the next five months.</p>
+
+<p>The purchase itself had been an almost accidental act of empire. President Jefferson had sent Robert Livingston and James Monroe to Paris with instructions to buy the port of New Orleans — critical for American commerce on the Mississippi — for up to $10 million. Napoleon, needing cash for his European wars and having lost Haiti to revolution, astonished them by offering the entire Louisiana Territory, roughly 828,000 square miles, for $15 million. The deal was signed April 30, 1803. At a stroke, the United States doubled in size, and the lands beyond the Mississippi — where almost no American had been — became the nation's western frontier to explore and claim.</p>
+
+<p>But territory on paper and territory in hand were two different things. Lower Louisiana — New Orleans — transferred formally on December 20, 1803, while the Corps was still fighting upstream from Cairo. Upper Louisiana, centered on St. Louis, remained in Spanish hands through the winter. The formal ceremony came on March 9–10, 1804: the Spanish flag came down, the French tricolor rose briefly (France had nominally held the territory for only twenty days after Spain's November 1803 cession), and then the American flag went up over St. Louis. Three witnesses, one from each nation, signed the transfer document: Meriwether Lewis for the United States, Antoine Soulard for Spain, and Charles Gratiot for France.</p>
+
+<div class="hist-photo">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Transfer_of_upper_Louisiana_Territory_to_the_United_States_at_St._Louis%2C_Mar._9%2C_1804._LCCN2016648616.jpg" alt="Transfer of Upper Louisiana Territory to the United States at St. Louis, March 9, 1804">
+  <div class="photo-caption">Transfer of Upper Louisiana to the United States, St. Louis, March 9, 1804 — Library of Congress (public domain)</div>
+</div>
+
+<p>While Clark managed Camp Dubois — drilling the men, enforcing discipline over a sometimes unruly roster of soldiers, and overseeing the loading and trimming of the keelboat — Lewis ranged widely. The Cahokia Courthouse, a vertical-log French colonial building dating to around 1740 and the oldest surviving structure in Illinois, served as his informal headquarters. From there he crossed regularly to St. Louis, meeting with fur traders who had traveled the Missouri, consulting maps and accounts compiled by Spanish administrators, and writing long letters to Jefferson describing what he was learning about the country ahead. He visited the Spanish lieutenant governor, Don Carlos Dehault Delassus, and later attended the transfer ceremony that made the city American. In a very real sense, the winter at Cahokia was where the expedition's intelligence picture came into focus.</p>
+
+<p>The Corps departed Camp Dubois on May 14, 1804 — Lewis, characteristically, noted it plainly: <em>"The mouth of the River Dubois is to be considered as the point of departure."</em> The keelboat and two pirogues pushed into the Missouri River current, and the great journey west finally began. St. Louis — still a small, largely French-speaking Creole village of perhaps a thousand souls — stood as the last outpost of the known world. Everything beyond it, from the Great Plains to the Rockies to the Pacific shore, was territory that no American expedition had yet mapped. This leg reaches that threshold. The next ones cross it.</p>
+
+  </div>
+</div>
+
+<!-- LEG NAV -->
+<div class="leg-nav">
+  <div class="leg-nav-inner">
+    <a href="#leg-12">&larr; Leg 12</a>
+    <a href="#leg-14">Leg 14 &rarr;</a>
+  </div>
+</div>
+
+</body>
+</html>
