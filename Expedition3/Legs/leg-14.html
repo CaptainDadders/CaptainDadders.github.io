@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leg 14: The Third River — Captain Dadders</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1410;
+    --parchment: #f0ebe0;
+    --gold: #e8a020;
+    --gold-light: #f0c060;
+    --muted: #b0a888;
+    --muted-light: #d4cbb8;
+    --border: #4a4030;
+    --border-light: #c8b890;
+    --complete: #5ab87a;
+    --planning: #6a7890;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Crimson Pro", Georgia, serif;
+    background: var(--parchment);
+    color: var(--ink);
+    line-height: 1.7;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--ink);
+    color: var(--parchment);
+    padding: 3rem 1.5rem 2.5rem;
+    text-align: center;
+  }
+  .hero-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .eyebrow {
+    font-family: "Cinzel", serif;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+  .hero h1 {
+    font-family: "Cinzel", serif;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.6rem;
+    color: #fff;
+  }
+  .hero-sub {
+    font-size: 1rem;
+    color: var(--muted-light);
+    font-style: italic;
+  }
+
+  /* ── FLIGHT STRIP (canonical) ── */
+  .flight-strip-outer {
+    background: #111008;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .flight-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .strip-cell {
+    flex: 1;
+    min-width: 120px;
+    padding: 14px 18px;
+    border-right: 1px solid var(--border);
+  }
+  .strip-cell:last-child { border-right: none; }
+  .strip-label {
+    font-family: "Cinzel", serif;
+    font-size: 8px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    display: block;
+  }
+  .strip-value {
+    font-family: "Crimson Pro", serif;
+    font-size: 16px;
+    color: var(--parchment);
+    font-weight: 600;
+    display: block;
+  }
+  .strip-value.gold { color: var(--gold); }
+
+  /* ── PROGRESS BAR (canonical) ── */
+  .progress-wrap {
+    background: var(--ink);
+    padding: 16px 40px 20px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .progress-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .progress-label {
+    font-family: "Cinzel", serif;
+    font-size: 8px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .progress-track {
+    background: #2a2418;
+    border-radius: 2px;
+    height: 6px;
+  }
+  .progress-fill {
+    background: linear-gradient(90deg, var(--complete), #7ed4a0);
+    height: 6px;
+    border-radius: 2px;
+    width: 25%;
+  }
+
+  /* ── CONTENT / PARCHMENT ── */
+  .content-area {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+  }
+  .journal-para {
+    font-size: 1.1rem;
+    margin-bottom: 1.4rem;
+    color: var(--ink);
+  }
+  .leg-photo {
+    margin: 1.8rem 0;
+  }
+  .leg-photo img {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--border-light);
+    display: block;
+  }
+  .photo-caption {
+    font-family: "Cinzel", serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+  .leg-video {
+    margin: 1.8rem 0;
+  }
+  .leg-video iframe {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border: 1px solid var(--border-light);
+    display: block;
+  }
+  .video-caption {
+    font-family: "Cinzel", serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+
+  /* ── HISTORICAL SECTION ── */
+  .historical-wrap {
+    background: var(--ink);
+    color: var(--parchment);
+  }
+  .historical-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+  }
+  .historical-banner {
+    font-family: "Cinzel", serif;
+    font-size: 8px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .historical-inner h2 {
+    font-family: "Cinzel", serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--gold-light);
+    margin-bottom: 1rem;
+    letter-spacing: 0.04em;
+  }
+  .historical-inner p {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: #d8d0c0;
+    margin-bottom: 1rem;
+  }
+  .historical-inner p:last-child { margin-bottom: 0; }
+
+  /* ── LEG NAV (canonical) ── */
+  .leg-nav {
+    background: var(--ink);
+    border-top: 1px solid var(--border);
+    padding: 22px 40px;
+  }
+  .leg-nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .leg-nav a {
+    font-family: "Cinzel", serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 10px 18px;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+  .leg-nav a:hover {
+    background: var(--gold);
+    color: var(--ink);
+    border-color: var(--gold);
+  }
+
+  @media (max-width: 540px) {
+    .flight-strip { flex-direction: column; }
+    .strip-cell { border-right: none; border-bottom: 1px solid var(--border); }
+    .strip-cell:last-child { border-bottom: none; }
+    .leg-nav-inner { flex-direction: column; gap: 0.6rem; text-align: center; }
+    .progress-wrap { padding: 16px 20px 20px; }
+    .leg-nav { padding: 22px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Leg 14 &middot; May 21, 2026</div>
+    <h1>The Third River</h1>
+    <div class="hero-sub">St. Louis Downtown Airport (KCPS) &rarr; Creve Coeur Airport (1H0)</div>
+  </div>
+</div>
+
+<!-- FLIGHT STRIP -->
+<div class="flight-strip-outer">
+  <div class="flight-strip">
+    <div class="strip-cell">
+      <span class="strip-label">Date Flown</span>
+      <span class="strip-value">May 21, 2026</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">L&amp;C Dates</span>
+      <span class="strip-value gold">May 14–21, 1804</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Departure</span>
+      <span class="strip-value">KCPS — Cahokia, IL</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Arrival</span>
+      <span class="strip-value">1H0 — Creve Coeur, MO</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Distance</span>
+      <span class="strip-value">41 NM</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Duration</span>
+      <span class="strip-value">0:35</span>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRESS BAR -->
+<div class="progress-wrap">
+  <div class="progress-inner">
+    <div class="progress-label">
+      <span>Expedition Progress</span>
+      <span>1009 of ~4,029 NM &mdash; 25%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill"></div>
+    </div>
+  </div>
+</div>
+
+<!-- JOURNAL CONTENT -->
+<div class="content-area">
+<p class="journal-para">After wintering at Camp Dubois and Cahokia, just across the river from St. Louis, William Clark and the crew finally started up the Missouri River on May 14, 1804.  It was Spring, and the Louisiana Territory was now officially part of the United States.  Captain Lewis stayed behind; he was organizing a trip for Native American leaders to head to Washington to meet President Jefferson, "their new father".  Clark headed up the Missouri to St. Charles, Missouri, the last major European settlement for the remainder of the journey.</p>
+
+<p class="journal-para">The Corps waited in St. Charles for Captain Lewis to arrive.  Lewis arrived by horseback on May 20.  They stayed a couple more days before heading out into the wilderness.</p>
+
+<p class="journal-para">On my journey today, I once again flew up the Mississippi River past St. Louis.  Other than the Gateway Arch, a couple of sports stadiums, and some modest skyscrapers, the city seems rather industrial near the river.</p>
+
+<div class="leg-photo">
+  <img src="Expedition3/Legs/Leg14-Arch.png" alt="Downtown St. Louis from the air with the Gateway Arch along the river">
+  <div class="photo-caption">Downtown St. Louis</div>
+</div>
+
+<p class="journal-para">Before long, I reached the confluence of the Mississippi and Missouri Rivers.  On the Illinois side is where Lewis &amp; Clark spent most of the winter.  I turned left at the fork, and started following my 3rd river of the trip.</p>
+
+<div class="leg-photo">
+  <img src="Expedition3/Legs/Leg14-Confluence.png" alt="The confluence of the Mississippi and Missouri Rivers from the air">
+  <div class="photo-caption">Reaching the Missouri River where it meets the Mississippi</div>
+</div>
+
+<p class="journal-para">I continued just past St. Charles to Creve Coeur Airport, still in St. Louis County.  This is very close to where Lewis &amp; Clark camped on May 21, 1804, exactly 222 years ago today.  As the crow flies, this is only 18 NM from St. Louis Downtown Airport.  Following the rivers, it's around 41 NM.  Unfortunately, I was greeted with a somewhat nasty crosswind of over 10 kts, which does a number on this little plane.  That is why I touched down in the grass just off the asphalt runway, before rolling onto the pavement and managing to straighten out the aircraft.  Not my finest landing!</p>
+
+<div class="leg-video">
+  <iframe src="https://www.youtube.com/embed/8DQyCty-5bs" title="Landing at Creve Coeur Airport in a crosswind"
+          frameborder="0" allowfullscreen></iframe>
+  <div class="video-caption">Landing at Creve Coeur Airport in a crosswind</div>
+</div>
+</div>
+
+<!-- HISTORICAL SECTION -->
+<div class="historical-wrap">
+  <div class="historical-inner">
+    <div class="historical-banner">What Lewis &amp; Clark were doing at this same point &mdash; May 14–21, 1804</div>
+    <h2>The Point of Departure</h2>
+    <p>After a winter of drilling, recruiting, and waiting out the formal handover of Upper Louisiana, the Corps of Discovery finally pushed off. On the afternoon of May 14, 1804, William Clark and roughly forty men shoved the keelboat and two pirogues into the current at the mouth of the Wood River, fired the swivel gun, and started up the Missouri. Meriwether Lewis was not aboard &mdash; he had stayed in St. Louis to close out the expedition&rsquo;s business, including arranging for a delegation of Osage chiefs to travel east under Pierre Chouteau and meet President Jefferson in Washington.</p>
+    <p>Clark led the boats the short distance up to St. Charles, the French-Canadian town the locals called &ldquo;Petite C&ocirc;te,&rdquo; reaching it on May 16. With about 450 inhabitants, it was the last established town the Corps would see for more than two years. They lingered several days, taking on a handful of experienced French boatmen &mdash; among them Pierre Cruzatte and Fran&ccedil;ois Labiche &mdash; and shifting cargo to better balance the heavily loaded vessels, while the townspeople welcomed the men to dances, dinners, and Sunday church.</p>
+    <p>Lewis rode overland from St. Louis, about twenty-five miles, and rejoined the party on the evening of May 20. The next afternoon, May 21, the captains set out from St. Charles together for the first time. A stiff headwind and heavy rain held them to barely three miles before they camped on the north bank, with storms rolling through the night &mdash; a fittingly stubborn welcome to the river that would test them all the way to the mountains.</p>
+    <p>The true edge of the settled world still lay a few days ahead. On May 25 the expedition passed La Charrette, a cluster of seven poor French houses near present-day Marthasville &mdash; what the journals call the last settlement of whites on the Missouri. Beyond it the maps gave out. Lewis would later designate the mouth of the Wood River as the expedition&rsquo;s official &ldquo;point of departure,&rdquo; but it was here, leaving St. Charles and then La Charrette behind, that the Corps finally rowed off the edge of the known.</p>
+  </div>
+</div>
+
+<!-- LEG NAV -->
+<div class="leg-nav">
+  <div class="leg-nav-inner">
+    <a href="#leg-13">&larr; Leg 13</a>
+    <a href="#leg-15">Leg 15 &rarr;</a>
+  </div>
+</div>
+
+</body>
+</html>
