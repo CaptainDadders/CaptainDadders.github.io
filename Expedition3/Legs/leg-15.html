@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leg 15: Beyond the Last Village — Captain Dadders</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1410;
+    --parchment: #f0ebe0;
+    --gold: #e8a020;
+    --gold-light: #f0c060;
+    --muted: #b0a888;
+    --muted-light: #d4cbb8;
+    --border: #4a4030;
+    --border-light: #c8b890;
+    --complete: #5ab87a;
+    --planning: #6a7890;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Crimson Pro", Georgia, serif;
+    background: var(--parchment);
+    color: var(--ink);
+    line-height: 1.7;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--ink);
+    color: var(--parchment);
+    padding: 3rem 1.5rem 2.5rem;
+    text-align: center;
+  }
+  .hero-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .eyebrow {
+    font-family: "Cinzel", serif;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+  .hero h1 {
+    font-family: "Cinzel", serif;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.6rem;
+    color: #fff;
+  }
+  .hero-sub {
+    font-size: 1rem;
+    color: var(--muted-light);
+    font-style: italic;
+  }
+
+  /* ── FLIGHT STRIP (canonical) ── */
+  .flight-strip-outer {
+    background: #111008;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .flight-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .strip-cell {
+    flex: 1;
+    min-width: 120px;
+    padding: 14px 18px;
+    border-right: 1px solid var(--border);
+  }
+  .strip-cell:last-child { border-right: none; }
+  .strip-label {
+    font-family: "Cinzel", serif;
+    font-size: 8px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    display: block;
+  }
+  .strip-value {
+    font-family: "Crimson Pro", serif;
+    font-size: 16px;
+    color: var(--parchment);
+    font-weight: 600;
+    display: block;
+  }
+  .strip-value.gold { color: var(--gold); }
+
+  /* ── PROGRESS BAR (canonical) ── */
+  .progress-wrap {
+    background: var(--ink);
+    padding: 16px 40px 20px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .progress-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .progress-label {
+    font-family: "Cinzel", serif;
+    font-size: 8px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .progress-track {
+    background: #2a2418;
+    border-radius: 2px;
+    height: 6px;
+  }
+  .progress-fill {
+    background: linear-gradient(90deg, var(--complete), #7ed4a0);
+    height: 6px;
+    border-radius: 2px;
+    width: 27%;
+  }
+
+  /* ── CONTENT / PARCHMENT ── */
+  .content-area {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+  }
+  .journal-para {
+    font-size: 1.1rem;
+    margin-bottom: 1.4rem;
+    color: var(--ink);
+  }
+  .leg-photo {
+    margin: 1.8rem 0;
+  }
+  .leg-photo img {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--border-light);
+    display: block;
+  }
+  .photo-caption {
+    font-family: "Cinzel", serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+  .leg-video {
+    margin: 1.8rem 0;
+  }
+  .leg-video iframe {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border: 1px solid var(--border-light);
+    display: block;
+  }
+  .video-caption {
+    font-family: "Cinzel", serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+
+  /* ── HISTORICAL SECTION ── */
+  .historical-wrap {
+    background: var(--ink);
+    color: var(--parchment);
+  }
+  .historical-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+  }
+  .historical-banner {
+    font-family: "Cinzel", serif;
+    font-size: 8px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .historical-inner h2 {
+    font-family: "Cinzel", serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--gold-light);
+    margin-bottom: 1rem;
+    letter-spacing: 0.04em;
+  }
+  .historical-inner p {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: #d8d0c0;
+    margin-bottom: 1rem;
+  }
+  .historical-inner p:last-child { margin-bottom: 0; }
+
+  /* ── LEG NAV (canonical) ── */
+  .leg-nav {
+    background: var(--ink);
+    border-top: 1px solid var(--border);
+    padding: 22px 40px;
+  }
+  .leg-nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .leg-nav a {
+    font-family: "Cinzel", serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 10px 18px;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+  .leg-nav a:hover {
+    background: var(--gold);
+    color: var(--ink);
+    border-color: var(--gold);
+  }
+
+  @media (max-width: 540px) {
+    .flight-strip { flex-direction: column; }
+    .strip-cell { border-right: none; border-bottom: 1px solid var(--border); }
+    .strip-cell:last-child { border-bottom: none; }
+    .leg-nav-inner { flex-direction: column; gap: 0.6rem; text-align: center; }
+    .progress-wrap { padding: 16px 20px 20px; }
+    .leg-nav { padding: 22px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Leg 15 &middot; May 22, 2026</div>
+    <h1>Beyond the Last Village</h1>
+    <div class="hero-sub">Creve Coeur Airport (1H0) &rarr; Eu-Wish Airport (MU68)</div>
+  </div>
+</div>
+
+<!-- FLIGHT STRIP -->
+<div class="flight-strip-outer">
+  <div class="flight-strip">
+    <div class="strip-cell">
+      <span class="strip-label">Date Flown</span>
+      <span class="strip-value">May 22, 2026</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">L&amp;C Dates</span>
+      <span class="strip-value gold">May 22&ndash;25, 1804</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Departure</span>
+      <span class="strip-value">1H0 &mdash; Creve Coeur, MO</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Arrival</span>
+      <span class="strip-value">MU68 &mdash; Hermann, MO</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Distance</span>
+      <span class="strip-value">59 NM</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Duration</span>
+      <span class="strip-value">0:41</span>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRESS BAR -->
+<div class="progress-wrap">
+  <div class="progress-inner">
+    <div class="progress-label">
+      <span>Expedition Progress</span>
+      <span>1,068 of ~4,029 NM &mdash; 27%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill"></div>
+    </div>
+  </div>
+</div>
+
+<!-- JOURNAL CONTENT -->
+<div class="content-area">
+<p class="journal-para">I took off early this morning to beat the weather coming in. My charts showed IFR conditions starting pretty early in the day, and I didn't want to fight with that. Bonus: I got to see the sunrise over the Missouri River.</p>
+
+<div class="leg-photo">
+  <img src="Expedition3/Legs/Leg15-Sunrise.png" alt="Sunrise over the Missouri River with the Veterans Memorial Bridge behind the aircraft">
+  <div class="photo-caption">Sunrise over the Missouri River &mdash; Veterans Memorial Bridge Behind Me</div>
+</div>
+
+<p class="journal-para">Even today, this stretch of the river feels remote. I passed a couple small towns, the most significant being Washington, Missouri, on the south bank of the river. Today, this is a town of about 15,000. Back in 1804, it was called St. John Meyer's Settlement, and was newly acquired as part of the Louisiana Purchase. Just across the river here, Daniel Boone had settled in 1799, with his family and followers. It is unknown if Lewis &amp; Clark met with him on their journey.</p>
+
+<div class="leg-photo">
+  <img src="Expedition3/Legs/Leg15-Washington.png" alt="Washington, Missouri and the Washington Bridge seen from the air">
+  <div class="photo-caption">Washington, Missouri and the Washington Bridge</div>
+</div>
+
+<p class="journal-para">Just a couple miles past here, on the other side of the river, was La Charette, the final white settlement that the Corps would see on their way to the Pacific. They stopped here on May 25, 1804 for one night. La Charette has since been wiped away by flooding, likely in 1842 or 1843.</p>
+
+<p class="journal-para">My landing spot was a bit further down the river &mdash; about 3 more days of travel for the Lewis &amp; Clark Expedition. I landed at Eu-Wish Airport (MU68), a small grass strip near the Gasconade River. I was pretty happy with the landing today.</p>
+
+<div class="leg-video">
+  <iframe src="https://www.youtube.com/embed/4rEoIhzGMsY" title="Landing at Eu-Wish Airport near the Gasconade River" frameborder="0" allowfullscreen></iframe>
+  <div class="video-caption">Landing at Eu-Wish Airport near the Gasconade River</div>
+</div>
+</div>
+
+<!-- HISTORICAL SECTION -->
+<div class="historical-wrap">
+  <div class="historical-inner">
+    <div class="historical-banner">What Lewis &amp; Clark were doing at this same point &mdash; May 22&ndash;25, 1804</div>
+    <h2>A Knife's Edge, and the Last Village</h2>
+    <p>These four days were a hard upstream slog. Clark's journals return again and again to the same complaint &mdash; "hard water" &mdash; as the swift, muddy current fought the boats for every mile. On May 23, 1804, near the mouth of the Femme Osage, or "Osage Woman's River," the Corps passed Tavern Cave, a broad limestone hollow in the bluffs whose walls were already crowded with names and figures left by generations of French and Indian travelers. Clark went in and added his own name to the rock.</p>
+
+    <p>Lewis, meanwhile, climbed the pinnacles above the cave &mdash; cliffs that rise some three hundred feet straight off the river &mdash; to survey the surrounding country. At the summit he slipped and nearly plunged to his death, catching himself only by driving in his knife to arrest the slide. It was just nine days into the expedition proper. Had he fallen, the whole enterprise might have ended that afternoon on a rock face above the Missouri.</p>
+
+    <p>The river stayed dangerous. The next day, May 24, the heavily loaded barge was nearly lost at a vicious reach the men called the Devil's Race Ground: a caving bank and shifting sandbars caught the boat, snapped its tow rope, and swung it broadside to the current before swimmers could carry a line to shore. They named that night's camp Retrograde Bend, having been forced to fall back and find another channel.</p>
+
+    <p>On May 25 they reached La Charette &mdash; perhaps seven small log houses near the mouth of Charette Creek, and the last white settlement the Corps would see until their return more than two years later. The villagers, French-speaking and poor, shared milk and eggs, and here the captains met the trader R&eacute;gis Loisel, newly down from Cedar Island far up in Sioux country, who supplied valuable intelligence about the river and the nations ahead.</p>
+
+    <p>Somewhere in the surrounding hills lived an aging Daniel Boone, who had come west into Spanish Louisiana around 1799; no record says whether the captains ever met the old frontiersman. Boone died nearby in 1820 &mdash; the same year the only portrait of him ever taken from life was painted just upriver, near present-day Marthasville. La Charette itself did not outlast the river that gave it purpose: the Missouri swept the village away in the floods of 1842&ndash;43, and Marthasville rose close by to take its place.</p>
+
+    <div class="leg-photo" style="max-width:340px;margin:1.8rem auto 0;">
+      <img src="Expedition3/Legs/Leg15-DanielBoone.jpg" alt="Portrait of Daniel Boone by Chester Harding, 1820">
+      <div class="photo-caption">Daniel Boone, painted from life by Chester Harding in June 1820 near Marthasville &mdash; the only portrait of Boone made in his lifetime. Massachusetts Historical Society (public domain).</div>
+    </div>
+  </div>
+</div>
+
+<!-- LEG NAV -->
+<div class="leg-nav">
+  <div class="leg-nav-inner">
+    <a href="#leg-14">&larr; Leg 14</a>
+    <a href="#leg-16">Leg 16 &rarr;</a>
+  </div>
+</div>
+
+</body>
+</html>
