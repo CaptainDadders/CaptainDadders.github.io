@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  CAPTAIN DADDERS — LEG TEMPLATE
+  ============================================================================
+  This template is the CANONICAL source for every leg page. CSS, fonts, and
+  structure are locked here. To produce a leg, fill the {{PLACEHOLDERS}} only.
+
+  PLACEHOLDERS (alphabetical):
+    {{ARR_CODE}}          e.g.  KEHR
+    {{ARR_CODE_CITY}}     e.g.  KEHR — Henderson, KY
+    {{ARR_NAME}}          e.g.  Henderson City-County Airport
+    {{CUMULATIVE_NM}}     e.g.  672
+    {{DATE_FLOWN}}        e.g.  May 7, 2026
+    {{DEP_CODE}}          e.g.  KY8
+    {{DEP_CODE_CITY}}     e.g.  KY8 — Lewisport, KY
+    {{DEP_NAME}}          e.g.  Lewis Field
+    {{DISTANCE_NM}}       e.g.  49
+    {{DURATION}}          e.g.  0:45
+    {{HISTORICAL_BODY}}   one or more <p>...</p> blocks
+    {{HISTORICAL_TITLE}}  e.g.  A River Town Already Waiting
+    {{JOURNAL_BODY}}      assembled <p>/photo/video blocks (see snippets below)
+    {{LC_DATES}}          e.g.  Oct 30 – Nov 2, 1803
+    {{LEG_NUM}}           bare leg number, e.g.  9
+    {{LEG_NUM_PADDED}}    zero-padded, e.g.  09
+    {{LEG_TITLE}}         e.g.  Into the Setting Sun
+    {{NEXT_NUM}}          bare number for next leg
+    {{NEXT_PAD}}          zero-padded for next leg
+    {{PREV_NUM}}          bare number for previous leg
+    {{PREV_PAD}}          zero-padded for previous leg
+    {{PROGRESS_PCT}}      whole-number percent, e.g.  17
+    {{TOTAL_NM}}          e.g.  4,029   (canonical reference total)
+
+  JOURNAL_BODY SNIPPETS — assemble in the exact order given in the kickoff prompt.
+    Paragraph:
+      <p class="journal-para">TEXT</p>
+
+    Photo:
+      <div class="leg-photo">
+        <img src="Expedition3/Legs/FILENAME.png" alt="ALT_TEXT">
+        <div class="photo-caption">CAPTION</div>
+      </div>
+
+    Video (YouTube embed):
+      <div class="leg-video">
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="TITLE"
+                frameborder="0" allowfullscreen></iframe>
+        <div class="video-caption">CAPTION</div>
+      </div>
+
+  HISTORICAL_BODY: just one or more <p>...</p> blocks, no class needed.
+  ============================================================================
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leg 17: An Eventful Passage — Captain Dadders</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1410;
+    --parchment: #f0ebe0;
+    --gold: #e8a020;
+    --gold-light: #f0c060;
+    --muted: #b0a888;
+    --muted-light: #d4cbb8;
+    --border: #4a4030;
+    --border-light: #c8b890;
+    --complete: #5ab87a;
+    --planning: #6a7890;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Crimson Pro", Georgia, serif;
+    background: var(--parchment);
+    color: var(--ink);
+    line-height: 1.7;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--ink);
+    color: var(--parchment);
+    padding: 3rem 1.5rem 2.5rem;
+    text-align: center;
+  }
+  .hero-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .eyebrow {
+    font-family: "Cinzel", serif;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+  .hero h1 {
+    font-family: "Cinzel", serif;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.6rem;
+    color: #fff;
+  }
+  .hero-sub {
+    font-size: 1rem;
+    color: var(--muted-light);
+    font-style: italic;
+  }
+
+  /* ── FLIGHT STRIP (canonical) ── */
+  .flight-strip-outer {
+    background: #111008;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .flight-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .strip-cell {
+    flex: 1;
+    min-width: 120px;
+    padding: 14px 18px;
+    border-right: 1px solid var(--border);
+  }
+  .strip-cell:last-child { border-right: none; }
+  .strip-label {
+    font-family: "Cinzel", serif;
+    font-size: 8px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    display: block;
+  }
+  .strip-value {
+    font-family: "Crimson Pro", serif;
+    font-size: 16px;
+    color: var(--parchment);
+    font-weight: 600;
+    display: block;
+  }
+  .strip-value.gold { color: var(--gold); }
+
+  /* ── PROGRESS BAR (canonical) ── */
+  .progress-wrap {
+    background: var(--ink);
+    padding: 16px 40px 20px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .progress-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .progress-label {
+    font-family: "Cinzel", serif;
+    font-size: 8px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .progress-track {
+    background: #2a2418;
+    border-radius: 2px;
+    height: 6px;
+  }
+  .progress-fill {
+    background: linear-gradient(90deg, var(--complete), #7ed4a0);
+    height: 6px;
+    border-radius: 2px;
+    width: 30%;
+  }
+
+  /* ── CONTENT / PARCHMENT ── */
+  .content-area {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+  }
+  .journal-para {
+    font-size: 1.1rem;
+    margin-bottom: 1.4rem;
+    color: var(--ink);
+  }
+  .leg-photo {
+    margin: 1.8rem 0;
+  }
+  .leg-photo img {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--border-light);
+    display: block;
+  }
+  .photo-caption {
+    font-family: "Cinzel", serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+  .leg-video {
+    margin: 1.8rem 0;
+  }
+  .leg-video iframe {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border: 1px solid var(--border-light);
+    display: block;
+  }
+  .video-caption {
+    font-family: "Cinzel", serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+
+  /* ── HISTORICAL SECTION ── */
+  .historical-wrap {
+    background: var(--ink);
+    color: var(--parchment);
+  }
+  .historical-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+  }
+  .historical-banner {
+    font-family: "Cinzel", serif;
+    font-size: 8px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .historical-inner h2 {
+    font-family: "Cinzel", serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--gold-light);
+    margin-bottom: 1rem;
+    letter-spacing: 0.04em;
+  }
+  .historical-inner p {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: #d8d0c0;
+    margin-bottom: 1rem;
+  }
+  .historical-inner p:last-child { margin-bottom: 0; }
+
+  /* ── LEG NAV (canonical) ── */
+  .leg-nav {
+    background: var(--ink);
+    border-top: 1px solid var(--border);
+    padding: 22px 40px;
+  }
+  .leg-nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .leg-nav a {
+    font-family: "Cinzel", serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 10px 18px;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+  .leg-nav a:hover {
+    background: var(--gold);
+    color: var(--ink);
+    border-color: var(--gold);
+  }
+
+  @media (max-width: 540px) {
+    .flight-strip { flex-direction: column; }
+    .strip-cell { border-right: none; border-bottom: 1px solid var(--border); }
+    .strip-cell:last-child { border-bottom: none; }
+    .leg-nav-inner { flex-direction: column; gap: 0.6rem; text-align: center; }
+    .progress-wrap { padding: 16px 20px 20px; }
+    .leg-nav { padding: 22px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Leg 17 &middot; May 23, 2026</div>
+    <h1>An Eventful Passage</h1>
+    <div class="hero-sub">Jefferson City Memorial Airport (KJEF) &rarr; Famuliner Farms (71MO)</div>
+  </div>
+</div>
+
+<!-- FLIGHT STRIP -->
+<div class="flight-strip-outer">
+  <div class="flight-strip">
+    <div class="strip-cell">
+      <span class="strip-label">Date Flown</span>
+      <span class="strip-value">May 23, 2026</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">L&amp;C Dates</span>
+      <span class="strip-value gold">June 4&ndash;18, 1804</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Departure</span>
+      <span class="strip-value">KJEF &mdash; Jefferson City, MO</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Arrival</span>
+      <span class="strip-value">71MO &mdash; Wakenda, MO</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Distance</span>
+      <span class="strip-value">103 NM</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Duration</span>
+      <span class="strip-value">1:12</span>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRESS BAR -->
+<div class="progress-wrap">
+  <div class="progress-inner">
+    <div class="progress-label">
+      <span>Expedition Progress</span>
+      <span>1,202 of ~4,029 NM &mdash; 30%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill"></div>
+    </div>
+  </div>
+</div>
+
+<!-- JOURNAL CONTENT -->
+<div class="content-area">
+  <div class="leg-photo">
+    <img src="Expedition3/Legs/Leg17-JeffersonCity.png" alt="The Missouri State Capitol seen from the air above the Missouri River at Jefferson City">
+    <div class="photo-caption">Missouri State Capitol Building</div>
+  </div>
+  <p class="journal-para">An eventful flight this afternoon. Took off from Jefferson City after spending a few hours there. Got a good look at the State Capitol Building. I understand there is a Lewis &amp; Clark Monument right outside the Capitol Building, and the statue even includes Seaman, Lewis&rsquo;s dog. But I was unable to spot it from the air.</p>
+  <p class="journal-para">Leaving Jefferson City, the weather was fair. But soon after that, I ran into rain and thunderstorms for a good portion of the flight. Visibility remained ok, and I continued flying up the river at an altitude of 2,000&rsquo;.</p>
+  <div class="leg-video">
+    <iframe src="https://www.youtube.com/embed/Rk1ihoR3q90" title="Flying through thunderstorms over the Missouri River"
+            frameborder="0" allowfullscreen></iframe>
+    <div class="video-caption">Flying through thunderstorms over the Missouri River</div>
+  </div>
+  <p class="journal-para">I passed the town of Boonville, Missouri, named after the sons of Daniel Boone, who had a salt business nearby. The town wasn&rsquo;t settled until 1810, so there would have been nothing there when Lewis &amp; Clark sailed by.</p>
+  <div class="leg-photo">
+    <img src="Expedition3/Legs/Leg17-Boonville.png" alt="The town of Boonville, Missouri, on the south bank of the Missouri River, seen from the air">
+    <div class="photo-caption">Boonville, Missouri</div>
+  </div>
+  <p class="journal-para">The weather cleared, but then as I approached my destination, it became stormy again. My initial approach was rather treacherous, as the wind was playing havoc with the little plane. A barf bag might have been useful.</p>
+  <p class="journal-para">Fortunately, the winds cleared up before final approach, and it was a decent landing, other than the seemingly normal ground-looping after touchdown. I landed at Famuliner Farms, Missouri. Nobody came to greet me, and I found no buildings. I will have to use the sleeping bag in the plane tonight.</p>
+  <div class="leg-video">
+    <iframe src="https://www.youtube.com/embed/VPNpVr0jIvA" title="Landing at Famuliner Farms, MO"
+            frameborder="0" allowfullscreen></iframe>
+    <div class="video-caption">Landing at Famuliner Farms, MO</div>
+  </div>
+</div>
+
+<!-- HISTORICAL SECTION -->
+<div class="historical-wrap">
+  <div class="historical-inner">
+    <div class="historical-banner">What Lewis &amp; Clark were doing at this same point &mdash; June 4&ndash;18, 1804</div>
+    <h2>A Broken Mast and Hard Water</h2>
+    <p>The monument the pilot couldn&rsquo;t spot from the air marks one very particular day. On June 4, 1804 &mdash; the date that bronze grouping on the Capitol grounds commemorates &mdash; the Corps of Discovery was working up this same bend of the river, and it was here that the voyage nearly turned comic, and very nearly turned costly. Running close to shore under a rare following wind, the heavy barge slid beneath a leaning sycamore; the mast caught fast in a limb and snapped. Sergeant John Ordway, at the helm, took the blame squarely. Clark noted only that the mast broke &ldquo;by the bout running under a tree,&rdquo; and named the little stream they passed Mast Creek. The boat was the largest yet taken up the Missouri &mdash; fifty-five feet long, its single mast standing some thirty feet above the deck &mdash; and the repair cost them the rest of the day. That afternoon Clark climbed a nearby height he called Mine Hill, chasing a rumor of lead ore in the rocks. He found none.</p>
+    <div class="leg-photo">
+      <img src="Expedition3/Legs/Leg17-OrdwaysMast.png" alt="Painting of the expedition&rsquo;s keelboat caught beneath an overhanging sycamore as its mast breaks, with the crew reacting on deck">
+      <div class="photo-caption">&ldquo;Ordway&rsquo;s Mast, 1804&rdquo; &mdash; the barge runs beneath a leaning sycamore and the mast snaps, near present-day Jefferson City. Painting by Michael Haynes &mdash; www.mhaynesart.com</div>
+    </div>
+    <p>The broken mast mattered more than it might seem. The very next morning a fine wind came up &mdash; just the kind that could have carried them upriver &mdash; and they could make no use of it. For most of this stretch the Missouri had to be fought rather than sailed: poled from the deck, dragged with a tow rope from the bank, rowed against a current that ran faster than a man could walk. And the river fought back. Its channel was a gauntlet of sawyers &mdash; whole trees anchored underwater, heaving up and down in the current &mdash; along with shifting sandbars and quicksand that moved while the men watched. The worst came on June 9 at a wooded bluff called Arrow Rock, where the river narrowed and quickened: the barge struck a drifting log, fouled on a whole raft of them, and swung broadside, an instant from rolling over. Clark called it &ldquo;a disagreeable and Dangerous situation.&rdquo; Men leapt into the water, swam a line ashore, and hauled the boat clear by main strength &mdash; after which Clark wrote, with plain pride, that his party was not inferior to any that had ever worked the waters of the Missouri.</p>
+    <p>Even the banks were a hazard. The Missouri undercut its own shores without pause, and great slabs of earth and standing timber would calve into the water with no warning &mdash; sometimes just where the men had been straining at the tow rope a moment before. The journals for June 15 note submerged logs and crumbling banks in the same breath. It was the kind of day that wore the expedition down a yard at a time.</p>
+    <p>For all its menace, the river was also a road, and the Corps was not alone on it. On June 5, around eleven in the morning, they met two French traders drifting down from the Kansas. A week later, on June 12 near present-day Dalton, they fell in with a larger party &mdash; two canoes coming downstream, one heaped with furs, the other carrying some three hundred pounds of buffalo tallow. Among the boatmen was an old hand named Pierre Dorion, who had lived twenty years among the Yankton Sioux. The captains questioned him so eagerly that, as Clark admitted, it grew too late to travel any further that day. They bought the grease, and they prevailed on old Dorion to turn his canoe around and come back upriver as their interpreter to the Sioux &mdash; sending one of their own men home in his place.</p>
+    <p>The land itself kept offering evidence of the people who had lived along it. Early on, June 5, scouts cut the fresh trail of about ten Indians, and Clark guessed at a Sauk war party bound against the Osage. On June 13, just above the mouth of the Grand River, they passed a quiet prairie that had once held a village of the Missouri Indians &mdash; the nation that gave the river its name, once, in Clark&rsquo;s words, &ldquo;the most noumerous&rdquo; people of that whole country, and the very ground where some three hundred of them had been killed by the Sauks. By 1804 the Missouri were all but gone, perhaps eighty souls living under the protection of the Otoe on the Platte. Three days later Clark spent a long morning crossing a beautiful prairie in search of an old French fort marked on the expedition&rsquo;s map &mdash; Fort Orleans, which the French had raised on this river some eighty years earlier and which the grass had long since swallowed.</p>
+    <p>By the time the Corps reached this reach of the river &mdash; the long bend near present-day Waverly and Wakenda &mdash; two things had become facts of daily life. The first was good hunting: deer were everywhere on the banks, and here the hunters began bringing in bears as well, five deer and a bear on a single day. The second was the insects. Ticks and mosquitoes had turned from nuisance into torment, and the men adopted the obvious frontier remedy, smearing themselves head to foot with bear grease to keep the clouds of them off. The labor, meanwhile, was unending. The tow rope was wearing through, so from June 16 to 18 they made camp &mdash; &ldquo;Rope Walk Camp&rdquo; &mdash; and spent two days twisting six hundred feet of new line from a spare cable Lewis had bought back in Pittsburgh, and cutting twenty new oars. The French engag&eacute;s, used to eating five or six times a day, asked for more food and were sharply refused. Boils and dysentery were moving through the party, which Clark blamed on the river water &mdash; and Clark himself was nursing a cold, caught back at the Osage, that he reported simply &ldquo;Continues verry bad.&rdquo; It had been, for the Corps as for the pilot two centuries later, an eventful passage.</p>
+  </div>
+</div>
+
+<!-- LEG NAV -->
+<div class="leg-nav">
+  <div class="leg-nav-inner">
+    <a href="#leg-16">&larr; Leg 16</a>
+    <a href="#leg-18">Leg 18 &rarr;</a>
+  </div>
+</div>
+
+</body>
+</html>
