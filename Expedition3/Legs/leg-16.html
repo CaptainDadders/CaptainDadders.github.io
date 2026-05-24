@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leg 16: The River of the Osage — Captain Dadders</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1410;
+    --parchment: #f0ebe0;
+    --gold: #e8a020;
+    --gold-light: #f0c060;
+    --muted: #b0a888;
+    --muted-light: #d4cbb8;
+    --border: #4a4030;
+    --border-light: #c8b890;
+    --complete: #5ab87a;
+    --planning: #6a7890;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Crimson Pro", Georgia, serif;
+    background: var(--parchment);
+    color: var(--ink);
+    line-height: 1.7;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--ink);
+    color: var(--parchment);
+    padding: 3rem 1.5rem 2.5rem;
+    text-align: center;
+  }
+  .hero-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .eyebrow {
+    font-family: "Cinzel", serif;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+  .hero h1 {
+    font-family: "Cinzel", serif;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.6rem;
+    color: #fff;
+  }
+  .hero-sub {
+    font-size: 1rem;
+    color: var(--muted-light);
+    font-style: italic;
+  }
+
+  /* ── FLIGHT STRIP (canonical) ── */
+  .flight-strip-outer {
+    background: #111008;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .flight-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .strip-cell {
+    flex: 1;
+    min-width: 120px;
+    padding: 14px 18px;
+    border-right: 1px solid var(--border);
+  }
+  .strip-cell:last-child { border-right: none; }
+  .strip-label {
+    font-family: "Cinzel", serif;
+    font-size: 8px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    display: block;
+  }
+  .strip-value {
+    font-family: "Crimson Pro", serif;
+    font-size: 16px;
+    color: var(--parchment);
+    font-weight: 600;
+    display: block;
+  }
+  .strip-value.gold { color: var(--gold); }
+
+  /* ── PROGRESS BAR (canonical) ── */
+  .progress-wrap {
+    background: var(--ink);
+    padding: 16px 40px 20px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .progress-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .progress-label {
+    font-family: "Cinzel", serif;
+    font-size: 8px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .progress-track {
+    background: #2a2418;
+    border-radius: 2px;
+    height: 6px;
+  }
+  .progress-fill {
+    background: linear-gradient(90deg, var(--complete), #7ed4a0);
+    height: 6px;
+    border-radius: 2px;
+    width: 27%;
+  }
+
+  /* ── CONTENT / PARCHMENT ── */
+  .content-area {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+  }
+  .journal-para {
+    font-size: 1.1rem;
+    margin-bottom: 1.4rem;
+    color: var(--ink);
+  }
+  .leg-photo {
+    margin: 1.8rem 0;
+  }
+  .leg-photo img {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--border-light);
+    display: block;
+  }
+  .photo-caption {
+    font-family: "Cinzel", serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+  .leg-video {
+    margin: 1.8rem 0;
+  }
+  .leg-video iframe {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border: 1px solid var(--border-light);
+    display: block;
+  }
+  .video-caption {
+    font-family: "Cinzel", serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+
+  /* ── HISTORICAL SECTION ── */
+  .historical-wrap {
+    background: var(--ink);
+    color: var(--parchment);
+  }
+  .historical-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+  }
+  .historical-banner {
+    font-family: "Cinzel", serif;
+    font-size: 8px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .historical-inner h2 {
+    font-family: "Cinzel", serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--gold-light);
+    margin-bottom: 1rem;
+    letter-spacing: 0.04em;
+  }
+  .historical-inner p {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: #d8d0c0;
+    margin-bottom: 1rem;
+  }
+  .historical-inner p:last-child { margin-bottom: 0; }
+
+  /* ── LEG NAV (canonical) ── */
+  .leg-nav {
+    background: var(--ink);
+    border-top: 1px solid var(--border);
+    padding: 22px 40px;
+  }
+  .leg-nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .leg-nav a {
+    font-family: "Cinzel", serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 10px 18px;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+  .leg-nav a:hover {
+    background: var(--gold);
+    color: var(--ink);
+    border-color: var(--gold);
+  }
+
+  @media (max-width: 540px) {
+    .flight-strip { flex-direction: column; }
+    .strip-cell { border-right: none; border-bottom: 1px solid var(--border); }
+    .strip-cell:last-child { border-bottom: none; }
+    .leg-nav-inner { flex-direction: column; gap: 0.6rem; text-align: center; }
+    .progress-wrap { padding: 16px 20px 20px; }
+    .leg-nav { padding: 22px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Leg 16 &middot; May 23, 2026</div>
+    <h1>The River of the Osage</h1>
+    <div class="hero-sub">Eu-Wish Airport (MU68) &rarr; Jefferson City Memorial Airport (KJEF)</div>
+  </div>
+</div>
+
+<!-- FLIGHT STRIP -->
+<div class="flight-strip-outer">
+  <div class="flight-strip">
+    <div class="strip-cell">
+      <span class="strip-label">Date Flown</span>
+      <span class="strip-value">May 23, 2026</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">L&amp;C Dates</span>
+      <span class="strip-value gold">May 26 &ndash; June 3, 1804</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Departure</span>
+      <span class="strip-value">MU68 &mdash; Hermann, MO</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Arrival</span>
+      <span class="strip-value">KJEF &mdash; Jefferson City, MO</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Distance</span>
+      <span class="strip-value">31 NM</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Duration</span>
+      <span class="strip-value">0:25</span>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRESS BAR -->
+<div class="progress-wrap">
+  <div class="progress-inner">
+    <div class="progress-label">
+      <span>Expedition Progress</span>
+      <span>1,099 of ~4,029 NM &mdash; 27%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill"></div>
+    </div>
+  </div>
+</div>
+
+<!-- JOURNAL CONTENT -->
+<div class="content-area">
+<div class="leg-photo">
+  <img src="Expedition3/Legs/Leg16-Osage.png" alt="The Osage River joining the Missouri River, seen from the air">
+  <div class="photo-caption">The Osage River meets the Missouri</div>
+</div>
+
+<p class="journal-para">Today I flew from the Gasconade River to just past the Osage River in Missouri. I landed at Jefferson City Memorial Airport (KJEF). Did not pass any towns of note (I flew past Chamois but didn&rsquo;t even notice it). The flight took me 25 minutes and was rather uneventful. It took 6 days for the Lewis &amp; Clark Expedition to cover the same portion of the river. This was partly due to having to fight against strong currents, partly due to having to wait for a lost hunter, and partly due to spending an extra day at the mouth of the Osage.</p>
+
+<p class="journal-para">The airport was downstream from Jefferson City, so I did not see the city. On my next flight I shall photograph the Capitol Building and any other interesting landmarks.</p>
+
+<p class="journal-para">The landing seemed quite perfect up until touchdown, when I experienced some ground-looping. Managed to keep the plane on the asphalt. Not worth uploading.</p>
+</div>
+
+<!-- HISTORICAL SECTION -->
+<div class="historical-wrap">
+  <div class="historical-inner">
+    <div class="historical-banner">What Lewis &amp; Clark were doing at this same point &mdash; May 26 &ndash; June 3, 1804</div>
+    <h2>A Warlike People, Not Yet Seen</h2>
+<p>Through the last days of May the Corps hauled and poled against a strong, rising current. They had stopped at the mouth of the Gasconade River, and there, on May 29, they lost the better part of a day&mdash;spreading soaked goods out to dry and waiting on Private Joseph Whitehouse, who had gone off to hunt and not come back. By late afternoon they gave him up, left a pirogue behind to wait, and pushed on; they had made only a few miles, to a camp at Deer Creek, when guns sounded down the river and they answered with the boat&rsquo;s swivel gun. Whitehouse came in that night. It was his wandering, as much as the current, that cost the expedition a day on this stretch of water.</p>
+
+<p>His was not the only absence. Three days earlier, George Drouillard and John Shields had been sent ahead with the expedition&rsquo;s two horses, to hunt overland and meet the boats downstream&mdash;and they had missed the rendezvous entirely, leaving the party to go on without them. The two stories are easy to tangle, but they were separate troubles: Whitehouse, a hunter gone a few hours too long at the Gasconade; Drouillard and Shields, two men adrift somewhere in the country to the north, the horses with them.</p>
+
+<p>On June 1, after that long fight with the water, the boats reached the mouth of the Osage River at four in the afternoon&mdash;one of the great Indian trail crossings of the lower Missouri. Clark climbed the point of land between the two rivers and looked out on &ldquo;a delightfull prospect&rdquo; up and down the Missouri and up the Osage.</p>
+
+<p>They stayed through the next day. Lewis sat up until midnight over his instruments&mdash;the men had felled the trees on the point to clear the sky&mdash;while Clark measured the rivers: the Missouri 875 yards wide at the junction, the Osage 397. Lewis gathered a specimen of wild ginger. And here, at last, Drouillard and Shields came in&mdash;gone seven days and &ldquo;much worsted,&rdquo; but carrying a flattering account of the country they had crossed to the north.</p>
+
+<p>The river took its name from the Osage, or Wahzhazhe, whom Sergeant Gass set down as &ldquo;of a large size and well proportioned, and a very warlike people.&rdquo; What the captains knew of them they had gathered over the winter in St. Louis, much of it from the Chouteau brothers, who had held the Osage trade since the 1770s: a numerous and powerful nation, divided into the Grand Osages and the Little Osages, whose villages lay more than a hundred miles up this river, near its three forks. Not one of them appeared at the mouth.</p>
+
+<p>That was the rule so far, not the exception. Weeks above the mouth of the Missouri, the Corps had yet to sit down in council with a single one of the river nations. Their contact had been friendly and fleeting&mdash;a Kickapoo hunting party that traded four deer for two quarts of whiskey, and French traders drifting down with news and rumor. Whatever waited among the great nations upriver, it had not yet begun.</p>
+
+<p>The Osage of 1804 ran free, a prairie river close to four hundred yards across at its mouth. Today it is among the most heavily engineered rivers in Missouri: Bagnell Dam, thrown across it in 1931, drowned the valley to make the Lake of the Ozarks, and Truman Dam, finished in 1979, holds back the long reach above. The old village grounds near the three forks now lie beyond or beneath those reservoirs&mdash;and even the confluence has crept, the rocky point where Clark stood to take in his prospect now sitting some six miles upstream of where the Osage meets the Missouri today.</p>
+  </div>
+</div>
+
+<!-- LEG NAV -->
+<div class="leg-nav">
+  <div class="leg-nav-inner">
+    <a href="#leg-15">&larr; Leg 15</a>
+    <a href="#leg-17">Leg 17 &rarr;</a>
+  </div>
+</div>
+
+</body>
+</html>

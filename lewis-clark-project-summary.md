@@ -173,6 +173,18 @@ Two background sources are available for every leg — fetch when they'd add use
 
 Anything drawn from these that Claude is uncertain about still gets the ⚠️ FLAG treatment.
 
+### Historical section images
+A period image can strengthen the historical section, but **only when it genuinely fits and adds to the narrative** — not every leg needs one. When researching a leg, check for a suitable image; if nothing fits well, skip it. Two approved sources:
+
+1. **Public domain images** — Library of Congress, Wikimedia Commons, NPS, public-domain paintings/engravings (e.g. Karl Bodmer, George Catlin), period maps and lithographs. Confirm the work is genuinely public domain (pre-1929 / artist died long enough ago). Caption with the work's title, artist/date, and holding institution.
+
+2. **Michael Haynes paintings** — the pilot has the artist's **permission** to use his Lewis & Clark artwork on the site. Many of his paintings depict specific dated expedition moments, several of them right on this route (e.g. *Ordway's Mast, 1804* near Jefferson City; *Near Miss, 1804*, the keelboat nearly capsizing on a sandbar). Some appear on the lewis-clark.org day-by-day pages, but **not all of them are there — always also check his gallery directly:** `https://www.mhaynesart.com/lewisandclark`.
+   - **Attribution is required.** Per the artist: *"Please do credit me; Michael Haynes — www.mhaynesart.com."* Any caption using a Haynes image must credit `Michael Haynes — www.mhaynesart.com`.
+
+**Earmarked image** (use when the matching leg comes up): `https://www.mhaynesart.com/lewisandclark/jcnh09d0ygw1x1khf6w9456wuar26y` — the link resolves to his L&C gallery, so confirm the exact painting/leg with the pilot when planning that leg.
+
+As with prior legs, historical-section images are embedded as **local assets** (`Expedition3/Legs/LegNN-Name.jpg`) that the pilot saves and uploads; Claude proposes the image + source and references the local path in the HTML.
+
 ### Prologue exception
 `leg-00-prologue.html` does NOT use the template — it has its own structure (`display:inline-flex` flight strip, no progress bar, no leg-nav). Don't try to retro-fit the template to it.
 
@@ -250,11 +262,13 @@ For airport snapping, concatenate all 5 segments into one continuous polyline.
 
 ## Historical Resources
 - **Undaunted Courage** by Stephen Ambrose — reading in sync with flying
-- **Primary journals** (fetch every leg): `https://lewisandclarkjournals.unl.edu/item/lc.jrn.YYYY-MM-DD`
-- **Day-by-day log** (fetch every leg): `https://lewis-clark.org/1803/08/31/` — replace date for each day of interest; calendar index at `https://lewis-clark.org/day-by-day/calendar/`
-- Public domain images: Karl Bodmer, George Catlin, Library of Congress, Wikimedia Commons
+- **Primary journals** (check every leg): `https://lewisandclarkjournals.unl.edu/item/lc.jrn.YYYY-MM-DD`
+- **Day-by-day log** (check every leg): `https://lewis-clark.org/1803/08/31/` — replace date for each day of interest; calendar index at `https://lewis-clark.org/day-by-day/calendar/`
+- **Michael Haynes L&C gallery** (check every leg for a fitting image): `https://www.mhaynesart.com/lewisandclark` — usable with permission; **must credit** `Michael Haynes — www.mhaynesart.com`. See "Historical section images" above.
+- Public domain images: Karl Bodmer, George Catlin, Library of Congress, NPS, Wikimedia Commons
 - 1812 Cincinnati image: https://upload.wikimedia.org/wikipedia/commons/5/53/Cincinnati_I.jpg
 - 1817 Pittsburgh image: https://upload.wikimedia.org/wikipedia/commons/0/06/View_of_the_City_of_Pittsburgh_in_1817.jpg
+- Image rule of thumb: only include a historical image when it fits well and adds to the narrative — never force one.
 
 ---
 
