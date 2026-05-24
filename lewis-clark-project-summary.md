@@ -163,6 +163,7 @@ Snippet patterns for journal body (paragraph, photo, video) are documented at th
 - Third person only — never "you"/"your". Use "this leg" or "the Corps."
 - Banner format: `What Lewis & Clark were doing at this same point — [LC_DATES]` (handled by template).
 - Draw on `LEG_NOTES[slug].facts` for verified material.
+- **⚠️ Date boundary rule:** The L&C date range must not exceed the geographic coverage of the leg. Before writing the historical section, identify the last campsite the Corps occupied at or before the arrival airport (use `camps_slim.json`) and use that camp's date as the L&C end date. Do **not** include events from later dates even if they occurred nearby or make for a tidier narrative. The historical section must stop where the leg stops.
 
 ### Historical research sources
 Two background sources are available for every leg — fetch when they'd add useful detail or help verify a claim, but no need to cite them every time. Since most flights cover multiple L&C days, fetch the full date range (one request per day) rather than just a single entry:
@@ -282,6 +283,7 @@ For airport snapping, concatenate all 5 segments into one continuous polyline.
 - [ ] Fix "directly below your flight path" → "directly below the flight path for this leg" in leg-01.html historical section
 - [ ] Backfill `LEG_NOTES[*].covered` for legs 1–7 (currently empty; fill if/when bored — not blocking)
 - [ ] Optional: backfill `FLIGHT_LEGS[*].nm` historical values into the per-leg HTML pages for legs 1–7 (current legs-data.js values are correct; published HTML pages still show old values)
+- [ ] **Leg 17 historical overreach (known issue, already published):** The L&C date header was corrected to June 4–15, 1804, but the historical narrative still references June 16–18 events (Rope Walk Camp, new towline, new oars). The writeup is published as-is and will not be rewritten. This was the process failure that prompted the date boundary rule above.
 - [ ] Historical map overlay toggle (1803 vs modern) — David Rumsey — backlog
 - [ ] Aircraft easter egg for Exp I (Bonanza) and Exp II (PC-12) — needs screenshots — backlog
 
