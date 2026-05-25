@@ -252,8 +252,8 @@ const FLIGHT_LEGS = [
     duration: "1:12"
   },
   {
-    lat: 39.11326,
-    lng: -94.59099,
+    lat: 39.12294,
+    lng: -94.59283,
     label: "Leg 18: A Fine Place for a Fort",
     location: "71MO \u2192 KMKC \u00b7 Wakenda MO to Kansas City MO",
     date: "May 24, 2026",
