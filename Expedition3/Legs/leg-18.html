@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leg 18: A Fine Place for a Fort — Captain Dadders</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1410;
+    --parchment: #f0ebe0;
+    --gold: #e8a020;
+    --gold-light: #f0c060;
+    --muted: #b0a888;
+    --muted-light: #d4cbb8;
+    --border: #4a4030;
+    --border-light: #c8b890;
+    --complete: #5ab87a;
+    --planning: #6a7890;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Crimson Pro", Georgia, serif;
+    background: var(--parchment);
+    color: var(--ink);
+    line-height: 1.7;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--ink);
+    color: var(--parchment);
+    padding: 3rem 1.5rem 2.5rem;
+    text-align: center;
+  }
+  .hero-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .eyebrow {
+    font-family: "Cinzel", serif;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+  .hero h1 {
+    font-family: "Cinzel", serif;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.6rem;
+    color: #fff;
+  }
+  .hero-sub {
+    font-size: 1rem;
+    color: var(--muted-light);
+    font-style: italic;
+  }
+
+  /* ── FLIGHT STRIP (canonical) ── */
+  .flight-strip-outer {
+    background: #111008;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .flight-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .strip-cell {
+    flex: 1;
+    min-width: 120px;
+    padding: 14px 18px;
+    border-right: 1px solid var(--border);
+  }
+  .strip-cell:last-child { border-right: none; }
+  .strip-label {
+    font-family: "Cinzel", serif;
+    font-size: 8px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    display: block;
+  }
+  .strip-value {
+    font-family: "Crimson Pro", serif;
+    font-size: 16px;
+    color: var(--parchment);
+    font-weight: 600;
+    display: block;
+  }
+  .strip-value.gold { color: var(--gold); }
+
+  /* ── PROGRESS BAR (canonical) ── */
+  .progress-wrap {
+    background: var(--ink);
+    padding: 16px 40px 20px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .progress-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .progress-label {
+    font-family: "Cinzel", serif;
+    font-size: 8px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .progress-track {
+    background: #2a2418;
+    border-radius: 2px;
+    height: 6px;
+  }
+  .progress-fill {
+    background: linear-gradient(90deg, var(--complete), #7ed4a0);
+    height: 6px;
+    border-radius: 2px;
+    width: 32%;
+  }
+
+  /* ── CONTENT / PARCHMENT ── */
+  .content-area {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+  }
+  .journal-para {
+    font-size: 1.1rem;
+    margin-bottom: 1.4rem;
+    color: var(--ink);
+  }
+  .leg-photo {
+    margin: 1.8rem 0;
+  }
+  .leg-photo img {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--border-light);
+    display: block;
+  }
+  .photo-caption {
+    font-family: "Cinzel", serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+  .leg-video {
+    margin: 1.8rem 0;
+  }
+  .leg-video iframe {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border: 1px solid var(--border-light);
+    display: block;
+  }
+  .video-caption {
+    font-family: "Cinzel", serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+
+  /* ── HISTORICAL SECTION ── */
+  .historical-wrap {
+    background: var(--ink);
+    color: var(--parchment);
+  }
+  .historical-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+  }
+  .historical-banner {
+    font-family: "Cinzel", serif;
+    font-size: 8px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .historical-inner h2 {
+    font-family: "Cinzel", serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--gold-light);
+    margin-bottom: 1rem;
+    letter-spacing: 0.04em;
+  }
+  .historical-inner p {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: #d8d0c0;
+    margin-bottom: 1rem;
+  }
+  .historical-inner p:last-child { margin-bottom: 0; }
+
+  /* ── LEG NAV (canonical) ── */
+  .leg-nav {
+    background: var(--ink);
+    border-top: 1px solid var(--border);
+    padding: 22px 40px;
+  }
+  .leg-nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .leg-nav a {
+    font-family: "Cinzel", serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 10px 18px;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+  .leg-nav a:hover {
+    background: var(--gold);
+    color: var(--ink);
+    border-color: var(--gold);
+  }
+
+  @media (max-width: 540px) {
+    .flight-strip { flex-direction: column; }
+    .strip-cell { border-right: none; border-bottom: 1px solid var(--border); }
+    .strip-cell:last-child { border-bottom: none; }
+    .leg-nav-inner { flex-direction: column; gap: 0.6rem; text-align: center; }
+    .progress-wrap { padding: 16px 20px 20px; }
+    .leg-nav { padding: 22px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Leg 18 &middot; May 24, 2026</div>
+    <h1>A Fine Place for a Fort</h1>
+    <div class="hero-sub">Famuliner Farms (71MO) &rarr; Charles B. Wheeler Downtown Airport (KMKC)</div>
+  </div>
+</div>
+
+<!-- FLIGHT STRIP -->
+<div class="flight-strip-outer">
+  <div class="flight-strip">
+    <div class="strip-cell">
+      <span class="strip-label">Date Flown</span>
+      <span class="strip-value">May 24, 2026</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">L&amp;C Dates</span>
+      <span class="strip-value gold">June 16–29, 1804</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Departure</span>
+      <span class="strip-value">71MO — Wakenda, MO</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Arrival</span>
+      <span class="strip-value">KMKC — Kansas City, MO</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Distance</span>
+      <span class="strip-value">81 NM</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Duration</span>
+      <span class="strip-value">0:52</span>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRESS BAR -->
+<div class="progress-wrap">
+  <div class="progress-inner">
+    <div class="progress-label">
+      <span>Expedition Progress</span>
+      <span>1,283 of ~4,029 NM &mdash; 32%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill"></div>
+    </div>
+  </div>
+</div>
+
+<!-- JOURNAL CONTENT -->
+<div class="content-area">
+  <div class="leg-photo">
+    <img src="Expedition3/Legs/Leg18-Sunrise.png" alt="Sunrise over the Missouri River">
+    <div class="photo-caption">Sunrise over the Missouri River</div>
+  </div>
+
+  <p class="journal-para">Another sunrise departure. Unlike yesterday, the weather was perfect. Clear skies and very little wind.</p>
+
+  <p class="journal-para">This section of the Missouri River is very peaceful. Not like the factories and power plants I flew past along much of the Ohio River. Mostly I saw farmland, some forested areas, and some small towns. Lewis &amp; Clark reported passing through vast prairies in this part of the country. This would have been tallgrass prairie, of which almost none is left in North America. Less than 1% of the original tallgrass prairie land in Missouri remains. This is largely due to farming. As I flew by, I wondered what the land would have looked like if I could have flown over it in 1804.</p>
+
+  <div class="leg-photo">
+    <img src="Expedition3/Legs/Leg18-Farmland.png" alt="Former prairie land in Missouri">
+    <div class="photo-caption">Former prairie land in Missouri</div>
+  </div>
+
+  <p class="journal-para">Eventually, the farmland gave way to urban area, which meant I was approaching Kansas City. Lewis &amp; Clark camped at Kaw Point, at the confluence of the Missouri and Kansas Rivers, and stayed here for a few days. One of the crew remarked that this would make a &ldquo;fine place for a fort.&rdquo;</p>
+
+  <div class="leg-photo">
+    <img src="Expedition3/Legs/Leg18-KansasCity.png" alt="Kansas City, with the Christopher S. Bond Bridge in the foreground">
+    <div class="photo-caption">Kansas City, with the Christopher S. Bond Bridge in the foreground</div>
+  </div>
+
+  <p class="journal-para">This was a fun place to land. The approach took me right into downtown Kansas City, where I turned right, passed low over the Missouri River, and landed just across from downtown. One of my best landings yet.</p>
+
+  <div class="leg-video">
+    <iframe src="https://www.youtube.com/embed/J1XM-QO-Sn4" title="Landing at Kansas City Downtown Airport (KMKC)"
+            frameborder="0" allowfullscreen></iframe>
+    <div class="video-caption">Landing at Kansas City Downtown Airport (KMKC)</div>
+  </div>
+</div>
+
+<!-- HISTORICAL SECTION -->
+<div class="historical-wrap">
+  <div class="historical-inner">
+    <div class="historical-banner">What Lewis &amp; Clark were doing at this same point &mdash; June 16–29, 1804</div>
+    <h2>Buffalo Country, and the City to Come</h2>
+  <p>The stretch of river the Norden crossed today was, in 1804, the eastern edge of a vast inland sea of grass. The tallgrass prairie once blanketed something on the order of 170 million acres of the continent’s midsection; the deep, fertile soils that made it were exactly what later drew the steel plow, and only a small fraction of the original prairie now survives. The largest unplowed remnant of all lies just to the west, in the Flint Hills of Kansas, where the rock was too near the surface to farm. Lewis and Clark crossed this country at its peak. After the rope-making days near Waverly, the Corps spent the third week of June fighting the current through a landscape of canebrakes, deer, and the first bears of the trip, tormented by mosquitoes and ticks the whole way.</p>
+
+  <p>And the buffalo. Clark had noted &ldquo;Some buffalow Sign&rdquo; back near Boonville on June 6, but the animals themselves kept to the plains. It was here, at the mouth of the Kansas River on June 28, 1804, that the expedition’s hunters caught their first actual sight of buffalo — the very symbol the journey is now remembered for. Even so, they could not get close enough to take one; it would be nearly two more months, on August 23 near present Vermillion, South Dakota, before Joseph Field shot the first buffalo of the expedition, a moment Clark called &ldquo;as great a curiosity to me&rdquo; as anything he had seen.</p>
+
+  <p>The river, and later the state and the city, took their name from the Kansa, or Kaw — a Siouan people whose name is often rendered &ldquo;people of the south wind.&rdquo; When the Corps reached the confluence, the Kansa were not home: they were, as Clark put it, &ldquo;out in the plains hunting the Buffalow.&rdquo; He described them as a once-numerous and warlike nation, badly supplied with firearms and worn down by war with their better-armed neighbors, the Iowa and the Sauk and Fox. Their villages then lay sixty and a hundred-odd miles up the Kansas. To the south ranged the Osage; nearer at hand were the scattered remnants of the Missouria, all but destroyed a generation earlier. After the removal era of the 1830s, the lower Kansas valley would also become home to Shawnee, Delaware, Wyandot, and Kickapoo peoples forced west from the Ohio country.</p>
+
+  <p>Europeans had passed this junction long before the Corps, but none had stayed. The earliest written description of the area comes from the French officer Étienne de Veniard, Sieur de Bourgmont, whose journal of 1713 records the lower Missouri he was the first white man to explore. French traders worked the river through the eighteenth century; Spain administered the territory after 1763, mostly by licensing that trade, before it passed back to France and then, in 1803, to the United States in the Louisiana Purchase. Through all of it, the mouth of the Kansas remained an unsettled point of timber and sandbar.</p>
+
+  <p>The Corps reached it on June 26, 1804, after a hard morning hauling the boats past the Blue River. At Kaw Point the towrope snapped twice on a bad sandbar before the men rowed the keelboat around and made camp on the point; along the way they killed a large rattlesnake sunning on the bank, and Clark recorded &ldquo;a great number of Parrot queets&rdquo; — the first notice of the Carolina parakeet, now long extinct, living west of the Mississippi. They stayed three days. The men felled the trees on the point, threw up a six-foot wall of logs and brush from one river to the other as a guard against the Kansa, dried and repaired a pirogue, and hunted while the captains took observations and measured the rivers — the Kansas a bit over 230 yards wide, the Missouri about 500. Clark thought &ldquo;the Countrey about the mouth of this river is verry fine,&rdquo; and judged a high point a mile up the Kansas &ldquo;a butifull place for a fort, good landing place&rdquo; — though he complained that the Kansas water was &ldquo;verry disigreeably tasted.&rdquo; It is that note, set down in 1804, that the pilot’s &ldquo;fine place for a fort&rdquo; recalls.</p>
+
+  <p>Before leaving on June 29, the captains held a court-martial. Privates John Collins and Hugh Hall were tried for getting into the whiskey — Collins, posted as a sentinel, had gotten drunk on duty and let Hall draw from the barrel meant for the whole party. Collins was sentenced to one hundred lashes on his bare back, Hall to fifty. That evening the Corps pushed on up the Missouri and was nearly punished itself: the keelboat’s stern caught on moving sand and swung within six inches of a large sawyer that, Clark wrote, would have stove in her bow and sunk her in deep water.</p>
+
+  <p>For a long while after the Corps passed, the confluence stayed empty. Not until 1821 did the St. Louis fur trader François Chouteau establish the first permanent Euro-American settlement here, a trading landing for the American Fur Company that dealt with the Kansa, Osage, Shawnee, and Kickapoo. Westport followed in 1833, the Town of Kansas was laid out in 1838 and incorporated in 1850, and in 1853 it became the City of Kansas — roughly half a century after Clark sketched his fort site. Railroads and the cattle trade did the rest. The fine place for a fort had become Kansas City.</p>
+  </div>
+</div>
+
+<!-- LEG NAV -->
+<div class="leg-nav">
+  <div class="leg-nav-inner">
+    <a href="#leg-17">&larr; Leg 17</a>
+    <a href="#leg-19">Leg 19 &rarr;</a>
+  </div>
+</div>
+
+</body>
+</html>
