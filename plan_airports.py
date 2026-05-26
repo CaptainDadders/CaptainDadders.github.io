@@ -235,10 +235,58 @@ def main():
     print("AHEAD is closer than the one behind — surface it at content time and let the")
     print("pilot choose. The script never makes the call itself.")
 
+    # ----- paste-ready legs-data.js output -----
+    emit_legs_data(results)
+
     if args.json:
         out = {"prev_arrival_cum_nm": prev_cum, "airports": results}
         Path(args.json).write_text(json.dumps(out, indent=2, ensure_ascii=False), encoding="utf-8")
         print(f"\nStructured results written to {args.json}")
+
+
+def render_plan_entry(rec):
+    """One AIRPORT_PLAN entry as JS (quoted code key, unquoted field keys)."""
+    ii = "    "
+    snap = rec["snap_point"]
+
+    def camp_js(c):
+        if not c:
+            return "null"
+        return (f'{{ date: {json.dumps(c["date"])}, '
+                f'place: {json.dumps(c["place"])}, gapNM: {c["gap_nm"]} }}')
+
+    lines = [
+        f'  {json.dumps(rec["code"])}: {{',
+        f'{ii}snap: [{snap[0]}, {snap[1]}],',
+        f'{ii}snapIndex: {rec["snap_index"]},',
+        f'{ii}offRouteNM: {rec["off_route_nm"]},',
+        f'{ii}campBehind: {camp_js(rec["nearest_camp_behind"])},',
+        f'{ii}campAhead: {camp_js(rec["nearest_camp_ahead"])},',
+        f'{ii}deferredDateCall: {"true" if rec["deferred_date_call"] else "false"}',
+        "  },",
+    ]
+    return "\n".join(lines)
+
+
+def emit_legs_data(results):
+    """Print copy-paste-ready blocks for legs-data.js."""
+    print("\n" + "=" * 70)
+    print("PASTE INTO legs-data.js")
+    print("=" * 70)
+
+    print("\n--- 1) Add to the AIRPORT_CUM_NM map (before its closing `};`).")
+    print("       NOTE: add a comma after the current last entry first. ---\n")
+    for rec in results:
+        print(f'  {json.dumps(rec["code"])}: {rec["cum_nm"]},'
+              f'   // snap {rec["snap_point"]}, {rec["off_route_nm"]} NM off-route')
+
+    print("\n--- 2) AIRPORT_PLAN block.")
+    print("       First batch: paste the whole block. Later batches: paste just the")
+    print("       entries (lines between the braces) before AIRPORT_PLAN's `};`. ---\n")
+    print("const AIRPORT_PLAN = {")
+    for rec in results:
+        print(render_plan_entry(rec))
+    print("};")
 
 
 if __name__ == "__main__":
