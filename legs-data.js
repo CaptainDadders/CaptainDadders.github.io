@@ -318,7 +318,14 @@ const AIRPORT_CUM_NM = {
   "4K3":  1233.5,  // Lexington Municipal; snap [39.18274,-93.93350], 1.6 NM off-route
   "4MO8": 1259.3,  // Martens Airport; snap [39.21948,-94.25463], 1.0 NM off-route
   "4MO4": 1264.1,  // Liberty Landing Airport; snap [39.19930,-94.32145], 1.2 NM off-route
-  "KMKC": 1282.8   // Kansas City Downtown / Wheeler; snap [39.11326,-94.59099], 0.6 NM off-route
+  "KMKC": 1282.8,  // Kansas City Downtown / Wheeler; snap [39.11326,-94.59099], 0.6 NM off-route
+  "06MO": 1298.1,  // Noah's Ark Airport, Waldron MO; snap [39.21168,-94.81961], 1.43 NM off-route
+  "72KS": 1302.3,  // Mount Muncie Airport, Leavenworth Co KS; snap [39.26726,-94.86492], 0.41 NM off-route
+  "KFLV": 1308.2,  // Sherman Army Airfield, Ft Leavenworth KS; snap [39.3533,-94.90737], 0.91 NM off-route
+  "64MO": 1343.1,  // Booze Island Airport, SW of St Joseph MO; snap [39.6731,-95.02425], 0.69 NM off-route
+  "KSTJ": 1364.8,  // Rosecrans Memorial Airport, St Joseph MO; snap [39.77228,-94.91517], 0.25 NM off-route
+  "MO24": 1412.1,  // Lonesome Sky Airport, Craig MO; snap [40.12234,-95.41657], 1.79 NM off-route
+  "KOMA": 1508.9   // Eppley Airfield, Omaha NE; snap [41.30027,-95.90655], 0.59 NM off-route
 };
 
 // ── LEG_NOTES — verified facts + summary of what the leg post covered ──
@@ -402,4 +409,67 @@ const LEG_NOTES = {
     facts:   "Leg 18: 71MO \u2192 KMKC, 81 NM (1282.8-1202.1=80.7), May 24 2026, 0:52. KMKC = Charles B. Wheeler Downtown Airport, Kansas City MO; snap [39.11326,-94.59099], cum 1282.8, 0.6 NM off-route. DEP 71MO = Famuliner Farms, Wakenda MO. L&C dates June 16-29 1804 \u2014 picks up after Leg 17's June 15 boundary (Leg 17 narrative already covered June 16-18 Rope Walk Camp near Waverly); ends at the June 29 Kaw Point departure per pilot's explicit 'up until they left Kaw Point.' Nearest camp to KMKC = Kaw Point camp June 26-28 (0.9 NM). PRAIRIE/BUFFALO: tallgrass prairie once ~170M acres of N. America; only ~1-4% remains (commonly cited 'less than 4%'); Missouri <1% (~0.5%); the 0.1% figure is the per-state remnant for IL & IA, not continent-wide. Largest surviving tallgrass remnant = Flint Hills of Kansas (rock too near surface to plow); Tallgrass Prairie National Preserve there (est. 1996). BUFFALO: Clark 'Some buffalow Sign' June 6 1804 near Boonville; Corps' hunters caught their FIRST SIGHT of buffalo at the mouth of the Kansas River June 28 1804 (vicinity of present KC) but could not get close enough to shoot; first buffalo KILLED Aug 23 1804 by Joseph Field near present Vermillion SD \u2014 Clark 'this was the first I ever Saw & as great a curiosity to me.' (Source: lewis-clark.org bison-encounters; franceshunter blog.) KANSA/KAW: river/state/city named for the Kansa (Kaw), Siouan, name often glossed 'people of the south wind.' June 28 Clark: Kansa 'not verry noumerous at this time, reduced by war,' once numerous when the French first settled Illinois, 'a fierce & warlike people,' badly supplied with firearms, easily conquered by the Iowa & Sauk/Fox, 'now out in the plains hunting the Buffalow.' Villages ~60 & ~120 mi up the Kansas (engage info). Osage to the south; remnant Missouria nearby. Post-1830 Indian Removal brought Shawnee, Delaware, Wyandot, Kickapoo to the lower Kansas valley. WHITE PRESENCE PRE-L&C: first written description of the confluence by French officer Etienne de Veniard, Sieur de Bourgmont, journal 1713 (first white man to explore lower Missouri); French traders through the 1700s; Spain 1763 (licensed trade); back to France then US via Louisiana Purchase 1803; NO permanent settlement at the river junction before L&C. KAW POINT EVENTS: June 26 reached the point after hauling past the Blue River; towrope broke twice on a sandbar; killed a large rattlesnake; Clark recorded 'a great number of Parrot queets' = first notice of Carolina parakeet (now extinct) W of the Mississippi. June 26-28 three-day stay: felled trees on the point, built a 6-ft redoubt/breastwork of logs & brush from one river to the other (guard vs. Kansa), dried/repaired a pirogue, hunted, took observations. River widths: Kansas 230-1/4 yds, Missouri ~500 yds. Clark 'the Countrey about the mouth of this river is verry fine'; a high point a mile up the W bank of the Kansas 'a butifull place for a fort, good landing place'; Kansas water 'verry disigreeably tasted.' (Basis for pilot's journal 'fine place for a fort' \u2014 actually Clark's words, not an anonymous crewman.) June 29 court-martial: Pvts John Collins (sentinel, drunk on post) & Hugh Hall tried for tapping the whiskey barrel; Collins 100 lashes, Hall 50; departed that evening; keelboat stern swung within 6 inches of a large sawyer; camped near present Riverside KS. Confluence has shifted ~1/4 mi upstream since 1804. KANSAS CITY FOUNDING: Francois Chouteau (St. Louis) set up first permanent Euro-American settlement (Chouteau's Landing, American Fur Co.) 1821, trading w/ Kansa, Osage, Shawnee, Kickapoo; warehouse flooded 1826, relocated. Westport founded 1833 by John Calvin McCoy; Westport Landing 1834. Town Company 1838; incorporated Town of Kansas 1850; City of Kansas 1853 (first mayor Wm. S. Gregory); renamed Kansas City 1889. Railroads (1860s) + stockyards (1870) made it a metropolis. ~half a century from L&C (1804) to city (1850s). DECLINED IMAGE: pilot's requested lewis-clark.org Kaw Point image (media/lctoday/kaw_point_104.jpg) is a photo by Kristopher K. Townsend OF an interpretive-sign painting \u2014 no free license stated, copyright on both the painting & the photo \u2192 NOT used. (A separate Townsend Kaw Point landscape photo, kaw_point_113.jpg, IS CC BY-SA 4.0 but modern.) FACT FLAGS RESOLVED: (1) journal '0.1%' corrected to 'Less than 1% of the original tallgrass prairie land in Missouri remains.' (Missouri <1% well-sourced). (2) stray dangling word 'Eventually' after the Kansas City photo \u2014 omitted pending pilot confirmation. (3) journal 'one of the crew remarked' re: fort \u2014 was actually Capt. Clark; left verbatim. KMKC already in AIRPORT_CUM_NM (1282.8). VIDEO: landing = YouTube J1XM-QO-Sn4.",
     covered: "A perfect-weather sunrise hop (0:52) from Famuliner Farms (71MO) up a peaceful, farm-and-forest Missouri to Charles B. Wheeler Downtown Airport (KMKC), the farmland once tallgrass prairie (primary photo: sunrise over the river; photo of former prairie/farmland); approach right into downtown Kansas City over the Missouri to one of the pilot's best landings (KC photo w/ the Christopher S. Bond Bridge; landing video J1XM-QO-Sn4). Noted L&C camped at Kaw Point and that 'one of the crew' called it a fine place for a fort. Historical section ('Buffalo Country, and the City to Come'): the vanished tallgrass prairie (~170M acres -> a few percent; Flint Hills the largest remnant); the buffalo thread \u2014 Clark's June 6 'buffalow Sign,' the hunters' FIRST SIGHT of buffalo at the mouth of the Kansas June 28 1804, and the first kill not until Aug 23 (Joseph Field, SD); the Kansa/Kaw ('people of the south wind') described by Clark as a warlike, war-reduced nation 'out in the plains hunting the Buffalow,' with the Osage and remnant Missouria nearby and removal-era tribes to come; pre-L&C European presence (Bourgmont's 1713 journal; French/Spanish trade; no permanent settlement); the June 26-29 Kaw Point stay \u2014 towrope breaking, the rattlesnake, Clark's first Carolina-parakeet record W of the Mississippi, the 6-ft redoubt vs. the Kansa, river measurements, Clark's 'verry fine' country and 'butifull place for a fort,' the June 29 Collins/Hall whiskey court-martial (100 & 50 lashes) and the six-inch sawyer near-miss on departure; and Kansas City's slow birth \u2014 Chouteau's 1821 landing, Westport 1833, Town of Kansas 1850, City of Kansas 1853, ~half a century after Clark's fort sketch. No historical image (lewis-clark.org Kaw Point image declined — interpretive-sign painting photographed by Townsend, no free license; Catlin replacement rejected by pilot)."
   }
+};
+
+// ── AIRPORT_PLAN — planning-pass geometry for candidate airports ahead ──
+// Written by plan_airports.py. Read at content time so the content chat
+// never recomputes geometry or scans the campsite list.
+// Shape: snap, snapIndex, offRouteNM, campBehind, campAhead, deferredDateCall
+const AIRPORT_PLAN = {
+  "06MO": {
+    snap: [39.21168, -94.81961],
+    snapIndex: 620,
+    offRouteNM: 1.43,
+    campBehind: { date: "1804-06-30", place: "right shore, 2«  mi south of Weston, KA", gapNM: 0.0 },
+    campAhead: { date: "1804-07-01", place: "lower point of island right side east of Leavenworth, KA", gapNM: 7.6 },
+    deferredDateCall: false
+  },
+  "72KS": {
+    snap: [39.26726, -94.86492],
+    snapIndex: 623,
+    offRouteNM: 0.41,
+    campBehind: { date: "1804-06-30", place: "right shore, 2«  mi south of Weston, KA", gapNM: 4.2 },
+    campAhead: { date: "1804-07-01", place: "lower point of island right side east of Leavenworth, KA", gapNM: 3.3 },
+    deferredDateCall: true
+  },
+  "KFLV": {
+    snap: [39.3533, -94.90737],
+    snapIndex: 627,
+    offRouteNM: 0.91,
+    campBehind: { date: "1804-07-01", place: "lower point of island right side east of Leavenworth, KA", gapNM: 2.6 },
+    campAhead: { date: "1804-07-02", place: "left shore, 1 mi N of Kickapoo, in MO", gapNM: 7.7 },
+    deferredDateCall: false
+  },
+  "64MO": {
+    snap: [39.6731, -95.02425],
+    snapIndex: 657,
+    offRouteNM: 0.69,
+    campBehind: { date: "1804-07-04", place: "right shore, 2 mi south Doniphan KA", gapNM: 7.2 },
+    campAhead: { date: "1804-07-05", place: "right shore, 2 mi N Halls, MO, in KA?", gapNM: 2.4 },
+    deferredDateCall: true
+  },
+  "KSTJ": {
+    snap: [39.77228, -94.91517],
+    snapIndex: 674,
+    offRouteNM: 0.25,
+    campBehind: { date: "1804-07-06", place: "right shore at mouth of Walnut Creek, MO in KA", gapNM: 8.2 },
+    campAhead: { date: "1804-07-07", place: "right shore, 2 mi NW of St. Joseph., MO; in KA?", gapNM: 3.1 },
+    deferredDateCall: true
+  },
+  "MO24": {
+    snap: [40.12234, -95.41657],
+    snapIndex: 710,
+    offRouteNM: 1.79,
+    campBehind: { date: "1804-07-11/12", place: "island left side opposite Big Nemaha River", gapNM: 8.3 },
+    campAhead: { date: "1804-07-13", place: "bar near right shore 3 mi south of Corning, MO, in KA?", gapNM: 7.9 },
+    deferredDateCall: true
+  },
+  "KOMA": {
+    snap: [41.30027, -95.90655],
+    snapIndex: 778,
+    offRouteNM: 0.59,
+    campBehind: { date: "1804-07-22/26", place: "left shore, White Catfish Camp, NE", gapNM: 10.2 },
+    campAhead: { date: "1804-07-27", place: "right shore north of Council Bluffs, IA", gapNM: 1.6 },
+    deferredDateCall: true
+  },
 };
