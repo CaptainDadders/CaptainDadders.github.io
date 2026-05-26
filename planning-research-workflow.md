@@ -93,12 +93,20 @@ ahead — so that whichever way the pilot decides later, the day-file already
 exists and nothing needs re-fetching.
 
 ### Steps
-1. For **each day** in the range, fetch the historical material and write it to
-   **its own file**, one file per day (e.g. `research-1804-07-06.md`). One file
-   per day matters: at content time only the relevant days get attached, not a
-   blob covering dates that aren't needed.
-2. Scout a **candidate image** for the span (see sources below) and note it in
-   the relevant day-file.
+1. For **each day** in the range, fetch the historical material from **both**
+   sources (see below) and write it to **its own file**, one file per day
+   (e.g. `research-1804-07-06.md`). One file per day matters: at content time
+   only the relevant days get attached, not a blob covering dates that aren't
+   needed.
+   - **Both sources are required for every day.** A search snippet is not a
+     substitute for fetching the UNL journal page. Fetch both URLs directly.
+2. **Resolve a candidate image** for each day (see Image sources and criteria
+   below). This work is done here, not deferred to the content chat. For each
+   day, work through the sources in order until a candidate is found or all
+   sources are exhausted. Record the result — found or not found — in that
+   day's file. It is fine if most days say "nothing found"; the point is that
+   the search was done and the best available candidate for the span is
+   identified.
 3. Hand the day-files back for the pilot to **save locally** — these do **not**
    go into project knowledge (they are leg-specific clutter that doesn't belong
    in the always-on set).
@@ -107,24 +115,64 @@ exists and nothing needs re-fetching.
 - Key events / what the journals record for that date (paraphrased, with the
   source link)
 - Anything noteworthy for the historical narrative
-- Any candidate image for that date (URL + the caption/attribution it needs)
+- Candidate image entry, which must include:
+  - **URL** of the image (direct image URL, not just a page link)
+  - **License / attribution** (e.g. CC BY-SA 4.0 © Name, or "public domain,
+    held by [institution]", or "© Michael Haynes — www.mhaynesart.com, used
+    with permission")
+  - **One-line description** of what the image depicts
+  - If nothing suitable was found after searching all sources: note
+    "Searched [sources checked], no suitable image found" — never leave this
+    section blank or defer to the content phase.
 
 ### Historical research sources
-1. **Primary journals** — `https://lewisandclarkjournals.unl.edu/item/lc.jrn.YYYY-MM-DD`
-   (one page per day).
-2. **Day-by-day log** — `https://lewis-clark.org/1804/07/06/` (substitute the
-   date); calendar index at `https://lewis-clark.org/day-by-day/calendar/`.
+Both of the following must be fetched for every day in the range:
 
-### Image sources
+1. **Primary journals** — `https://lewisandclarkjournals.unl.edu/item/lc.jrn.YYYY-MM-DD`
+   (one page per day; contains all journal keepers — Clark's field notes and
+   Codex, Lewis, Ordway, Floyd, Gass, Whitehouse — plus editorial footnotes
+   identifying places, species, and people).
+2. **Day-by-day log** — `https://lewis-clark.org/day-by-day/D-mon-YYYY/`
+   e.g. `https://lewis-clark.org/day-by-day/6-jul-1804/`; calendar index at
+   `https://lewis-clark.org/day-by-day/calendar/`.
+
+### Image sources and criteria
 A period image can strengthen the historical section, but **only when it
-genuinely fits** — not every leg needs one. Two approved sources:
-1. **Public domain** — Library of Congress, Wikimedia Commons, NPS, public-domain
-   paintings/engravings (Karl Bodmer, George Catlin), period maps. Confirm it is
-   genuinely public domain. Caption with title, artist/date, holding institution.
-2. **Michael Haynes paintings** — usable **with the artist's permission**; many
-   depict specific dated moments on this route. Always check the gallery
-   directly: `https://www.mhaynesart.com/lewisandclark`. **Attribution required:**
+genuinely fits** — not every leg needs one.
+
+**What makes a good candidate:**
+- Anything **Lewis & Clark–specific** is an automatic contender: the keelboat,
+  the men, Seaman, a court martial, a named geographic event from the journals.
+- **Monuments or trail markers** along the route (e.g. a Corps of Discovery
+  sculpture the pilot passes) are good candidates.
+- **Period images of places they passed** work when the place existed and would
+  have looked roughly similar — e.g. a Cincinnati streetscape from 1812 is
+  close enough; a Kansas City scene from 1820 is not (the city didn't exist).
+- **Public-domain photographs** of the modern landscape at a key journal site
+  (a river bend, a confluence) can work when they carry a note about what has
+  changed since 1804.
+
+**What to avoid:**
+- Generic objects with only loose thematic relevance (a cup, a compass, a
+  generic prairie).
+- Any image of a place or thing that postdates or misrepresents the expedition's
+  encounter with it.
+
+**Source order — work through these in sequence:**
+1. **Michael Haynes paintings** — check the gallery first:
+   `https://www.mhaynesart.com/lewisandclark`. Many depict specific dated
+   moments. Before proposing a Haynes image, confirm the painting's described
+   event matches the date in this span — do not assume a scene is available
+   just because the event type recurs. **Attribution required:**
    `Michael Haynes — www.mhaynesart.com`.
+2. **lewis-clark.org day page photos** — the day-by-day pages often include
+   trail photos (river views, interpretive signs, monuments) with CC licenses.
+   Check the page fetched in Step 1 above.
+3. **Public domain** — Library of Congress, Wikimedia Commons, NPS,
+   public-domain paintings/engravings (Karl Bodmer, George Catlin), period
+   maps. Search actively; confirm the work is genuinely public domain
+   (pre-1929 publication, or artist died long enough ago). Caption with title,
+   artist/date, and holding institution.
 
 ---
 
