@@ -1,0 +1,164 @@
+# Planning & Research — Captain Dadders LECL Expedition
+
+## What This Is
+
+The **up-front** phase of the expedition workflow. It does all the heavy,
+predictable work — geometry and bulk historical research — *ahead of time*, so
+that the content-generation chat (run during the flying window, where usage
+credits are tight) stays lean and never recomputes anything.
+
+This phase runs in its **own chat(s)**, separate from content generation. It is
+not time-pressured, so it is the right place for the expensive work.
+
+There are two distinct activities here, and they can be **separate chats**:
+
+1. **Airport planning** — turn a batch of candidate airport codes into stored
+   geometry + campsite data (`plan_airports.py` → `legs-data.js`).
+2. **Research** — fetch per-day historical material for a date range and save it
+   as one file per day, plus scout candidate images.
+
+Do airport planning first (it produces the dates research keys off), but they do
+not have to be the same chat or the same sitting.
+
+---
+
+## Activity 1 — Airport Planning
+
+### Input
+The pilot gives a **batch of candidate airport codes** (the next stretch of
+possible landing spots). `legs-data.js` must be attached — it is read and
+extended here.
+
+### Steps
+1. **Resolve each code** to its full name and coordinates. Include names in the
+   output so the pilot can confirm the right airports.
+2. **Run `plan_airports.py`** with those coordinates and
+   `prev_arrival_cum_nm` = the cumulative NM of the current last-flown airport.
+   The script computes, per airport:
+   - cumulative NM from Pittsburgh (→ `AIRPORT_CUM_NM`)
+   - snap point + polyline index (→ green-line / `AIRPORT_PLAN`)
+   - off-route distance, with a 🚩 flag if **> 10 NM** (likely wrong code)
+   - nearest campsite **behind** and **ahead**, each with date + along-route gap
+   - `deferredDateCall` = true when the camp ahead is closer than the one behind
+3. **Surface flags.** If any airport snaps > 10 NM off-route, stop and ask the
+   pilot to confirm the code before storing it — same rule as the flight planner.
+4. **Paste the script's output into `legs-data.js`:**
+   - new `AIRPORT_CUM_NM` lines (remember to add a comma after the current last
+     entry)
+   - new `AIRPORT_PLAN` entries (first batch: the whole block; later batches:
+     just the entries before its closing `};`)
+5. Hand back the updated `legs-data.js` for the pilot to commit.
+
+### What planning does NOT decide
+The camp-behind vs. camp-ahead choice (the "Kaw Point" call) is **not made
+here.** The script stores both candidates and the `deferredDateCall` flag; the
+actual choice is made at content time, after the pilot has flown and read the
+material. See the deferred-date note under Research below.
+
+### `AIRPORT_PLAN` entry shape (stored in `legs-data.js`)
+```javascript
+"KSTJ": {
+  snap: [39.77228, -94.91517],   // green-line point; cumulative NM measured here
+  snapIndex: 674,                // polyline vertex (rebuilds green line w/o re-snapping)
+  offRouteNM: 0.25,
+  campBehind: { date: "1804-07-06", place: "mouth of Walnut Creek, MO", gapNM: 8.2 },
+  campAhead:  { date: "1804-07-07", place: "2 mi NW of St. Joseph, MO",  gapNM: 3.1 },
+  deferredDateCall: true         // camp ahead closer than behind → decide at content time
+}
+```
+`AIRPORT_CUM_NM` stays a plain `code → number` map (the live site reads it as a
+number — do not change its shape). `AIRPORT_PLAN` is a separate parallel block
+and only holds airports **ahead**; once a leg is flown, that entry has done its
+job and can be left or dropped.
+
+---
+
+## Activity 2 — Research
+
+### Input: a **date range**, not airports
+Once airport planning is done, every airport's boundary date already lives in
+`AIRPORT_PLAN`, so the pilot can read it off and give a plain date range. **Take
+a date range directly** (e.g. "July 6 – July 18, 1804"). Do **not** ask for
+airports here — that would force `legs-data.js` to be attached just to look up
+two dates the pilot already has, which is the expensive thing we are avoiding.
+`legs-data.js` does **not** need to be in the research chat at all.
+
+The research range may be a **smaller subset** than the full batch of airports
+planned — research only what the pilot asks for.
+
+### Generous end boundary (deferred date call)
+Because the camp-behind/ahead choice is deferred to content time, research a day
+or two **past** the nearest-behind boundary — through any notable camp just
+ahead — so that whichever way the pilot decides later, the day-file already
+exists and nothing needs re-fetching.
+
+### Steps
+1. For **each day** in the range, fetch the historical material and write it to
+   **its own file**, one file per day (e.g. `research-1804-07-06.md`). One file
+   per day matters: at content time only the relevant days get attached, not a
+   blob covering dates that aren't needed.
+2. Scout a **candidate image** for the span (see sources below) and note it in
+   the relevant day-file.
+3. Hand the day-files back for the pilot to **save locally** — these do **not**
+   go into project knowledge (they are leg-specific clutter that doesn't belong
+   in the always-on set).
+
+### Per-day file contents (suggested)
+- Key events / what the journals record for that date (paraphrased, with the
+  source link)
+- Anything noteworthy for the historical narrative
+- Any candidate image for that date (URL + the caption/attribution it needs)
+
+### Historical research sources
+1. **Primary journals** — `https://lewisandclarkjournals.unl.edu/item/lc.jrn.YYYY-MM-DD`
+   (one page per day).
+2. **Day-by-day log** — `https://lewis-clark.org/1804/07/06/` (substitute the
+   date); calendar index at `https://lewis-clark.org/day-by-day/calendar/`.
+
+### Image sources
+A period image can strengthen the historical section, but **only when it
+genuinely fits** — not every leg needs one. Two approved sources:
+1. **Public domain** — Library of Congress, Wikimedia Commons, NPS, public-domain
+   paintings/engravings (Karl Bodmer, George Catlin), period maps. Confirm it is
+   genuinely public domain. Caption with title, artist/date, holding institution.
+2. **Michael Haynes paintings** — usable **with the artist's permission**; many
+   depict specific dated moments on this route. Always check the gallery
+   directly: `https://www.mhaynesart.com/lewisandclark`. **Attribution required:**
+   `Michael Haynes — www.mhaynesart.com`.
+
+---
+
+## Pre-research is the FLOOR, not the ceiling
+
+The point of front-loading research is to get the **bulk, predictable** work —
+the per-day journal pages needed on every leg — out of the tight content window.
+It is **not** meant to lock the historical section to only what was pre-fetched.
+
+At content time the pilot will have flown the leg, read journal entries or
+day-by-day pages, looked at the map, and may ask the historical section to cover
+a **specific theme that was not pre-researched** (e.g. the demise of the prairie,
+the early history of Kansas City). That is expected and allowed:
+
+- If the topic **is** in the pre-done day-files → write from them (no fetching).
+- If it is **new** → do a **targeted live fetch** for just that topic, in the
+  content chat. One or two focused lookups for the specific thing asked — not the
+  whole leg's research over again.
+
+The window stays lean because the heavy every-time research is already done; a
+couple of targeted thematic lookups on top will not blow it.
+
+---
+
+## How this hands off to content generation
+
+Planning and research produce three things the content chat uses:
+
+| Produced here | Lives in | Used at content time for |
+|---|---|---|
+| `AIRPORT_CUM_NM` + `AIRPORT_PLAN` | `legs-data.js` (committed) | distance, green line, camp dates — read at assembly |
+| Per-day research files | pilot's laptop | the historical section — attached for the leg's dates |
+| Candidate image(s) | noted in day-files | optional period image in the historical section |
+
+The content chat attaches only the **relevant day-files** at the start, and
+`legs-data.js` only at the **final assembly step**. See the content-generation
+workflow for that side.
