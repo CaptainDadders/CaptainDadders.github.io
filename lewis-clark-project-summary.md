@@ -5,19 +5,27 @@
 
 ## HOW TO START A NEW LEG SESSION
 
-### What the user attaches to the kickoff message
-- `legs-data.js` (most recent, from Drive / live site)
-- `rss.xml` (most recent, from Drive / live site)
+### Staged attachments (see `content-workflow.md`)
+Content generation uses **staged attachments** to keep usage low: the pilot
+attaches only the day-files at kickoff, and `legs-data.js` + `rss.xml` come in at
+the **assembly** step, not the start. Claude drives this — it prompts for each
+input when it's needed. Full sequence and the two pre-flight checks (a light one
+at kickoff, the authoritative `DEPARTURE` = last-`FLIGHT_LEGS`-arrival check at
+assembly) are in `content-workflow.md`.
 
-These are **per-message attachments**, not project knowledge uploads. No "delete first" dance — attachments are scoped to one conversation.
-
-### ⚠️ Pre-flight check — Claude does this BEFORE any work
-1. Confirm both `legs-data.js` and `rss.xml` are attached.
-2. If either is missing — **stop and tell the user what's missing.** Do not proceed with placeholder data or guesswork.
-3. Confirm the kickoff prompt's `DEPARTURE` matches the last entry of `FLIGHT_LEGS` (= last arrival = required departure for next leg). If not, stop and report the discrepancy.
+The expedition runs in three workflow phases, each with its own doc:
+- **Planning & research** (`planning-research-workflow.md`) — airports → geometry
+  + `AIRPORT_PLAN`; date range → per-day research files. Done up front.
+- **Flight planning** (`flight-planner-workflow.md`) — distance/time for a pair.
+- **Content generation** (`content-workflow.md`) — the leg page + feed, after flying.
 
 ### Static project knowledge (rarely changes)
-- `lewis-clark-project-summary.md` — this file
+- `lewis-clark-project-summary.md` — this file (architecture & canonical rules)
+- `planning-research-workflow.md` — up-front planning + research phase
+- `flight-planner-workflow.md` — distance/time for an airport pair
+- `content-workflow.md` — the after-flying content phase (staging + assembly)
+- `build_leg.py` — assembles the three per-leg files from a payload
+- `plan_airports.py` — planning-pass geometry + campsite lookup; emits `AIRPORT_CUM_NM` / `AIRPORT_PLAN`
 - `leg-template.html` — the canonical leg page (placeholders only — see below)
 - `route_outbound.json` — 5-segment L&C route polyline Pittsburgh→Pacific
 - `camps_slim.json` — 450 outbound campsites
@@ -48,7 +56,7 @@ JOURNAL:
 
 [paragraph 2 of journal text]
 
-[VIDEO: youtubeVideoId | caption text]
+[VIDEO: https://youtu.be/youtubeUrl | caption text]
 
 [paragraph 3 of journal text]
 
@@ -59,32 +67,41 @@ JOURNAL:
 **The journal paragraphs are the user's own words. Claude must not change, rephrase, expand, or embellish them without explicit approval.**
 
 - Copy the journal text verbatim into `JOURNAL_BODY`.
-- Claude MAY flag factual errors inline (using the ⚠️ FLAG format) and propose corrected wording — but must wait for the user to approve before making any change.
-- The only wording changes permitted in the HTML are those the user explicitly approves in a follow-up message.
+- **Claude fact-checks the journal automatically** — every factual claim in the
+  journal (and in the historical section) is checked, every leg, without being
+  asked. Anything uncertain or wrong gets the ⚠️ FLAG treatment and a proposed
+  correction, but the wording is **not** changed until the user approves.
+- The **only** edits Claude may make to the journal without asking are **typos
+  and spelling errors.** Everything else — facts, phrasing, structure, tone —
+  stays exactly as written unless the user explicitly approves a change.
 - This rule applies even when Claude believes a rewrite would be more accurate, more vivid, or better style. It is not Claude's journal.
 
 ### Inline media syntax
 - **Photo:** `[PHOTO: filename.png | caption | primary]`
   - `primary` flag (optional) marks the thumbnail/RSS image. Default = first photo.
   - `filename.png` is the filename only — Claude prefixes `Expedition3/Legs/`.
-- **Video:** `[VIDEO: youtubeId | caption]`
-  - `youtubeId` is the 11-char YouTube ID (the bit after `embed/` or `watch?v=`).
+- **Video:** `[VIDEO: youtubeUrl | caption]`
+  - The pilot pastes the **shareable YouTube URL** (e.g. `https://youtu.be/abc123XYZ_0` or a `watch?v=` / `embed/` link). Claude extracts the 11-char ID from it — the pilot does not paste the bare ID.
 
 Photos and videos render in the exact order they appear inline. Never reorder.
 
 ### What Claude calculates / fills automatically
-- L&C dates (from prior leg's end + pace, unless user provides)
+- L&C dates: the boundary stored in `AIRPORT_PLAN[arr]`, resolved per the
+  deferred-date-call rule in `content-workflow.md` (not a live campsite scan).
 - Leg distance: `AIRPORT_CUM_NM[arr] - AIRPORT_CUM_NM[dep]` from legs-data.js
 - Cumulative NM: previous `EXP3_STATS.distanceNM` + this leg's nm
 - Progress %: `cumulative / EXP3_STATS.totalNM × 100`, rounded
-- COMPLETED_COORDS: extend through the new arrival's snap point
+- COMPLETED_COORDS: extend through the arrival's stored snap point
+  (`AIRPORT_PLAN[arr].snap` / `plan_airports.py`); assembled by `build_leg.py`.
 - Title (if user omits) — proposed for confirmation
 
 ---
 
 ## Per-leg deliverables
 
-Three files per leg, generated from the template + legs-data.js:
+Three files per leg, **assembled by `build_leg.py` from a payload** at the
+assembly step and delivered as downloads — not hand-written into the chat. The
+structure notes below describe what each file must contain:
 
 1. **`leg-NN.html`** — fill `leg-template.html` placeholders. Never regenerate the CSS or structure; only the placeholders change.
 2. **`legs-data.js`** — append new `FLIGHT_LEGS` entry, extend `COMPLETED_COORDS`, update `EXP3_STATS`, append to `LEG_NOTES` (`facts` from research, `covered` from the journal that was just written).
@@ -92,9 +109,12 @@ Three files per leg, generated from the template + legs-data.js:
 
 ---
 
-## Fact-check rule (in-draft flagging)
+## Fact-check rule (automatic, in-draft flagging)
 
-Claude flags any claim it is not fully confident in **inline in the initial draft** with a marker:
+Claude **fact-checks every leg automatically** — it does not wait to be asked.
+Every factual claim in the journal and the historical section is checked, and
+anything Claude is not fully confident in is flagged **inline in the initial
+draft** with a marker:
 
 > ⚠️ FLAG: "specific claim" — uncertainty: [what's ambiguous]. Confirm / correct / drop.
 
@@ -107,18 +127,21 @@ User resolves all flags in one pass. No separate "now fact-check this" round-tri
 ### FLIGHT_LEGS entry
 ```javascript
 {
-  lat, lng,
+  lat: 39.1133,
+  lng: -94.5910,
   label: "Leg N: [Title]",
-  location: "DEP → ARR · City A to City B",
+  location: "DEP \u2192 ARR \u00b7 City A to City B",
   date: "Month D, YYYY",
   thumb: "Expedition3/Legs/LegNN-PrimaryPhoto.png",
   post: "Expedition3/Legs/leg-NN.html",
   slug: "leg-NN",
-  lcDates: "Mon D–Mon D, 1803",
+  lcDates: "Mon D\u2013Mon D, 1804",
   nm: 00,
   duration: "H:MM"
 }
 ```
+The `→` and `·` separators in `location`, and the `–` en-dash in `lcDates`, are
+stored as escaped unicode (`\u2192`, `\u00b7`, `\u2013`) to match existing entries.
 
 ### LEG_NOTES entry
 ```javascript
@@ -133,7 +156,20 @@ User resolves all flags in one pass. No separate "now fact-check this" round-tri
 - `updatedDate` must be a real timestamp from the system clock — `"Month D, YYYY H:MM AM/PM MT"`. Never noon, never a placeholder.
 
 ### AIRPORT_CUM_NM
-Cumulative NM from Pittsburgh per airport, snapped to the route polyline. New leg distance = `AIRPORT_CUM_NM[arr] - AIRPORT_CUM_NM[dep]`. To add a candidate airport, ask Claude to "add CODE to AIRPORT_CUM_NM" — Claude snaps it (flagging if >10 NM off-route per the flight-planner rule) and updates the block.
+Cumulative NM from Pittsburgh per airport, snapped to the route polyline. New leg distance = `AIRPORT_CUM_NM[arr] - AIRPORT_CUM_NM[dep]`. Stays a plain `code → number` map (the live site reads it as a number — do not change its shape).
+
+To add candidate airports, the pilot says something like *"add these to the
+potential landing sites"* with a batch of codes. This happens in the **planning**
+phase: `plan_airports.py` snaps each one (flagging >10 NM off-route), and emits
+both the new `AIRPORT_CUM_NM` lines and the matching `AIRPORT_PLAN` entries to
+paste in. See `planning-research-workflow.md`.
+
+### AIRPORT_PLAN
+Parallel block (separate from `AIRPORT_CUM_NM`) holding planning-pass data for
+airports **ahead**: `snap`, `snapIndex`, `offRouteNM`, `campBehind`, `campAhead`,
+`deferredDateCall`. Written by `plan_airports.py`; read at content time so the
+content chat never recomputes geometry or scans the campsite list. Past airports
+don't need entries. Full shape in `planning-research-workflow.md`.
 
 **Reference total:** 4,029 NM (full polyline length). The earlier "~4,900 NM" figure was an estimate of the true L&C river distance; the polyline is RDP-simplified, so it's slightly shorter. Progress % is computed against 4,029 going forward.
 
@@ -163,31 +199,35 @@ Snippet patterns for journal body (paragraph, photo, video) are documented at th
 - Third person only — never "you"/"your". Use "this leg" or "the Corps."
 - Banner format: `What Lewis & Clark were doing at this same point — [LC_DATES]` (handled by template).
 - Draw on `LEG_NOTES[slug].facts` for verified material.
-- **⚠️ DATE BOUNDARY — derive the L&C end date before writing anything:**
-  1. Find the campsite in `camps_slim.json` nearest to the arrival airport — that camp's date is the hard end date.
-  2. Set `lcDates` to that date. Do not estimate or extend it.
-  3. Research only up to and including that date. Do not read journal entries, day-by-day pages, or other sources beyond it.
-  4. Write nothing in the historical section that happened after that date, even if the material is nearby, interesting, or makes a better narrative arc.
-  - **Leg 17 was wrong on all counts** — `lcDates` was set to June 18 and the narrative included June 16–18 events. The correct cutoff was June 15 (last camp before 71MO). Do not repeat this.
+- **⚠️ DATE BOUNDARY:** the L&C end date is the boundary stored in
+  `AIRPORT_PLAN[arr]`, resolved per the deferred-date-call rule in
+  `content-workflow.md`:
+  1. Default = `campBehind.date` (the camp at or behind the landing point).
+  2. If `deferredDateCall` is true (a notable camp sits *just ahead*), surface
+     both candidates and let the pilot choose after flying. Set `lcDates` to the
+     chosen boundary.
+  3. Write nothing in the historical section that happened after the chosen end
+     date — even if nearby, interesting, or a better narrative arc.
+  - **Leg 17 was wrong on this** — `lcDates` set to June 18 with June 16–18
+    events included; correct cutoff was June 15. The stored `AIRPORT_PLAN`
+    candidates + deferred call exist to prevent repeating it.
 
 ### Historical research sources
-Two background sources are available for every leg — fetch when they'd add useful detail or help verify a claim, but no need to cite them every time. Since most flights cover multiple L&C days, fetch the full date range (one request per day) rather than just a single entry:
-
-1. **Primary journals** — `https://lewisandclarkjournals.unl.edu/item/lc.jrn.YYYY-MM-DD` (one page per day). Good for specific detail and anything Lewis/Clark actually wrote on a given date.
-
-2. **Day-by-day log** — individual day pages at `https://lewis-clark.org/1804/05/21/` (substitute date); calendar index at `https://lewis-clark.org/day-by-day/calendar/`. Good for narrative context and cross-checking events.
-
-Anything drawn from these that Claude is uncertain about still gets the ⚠️ FLAG treatment.
+Routine "what happened on these dates" research is now done **up front** and
+attached as per-day files — see `planning-research-workflow.md` for the sources
+and method. At content time Claude writes from those day-files. Pre-research is
+the **floor, not the ceiling**: if the pilot asks the historical section to cover
+a specific theme that wasn't pre-researched, Claude does a **targeted live fetch**
+for just that topic in the content chat. Live-fetched claims still get the
+⚠️ FLAG treatment.
 
 ### Historical section images
-A period image can strengthen the historical section, but **only when it genuinely fits and adds to the narrative** — not every leg needs one. When researching a leg, check for a suitable image; if nothing fits well, skip it. Two approved sources:
+A period image can strengthen the historical section, but **only when it genuinely fits and adds to the narrative** — not every leg needs one. Candidate images are scouted during planning (noted in the day-files); Claude proposes the image + source at content time. Two approved sources:
 
 1. **Public domain images** — Library of Congress, Wikimedia Commons, NPS, public-domain paintings/engravings (e.g. Karl Bodmer, George Catlin), period maps and lithographs. Confirm the work is genuinely public domain (pre-1929 / artist died long enough ago). Caption with the work's title, artist/date, and holding institution.
 
-2. **Michael Haynes paintings** — the pilot has the artist's **permission** to use his Lewis & Clark artwork on the site. Many of his paintings depict specific dated expedition moments, several of them right on this route (e.g. *Ordway's Mast, 1804* near Jefferson City; *Near Miss, 1804*, the keelboat nearly capsizing on a sandbar). Some appear on the lewis-clark.org day-by-day pages, but **not all of them are there — always also check his gallery directly:** `https://www.mhaynesart.com/lewisandclark`.
+2. **Michael Haynes paintings** — the pilot has the artist's **permission** to use his Lewis & Clark artwork on the site. Many of his paintings depict specific dated expedition moments. Some appear on the lewis-clark.org day-by-day pages, but **not all of them are there — always also check his gallery directly:** `https://www.mhaynesart.com/lewisandclark`.
    - **Attribution is required.** Per the artist: *"Please do credit me; Michael Haynes — www.mhaynesart.com."* Any caption using a Haynes image must credit `Michael Haynes — www.mhaynesart.com`.
-
-**Earmarked image** (use when the matching leg comes up): `https://www.mhaynesart.com/lewisandclark/jcnh09d0ygw1x1khf6w9456wuar26y` — the link resolves to his L&C gallery, so confirm the exact painting/leg with the pilot when planning that leg.
 
 As with prior legs, historical-section images are embedded as **local assets** (`Expedition3/Legs/LegNN-Name.jpg`) that the pilot saves and uploads; Claude proposes the image + source and references the local path in the HTML.
 
@@ -246,7 +286,7 @@ captaindadders.github.io/
 ---
 
 ## The Concept
-MSFS 2024 expedition following Lewis & Clark route Pittsburgh → Fort Clatsop OR. Anonymous blog under pseudonym **Captain Dadders**. Currently reading **Undaunted Courage** by Stephen Ambrose — no spoilers beyond what has been read (currently in the Ohio River section).
+MSFS 2024 expedition following Lewis & Clark route Pittsburgh → Fort Clatsop OR. Anonymous blog under pseudonym **Captain Dadders**. Reading **Undaunted Courage** by Stephen Ambrose in sync with flying — no spoilers beyond what has been read.
 
 ## Aircraft
 **Zlin Norden** — blue/black livery, N2370. Rotax 915iS, ~100kt cruise, electric retractable slats. Landing technique: full flaps (2 notches/40°) + slats on short final, wheeler landing, neutral stick after touchdown.
@@ -268,12 +308,9 @@ For airport snapping, concatenate all 5 segments into one continuous polyline.
 
 ## Historical Resources
 - **Undaunted Courage** by Stephen Ambrose — reading in sync with flying
-- **Primary journals** (check every leg): `https://lewisandclarkjournals.unl.edu/item/lc.jrn.YYYY-MM-DD`
-- **Day-by-day log** (check every leg): `https://lewis-clark.org/1803/08/31/` — replace date for each day of interest; calendar index at `https://lewis-clark.org/day-by-day/calendar/`
-- **Michael Haynes L&C gallery** (check every leg for a fitting image): `https://www.mhaynesart.com/lewisandclark` — usable with permission; **must credit** `Michael Haynes — www.mhaynesart.com`. See "Historical section images" above.
-- Public domain images: Karl Bodmer, George Catlin, Library of Congress, NPS, Wikimedia Commons
-- 1812 Cincinnati image: https://upload.wikimedia.org/wikipedia/commons/5/53/Cincinnati_I.jpg
-- 1817 Pittsburgh image: https://upload.wikimedia.org/wikipedia/commons/0/06/View_of_the_City_of_Pittsburgh_in_1817.jpg
+- Research sources (primary journals, day-by-day log) and image sources (public
+  domain, Michael Haynes gallery) are documented in
+  `planning-research-workflow.md`, where the up-front research happens.
 - Image rule of thumb: only include a historical image when it fits well and adds to the narrative — never force one.
 
 ---
