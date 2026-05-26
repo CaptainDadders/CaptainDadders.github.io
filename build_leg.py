@@ -135,8 +135,12 @@ def fmt_num(v):
 #  Bracket-aware string surgery for legs-data.js
 # --------------------------------------------------------------------------- #
 def find_open(text, var_name, open_ch):
-    """Index of the first `open_ch` after the declaration of `var_name`."""
-    m = re.search(r"\b" + re.escape(var_name) + r"\b", text)
+    """Index of the first `open_ch` after the *declaration* of `var_name`.
+
+    Anchors on `(const|let|var) NAME =` so a textual mention of NAME in a
+    comment doesn't send us to the wrong place.
+    """
+    m = re.search(r"(?:const|let|var)\s+" + re.escape(var_name) + r"\s*=", text)
     if not m:
         raise ValueError(f"Could not find declaration of '{var_name}' in legs-data.js")
     try:
@@ -181,8 +185,25 @@ def child_indent_for(text, close_idx):
 
 
 def append_before_close(text, open_idx, close_idx, element):
-    """Insert `element` as the last item before the close bracket at close_idx."""
+    """Insert `element` as the last item before the close bracket at close_idx.
+
+    Handles two layouts:
+      - multi-line container: insert on its own indented line
+      - single-line / compact container (no newline inside): insert inline
+    """
     inner = text[open_idx + 1:close_idx]
+
+    # Compact / single-line container: keep it on one line.
+    if "\n" not in inner:
+        body = inner.rstrip()
+        if body.strip() == "":
+            new_inner = element
+        else:
+            sep = "" if body.endswith(",") else ","
+            new_inner = body + sep + element
+        return text[:open_idx + 1] + new_inner + text[close_idx:]
+
+    # Multi-line container: insert as a new indented line before the close.
     child_ind, close_ind = child_indent_for(text, close_idx)
     body = inner.rstrip()
     if body.strip() == "":
@@ -294,7 +315,11 @@ def render_html(payload, template):
     for key, val in ph.items():
         out = out.replace("{{" + key + "}}", str(val))
 
-    leftover = sorted(set(re.findall(r"\{\{([A-Z_]+)\}\}", out)))
+    # Strip HTML comments before scanning, so the documentation block at the
+    # top of the template (which mentions "{{PLACEHOLDERS}}" etc.) isn't
+    # mistaken for an unfilled field.
+    scan = re.sub(r"<!--.*?-->", "", out, flags=re.DOTALL)
+    leftover = sorted(set(re.findall(r"\{\{([A-Z_]+)\}\}", scan)))
     if leftover:
         print(f"  ! WARNING: unresolved placeholders: {', '.join(leftover)}", file=sys.stderr)
     return out
