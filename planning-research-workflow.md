@@ -159,20 +159,30 @@ genuinely fits** — not every leg needs one.
   encounter with it.
 
 **Source order — work through these in sequence:**
-1. **Michael Haynes paintings** — check the gallery first:
-   `https://www.mhaynesart.com/lewisandclark`. Many depict specific dated
-   moments. Before proposing a Haynes image, confirm the painting's described
-   event matches the date in this span — do not assume a scene is available
-   just because the event type recurs. **Attribution required:**
-   `Michael Haynes — www.mhaynesart.com`.
+1. **Michael Haynes paintings** — consult `haynes-gallery.md` (project file,
+   one-time catalog of the full gallery). Look up the dates in the span and
+   check whether any painting's described event matches. Both the 16 paintings
+   on the artist's own gallery page and the additional works on lewis-clark.org
+   are cataloged there, with direct image URLs and source page links. Do **not**
+   fetch the live gallery (`https://www.mhaynesart.com/lewisandclark`) on every
+   research session — use the catalog instead. If the catalog seems incomplete
+   or a candidate can't be confirmed from it, then fetch the gallery directly.
+   **Attribution required:** `© Michael Haynes — www.mhaynesart.com, used with
+   permission`.
 2. **lewis-clark.org day page photos** — the day-by-day pages often include
    trail photos (river views, interpretive signs, monuments) with CC licenses.
    Check the page fetched in Step 1 above.
-3. **Public domain** — Library of Congress, Wikimedia Commons, NPS,
-   public-domain paintings/engravings (Karl Bodmer, George Catlin), period
-   maps. Search actively; confirm the work is genuinely public domain
-   (pre-1929 publication, or artist died long enough ago). Caption with title,
-   artist/date, and holding institution.
+3. **Public domain** — consult `bodmer-catlin-gallery.md` (project file,
+   pre-cataloged) for Karl Bodmer and George Catlin works first. Both
+   collections are pre-mapped to expedition date ranges and river segments;
+   check the Quick-Reference table at the bottom of that file. Key caveat for
+   both: they painted the same locations and tribes ~28–30 years after the
+   expedition — always caption with the artist's travel dates, not 1804–06.
+   For anything not covered by the catalog (Library of Congress, Wikimedia
+   Commons, NPS, period maps, other public-domain engravings), search actively.
+   Confirm the work is genuinely public domain (pre-1929 publication, or artist
+   died long enough ago). Caption with title, artist/date, and holding
+   institution.
 
 ---
 
