@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  CAPTAIN DADDERS — LEG TEMPLATE
+  ============================================================================
+  This template is the CANONICAL source for every leg page. CSS, fonts, and
+  structure are locked here. To produce a leg, fill the {{PLACEHOLDERS}} only.
+
+  PLACEHOLDERS (alphabetical):
+    MO24          e.g.  KEHR
+    MO24 — Craig, MO     e.g.  KEHR — Henderson, KY
+    Lonesome Sky Airport          e.g.  Henderson City-County Airport
+    1,412     e.g.  672
+    May 27, 2026        e.g.  May 7, 2026
+    64MO          e.g.  KY8
+    64MO — SW of St. Joseph, MO     e.g.  KY8 — Lewisport, KY
+    Booze Island Airport          e.g.  Lewis Field
+    69       e.g.  49
+    0:38          e.g.  0:45
+    <p>The week opened with the Missouri at its meanest. On July 5 a run of parallel sandbars and a raft of drift spun the keelboat completely around three times in a single day — twice on quicksand, once on the drift — each broach demanding the whole crew's strength to recover. The heat was punishing, and Clark blamed the river water itself, marveling that even men doing no work "will wet a Shirt in a Few minits." The country was changing as they climbed past the future site of St. Joseph: the timbered lower river was giving way to open, treeless "bald hills," and prairie so orderly Clark thought it had "the appearance of farms" — the tallgrass world this leg now crosses as the real thing.</p>
+<p>The men paid for it. On July 7 Private Robert Frazer was "struck with the sun" and nearly became the expedition's first death; Lewis bled him and dosed him with saltpeter, the standard medicine of the day. By the 8th, five men were down with violent headaches and others with painful boils, and on the 11th Sergeant Floyd recorded flatly that "the men is all sick." Amid the misery there was at least one bright moment: stopping at a beaver lodge on the 5th, Lewis's big Newfoundland, Seaman, plunged in and drove the beavers out — one of the dog's first star turns in a journal where he becomes a real character.</p>
+<p>The low point of discipline came on July 12, when Private Alexander Willard was court-martialed for lying down and falling asleep at his post as a sentinel. On a small party pushing into country it did not know, a sleeping guard was no minor lapse — under the Articles of War it was a capital crime, because one man's nap could let an enemy fall on the entire camp before anyone woke. The danger was no abstraction: only days earlier a fire spotted on the far shore had convinced the captains a Sioux war party was upon them, and they had loaded the keelboat's cannon and stood to arms (it proved to be their own lost men, asleep). Willard pleaded guilty to lying down but not to sleeping; convicted, he was sentenced to 100 lashes on the bare back, given 25 at a time over four evenings.</p>
+<p>That same day, far to the east, the expedition's diplomatic side was bearing fruit. A delegation of Osage chiefs — among them the head chief White Hair, escorted from the Missouri country by Pierre Chouteau — reached Washington, where President Jefferson received them. He told them he would be "considering how we may best secure everlasting peace, friendship & commerce between the Osage nation, and the 17. United nations in whose name I speak to you, and take you by the hand." The handshake did not hold long. Within four years, William Clark himself — by then the U.S. Indian agent at St. Louis — would help negotiate the 1808 treaty under which the Osage gave up most of present-day Missouri and northern Arkansas; further cessions followed, and the nation was pushed first onto a reservation in Kansas and at last to Indian Territory in Oklahoma. The peace, friendship, and commerce proved rather less everlasting than the words that opened them.</p>
+<p>For all the sickness and the lash, these days brim with wonder too. On the 12th Clark took a few men up the Nemaha, climbed a cluster of ancient grave-mounds rising from grass four and a half feet high, and called the view "one of the most pleasing prospects I ever beheld," reading the old earthworks as evidence the country had once been thickly settled. He carved his name and the date into a sandstone bluff beside an Indian petroglyph of animals and a boat — and as the party sailed a fast twenty miles on the 13th under a steady south wind, Lewis stopped to gather a sprig of white sage from the plain, one more entry in a catalog of plants the country was only beginning to surrender.</p>   one or more <p>...</p> blocks
+    A Fevered River, and a Promise in Washington  e.g.  A River Town Already Waiting
+    <p class="journal-para">Another short hop from one farm airstrip to another.  Peaceful and uneventful.  I flew past St. Joseph, Missouri, and not much else.</p>
+
+<div class="leg-photo">
+  <img src="Expedition3/Legs/Leg20-WindingRiver.png" alt="Aerial view of the winding Missouri River below the flight path">
+  <div class="photo-caption">The winding Missouri River</div>
+</div>
+
+<p class="journal-para">The river feels like it's gotten narrower -- definitely not as wide as the Ohio River and Mississippi Rivers behind me.  As I looked at all the farmland, I again imagined what it would have been like as a wild prairie.</p>
+
+<p class="journal-para">I flew north of the Kansas/Nebraska state line, but once again landed on the Missouri side of the river.  I managed not to touch Kansas soil for the whole trip (not intentionally).</p>
+
+<p class="journal-para">Landing at Lonesome Sky "Airport" (MO24) was rather routine.  Calm winds were my reward for getting an early start this morning.  Decided to play with the drone cam for today's landing footage.</p>
+
+<div class="leg-video">
+  <iframe src="https://www.youtube.com/embed/Q-9oG5V7fRk" title="Landing at Lonesome Sky Airport (MO24)" frameborder="0" allowfullscreen></iframe>
+  <div class="video-caption">Landing at Lonesome Sky Airport (MO24), an airstrip next to a farm.</div>
+</div>      assembled <p>/photo/video blocks (see snippets below)
+    July 5–13, 1804          e.g.  Oct 30 – Nov 2, 1803
+    20           bare leg number, e.g.  9
+    20    zero-padded, e.g.  09
+    A Fevered River, and a Promise in Washington         e.g.  Into the Setting Sun
+    21          bare number for next leg
+    21          zero-padded for next leg
+    19          bare number for previous leg
+    19          zero-padded for previous leg
+    35      whole-number percent, e.g.  17
+    4,029          e.g.  4,029   (canonical reference total)
+
+  JOURNAL_BODY SNIPPETS — assemble in the exact order given in the kickoff prompt.
+    Paragraph:
+      <p class="journal-para">TEXT</p>
+
+    Photo:
+      <div class="leg-photo">
+        <img src="Expedition3/Legs/FILENAME.png" alt="ALT_TEXT">
+        <div class="photo-caption">CAPTION</div>
+      </div>
+
+    Video (YouTube embed):
+      <div class="leg-video">
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="TITLE"
+                frameborder="0" allowfullscreen></iframe>
+        <div class="video-caption">CAPTION</div>
+      </div>
+
+  HISTORICAL_BODY: just one or more <p>...</p> blocks, no class needed.
+  ============================================================================
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leg 20: A Fevered River, and a Promise in Washington — Captain Dadders</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1410;
+    --parchment: #f0ebe0;
+    --gold: #e8a020;
+    --gold-light: #f0c060;
+    --muted: #b0a888;
+    --muted-light: #d4cbb8;
+    --border: #4a4030;
+    --border-light: #c8b890;
+    --complete: #5ab87a;
+    --planning: #6a7890;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Crimson Pro", Georgia, serif;
+    background: var(--parchment);
+    color: var(--ink);
+    line-height: 1.7;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--ink);
+    color: var(--parchment);
+    padding: 3rem 1.5rem 2.5rem;
+    text-align: center;
+  }
+  .hero-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .eyebrow {
+    font-family: "Cinzel", serif;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+  .hero h1 {
+    font-family: "Cinzel", serif;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.6rem;
+    color: #fff;
+  }
+  .hero-sub {
+    font-size: 1rem;
+    color: var(--muted-light);
+    font-style: italic;
+  }
+
+  /* ── FLIGHT STRIP (canonical) ── */
+  .flight-strip-outer {
+    background: #111008;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .flight-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .strip-cell {
+    flex: 1;
+    min-width: 120px;
+    padding: 14px 18px;
+    border-right: 1px solid var(--border);
+  }
+  .strip-cell:last-child { border-right: none; }
+  .strip-label {
+    font-family: "Cinzel", serif;
+    font-size: 8px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    display: block;
+  }
+  .strip-value {
+    font-family: "Crimson Pro", serif;
+    font-size: 16px;
+    color: var(--parchment);
+    font-weight: 600;
+    display: block;
+  }
+  .strip-value.gold { color: var(--gold); }
+
+  /* ── PROGRESS BAR (canonical) ── */
+  .progress-wrap {
+    background: var(--ink);
+    padding: 16px 40px 20px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .progress-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .progress-label {
+    font-family: "Cinzel", serif;
+    font-size: 8px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .progress-track {
+    background: #2a2418;
+    border-radius: 2px;
+    height: 6px;
+  }
+  .progress-fill {
+    background: linear-gradient(90deg, var(--complete), #7ed4a0);
+    height: 6px;
+    border-radius: 2px;
+    width: 35%;
+  }
+
+  /* ── CONTENT / PARCHMENT ── */
+  .content-area {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+  }
+  .journal-para {
+    font-size: 1.1rem;
+    margin-bottom: 1.4rem;
+    color: var(--ink);
+  }
+  .leg-photo {
+    margin: 1.8rem 0;
+  }
+  .leg-photo img {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--border-light);
+    display: block;
+  }
+  .photo-caption {
+    font-family: "Cinzel", serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+  .leg-video {
+    margin: 1.8rem 0;
+  }
+  .leg-video iframe {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border: 1px solid var(--border-light);
+    display: block;
+  }
+  .video-caption {
+    font-family: "Cinzel", serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+
+  /* ── HISTORICAL SECTION ── */
+  .historical-wrap {
+    background: var(--ink);
+    color: var(--parchment);
+  }
+  .historical-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+  }
+  .historical-banner {
+    font-family: "Cinzel", serif;
+    font-size: 8px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .historical-inner h2 {
+    font-family: "Cinzel", serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--gold-light);
+    margin-bottom: 1rem;
+    letter-spacing: 0.04em;
+  }
+  .historical-inner p {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: #d8d0c0;
+    margin-bottom: 1rem;
+  }
+  .historical-inner p:last-child { margin-bottom: 0; }
+
+  /* ── LEG NAV (canonical) ── */
+  .leg-nav {
+    background: var(--ink);
+    border-top: 1px solid var(--border);
+    padding: 22px 40px;
+  }
+  .leg-nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .leg-nav a {
+    font-family: "Cinzel", serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 10px 18px;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+  .leg-nav a:hover {
+    background: var(--gold);
+    color: var(--ink);
+    border-color: var(--gold);
+  }
+
+  @media (max-width: 540px) {
+    .flight-strip { flex-direction: column; }
+    .strip-cell { border-right: none; border-bottom: 1px solid var(--border); }
+    .strip-cell:last-child { border-bottom: none; }
+    .leg-nav-inner { flex-direction: column; gap: 0.6rem; text-align: center; }
+    .progress-wrap { padding: 16px 20px 20px; }
+    .leg-nav { padding: 22px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Leg 20 &middot; May 27, 2026</div>
+    <h1>A Fevered River, and a Promise in Washington</h1>
+    <div class="hero-sub">Booze Island Airport (64MO) &rarr; Lonesome Sky Airport (MO24)</div>
+  </div>
+</div>
+
+<!-- FLIGHT STRIP -->
+<div class="flight-strip-outer">
+  <div class="flight-strip">
+    <div class="strip-cell">
+      <span class="strip-label">Date Flown</span>
+      <span class="strip-value">May 27, 2026</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">L&amp;C Dates</span>
+      <span class="strip-value gold">July 5–13, 1804</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Departure</span>
+      <span class="strip-value">64MO — SW of St. Joseph, MO</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Arrival</span>
+      <span class="strip-value">MO24 — Craig, MO</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Distance</span>
+      <span class="strip-value">69 NM</span>
+    </div>
+    <div class="strip-cell">
+      <span class="strip-label">Duration</span>
+      <span class="strip-value">0:38</span>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRESS BAR -->
+<div class="progress-wrap">
+  <div class="progress-inner">
+    <div class="progress-label">
+      <span>Expedition Progress</span>
+      <span>1,412 of ~4,029 NM &mdash; 35%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill"></div>
+    </div>
+  </div>
+</div>
+
+<!-- JOURNAL CONTENT -->
+<div class="content-area">
+<p class="journal-para">Another short hop from one farm airstrip to another.  Peaceful and uneventful.  I flew past St. Joseph, Missouri, and not much else.</p>
+
+<div class="leg-photo">
+  <img src="Expedition3/Legs/Leg20-WindingRiver.png" alt="Aerial view of the winding Missouri River below the flight path">
+  <div class="photo-caption">The winding Missouri River</div>
+</div>
+
+<p class="journal-para">The river feels like it's gotten narrower -- definitely not as wide as the Ohio River and Mississippi Rivers behind me.  As I looked at all the farmland, I again imagined what it would have been like as a wild prairie.</p>
+
+<p class="journal-para">I flew north of the Kansas/Nebraska state line, but once again landed on the Missouri side of the river.  I managed not to touch Kansas soil for the whole trip (not intentionally).</p>
+
+<p class="journal-para">Landing at Lonesome Sky "Airport" (MO24) was rather routine.  Calm winds were my reward for getting an early start this morning.  Decided to play with the drone cam for today's landing footage.</p>
+
+<div class="leg-video">
+  <iframe src="https://www.youtube.com/embed/Q-9oG5V7fRk" title="Landing at Lonesome Sky Airport (MO24)" frameborder="0" allowfullscreen></iframe>
+  <div class="video-caption">Landing at Lonesome Sky Airport (MO24), an airstrip next to a farm.</div>
+</div>
+</div>
+
+<!-- HISTORICAL SECTION -->
+<div class="historical-wrap">
+  <div class="historical-inner">
+    <div class="historical-banner">What Lewis &amp; Clark were doing at this same point &mdash; July 5–13, 1804</div>
+    <h2>A Fevered River, and a Promise in Washington</h2>
+<p>The week opened with the Missouri at its meanest. On July 5 a run of parallel sandbars and a raft of drift spun the keelboat completely around three times in a single day — twice on quicksand, once on the drift — each broach demanding the whole crew's strength to recover. The heat was punishing, and Clark blamed the river water itself, marveling that even men doing no work "will wet a Shirt in a Few minits." The country was changing as they climbed past the future site of St. Joseph: the timbered lower river was giving way to open, treeless "bald hills," and prairie so orderly Clark thought it had "the appearance of farms" — the tallgrass world this leg now crosses as the real thing.</p>
+<p>The men paid for it. On July 7 Private Robert Frazer was "struck with the sun" and nearly became the expedition's first death; Lewis bled him and dosed him with saltpeter, the standard medicine of the day. By the 8th, five men were down with violent headaches and others with painful boils, and on the 11th Sergeant Floyd recorded flatly that "the men is all sick." Amid the misery there was at least one bright moment: stopping at a beaver lodge on the 5th, Lewis's big Newfoundland, Seaman, plunged in and drove the beavers out — one of the dog's first star turns in a journal where he becomes a real character.</p>
+<p>The low point of discipline came on July 12, when Private Alexander Willard was court-martialed for lying down and falling asleep at his post as a sentinel. On a small party pushing into country it did not know, a sleeping guard was no minor lapse — under the Articles of War it was a capital crime, because one man's nap could let an enemy fall on the entire camp before anyone woke. The danger was no abstraction: only days earlier a fire spotted on the far shore had convinced the captains a Sioux war party was upon them, and they had loaded the keelboat's cannon and stood to arms (it proved to be their own lost men, asleep). Willard pleaded guilty to lying down but not to sleeping; convicted, he was sentenced to 100 lashes on the bare back, given 25 at a time over four evenings.</p>
+<div class="leg-photo">
+  <img src="Expedition3/Legs/Leg20-CatONineTails.jpg" alt="A cat-o'-nine-tails, the knotted multi-tailed whip used for military floggings">
+  <div class="photo-caption">The cat-o'-nine-tails. For sleeping on guard &mdash; a hanging offense under the Articles of War &mdash; Private Alexander Willard was sentenced to 100 lashes, given 25 at a time over four nights. Painting &copy; Michael Haynes &mdash; www.mhaynesart.com, used with permission.</div>
+</div>
+<p>That same day, far to the east, the expedition's diplomatic side was bearing fruit. A delegation of Osage chiefs — among them the head chief White Hair, escorted from the Missouri country by Pierre Chouteau — reached Washington, where President Jefferson received them. He told them he would be "considering how we may best secure everlasting peace, friendship & commerce between the Osage nation, and the 17. United nations in whose name I speak to you, and take you by the hand." The handshake did not hold long. Within four years, William Clark himself — by then the U.S. Indian agent at St. Louis — would help negotiate the 1808 treaty under which the Osage gave up most of present-day Missouri and northern Arkansas; further cessions followed, and the nation was pushed first onto a reservation in Kansas and at last to Indian Territory in Oklahoma. The peace, friendship, and commerce proved rather less everlasting than the words that opened them.</p>
+<p>For all the sickness and the lash, these days brim with wonder too. On the 12th Clark took a few men up the Nemaha, climbed a cluster of ancient grave-mounds rising from grass four and a half feet high, and called the view "one of the most pleasing prospects I ever beheld," reading the old earthworks as evidence the country had once been thickly settled. He carved his name and the date into a sandstone bluff beside an Indian petroglyph of animals and a boat — and as the party sailed a fast twenty miles on the 13th under a steady south wind, Lewis stopped to gather a sprig of white sage from the plain, one more entry in a catalog of plants the country was only beginning to surrender.</p>
+  </div>
+</div>
+
+<!-- LEG NAV -->
+<div class="leg-nav">
+  <div class="leg-nav-inner">
+    <a href="#leg-19">&larr; Leg 19</a>
+    <a href="#leg-21">Leg 21 &rarr;</a>
+  </div>
+</div>
+
+</body>
+</html>
