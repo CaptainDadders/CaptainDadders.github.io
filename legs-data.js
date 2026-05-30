@@ -291,8 +291,8 @@ const FLIGHT_LEGS = [
     duration: "0:38"
   },
   {
-    lat: 41.30027,
-    lng: -95.90655,
+    lat: 41.30317,
+    lng: -95.89406,
     label: "Leg 21: The Great River Platte",
     location: "MO24 → KOMA · Craig MO to Omaha NE",
     date: "May 29, 2026",
