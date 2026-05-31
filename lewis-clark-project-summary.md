@@ -143,6 +143,15 @@ User resolves all flags in one pass. No separate "now fact-check this" round-tri
 The `→` and `·` separators in `location`, and the `–` en-dash in `lcDates`, are
 stored as escaped unicode (`\u2192`, `\u00b7`, `\u2013`) to match existing entries.
 
+**⚠️ Marker vs snap — they are different points.** `FLIGHT_LEGS` `lat`/`lng` is the
+**map pin** and must be the airport's **actual coordinates** (so the pin sits on
+the airport). The route *snap point* (`AIRPORT_PLAN[arr].snap`, where the airport
+projects onto the river polyline) is a **different** point, used only for route
+geometry — `COMPLETED_COORDS` and `AIRPORT_PLAN`. For an off-route airport these
+can be over 1 NM apart. **Leg 21 was wrong on this:** the marker was set to the
+snap point and the pin landed out in the river. Use real airport coords for the
+marker; use the snap only for the green line.
+
 ### LEG_NOTES entry
 ```javascript
 "leg-NN": {
@@ -190,7 +199,7 @@ The template (`leg-template.html`) handles all CSS, fonts, color variables, dark
 | `{{DISTANCE_NM}}` / `{{DURATION}}` | leg distance / time |
 | `{{CUMULATIVE_NM}}` / `{{TOTAL_NM}}` / `{{PROGRESS_PCT}}` | progress bar values |
 | `{{JOURNAL_BODY}}` | assembled paragraphs/photos/videos in order |
-| `{{HISTORICAL_TITLE}}` / `{{HISTORICAL_BODY}}` | historical section h2 + paragraphs |
+| `{{HISTORICAL_TITLE}}` / `{{HISTORICAL_BODY}}` | historical section h2 + body (paragraph strings and/or `{"type":"photo"}` items — see Historical section images) |
 | `{{PREV_NUM}}` / `{{PREV_PAD}}` / `{{NEXT_NUM}}` / `{{NEXT_PAD}}` | leg-nav numbers |
 
 Snippet patterns for journal body (paragraph, photo, video) are documented at the top of the template file.
@@ -230,6 +239,11 @@ A period image can strengthen the historical section, but **only when it genuine
    - **Attribution is required.** Per the artist: *"Please do credit me; Michael Haynes — www.mhaynesart.com."* Any caption using a Haynes image must credit `Michael Haynes — www.mhaynesart.com`.
 
 As with prior legs, historical-section images are embedded as **local assets** (`Expedition3/Legs/LegNN-Name.jpg`) that the pilot saves and uploads; Claude proposes the image + source and references the local path in the HTML.
+
+**⚠️ Image markup rule — every image on the page, no exceptions.** An image is passed to `build_leg.py` as a structured payload item, NEVER as a bare `<img>` or as raw HTML inside a paragraph:
+- Journal photo → a `{"type":"photo", "file":..., "caption":..., "alt":...}` item in `journal`.
+- Historical-section image → the **same** `{"type":"photo", ...}` item placed in `historical_body` (which now accepts structured items as well as plain paragraph strings). The build emits the standard `.leg-photo` wrapper as a sibling of the paragraphs.
+- The `.leg-photo img { width:100% }` rule is the **only** thing constraining image width to the column. A bare `<img>` has no width limit, renders at native pixel size, overflows the viewport, and breaks the whole page layout — title shoved off-center, hero map overflowing. **Leg 21 was wrong on this:** the Catlin image was first embedded as a bare `<img>` in the historical body and broke the page on the live site. Fixed by teaching `build_historical_body` to accept `photo` items so a `<div class="leg-photo">` is never wrapped in a `<p>` (invalid) and never unconstrained.
 
 ### Prologue exception
 `leg-00-prologue.html` does NOT use the template — it has its own structure (`display:inline-flex` flight strip, no progress bar, no leg-nav). Don't try to retro-fit the template to it.
