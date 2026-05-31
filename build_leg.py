@@ -247,6 +247,22 @@ def update_object_values(text, var_name, updates):
 # --------------------------------------------------------------------------- #
 #  Builders
 # --------------------------------------------------------------------------- #
+def _photo_block(it):
+    """Standard .leg-photo wrapper — the ONLY markup that constrains image
+    width to the column (.leg-photo img { width:100% }). Every image on the
+    page MUST go through this; a bare <img> overflows the viewport and breaks
+    the whole page layout."""
+    alt = it.get("alt") or it.get("caption", "")
+    caption = it.get("caption", "")
+    cap_html = f'\n  <div class="photo-caption">{caption}</div>' if caption else ""
+    return (
+        '<div class="leg-photo">\n'
+        f'  <img src="Expedition3/Legs/{it["file"]}" alt="{attr_escape(alt)}">'
+        f"{cap_html}\n"
+        "</div>"
+    )
+
+
 def build_journal_body(items):
     blocks = []
     for it in items:
@@ -254,13 +270,7 @@ def build_journal_body(items):
         if t == "para":
             blocks.append(f'<p class="journal-para">{it["text"]}</p>')
         elif t == "photo":
-            alt = it.get("alt") or it.get("caption", "")
-            blocks.append(
-                '<div class="leg-photo">\n'
-                f'  <img src="Expedition3/Legs/{it["file"]}" alt="{attr_escape(alt)}">\n'
-                f'  <div class="photo-caption">{it["caption"]}</div>\n'
-                "</div>"
-            )
+            blocks.append(_photo_block(it))
         elif t == "video":
             title = it.get("title") or it.get("caption", "")
             blocks.append(
@@ -275,8 +285,29 @@ def build_journal_body(items):
     return "\n\n".join(blocks)
 
 
-def build_historical_body(paragraphs):
-    return "\n".join(f"<p>{p}</p>" for p in paragraphs)
+def build_historical_body(items):
+    """Each item is either a plain string (a paragraph) or a dict.
+    Strings are wrapped in <p>. Dicts with type "photo" emit the standard
+    .leg-photo block as a SIBLING of the paragraphs — NEVER inside a <p>,
+    because a <div> inside a <p> is invalid and a bare <img> would overflow
+    the page. type "html" passes raw block-level markup through untouched."""
+    blocks = []
+    for it in items:
+        if isinstance(it, str):
+            blocks.append(f"<p>{it}</p>")
+        elif isinstance(it, dict):
+            t = it.get("type")
+            if t == "photo":
+                blocks.append(_photo_block(it))
+            elif t == "para":
+                blocks.append(f'<p>{it["text"]}</p>')
+            elif t == "html":
+                blocks.append(it["html"])
+            else:
+                raise ValueError(f"Unknown historical_body item type: {t!r}")
+        else:
+            raise ValueError(f"Bad historical_body item: {it!r}")
+    return "\n".join(blocks)
 
 
 def render_html(payload, template):

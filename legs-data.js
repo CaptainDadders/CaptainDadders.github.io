@@ -365,7 +365,14 @@ const AIRPORT_CUM_NM = {
   "KSTJ": 1364.8,  // Rosecrans Memorial Airport, St Joseph MO; snap [39.77228,-94.91517], 0.25 NM off-route
   "MO24": 1412.1,  // Lonesome Sky Airport, Craig MO; snap [40.12234,-95.41657], 1.79 NM off-route
   "KAFK": 1459.9,  // Nebraska City Municipal Airport, Nebraska City NE; snap [40.61879,-95.78834], 3.65 NM off-route
-  "KOMA": 1508.9   // Eppley Airfield, Omaha NE; snap [41.30027,-95.90655], 0.59 NM off-route
+  "KOMA": 1508.9,  // Eppley Airfield, Omaha NE; snap [41.30027,-95.90655], 0.59 NM off-route
+  "75NE": 1525.0,  // Heaton Airport, Fort Calhoun NE; snap [41.45027,-95.9471], 0.51 NM off-route
+  "KTQE": 1580.9,  // Tekamah Municipal, Tekamah NE; snap [41.75351,-96.16981], 0.70 NM off-route
+  "K36":  1605.4,  // Onawa Municipal, Onawa IA; snap [42.01107,-96.11899], 0.77 NM off-route
+  "IA58": 1634.2,  // B-8 Farms, Whiting IA; snap [42.12547,-96.17267], 0.63 NM off-route
+  "42IA": 1654.5,  // Lakeport Farms, Salix IA; snap [42.26424,-96.3181], 1.27 NM off-route
+  "NE75": 1674.8,  // Kristijanto Airstrip, Dakota City NE; snap [42.41253,-96.42451], 0.78 NM off-route
+  "KSUX": 1675.7   // Sioux Gateway, Sioux City IA; snap [42.41995,-96.40681], 1.44 NM off-route
 };
 
 // ── LEG_NOTES — verified facts + summary of what the leg post covered ──
@@ -530,6 +537,62 @@ const AIRPORT_PLAN = {
     offRouteNM: 0.59,
     campBehind: { date: "1804-07-22/26", place: "left shore, White Catfish Camp, NE", gapNM: 10.2 },
     campAhead: { date: "1804-07-27", place: "right shore north of Council Bluffs, IA", gapNM: 1.6 },
+    deferredDateCall: true
+  },
+  "75NE": {
+    snap: [41.45027, -95.9471],
+    snapIndex: 796,
+    offRouteNM: 0.51,
+    campBehind: { date: "1804-07-29", place: "left shore, 4 mi NE of Nashville, NE", gapNM: 0.0 },
+    campAhead: { date: "1804-07-30/31", place: "right shore: L&C's Council Bluffs, NE", gapNM: 2.6 },
+    deferredDateCall: false
+  },
+  "KTQE": {
+    snap: [41.75351, -96.16981],
+    snapIndex: 844,
+    offRouteNM: 0.7,
+    campBehind: { date: "1804-08-06", place: "left shore, 1 mi NW of Mondamin, IA", gapNM: 20.2 },
+    campAhead: { date: "1804-08-07", place: "left shore, 5 mi ESE of Tekamah, NE", gapNM: 2.8 },
+    deferredDateCall: true
+  },
+  "K36": {
+    snap: [42.01107, -96.11899],
+    snapIndex: 865,
+    offRouteNM: 0.77,
+    campBehind: { date: "1804-08-08", place: "left shore, 4 mi SW of Blencos, IA", gapNM: 9.5 },
+    campAhead: { date: "1804-08-09", place: "right shore, 3 mi WNW of Onawa, IA", gapNM: 1.8 },
+    deferredDateCall: true
+  },
+  "IA58": {
+    snap: [42.12547, -96.17267],
+    snapIndex: 891,
+    offRouteNM: 0.63,
+    campBehind: { date: "1804-08-11", place: "bar right side, 3 mi W of Whiting, IA in NE?", gapNM: 1.1 },
+    campAhead: { date: "1804-08-12", place: "bar left side, 4 mi W of Sloan, IA", gapNM: 17.6 },
+    deferredDateCall: false
+  },
+  "42IA": {
+    snap: [42.26424, -96.3181],
+    snapIndex: 908,
+    offRouteNM: 1.27,
+    campBehind: { date: "1804-08-12", place: "bar left side, 4 mi W of Sloan, IA", gapNM: 2.7 },
+    campAhead: { date: "1804-08-13/19", place: "right shore, Fish Camp, NE", gapNM: 7.3 },
+    deferredDateCall: false
+  },
+  "NE75": {
+    snap: [42.41253, -96.42451],
+    snapIndex: 925,
+    offRouteNM: 0.78,
+    campBehind: { date: "1804-08-13/19", place: "right shore, Fish Camp, NE", gapNM: 13.0 },
+    campAhead: { date: "1804-08-20", place: "left shore, mouth of Floyds River, Sioux City, IA", gapNM: 4.9 },
+    deferredDateCall: true
+  },
+  "KSUX": {
+    snap: [42.41995, -96.40681],
+    snapIndex: 926,
+    offRouteNM: 1.44,
+    campBehind: { date: "1804-08-13/19", place: "right shore, Fish Camp, NE", gapNM: 13.9 },
+    campAhead: { date: "1804-08-20", place: "left shore, mouth of Floyds River, Sioux City, IA", gapNM: 4.0 },
     deferredDateCall: true
   },
 };
