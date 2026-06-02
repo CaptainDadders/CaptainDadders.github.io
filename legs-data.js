@@ -304,8 +304,8 @@ const FLIGHT_LEGS = [
     duration: "0:57"
   },
   {
-    lat: 41.75351,
-    lng: -96.16981,
+    lat: 41.763533,
+    lng: -96.177942,
     label: "Leg 22: The First Council",
     location: "KOMA → KTQE · Omaha to Tekamah, NE",
     date: "June 1, 2026",
