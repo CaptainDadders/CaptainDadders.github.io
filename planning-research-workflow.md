@@ -32,6 +32,10 @@ extended here.
 ### Steps
 1. **Resolve each code** to its full name and coordinates. Include names in the
    output so the pilot can confirm the right airports.
+   **Coordinates MUST come from AirNav** (`https://www.airnav.com/airport/[CODE]`) — the project's only authoritative coordinate source; use the decimal lat/long in its Location block.
+   - **Never substitute** SkyVector, Great Circle Mapper, AOPA, FlightAware, Wikipedia, or a raw web-search snippet — their coordinates differ from FAA-of-record by enough to push a pin off its runway.
+   - **If AirNav can't be fetched** (ad-wall, timeout, blocked), do **not** fall back to another source. Retry, or ask the pilot to paste the AirNav DMS and convert it. "Couldn't reach AirNav" is a stop-and-flag condition, not a license to use whatever else has numbers.
+   - This applies in the **content/assembly chat too** — any time a coordinate is needed later (e.g. regenerating the green-line append, or filling the `FLIGHT_LEGS` pin), it comes from AirNav or the already-stored `AIRPORT_PLAN` snap, never a fresh non-AirNav lookup.
 2. **Run `plan_airports.py`** with those coordinates and
    `prev_arrival_cum_nm` = the cumulative NM of the current last-flown airport.
    The script computes, per airport:

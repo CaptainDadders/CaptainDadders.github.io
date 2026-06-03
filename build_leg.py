@@ -359,6 +359,27 @@ def render_html(payload, template):
 def update_legs_data(payload, js_text):
     ld = payload["legs_data"]
 
+    # ---- GUARD: map pin must NOT be the route snap point -------------------
+    # FLIGHT_LEGS lat/lng is the airport's AirNav coordinates (pin on the
+    # runway). The snap point is where the airport projects onto the river
+    # polyline -- a different point, used only for the green line. Putting the
+    # snap in the pin field lands the marker off the runway (has happened on
+    # multiple legs). The snap is the LAST vertex of completed_coords_append.
+    fl = ld["flight_leg"]
+    append = ld.get("completed_coords_append", [])
+    if append:
+        snap_lat, snap_lng = append[-1][0], append[-1][1]
+        pin_lat, pin_lng = fl.get("lat"), fl.get("lng")
+        if pin_lat is not None and pin_lng is not None:
+            # Equal to ~1e-4 deg (~10 m) means the snap was copied into the pin.
+            if (abs(pin_lat - snap_lat) < 1e-4 and abs(pin_lng - snap_lng) < 1e-4):
+                raise ValueError(
+                    "FLIGHT_LEGS pin (lat={}, lng={}) equals the route snap point "
+                    "({}, {}). The pin must be the airport's AirNav coordinates, not "
+                    "the snap. Fix flight_leg.lat/lng in the payload and re-run."
+                    .format(pin_lat, pin_lng, snap_lat, snap_lng)
+                )
+
     # FLIGHT_LEGS: append new entry
     open_idx = find_open(js_text, "FLIGHT_LEGS", "[")
     close_idx = find_matching(js_text, open_idx, "[", "]")

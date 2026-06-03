@@ -93,6 +93,7 @@ Photos and videos render in the exact order they appear inline. Never reorder.
 - Progress %: `cumulative / EXP3_STATS.totalNM × 100`, rounded
 - COMPLETED_COORDS: extend through the arrival's stored snap point
   (`AIRPORT_PLAN[arr].snap` / `plan_airports.py`); assembled by `build_leg.py`.
+- **Airport coordinates always come from AirNav** (`https://www.airnav.com/airport/[CODE]`) — the only authoritative source. Never substitute SkyVector, Great Circle Mapper, AOPA, FlightAware, Wikipedia, or a search snippet; they differ from FAA-of-record enough to misplace a pin. If AirNav can't be fetched, **stop and ask the pilot to paste the AirNav DMS** — do not fall back to another source.
 - Title (if user omits) — proposed for confirmation
 
 ---
@@ -143,14 +144,19 @@ User resolves all flags in one pass. No separate "now fact-check this" round-tri
 The `→` and `·` separators in `location`, and the `–` en-dash in `lcDates`, are
 stored as escaped unicode (`\u2192`, `\u00b7`, `\u2013`) to match existing entries.
 
-**⚠️ Marker vs snap — they are different points.** `FLIGHT_LEGS` `lat`/`lng` is the
-**map pin** and must be the airport's **actual coordinates** (so the pin sits on
-the airport). The route *snap point* (`AIRPORT_PLAN[arr].snap`, where the airport
+**⚠️ Marker vs snap — they are different points. This mistake has recurred; treat it as a hard checklist item, not a guideline.** `FLIGHT_LEGS` `lat`/`lng` is the
+**map pin** and must be the airport's **actual AirNav coordinates** (so the pin sits on
+the runway). The route *snap point* (`AIRPORT_PLAN[arr].snap`, where the airport
 projects onto the river polyline) is a **different** point, used only for route
 geometry — `COMPLETED_COORDS` and `AIRPORT_PLAN`. For an off-route airport these
-can be over 1 NM apart. **Leg 21 was wrong on this:** the marker was set to the
-snap point and the pin landed out in the river. Use real airport coords for the
-marker; use the snap only for the green line.
+can be over 1 NM apart.
+
+**At assembly, before running `build_leg.py`, verify the payload `flight_leg.lat/lng`:**
+- It must equal the airport's **AirNav** coordinates — the same values resolved in planning, NOT the snap.
+- It must **NOT** equal `AIRPORT_PLAN[arr].snap`. If the two are equal (or you copied the snap from the planner output by reflex), it is wrong — replace with the AirNav airport coords.
+- `completed_coords_append` ends at the snap; the pin does not. Two different fields, two different points.
+
+**This has now gone wrong twice — Leg 21 and Leg 22** — both times by putting the snap point in the marker so the pin landed off the runway. The planner output puts the snap right in front of you at assembly, which is the trap. Pull the pin coords from the AirNav resolution / the planning record, never from the snap.
 
 ### LEG_NOTES entry
 ```javascript
