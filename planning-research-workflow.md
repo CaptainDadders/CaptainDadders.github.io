@@ -40,6 +40,9 @@ extended here.
    `prev_arrival_cum_nm` = the cumulative NM of the current last-flown airport.
    The script computes, per airport:
    - cumulative NM from Pittsburgh (→ `AIRPORT_CUM_NM`)
+   - actual AirNav coordinates passed through from input (→ `AIRPORT_COORDS`,
+     so the pin is stored alongside the route data and the content/assembly
+     chat doesn't have to refetch AirNav per leg)
    - snap point + polyline index (→ green-line / `AIRPORT_PLAN`)
    - off-route distance, with a 🚩 flag if **> 10 NM** (likely wrong code)
    - nearest campsite **behind** and **ahead**, each with date + along-route gap
@@ -49,6 +52,7 @@ extended here.
 4. **Paste the script's output into `legs-data.js`:**
    - new `AIRPORT_CUM_NM` lines (remember to add a comma after the current last
      entry)
+   - new `AIRPORT_COORDS` lines (same comma rule)
    - new `AIRPORT_PLAN` entries (first batch: the whole block; later batches:
      just the entries before its closing `};`)
 5. Hand back the updated `legs-data.js` for the pilot to commit.
@@ -74,6 +78,18 @@ material. See the deferred-date note under Research below.
 number — do not change its shape). `AIRPORT_PLAN` is a separate parallel block
 and only holds airports **ahead**; once a leg is flown, that entry has done its
 job and can be left or dropped.
+
+### `AIRPORT_COORDS` entry shape (also in `legs-data.js`)
+```javascript
+"KSTJ": [39.7719, -94.9097]      // AirNav of-record [lat, lng] — the pin
+```
+`AIRPORT_COORDS` is a third parallel block: `code → [lat, lng]`. It stores the
+**actual airport coordinates** (the AirNav lookup that the planning step
+already does to feed the snap calculation) so the content/assembly step can
+read the FLIGHT_LEGS map-pin coordinates directly from `legs-data.js` instead
+of re-fetching AirNav for every leg. Distinct from `AIRPORT_PLAN[code].snap`,
+which is where the airport projects onto the route polyline — for an
+off-route airport these two points can be over 1 NM apart.
 
 ---
 
@@ -217,7 +233,7 @@ Planning and research produce three things the content chat uses:
 
 | Produced here | Lives in | Used at content time for |
 |---|---|---|
-| `AIRPORT_CUM_NM` + `AIRPORT_PLAN` | `legs-data.js` (committed) | distance, green line, camp dates — read at assembly |
+| `AIRPORT_CUM_NM` + `AIRPORT_COORDS` + `AIRPORT_PLAN` | `legs-data.js` (committed) | distance, FLIGHT_LEGS pin, green line, camp dates — read at assembly |
 | Per-day research files | pilot's laptop | the historical section — attached for the leg's dates |
 | Candidate image(s) | noted in day-files | optional period image in the historical section |
 

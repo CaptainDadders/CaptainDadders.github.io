@@ -139,6 +139,7 @@ schema is documented at the top of `build_leg.py`; the values come from:
 | Payload field | Source |
 |---|---|
 | distance (`distance_nm`) | `AIRPORT_CUM_NM[arr] − AIRPORT_CUM_NM[dep]` |
+| `flight_leg.lat/lng` (pin) | `AIRPORT_COORDS[arr]` — the AirNav pin, stored at planning time so AirNav doesn't have to be re-fetched. Fallback: AirNav direct (`https://www.airnav.com/airport/[ARR]`) if `AIRPORT_COORDS[arr]` is missing. **Never** the snap. |
 | `cumulative_nm`, `progress_pct` | prior `EXP3_STATS.distanceNM` + this leg; ÷ 4029 |
 | `lc_dates` | the resolved boundary (deferred call above) |
 | `completed_coords_append` | green-line extension (see next) |

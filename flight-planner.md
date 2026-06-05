@@ -12,12 +12,16 @@ Given two airport codes, calculate **route distance** and **estimated flight tim
 
 | File | Use |
 |---|---|
-| `legs-data.js` | **Primary source.** Look up `AIRPORT_CUM_NM[dep]` and `AIRPORT_CUM_NM[arr]` and subtract. Simple, cheap, authoritative. |
-| `route_outbound.json` | **Fallback only** — used when an airport is *not yet in* `AIRPORT_CUM_NM`. Snap to segment 0 by haversine, compute cumulative NM, and add the new entry to the table before reporting results. |
+| `legs-data.js` | **Primary source.** Look up `AIRPORT_CUM_NM[dep]` and `AIRPORT_CUM_NM[arr]` and subtract. Simple, cheap, authoritative. (Sibling block `AIRPORT_COORDS` holds AirNav pin coords per airport — not needed for distance, but useful if a downstream step asks where an airport actually is.) |
+| `route_outbound.json` | **Fallback, now rare.** Only when an airport isn't yet in `AIRPORT_CUM_NM`. Normally the **planning** phase (`plan_airports.py`) has already added every candidate, so this should seldom fire. If it does, snap to the polyline by haversine, compute cumulative NM, and add the entry before reporting. |
 
-**If `legs-data.js` is not attached to the conversation, ask for it before doing any calculations.** Do not fall back to `route_outbound.json` just because the file isn't there — the table is the authoritative source and the file is a one-message attachment.
+**Attaching `legs-data.js` — mind the staging:**
+- In a **standalone** flight-planning chat (just deciding where to fly): attach `legs-data.js`; if it's missing, ask for it. Don't fall back to `route_outbound.json` just because it isn't there — the table is authoritative.
+- If flight planning happens **in the same chat as content generation:** do **not** pull `legs-data.js` in early just for a distance check — that breaks the content workflow's staging (big files come in at assembly only). The cumulative NMs are already known from the planning phase; use those, or note that the distance lands automatically at assembly. See `content-workflow.md`.
 
-**Distance calculation (when using fallback):** snap departure and arrival airports to nearest point on segment 0 by haversine, then sum haversine(seg[i], seg[i+1]) between those indices.
+Adding candidate airports is the **planning** phase's job, not this one — see `planning-research-workflow.md`.
+
+**Distance calculation (when using the rare fallback):** snap departure and arrival airports to nearest point on the polyline by haversine, then sum haversine(seg[i], seg[i+1]) between those indices.
 
 ---
 
@@ -47,6 +51,8 @@ Always look up the full name for each airport code. Include the names in the out
 This check applies whenever an airport is being added to `AIRPORT_CUM_NM` via the haversine fallback. After snapping each airport to its nearest point on the route polyline, check the snap distance:
 - **≤ 10 NM** — proceed normally.
 - **> 10 NM** — **stop and flag with 🚩 before reporting results.** Display the airport name, the snap distance, and ask the pilot to confirm the code is correct. Do not silently proceed with a bad snap.
+
+> **Note:** This same 10 NM check now runs in `plan_airports.py` during the planning phase, which is where airports normally get added — so it usually fires there, not here. This fallback flag remains as a safety net for the rare case of an airport reaching flight planning without having been planned.
 
 > **Why this matters:** An incorrect airport code (e.g. Georgetown Scott County instead of Hancock Co-Lewis, both with similar codes) can snap 35+ NM off the route and produce wildly wrong distances. The flag catches this before it wastes a planning session.
 

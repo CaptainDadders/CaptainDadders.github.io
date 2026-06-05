@@ -93,7 +93,7 @@ Photos and videos render in the exact order they appear inline. Never reorder.
 - Progress %: `cumulative / EXP3_STATS.totalNM × 100`, rounded
 - COMPLETED_COORDS: extend through the arrival's stored snap point
   (`AIRPORT_PLAN[arr].snap` / `plan_airports.py`); assembled by `build_leg.py`.
-- **Airport coordinates always come from AirNav** (`https://www.airnav.com/airport/[CODE]`) — the only authoritative source. Never substitute SkyVector, Great Circle Mapper, AOPA, FlightAware, Wikipedia, or a search snippet; they differ from FAA-of-record enough to misplace a pin. If AirNav can't be fetched, **stop and ask the pilot to paste the AirNav DMS** — do not fall back to another source.
+- **Airport pin coordinates (FLIGHT_LEGS `lat`/`lng`)** come from `AIRPORT_COORDS[arr]` in `legs-data.js` — populated during planning from AirNav. If `AIRPORT_COORDS[arr]` is missing (legacy gap), look up AirNav directly (`https://www.airnav.com/airport/[CODE]`) — the only authoritative source for a fresh lookup. Never substitute SkyVector, Great Circle Mapper, AOPA, FlightAware, Wikipedia, or a search snippet; they differ from FAA-of-record enough to misplace a pin. If AirNav can't be fetched, **stop and ask the pilot to paste the AirNav DMS** — do not fall back to another source.
 - Title (if user omits) — proposed for confirmation
 
 ---
@@ -152,11 +152,11 @@ geometry — `COMPLETED_COORDS` and `AIRPORT_PLAN`. For an off-route airport the
 can be over 1 NM apart.
 
 **At assembly, before running `build_leg.py`, verify the payload `flight_leg.lat/lng`:**
-- It must equal the airport's **AirNav** coordinates — the same values resolved in planning, NOT the snap.
+- It must equal `AIRPORT_COORDS[arr]` (or, if that's missing, a fresh AirNav lookup — the same values as planning resolved).
 - It must **NOT** equal `AIRPORT_PLAN[arr].snap`. If the two are equal (or you copied the snap from the planner output by reflex), it is wrong — replace with the AirNav airport coords.
 - `completed_coords_append` ends at the snap; the pin does not. Two different fields, two different points.
 
-**This has now gone wrong twice — Leg 21 and Leg 22** — both times by putting the snap point in the marker so the pin landed off the runway. The planner output puts the snap right in front of you at assembly, which is the trap. Pull the pin coords from the AirNav resolution / the planning record, never from the snap.
+**This has now gone wrong twice — Leg 21 and Leg 22** — both times by putting the snap point in the marker so the pin landed off the runway. The planner output puts the snap right in front of you at assembly, which is the trap. Pull the pin coords from `AIRPORT_COORDS[arr]` in legs-data.js, never from the snap.
 
 ### LEG_NOTES entry
 ```javascript

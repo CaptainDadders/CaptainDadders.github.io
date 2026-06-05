@@ -8,6 +8,7 @@ content chat). For each candidate it computes everything deterministic, so the
 content chat never has to do geometry or scan the 450-entry campsite list:
 
   * along-route cumulative NM from Pittsburgh   (-> AIRPORT_CUM_NM)
+  * actual AirNav coordinates [lat, lng]        (-> AIRPORT_COORDS)
   * snap point [lat, lng] and polyline index    (-> green-line extension)
   * off-route snap distance, with a >10 NM flag
   * the route vertices to APPEND to COMPLETED_COORDS when this airport is the
@@ -19,6 +20,12 @@ content chat never has to do geometry or scan the 450-entry campsite list:
 
 It does NOT do research, pick images, or resolve the date call -- those need
 judgement and stay with Claude / the pilot.
+
+AirNav coords storage: the input lat/lng is already the AirNav of-record
+coordinate (planning resolves every code via AirNav before running this).
+The script threads that value through to AIRPORT_COORDS so that at content-
+assembly time, the FLIGHT_LEGS map pin can be read straight from legs-data.js
+instead of refetching AirNav for every leg.
 
 INPUT  (a small JSON file; Claude fills the coords by resolving each code)
 --------------------------------------------------------------------------
@@ -198,6 +205,7 @@ def main():
 
         rec = {
             "code": code,
+            "airport_coords": [ap_spec["lat"], ap_spec["lng"]],
             "cum_nm": round(snap_cum, 1),
             "snap_point": snap_pt,
             "snap_index": idx,
@@ -213,6 +221,7 @@ def main():
         # ---- human-readable report ----
         flag = "  🚩 OFF-ROUTE" if flagged else ""
         print(f"\n{code}{flag}")
+        print(f"  AirNav coords: [{ap_spec['lat']}, {ap_spec['lng']}]   (the pin)")
         print(f"  cum NM:        {snap_cum:.1f}")
         print(f"  snap point:    {snap_pt}   (vertex #{idx})")
         print(f"  off-route:     {off:.2f} NM"
@@ -280,7 +289,15 @@ def emit_legs_data(results):
         print(f'  {json.dumps(rec["code"])}: {rec["cum_nm"]},'
               f'   // snap {rec["snap_point"]}, {rec["off_route_nm"]} NM off-route')
 
-    print("\n--- 2) AIRPORT_PLAN block.")
+    print("\n--- 2) Add to the AIRPORT_COORDS map (before its closing `};`).")
+    print("       NOTE: add a comma after the current last entry first.")
+    print("       These are the AirNav pin coords — used at assembly for the")
+    print("       FLIGHT_LEGS map pin so AirNav doesn't have to be re-fetched. ---\n")
+    for rec in results:
+        ac = rec["airport_coords"]
+        print(f'  {json.dumps(rec["code"])}: [{ac[0]}, {ac[1]}],')
+
+    print("\n--- 3) AIRPORT_PLAN block.")
     print("       First batch: paste the whole block. Later batches: paste just the")
     print("       entries (lines between the braces) before AIRPORT_PLAN's `};`. ---\n")
     print("const AIRPORT_PLAN = {")

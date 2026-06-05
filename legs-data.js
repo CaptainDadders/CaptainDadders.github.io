@@ -12,6 +12,10 @@
 //                      (snap+haversine along the full 5-segment polyline).
 //                      Authoritative source for new-leg distances:
 //                        leg.nm = AIRPORT_CUM_NM[arr] - AIRPORT_CUM_NM[dep]
+//   AIRPORT_COORDS   — [lat, lng] AirNav coordinates per airport (the pin,
+//                      not the snap). Read at assembly to set the FLIGHT_LEGS
+//                      pin without re-fetching AirNav. Populated by
+//                      plan_airports.py during planning.
 
 const FLIGHT_LEGS = [
   {
@@ -440,6 +444,48 @@ const AIRPORT_CUM_NM = {
   "Y19":  2201.7,  // Mandan Regional / Lawler Field, Mandan ND; snap [46.77322,-100.84117], 2.21 NM off-route
   "5ND7": 2210.8,  // Kinnischtzke Airport, ND; snap [46.896,-100.89961], 2.59 NM off-route
   "1ND9": 2213.7   // Wachter Ranch Private, ND; snap [46.94435,-100.90723], 1.37 NM off-route
+};
+
+// ── AIRPORT_COORDS — actual airport coordinates (AirNav of-record) ──
+// For each airport, [lat, lng] from AirNav (https://www.airnav.com/airport/[CODE]).
+// These are the AIRPORT PIN coordinates (on the runway) — distinct from
+// AIRPORT_PLAN[code].snap (the projection onto the route polyline). The
+// FLIGHT_LEGS map pin for the arrival airport must equal AIRPORT_COORDS[arr],
+// NOT the snap. Two different points, sometimes >1 NM apart.
+//
+// Populated by plan_airports.py during the planning phase — the script
+// receives each airport's AirNav lat/lng as input and stores it here, so
+// later steps don't have to re-resolve from AirNav.
+//
+// Backfilled entries (Legs 0–25) were derived from the existing FLIGHT_LEGS
+// pin coords, which by project rule are the AirNav values.
+const AIRPORT_COORDS = {
+  "31D":   [40.3334, -79.7792],
+  "1G8":   [40.6383, -80.6114],
+  "75D":   [39.6448, -80.8627],
+  "I41":   [38.4347, -82.5543],
+  "KLUK":  [39.1006, -84.4228],
+  "4KT4":  [38.853, -84.79],
+  "KJVY":  [38.3676, -85.7431],
+  "KY8":   [37.8397, -86.9461],
+  "KEHR":  [37.8089, -87.685],
+  "M30":   [37.183, -88.75067],
+  "KCIR":  [37.0641, -89.2195],
+  "12LL":  [37.5403, -89.4864],
+  "6MO2":  [37.9862, -90.0334],
+  "KCPS":  [38.5706, -90.1561],
+  "1H0":   [38.7267, -90.5083],
+  "MU68":  [38.6689, -91.536],
+  "KJEF":  [38.5911, -92.1561],
+  "71MO":  [39.27468, -93.3552],
+  "KMKC":  [39.12294, -94.59283],
+  "64MO":  [39.6653, -95.0133],
+  "MO24":  [40.1428, -95.3883],
+  "KOMA":  [41.30317, -95.89406],
+  "KTQE":  [41.763533, -96.177942],
+  "KSUX":  [42.4013056, -96.3844167],
+  "KVMR":  [42.7652778, -96.93425],
+  "KYKN":  [42.9166786, -97.3859317],
 };
 
 // ── LEG_NOTES — verified facts + summary of what the leg post covered ──
