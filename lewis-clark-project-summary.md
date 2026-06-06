@@ -75,6 +75,11 @@ JOURNAL:
   and spelling errors.** Everything else — facts, phrasing, structure, tone —
   stays exactly as written unless the user explicitly approves a change.
 - This rule applies even when Claude believes a rewrite would be more accurate, more vivid, or better style. It is not Claude's journal.
+- **Voice note:** the journal is the pilot's own first-person words and stays
+  that way. *Claude-written* prose (the historical section, any connective text)
+  is third person and never addresses the pilot/reader as "you," and never
+  spoils events past the leg's end date. See the two ⚠️ rules under **Historical
+  section rules**.
 
 ### Inline media syntax
 - **Photo:** `[PHOTO: filename.png | caption | primary]`
@@ -211,7 +216,27 @@ The template (`leg-template.html`) handles all CSS, fonts, color variables, dark
 Snippet patterns for journal body (paragraph, photo, video) are documented at the top of the template file.
 
 ### Historical section rules
-- Third person only — never "you"/"your". Use "this leg" or "the Corps."
+- **⚠️ Third person only — never second person, anywhere in the published page.**
+  Never "you"/"your" — and this means never addressing the *pilot/reader* either.
+  The blog is written for an audience to read; the pilot is not the "you" of the
+  text. Use "this leg," "the Corps," "the captains," or name the pilot's craft
+  ("the Norden," "from the cockpit") rather than "you." This applies to the
+  historical section *and* to any Claude-written connective prose — the journal
+  paragraphs themselves are the pilot's verbatim words and are never altered (see
+  the journal wording rule). **Leg 26 drafted "struck you from the cockpit" in
+  the historical section — a second-person violation; rephrased before assembly.**
+- **⚠️ NO FUTURE SPOILERS — foreshadow only, never narrate ahead.** The blog
+  tracks the expedition in real time (the pilot is reading *Undaunted Courage* in
+  sync), so the historical section must not reveal what happens after the leg's
+  end date. Foreshadowing is allowed and encouraged — naming a tension, a
+  warning, an open thread ("a caution from a man who knew the river ahead far
+  better than the captains did"). Narrating the *outcome* is forbidden ("three
+  weeks later the Teton encounter would be the most dangerous of the trip"; "they
+  wouldn't meet a grizzly until October 20"; "Shannon rejoined on September 11").
+  If a thread opens before the end date, leave it open. This is stricter than,
+  but points the same way as, the DATE BOUNDARY rule below — when in doubt, say
+  less about the future. **Leg 26 first draft narrated the Shannon reunion, the
+  Teton outcome, and the October grizzly as "context"; all three were cut.**
 - Banner format: `What Lewis & Clark were doing at this same point — [LC_DATES]` (handled by template).
 - Draw on `LEG_NOTES[slug].facts` for verified material.
 - **⚠️ DATE BOUNDARY:** the L&C end date is the boundary stored in
