@@ -1,0 +1,50 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- background roundel -->
+  <circle cx="256" cy="256" r="248" fill="#1b3a4b"/>
+  <circle cx="256" cy="256" r="230" fill="#22485c"/>
+
+  <!-- outer ring -->
+  <circle cx="256" cy="256" r="208" fill="none" stroke="#c9a44c" stroke-width="10"/>
+
+  <!-- cardinal tick marks -->
+  <g stroke="#c9a44c" stroke-width="8" stroke-linecap="round">
+    <line x1="256" y1="56"  x2="256" y2="92"/>
+    <line x1="256" y1="420" x2="256" y2="456"/>
+    <line x1="56"  y1="256" x2="92"  y2="256"/>
+    <line x1="420" y1="256" x2="456" y2="256"/>
+  </g>
+
+  <!-- intercardinal short ticks -->
+  <g stroke="#c9a44c" stroke-width="5" stroke-linecap="round" opacity="0.8">
+    <line x1="115" y1="115" x2="140" y2="140"/>
+    <line x1="397" y1="115" x2="372" y2="140"/>
+    <line x1="115" y1="397" x2="140" y2="372"/>
+    <line x1="397" y1="397" x2="372" y2="372"/>
+  </g>
+
+  <!-- compass star: four-point, north emphasized -->
+  <!-- N/S vertical diamond -->
+  <polygon points="256,108 286,256 256,404 226,256" fill="#e8ecef"/>
+  <!-- E/W horizontal diamond -->
+  <polygon points="108,256 256,226 404,256 256,286" fill="#aeb9c0"/>
+  <!-- north half highlighted -->
+  <polygon points="256,108 271,256 256,256 241,256" fill="#c0392b"/>
+
+  <!-- aircraft as the needle, pointing north (slight tilt) -->
+  <g transform="translate(256,256) rotate(-20)">
+    <!-- fuselage -->
+    <rect x="-9" y="-112" width="18" height="200" rx="9" fill="#0f2733"/>
+    <!-- nose -->
+    <polygon points="0,-128 12,-104 -12,-104" fill="#0f2733"/>
+    <!-- main wings -->
+    <polygon points="-92,-6 92,-6 70,30 -70,30" fill="#0f2733"/>
+    <!-- tailplane -->
+    <polygon points="-34,78 34,78 26,98 -26,98" fill="#0f2733"/>
+    <!-- cockpit dot -->
+    <circle cx="0" cy="-72" r="9" fill="#c9a44c"/>
+  </g>
+
+  <!-- center hub -->
+  <circle cx="256" cy="256" r="14" fill="#c9a44c"/>
+  <circle cx="256" cy="256" r="6" fill="#1b3a4b"/>
+</svg>
