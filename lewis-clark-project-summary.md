@@ -239,7 +239,39 @@ Snippet patterns for journal body (paragraph, photo, video) are documented at th
   Teton outcome, and the October grizzly as "context"; all three were cut.**
 - Banner format: `What Lewis & Clark were doing at this same point — [LC_DATES]` (handled by template).
 - Draw on `LEG_NOTES[slug].facts` for verified material.
-- **⚠️ DATE BOUNDARY:** the L&C end date is the boundary stored in
+- **⚠️ CONTINUOUS DATE COVERAGE — the *dates* form an unbroken chain; the *prose*
+  is a narrative, not a ledger.** Two separate things, don't conflate them:
+  1. **The DATE RANGE is the thing that must be continuous.** A leg's `lcDates`
+     STARTS the day after the previous leg's L&C end date (read the prior leg's
+     `lcDates` / `LEG_NOTES[prev-slug]`) and ENDS at this leg's resolved boundary
+     (the end-date rule below): `[prevEnd + 1 day … thisEnd]`. Across all legs the
+     expedition's timeline must have **no gaps** — every stretch the Corps
+     traveled appears on exactly one leg's dates. The `lcDates` banner shows this
+     full range, never a narrower "focal" slice of it. **This is the hard rule.**
+  2. **The PROSE is a narrative of what was happening during that stretch — told
+     with judgment, NOT a day-by-day account.** The job is to weave the thread of
+     the section: what the Corps was doing, where the tension was, what mattered.
+     It is **not** required (or wanted) to mention every day, log every event, or
+     "account for" each date in the window. If little of note happened on some
+     days, the narrative may pass over them entirely — that is correct, not a gap.
+     A leg has a natural focal point (here, the Teton encounter) that earns most
+     of the words; the rest of the window is woven in as briefly as the story
+     needs, or left implicit. "Covered by the date range" ≠ "named in the prose."
+  - The failure mode to avoid is **shrinking the dates to match the prose** —
+    i.e., starting `lcDates` at the focal day and dropping the earlier part of the
+    section off the timeline so it lands on no leg at all. The fix is never "write
+    more sentences"; it's "set the dates to the true section, then narrate it with
+    judgment."
+  - **Leg 29 was wrong on this** — the section ran Sep 18–27 (Leg 28 ended Sep 17),
+    but the first draft set `lcDates` to Sep 24–27 and dropped Sep 18–23 (the Big
+    Bend approach) off the timeline entirely, so that stretch of their travel
+    appeared on no leg. Root cause: Claude shrank the *dates* to fit the part it
+    wanted to write about, instead of setting the dates to the true section and
+    then narrating with judgment. Fixed by setting `lcDates` to Sep 18–27 and
+    folding the approach into one brief opening paragraph, with the Teton
+    encounter still the clear focus. (The error was the dates, not a shortage of
+    prose — Sep 18–23 could have stayed a single sentence.)
+- **⚠️ DATE BOUNDARY (end):** the L&C end date is the boundary stored in
   `AIRPORT_PLAN[arr]`, resolved per the deferred-date-call rule in
   `content-workflow.md`:
   1. Default = `campBehind.date` (the camp at or behind the landing point).
