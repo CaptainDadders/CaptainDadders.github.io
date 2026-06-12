@@ -495,7 +495,30 @@ const AIRPORT_CUM_NM = {
   "KBIS": 2198.2,  // Bismarck Municipal, Bismarck ND; snap [46.73858,-100.78102], 2.51 NM off-route
   "Y19":  2201.7,  // Mandan Regional / Lawler Field, Mandan ND; snap [46.77322,-100.84117], 2.21 NM off-route
   "5ND7": 2210.8,  // Kinnischtzke Airport, ND; snap [46.896,-100.89961], 2.59 NM off-route
-  "1ND9": 2213.7   // Wachter Ranch Private, ND; snap [46.94435,-100.90723], 1.37 NM off-route
+  "1ND9": 2213.7,  // Wachter Ranch Private, ND; snap [46.94435,-100.90723], 1.37 NM off-route
+  "3NA2": 2236.9,  // Lorentzen, Washburn ND; snap [47.27405,-101.04276], 1.99 NM off-route
+  "37N":  2267.0,  // Garrison Dam Rec, Riverdale ND; snap [47.49406,-101.4227], 0.90 NM off-route
+  "44ND": 2314.3,  // Fredericks Ranch, Halliday ND; snap [47.57105,-102.17457], 3.75 NM off-route
+  "NA45": 2347.1,  // Sandstrom, ND; snap [47.83461,-102.65056], 2.17 NM off-route
+  "4NA0": 2413.6,  // Lindvig Airstrip, Watford City ND; snap [48.017,-103.55447], 1.55 NM off-route
+  "S85":  2493.4,  // Big Sky Field, Culbertson MT; snap [48.10932,-104.51286], 2.68 NM off-route
+  "42S":  2534.2,  // Poplar, MT; snap [48.10296,-105.1576], 1.20 NM off-route
+  "KOLF": 2557.2,  // L M Clayton, Wolf Point MT; snap [48.09725,-105.59918], 0.98 NM off-route
+  "37S":  2617.6,  // Fort Peck, MT; snap [47.9796,-106.47227], 1.53 NM off-route
+  "MT79": 2767.3,  // Sand Creek Wildlife Stn, Roy MT; snap [47.61995,-108.6725], 2.61 NM off-route
+  "MT3":  2772.5,  // Knox Ridge, Winifred MT; snap [47.6506,-108.77858], 3.47 NM off-route
+  "L51":  2780.1,  // Heller Farm, Winifred MT; snap [47.73648,-108.89283], 0.94 NM off-route
+  "WH0":  2793.0,  // Woodhawk, MT; snap [47.80172,-109.07197], 1.36 NM off-route
+  "79S":  2891.3,  // Fort Benton, MT; snap [47.83125,-110.63004], 0.82 NM off-route
+  "KGTF": 2942.3,  // Great Falls Intl, MT; snap [47.43545,-111.34615], 2.97 NM off-route
+  "MT75": 2951.8,  // Buchanan Ranch, Great Falls MT; snap [47.42951,-111.45695], 0.14 NM off-route
+  "3MT7": 2976.5,  // Cascade Field, Cascade MT; snap [47.24255,-111.71401], 1.45 NM off-route
+  "55MT": 2997.1,  // Missouri River Ranch, MT; snap [47.05485,-111.96701], 0.40 NM off-route
+  "5M7":  3036.5,  // Mountain Lakes, MT; snap [46.65846,-111.78143], 1.91 NM off-route
+  "8U9":  3059.9,  // Canyon Ferry, Townsend MT; snap [46.42864,-111.55394], 1.13 NM off-route
+  "8U8":  3067.4,  // Broadwater County, Townsend MT; snap [46.34099,-111.5169], 1.54 NM off-route
+  "MT42": 3108.2,  // Hasskamp, Three Forks MT; snap [45.91647,-111.53506], 0.96 NM off-route
+  "9S5":  3111.3   // Three Forks (Pogreba Field), MT; snap [45.89274,-111.58301], 1.05 NM off-route
 };
 
 // ── AIRPORT_COORDS — actual airport coordinates (AirNav of-record) ──
@@ -540,6 +563,29 @@ const AIRPORT_COORDS = {
   "KYKN":  [42.9166786, -97.3859317],
   "9V9":   [43.7661371, -99.3212292],   // Chamberlain Municipal, Chamberlain SD (AirNav; backfilled legacy gap)
   "KPIR":  [44.3826869, -100.2859753],  // Pierre Regional, Pierre SD (AirNav of-record)
+  "3NA2":  [47.3027717, -101.0670922],
+  "37N":   [47.4827278, -101.4081486],
+  "44ND":  [47.5277836, -102.2412858],
+  "NA45":  [47.8623, -102.616119],
+  "4NA0":  [48.008358, -103.590753],
+  "S85":   [48.1535597, -104.5040556],
+  "42S":   [48.1158, -105.180642],
+  "KOLF":  [48.0945, -105.5750556],
+  "37S":   [48.004833, -106.477889],
+  "MT79":  [47.5841553, -108.7090408],
+  "MT3":   [47.6166667, -108.8480556],
+  "L51":   [47.72633, -108.875],
+  "WH0":   [47.779444, -109.078614],
+  "79S":   [47.84417, -110.63683],
+  "KGTF":  [47.4819984, -111.3710022],
+  "MT75":  [47.4302348, -111.4602479],
+  "3MT7":  [47.2666667, -111.7175],
+  "55MT":  [47.060642, -111.971686],
+  "5M7":   [46.631531, -111.805983],
+  "8U9":   [46.41883, -111.57717],
+  "8U8":   [46.33117, -111.48267],
+  "MT42":  [45.9105, -111.51383],
+  "9S5":   [45.87806, -111.56944]
 };
 
 // ── LEG_NOTES — verified facts + summary of what the leg post covered ──
@@ -912,6 +958,190 @@ const AIRPORT_PLAN = {
     offRouteNM: 1.37,
     campBehind: { date: "1804-10-21", place: "right shore, 1 mi NW of I-94 bridge, ND", gapNM: 6.3 },
     campAhead: { date: "1804-10-22", place: "right shore, 12 mi NW of I-94 bridge, ND", gapNM: 0.9 },
+    deferredDateCall: true
+  },
+  "3NA2": {
+    snap: [47.27405, -101.04276],
+    snapIndex: 1275,
+    offRouteNM: 1.99,
+    campBehind: { date: "1804-10-24", place: "left shore, ND", gapNM: 2.3 },
+    campAhead: { date: "1804-10-25", place: "left shore. ND", gapNM: 7.6 },
+    deferredDateCall: false
+  },
+  "37N": {
+    snap: [47.49406, -101.4227],
+    snapIndex: 1293,
+    offRouteNM: 0.9,
+    campBehind: { date: "1805-04-08", place: "left shore, 4 mi SW of Riverdale, ND", gapNM: 2.2 },
+    campAhead: { date: "1805-04-09", place: "left shore, 6 mi SSE of Emmet, ND", gapNM: 16.0 },
+    deferredDateCall: false
+  },
+  "44ND": {
+    snap: [47.57105, -102.17457],
+    snapIndex: 1324,
+    offRouteNM: 3.75,
+    campBehind: { date: "1805-04-11", place: "left shore, 17 mi N of Dodge, ND", gapNM: 0.0 },
+    campAhead: { date: "1805-04-12", place: "right shore, mouth of Little Missouri River, ND", gapNM: 2.9 },
+    deferredDateCall: false
+  },
+  "NA45": {
+    snap: [47.83461, -102.65056],
+    snapIndex: 1343,
+    offRouteNM: 2.17,
+    campBehind: { date: "1805-04-14", place: "left shore, 12 mi SW of New Town, ND", gapNM: 0.0 },
+    campAhead: { date: "1805-04-15", place: "right shore, 8 mi NW of New Town, ND", gapNM: 19.0 },
+    deferredDateCall: false
+  },
+  "4NA0": {
+    snap: [48.017, -103.55447],
+    snapIndex: 1393,
+    offRouteNM: 1.55,
+    campBehind: { date: "1805-04-20", place: "left shore, 8 mi SE of Williston, ND", gapNM: 3.8 },
+    campAhead: { date: "1805-04-21", place: "right shore, 2 mi S of Williston, ND", gapNM: 9.3 },
+    deferredDateCall: false
+  },
+  "S85": {
+    snap: [48.10932, -104.51286],
+    snapIndex: 1465,
+    offRouteNM: 2.68,
+    campBehind: { date: "1805-04-28", place: "left shore, 10 southeast of Culbertson, MT", gapNM: 8.7 },
+    campAhead: { date: "1805-04-29", place: "left shore, near mouth Big Muddy Creek, MT", gapNM: 5.9 },
+    deferredDateCall: true
+  },
+  "42S": {
+    snap: [48.10296, -105.1576],
+    snapIndex: 1506,
+    offRouteNM: 1.2,
+    campBehind: { date: "1805-05-02", place: "left shore, 7 mi SW of Brockton, MT", gapNM: 10.4 },
+    campAhead: { date: "1805-05-03", place: "left shore, 3 mi SW Poplar, MT", gapNM: 3.0 },
+    deferredDateCall: true
+  },
+  "KOLF": {
+    snap: [48.09725, -105.59918],
+    snapIndex: 1520,
+    offRouteNM: 0.98,
+    campBehind: { date: "1805-05-04", place: "left shore, 10 mi east of Wolf Point, MT", gapNM: 10.6 },
+    campAhead: { date: "1805-05-05", place: "left shore, 3 mi SE Wolf Point, MT", gapNM: 2.8 },
+    deferredDateCall: true
+  },
+  "37S": {
+    snap: [47.9796, -106.47227],
+    snapIndex: 1573,
+    offRouteNM: 1.53,
+    campBehind: { date: "1805-05-08", place: "right shore, 5 mi south of Nashua, MT", gapNM: 14.3 },
+    campAhead: { date: "1805-05-09", place: "left shore, 5 mi south of Fort Peck, mouth of Duck Creek, MT", gapNM: 2.6 },
+    deferredDateCall: true
+  },
+  "MT79": {
+    snap: [47.61995, -108.6725],
+    snapIndex: 1717,
+    offRouteNM: 2.61,
+    campBehind: { date: "1805-05-23", place: "left shore, 11 mi east of US 191 bridge, MT", gapNM: 11.3 },
+    campAhead: { date: "1805-05-24", place: "right bank, 3 mi NE of US 191 bridge, MT", gapNM: 3.1 },
+    deferredDateCall: true
+  },
+  "MT3": {
+    snap: [47.6506, -108.77858],
+    snapIndex: 1722,
+    offRouteNM: 3.47,
+    campBehind: { date: "1805-05-24", place: "right bank, 3 mi NE of US 191 bridge, MT", gapNM: 2.1 },
+    campAhead: { date: "1805-05-25", place: "right shore, 14 mi NW of US 191 bridge, MT", gapNM: 8.9 },
+    deferredDateCall: false
+  },
+  "L51": {
+    snap: [47.73648, -108.89283],
+    snapIndex: 1727,
+    offRouteNM: 0.94,
+    campBehind: { date: "1805-05-24", place: "right bank, 3 mi NE of US 191 bridge, MT", gapNM: 9.7 },
+    campAhead: { date: "1805-05-25", place: "right shore, 14 mi NW of US 191 bridge, MT", gapNM: 1.3 },
+    deferredDateCall: true
+  },
+  "WH0": {
+    snap: [47.80172, -109.07197],
+    snapIndex: 1740,
+    offRouteNM: 1.36,
+    campBehind: { date: "1805-05-25", place: "right shore, 14 mi NW of US 191 bridge, MT", gapNM: 11.6 },
+    campAhead: { date: "1805-05-26", place: "right shore at Bird Rapids, 25 mi NW of US 191 bridge, MT", gapNM: 3.9 },
+    deferredDateCall: true
+  },
+  "79S": {
+    snap: [47.83125, -110.63004],
+    snapIndex: 1818,
+    offRouteNM: 0.82,
+    campBehind: { date: "1805-06-12", place: "left shore Missouri River, 4\u00ab NE of Fort Benton, MT", gapNM: 2.8 },
+    campAhead: { date: "1805-06-05", place: "NW of Teton River and just NW of gap of Vimy Ridge, MT", gapNM: 4.0 },
+    deferredDateCall: false
+  },
+  "KGTF": {
+    snap: [47.43545, -111.34615],
+    snapIndex: 1872,
+    offRouteNM: 2.97,
+    campBehind: { date: "1805-06-18/30", place: "White Bear Islands Camp, east bank;  L: 22-30 Jun; C: 18-19, 22, 27-30 Jun", gapNM: 8.8 },
+    campAhead: { date: "1805-06-23", place: "Shannon's camp, south side of Sun River, MT", gapNM: 4.5 },
+    deferredDateCall: true
+  },
+  "MT75": {
+    snap: [47.42951, -111.45695],
+    snapIndex: 1888,
+    offRouteNM: 0.14,
+    campBehind: { date: "1805-06-23", place: "Shannon's camp, south side of Sun River, MT", gapNM: 4.9 },
+    campAhead: { date: "1805-07-15", place: "left shore Missouri River near Ulm, MT", gapNM: 9.4 },
+    deferredDateCall: false
+  },
+  "3MT7": {
+    snap: [47.24255, -111.71401],
+    snapIndex: 1920,
+    offRouteNM: 1.45,
+    campBehind: { date: "1805-07-15", place: "left shore Missouri River near Ulm, MT", gapNM: 15.3 },
+    campAhead: { date: "1805-07-16", place: "island near west (left) side of Missouri River, near Cascade, MT", gapNM: 1.4 },
+    deferredDateCall: true
+  },
+  "55MT": {
+    snap: [47.05485, -111.96701],
+    snapIndex: 1950,
+    offRouteNM: 0.4,
+    campBehind: { date: "1805-07-17", place: "left shore Missouri River, 2 mi NE Dearborn River mouth, MT", gapNM: 7.8 },
+    campAhead: { date: "1805-07-18", place: "right shore Missouri River, 1 mi south of Holter Dam, MT", gapNM: 6.5 },
+    deferredDateCall: true
+  },
+  "5M7": {
+    snap: [46.65846, -111.78143],
+    snapIndex: 1993,
+    offRouteNM: 1.91,
+    campBehind: { date: "1805-07-19", place: "west side of Missouri River near Guillot Springs, Lakeside, MT", gapNM: 2.2 },
+    campAhead: { date: "1805-07-21", place: "right shore Missouri River, 5 mi south of town of Canyon Ferry, MT", gapNM: 7.8 },
+    deferredDateCall: false
+  },
+  "8U9": {
+    snap: [46.42864, -111.55394],
+    snapIndex: 2028,
+    offRouteNM: 1.13,
+    campBehind: { date: "1805-07-22", place: "island in Missouri River, 5 mi east of Winston, MT", gapNM: 4.6 },
+    campAhead: { date: "1805-07-23", place: "right shore of Missouri River, 3 mi north of Townsend, MT", gapNM: 5.8 },
+    deferredDateCall: false
+  },
+  "8U8": {
+    snap: [46.34099, -111.5169],
+    snapIndex: 2038,
+    offRouteNM: 1.54,
+    campBehind: { date: "1805-07-23", place: "right shore of Missouri River, 3 mi north of Townsend, MT", gapNM: 1.7 },
+    campAhead: { date: "1805-07-24", place: "left shore of Missouri River, 5 mi north of Toston, MT", gapNM: 7.7 },
+    deferredDateCall: false
+  },
+  "MT42": {
+    snap: [45.91647, -111.53506],
+    snapIndex: 2082,
+    offRouteNM: 0.96,
+    campBehind: { date: "1805-07-27/29", place: "Three Forks Camp, \"island\" near junction Jefferson and Madison rivers, MT", gapNM: 1.9 },
+    campAhead: { date: "1805-07-30", place: "left shore of Jefferson River near mouth of Willow Creek, MT", gapNM: 7.1 },
+    deferredDateCall: false
+  },
+  "9S5": {
+    snap: [45.89274, -111.58301],
+    snapIndex: 2087,
+    offRouteNM: 1.05,
+    campBehind: { date: "1805-07-27/29", place: "Three Forks Camp, \"island\" near junction Jefferson and Madison rivers, MT", gapNM: 4.9 },
+    campAhead: { date: "1805-07-30", place: "left shore of Jefferson River near mouth of Willow Creek, MT", gapNM: 4.1 },
     deferredDateCall: true
   },
 };

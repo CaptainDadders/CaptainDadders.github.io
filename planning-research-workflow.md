@@ -47,8 +47,13 @@ extended here.
    - off-route distance, with a 🚩 flag if **> 10 NM** (likely wrong code)
    - nearest campsite **behind** and **ahead**, each with date + along-route gap
    - `deferredDateCall` = true when the camp ahead is closer than the one behind
-3. **Surface flags.** If any airport snaps > 10 NM off-route, stop and ask the
-   pilot to confirm the code before storing it — same rule as the flight planner.
+3. **Report candidates.** Surface every airport (flagged or not) in the chat
+   summary with: code + full name, cumulative NM from Pittsburgh, and
+   **off-route NM**. Off-route distance is always shown, not just when the
+   flag fires — the pilot wants to see it for low-numbered "barely off-route"
+   candidates too, since those are the best landing spots. If any airport
+   snaps > 10 NM off-route, stop and ask the pilot to confirm the code before
+   storing it — same rule as the flight planner.
 4. **Paste the script's output into `legs-data.js`:**
    - new `AIRPORT_CUM_NM` lines (remember to add a comma after the current last
      entry)
