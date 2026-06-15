@@ -10,6 +10,15 @@
     <atom:link href="https://captaindadders.com/rss.xml" rel="self" type="application/rss+xml"/>
 
     <item>
+      <title>Leg 30: Across Lake Oahe — KPIR to KMBG</title>
+      <link>https://captaindadders.com/#leg-30</link>
+      <description>An hour up Lake Oahe from Pierre Regional to Mobridge Municipal, with the Corps of Discovery's escape from the Lakota at the Bad River, the meeting with trader Jean Vallé at the Cheyenne, and the first grizzly tracks at the Moreau.</description>
+      <pubDate>Sun, 14 Jun 2026 12:00:00 +0000</pubDate>
+      <guid>https://captaindadders.com/#leg-30</guid>
+      <enclosure url="https://captaindadders.com/Expedition3/Legs/Leg30-OaheDam.png" type="image/png" length="0"/>
+      <media:content url="https://captaindadders.com/Expedition3/Legs/Leg30-OaheDam.png" medium="image"/>
+    </item>
+    <item>
       <title>Leg 29: The Teton Standoff — 9V9 to KPIR</title>
       <link>https://captaindadders.com/#leg-29</link>
       <description>An evening flight up Lake Francis Case to Big Bend Dam, around the Big Bend of the Missouri, and on to Pierre, SD — where in 1804 the Corps of Discovery faced down the Teton Sioux in the most dangerous diplomatic encounter of the outbound year.</description>
