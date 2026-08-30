@@ -534,7 +534,7 @@ const FLIGHT_LEGS = [
     label: "Leg 39: Decision Point",
     location: "L51 → 79S · Winifred to Fort Benton, MT",
     date: "August 30, 2026",
-    thumb: "Expedition3/Legs/Leg39-MissouriRiverBluffs.png",
+    thumb: "Expedition3/Legs/Leg39-DecisionPoint.png",
     post: "Expedition3/Legs/leg-39.html",
     slug: "leg-39",
     lcDates: "May 25 – Jun 12, 1805",
